@@ -1,0 +1,43 @@
+{
+  "name": "Luminae Craft – Handmade Resin Art",
+  "short_name": "Luminae Craft",
+  "description": "Handcrafted resin art — coasters, vases, sculptures & more. Made in Cebu, Philippines.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FAF7F2",
+  "theme_color": "#FAF7F2",
+  "orientation": "portrait-primary",
+  "lang": "en-PH",
+  "dir": "ltr",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Shop Now",
+      "short_name": "Shop",
+      "description": "Browse all handmade resin pieces",
+      "url": "/index.html#shop",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Custom Vase",
+      "short_name": "Custom",
+      "description": "Design your own resin vase",
+      "url": "/index.html#custom-vase",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
