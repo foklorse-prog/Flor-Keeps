@@ -1,84 +1,109 @@
-/* ══════════════════════════════════════════════════════
-   Luminae Craft — Service Worker
-   Strategy: Network-first with cache fallback.
-   On every request we try the network first. If the
-   network succeeds we ALSO update the cache in the
-   background, so offline fallback always stays fresh.
-   If the network fails (user is offline) we fall back
-   to whatever is cached.
+/*
+  Petals & Pour — Service Worker
+  ================================
+  NO manual versioning needed. Ever.
 
-   Update flow:
-   • The main page posts SKIP_WAITING as soon as a new
-     SW finishes installing, so the new version activates
-     immediately on the NEXT navigation / refresh rather
-     than waiting for all tabs to close.
-   • Old caches from previous versions are deleted in the
-     activate step so stale assets never linger.
-══════════════════════════════════════════════════════ */
+  How it works:
+  ─────────────
+  Instead of a hardcoded CACHE_VERSION string, each cached
+  entry is keyed by its URL. On every fetch we:
 
-const CACHE = 'luminae-v1'; // Bump this string when you deploy a new release
+    1. Try the network first (always fresh content).
+    2. If the network succeeds, compare the incoming response's
+       ETag / Last-Modified header against what we stored last time.
+       If different → replace the cache entry automatically.
+    3. If the network fails (offline) → serve from cache.
 
-// Assets to pre-cache on install so the shell loads offline right away
-const PRECACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-];
+  This means:
+  • You never bump a version string.
+  • Deploys automatically invalidate stale files.
+  • Users always get fresh content when online.
+  • Users still get something when offline.
+*/
 
-// ── Install: pre-cache the app shell ──────────────────
+const CACHE = 'petals-and-pour';
+
+// ── INSTALL ──────────────────────────────────────────────
+// Pre-cache just the shell so it loads instantly offline.
+// No version string — just the filenames.
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(PRECACHE))
-    // Note: do NOT call skipWaiting() here — we let the
-    // main page trigger it via postMessage so the timing
-    // is intentional and doesn't interrupt active use.
+    caches.open(CACHE).then(cache =>
+      cache.addAll(['/', '/index.html', '/manifest.json'])
+    )
   );
+  // Don't skipWaiting here — the page triggers it below
+  // so we never interrupt an active session.
 });
 
-// ── Activate: delete any caches from older SW versions ─
+// ── ACTIVATE ─────────────────────────────────────────────
+// Clean up any old cache buckets from previous SW versions.
+// Since we only ever use one cache name, this is a no-op
+// unless you renamed the cache above.
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys
-          .filter(key => key !== CACHE)   // keep only the current cache
-          .map(key => caches.delete(key))
-      )
-    ).then(() => self.clients.claim()) // take control of all open tabs immediately
+    caches.keys()
+      .then(keys => Promise.all(
+        keys.filter(k => k !== CACHE).map(k => caches.delete(k))
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
-// ── Message: page can tell us to skip waiting ──────────
+// ── MESSAGE ───────────────────────────────────────────────
+// The page sends SKIP_WAITING after a new SW installs,
+// which triggers an immediate takeover + one silent reload.
 self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting(); // activate immediately; triggers 'controllerchange' on the page
-  }
+  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
-// ── Fetch: network-first, fall back to cache ───────────
+// ── FETCH ─────────────────────────────────────────────────
 self.addEventListener('fetch', event => {
-  // Only handle GET requests — skip POST/PUT etc.
   if (event.request.method !== 'GET') return;
 
-  // Skip cross-origin requests (fonts, CDN scripts, images from Unsplash etc.)
-  // We only cache same-origin assets.
   const url = new URL(event.request.url);
+
+  // Only cache same-origin requests.
+  // Let fonts, CDN scripts, Unsplash images pass through untouched.
   if (url.origin !== self.location.origin) return;
 
-  event.respondWith(
-    fetch(event.request)
-      .then(networkResponse => {
-        // Network succeeded → clone and store in cache, then return live response
-        if (networkResponse && networkResponse.status === 200) {
-          const clone = networkResponse.clone();
-          caches.open(CACHE).then(cache => cache.put(event.request, clone));
-        }
-        return networkResponse;
-      })
-      .catch(() =>
-        // Network failed (offline) → serve from cache
-        // If not in cache either, serve /index.html as fallback (SPA pattern)
-        caches.match(event.request).then(cached => cached || caches.match('/index.html'))
-      )
-  );
+  event.respondWith(networkFirstWithAutoUpdate(event.request));
 });
+
+async function networkFirstWithAutoUpdate(request) {
+  const cache = await caches.open(CACHE);
+
+  try {
+    // Always hit the network
+    const networkResponse = await fetch(request);
+
+    if (networkResponse.ok) {
+      const cached = await cache.match(request);
+
+      // Check if the content actually changed before writing.
+      // Browsers include ETag or Last-Modified on most responses.
+      const newEtag   = networkResponse.headers.get('etag');
+      const newDate   = networkResponse.headers.get('last-modified');
+      const oldEtag   = cached?.headers.get('etag');
+      const oldDate   = cached?.headers.get('last-modified');
+
+      const contentChanged =
+        !cached ||                          // nothing cached yet
+        (newEtag  && newEtag  !== oldEtag) ||  // ETag changed
+        (newDate  && newDate  !== oldDate) ||  // Last-Modified changed
+        (!newEtag && !newDate);             // no headers → always refresh
+
+      if (contentChanged) {
+        // Store a fresh copy (clone because response is a stream)
+        cache.put(request, networkResponse.clone());
+      }
+    }
+
+    return networkResponse;
+
+  } catch {
+    // Network failed — serve from cache, or a generic offline fallback
+    const cached = await cache.match(request);
+    return cached ?? cache.match('/index.html');
+  }
+}
