@@ -111,59 +111,64 @@
     .mobile-nav a:hover { color: var(--navy2); }
     .mobile-nav-close { position: absolute; top: 1.2rem; right: 1.8rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--navy); opacity: 0.5; }
 
-    /* ═══ HERO — sky blue, editorial, compact ═══ */
+    /* ═══ HERO — clean sky blue, editorial ═══ */
     #hero {
       padding-top: 64px;
       position: relative;
       overflow: hidden;
-      min-height: 320px;
+      min-height: 420px;
       display: flex;
       align-items: center;
       background: var(--sky);
     }
-    .hero-bg-photos {
-      position: absolute; inset: 0; z-index: 0;
-      display: grid; grid-template-columns: repeat(5,1fr);
+    #hero::before {
+      content: '';
+      position: absolute; top: -20%; right: -5%;
+      width: 55vw; height: 55vw; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 65%);
+      pointer-events: none;
     }
-    .hero-bg-photos img { width:100%; height:100%; object-fit:cover; display:block; }
-    .hero-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(100deg,
-        rgba(168,200,232,0.96) 0%,
-        rgba(168,200,232,0.88) 35%,
-        rgba(168,200,232,0.55) 62%,
-        rgba(168,200,232,0.15) 100%);
+    #hero::after {
+      content: '';
+      position: absolute; bottom: -50%; left: 30%;
+      width: 40vw; height: 40vw; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,200,74,0.15) 0%, transparent 65%);
+      pointer-events: none;
     }
+    .hero-bg-photo { display: none; }
+    .hero-overlay { display: none; }
     .hero-l {
       position: relative; z-index: 2;
-      padding: 3rem 3.5rem;
-      display: flex; flex-direction: column; gap: 1rem;
-      max-width: 640px;
+      padding: 4rem 4rem 4rem 3.5rem;
+      display: flex; flex-direction: column; gap: 1.3rem;
+      max-width: 560px; /* constrain so headline breaks nicely */
     }
     .hero-kicker {
       font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase;
-      color: var(--navy); opacity: 0.65; font-weight: 500;
-      display: flex; align-items: center; gap: 0.6rem;
+      color: var(--navy); opacity: 0.6; font-weight: 500;
+      display: flex; align-items: center; gap: 0.7rem;
     }
-    .hero-kicker::before { content:''; width:14px; height:1px; background:var(--navy); flex-shrink:0; }
+    .hero-kicker::before { content:''; width:18px; height:1.5px; background:var(--navy); flex-shrink:0; opacity:0.45; }
     .hero-h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 5vw, 4.8rem);
-      color: var(--navy); margin: 0; line-height: 1.08;
-      font-weight: 300;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      color: var(--navy); margin: 0; line-height: 1.05; font-weight: 300;
     }
-    /* Same size — weight + opacity does the hierarchy */
-    .h1-light { font-weight: 300; color: var(--navy); opacity: 0.5; }
+    .h1-light { font-weight: 300; color: rgba(26,36,54,0.42); }
     .h1-heavy { font-weight: 700; color: var(--navy); }
     .h1-perm  { font-weight: 700; font-style: italic; color: var(--butter-dk); }
     .hero-p {
-      font-size: 0.9rem; line-height: 1.8; color: var(--navy);
-      opacity: 0.65; max-width: 360px; margin: 0;
+      font-size: 0.94rem; line-height: 1.82; color: var(--navy);
+      opacity: 0.62; max-width: 380px; margin: 0;
     }
-    .hero-btns { display: flex; gap: 0.7rem; flex-wrap: wrap; }
-    .hero-dots { display: flex; gap: 1.2rem; flex-wrap: wrap; }
-    .hero-dot { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; color: var(--navy); opacity: 0.6; }
+    .hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.2rem; }
+    .hero-dots { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .hero-dot { display: flex; align-items: center; gap: 0.45rem; font-size: 0.7rem; color: var(--navy); opacity: 0.52; }
     .dot-pip { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .btn-white { background: var(--navy); color: #fff; }
+    .btn-white:hover { background: var(--navy2); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,36,54,0.25); }
+    .btn-outline-hero { background: transparent; color: var(--navy); border: 1.5px solid rgba(26,36,54,0.32); }
+    .btn-outline-hero:hover { background: rgba(26,36,54,0.06); border-color: var(--navy); transform: translateY(-1px); }
     .hero-r { display: none; }
 
     @keyframes up { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
@@ -192,14 +197,17 @@
     .strip-track .gem { color: var(--butter); opacity: 1; }
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-    /* ═══ SHOP — clean white, products breathe ═══ */
-    #shop { padding: 5rem 2.5rem; background: var(--white); }
+    /* ═══ SHOP — white, products pop with real depth ═══ */
+    #shop { padding: 5rem 2.5rem; background: var(--white); position: relative; }
+    #shop::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--sky), var(--butter), var(--rose));
+    }
     .sec-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem; }
     .sec-label { font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--sky-dk); font-weight: 500; margin-bottom: 0.4rem; }
-    .sec-h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 300; color: var(--navy); line-height: 1.1;
-    }    .filters { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .sec-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 300; color: var(--navy); line-height: 1.1; }
+    .filters { display: flex; gap: 0.4rem; flex-wrap: wrap; }
     .fpill {
       padding: 0.34rem 1rem; border-radius: 2rem; border: 1.5px solid var(--line);
       background: transparent; color: var(--sub);
@@ -209,22 +217,26 @@
     .fpill:hover { border-color: var(--navy); color: var(--navy); }
     .fpill.on { background: var(--navy); color: #fff; border-color: var(--navy); }
 
-    .pgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
+    .pgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.4rem; }
     .pcard {
-      background: var(--white); border-radius: 14px; overflow: hidden;
-      box-shadow: 0 1px 4px rgba(26,36,54,0.05), 0 6px 20px rgba(26,36,54,0.07);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      background: var(--white); border-radius: 16px; overflow: hidden;
+      box-shadow: 0 1px 2px rgba(26,36,54,0.04), 0 4px 12px rgba(26,36,54,0.07), 0 12px 28px rgba(26,36,54,0.05);
+      transition: transform 0.28s cubic-bezier(0.23,1,0.32,1), box-shadow 0.28s ease;
       display: flex; flex-direction: column;
-      border: 1px solid rgba(26,36,54,0.06);
+      border: 1px solid rgba(26,36,54,0.05);
     }
-    .pcard:hover { transform: translateY(-5px); box-shadow: 0 2px 6px rgba(26,36,54,0.07), 0 18px 40px rgba(26,36,54,0.13); }
+    .pcard:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 2px 4px rgba(26,36,54,0.05), 0 8px 20px rgba(26,36,54,0.10), 0 24px 48px rgba(26,36,54,0.12);
+    }
     .pcard-img { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--off); }
-    .pcard-img img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.45s ease; }
-    .pcard:hover .pcard-img img { transform: scale(1.05); }
+    .pcard-img img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s cubic-bezier(0.23,1,0.32,1); }
+    .pcard:hover .pcard-img img { transform: scale(1.06); }
     .pbadge {
       position: absolute; top: 0.7rem; left: 0.7rem;
       font-size: 0.54rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
-      padding: 0.2rem 0.6rem; border-radius: 2rem;
+      padding: 0.22rem 0.65rem; border-radius: 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
     .pb-best { background: var(--rose); color: #fff; }
     .pb-new  { background: var(--sky-dk); color: #fff; }
@@ -232,33 +244,35 @@
     .pb-prem { background: var(--butter); color: var(--navy); }
     .pwish {
       position: absolute; top: 0.65rem; right: 0.65rem;
-      width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(255,255,255,0.9); border: none;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.92); border: none;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.8rem; cursor: pointer; transition: all 0.18s;
-      box-shadow: 0 1px 6px rgba(26,36,54,0.12);
+      font-size: 0.82rem; cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(26,36,54,0.14);
     }
-    .pwish:hover { transform: scale(1.1); }
-    .pcard-body { padding: 0.9rem 1rem 1rem; flex:1; display:flex; flex-direction:column; }
+    .pwish:hover { transform: scale(1.12); background: #fff; }
+    .pcard-body { padding: 1rem 1.1rem 1.1rem; flex:1; display:flex; flex-direction:column; }
     .pcat { font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sub); margin-bottom: 0.25rem; font-weight: 500; }
-    .pname { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; font-weight: 400; color: var(--navy); line-height: 1.3; flex:1; margin-bottom: 0.75rem; }
+    .pname { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--navy); line-height: 1.3; flex:1; margin-bottom: 0.8rem; }
     .pfoot { display: flex; align-items: center; justify-content: space-between; }
-    .pprice { font-family: 'Cormorant Garamond', serif; font-size: 1.18rem; color: var(--navy); font-weight: 400; }
+    .pprice { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--navy); font-weight: 400; }
     .pprice s { font-family: 'DM Sans', sans-serif; font-size: 0.74rem; color: var(--sub); margin-left: 0.3rem; text-decoration: line-through; font-weight: 300; }
     .padd {
-      width: 32px; height: 32px; border-radius: 50%; border: none;
+      width: 34px; height: 34px; border-radius: 50%; border: none;
       background: var(--navy); color: #fff;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.15rem; cursor: pointer; transition: all 0.2s;
+      font-size: 1.2rem; cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(26,36,54,0.22);
     }
-    .padd:hover { background: var(--sky-dk); transform: scale(1.1); }
+    .padd:hover { background: var(--sky-dk); transform: scale(1.12); box-shadow: 0 4px 14px rgba(122,170,200,0.4); }
 
-    /* ═══ CUSTOM VASE — sky blue tint ═══ */
+    /* ═══ CUSTOM VASE — sky blue tint, depth ═══ */
     #custom-vase {
       background: var(--sky-lt);
-      border-top: 1px solid rgba(122,170,200,0.2);
-      border-bottom: 1px solid rgba(122,170,200,0.2);
+      border-top: 1px solid rgba(122,170,200,0.25);
+      border-bottom: 1px solid rgba(122,170,200,0.25);
       padding: 5rem 2.5rem;
+      box-shadow: inset 0 8px 24px rgba(26,36,54,0.04), inset 0 -8px 24px rgba(26,36,54,0.03);
     }
     .vase-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .vase-img { border-radius: 18px; overflow: hidden; aspect-ratio: 0.85; box-shadow: 0 8px 40px rgba(26,36,54,0.14); position: relative; }
@@ -293,12 +307,19 @@
     .stat-n { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; color: var(--butter); font-weight: 400; line-height: 1; }
     .stat-l { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 0.3rem; }
 
-    /* ═══ REVIEWS — off-white, clean ═══ */
     #testimonials { padding: 5rem 2.5rem; background: var(--off); border-top: 1px solid var(--line); }
     .rev-head { text-align: center; margin-bottom: 3rem; }
-    .rgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
-    .rcard { background: var(--white); border-radius: 14px; padding: 1.8rem; box-shadow: 0 1px 4px rgba(26,36,54,0.05), 0 6px 18px rgba(26,36,54,0.08); border: 1px solid var(--line); transition: transform 0.22s ease; }
-    .rcard:hover { transform: translateY(-3px); }
+    .rgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.4rem; }
+    .rcard {
+      background: var(--white); border-radius: 16px; padding: 1.8rem;
+      box-shadow: 0 1px 3px rgba(26,36,54,0.04), 0 6px 20px rgba(26,36,54,0.08), 0 14px 36px rgba(26,36,54,0.05);
+      border: 1px solid rgba(26,36,54,0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .rcard:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 2px 6px rgba(26,36,54,0.06), 0 12px 32px rgba(26,36,54,0.12), 0 24px 48px rgba(26,36,54,0.08);
+    }
     .rstars { color: var(--butter-dk); font-size: 0.82rem; margin-bottom: 0.9rem; }
     .rtext { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.72; color: var(--navy); margin-bottom: 1.2rem; }
     .rauthor { font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sub); }
@@ -343,7 +364,7 @@
     /* ═══ CART ═══ */
     .cart-ov { position: fixed; inset: 0; background: rgba(26,36,54,0.4); z-index: 300; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .cart-ov.open { opacity: 1; pointer-events: all; }
-    .cart-dw { position: fixed; top:0; right:0; bottom:0; width: 390px; max-width: 96vw; background: var(--off); border-left: 1px solid var(--line); z-index: 301; transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.23,1,0.32,1); display: flex; flex-direction: column; box-shadow: -8px 0 50px rgba(26,36,54,0.15); }
+    .cart-dw { position: fixed; top:0; right:0; bottom:0; width: 390px; max-width: 96vw; background: var(--off); border-left: 1px solid var(--line); z-index: 301; transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.23,1,0.32,1); display: flex; flex-direction: column; box-shadow: -4px 0 16px rgba(26,36,54,0.08), -12px 0 48px rgba(26,36,54,0.14); }
     .cart-dw.open { transform: translateX(0); }
     .cart-hd { padding: 1.3rem 1.6rem; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; background: var(--sky); }
     .cart-hd h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--navy); }
@@ -400,6 +421,17 @@
       .footer-top { grid-template-columns: 1fr; }
     }
   </style>
+  <!-- GitHub Pages SPA redirect receiver -->
+  <script>
+    (function(){
+      var p = window.location.search.slice(1).split('&').reduce(function(q,s){
+        var kv=s.split('='); q[kv[0]]=kv.slice(1).join('=').replace(/~and~/g,'&'); return q;
+      },{});
+      if(p.p) window.history.replaceState(null,null,
+        p.p.replace(/~and~/g,'&') + (p.q ? '?'+p.q : '') + (window.location.hash||'')
+      );
+    })();
+  </script>
 </head>
 <body>
 
@@ -445,16 +477,8 @@
   <a href="#testimonials" onclick="toggleMobileNav()">Reviews</a>
 </div>
 
-<!-- HERO -->
+<!-- HERO — sky blue, clean, no photo -->
 <section id="hero">
-  <div class="hero-bg-photos">
-    <img src="IMG_0802.jpeg" alt="">
-    <img src="IMG_0837.jpeg" alt="">
-    <img src="IMG_0822.jpeg" alt="">
-    <img src="IMG_0829.jpeg" alt="">
-    <img src="IMG_0835.jpeg" alt="">
-  </div>
-  <div class="hero-overlay"></div>
   <div class="hero-l">
     <div class="hero-kicker">Handcrafted in Cebu, Philippines</div>
     <h1 class="hero-h1">
@@ -462,16 +486,15 @@
     </h1>
     <p class="hero-p">Dried florals, gemstones, and light — sealed in resin forever. Every piece one of a kind.</p>
     <div class="hero-btns">
-      <a href="#shop" class="btn btn-navy">Shop Collection</a>
-      <a href="#custom-vase" class="btn btn-outline-lt">Design Your Vase</a>
+      <a href="#shop" class="btn btn-white">Shop Collection</a>
+      <a href="#custom-vase" class="btn btn-outline-hero">Design Your Vase</a>
     </div>
     <div class="hero-dots">
       <span class="hero-dot"><span class="dot-pip" style="background:var(--rose)"></span>100% Handmade</span>
-      <span class="hero-dot"><span class="dot-pip" style="background:var(--navy)"></span>Ships PH-wide</span>
-      <span class="hero-dot"><span class="dot-pip" style="background:var(--butter-dk)"></span>Custom orders open</span>
+      <span class="hero-dot"><span class="dot-pip" style="background:var(--sky)"></span>Ships PH-wide</span>
+      <span class="hero-dot"><span class="dot-pip" style="background:var(--butter)"></span>Custom orders open</span>
     </div>
   </div>
-  <div class="hero-r"></div>
 </section>
 
 <div class="strip"><div class="strip-track" id="strip-track"></div></div>
@@ -683,7 +706,9 @@ let deferredPrompt;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('install-banner').style.display='block';});
 document.getElementById('install-btn').addEventListener('click',async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;}document.getElementById('install-banner').style.display='none';});
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/sw.js').then(reg=>{
+  // Works on both root domain AND GitHub Pages subdirectory (e.g. username.github.io/repo/)
+  const swPath = (location.pathname.startsWith('/') ? location.pathname.split('/').slice(0,2).join('/') : '') + '/sw.js';
+  navigator.serviceWorker.register(swPath, { scope: './' }).then(reg=>{
     reg.addEventListener('updatefound',()=>{const sw=reg.installing;sw.addEventListener('statechange',()=>{if(sw.state==='installed'&&navigator.serviceWorker.controller)sw.postMessage({type:'SKIP_WAITING'});});});
   }).catch(()=>{});
   let refreshing=false;
