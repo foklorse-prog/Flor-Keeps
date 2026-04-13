@@ -282,7 +282,13 @@
       animation: ticker 28s linear infinite;
     }
     .strip-track span { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.48); }
-    .strip-track .gem { color: var(--butter); opacity: 1; font-size: 0.44rem; position: relative; top: -1px; }
+    .strip-track .gem { display: inline-flex; align-items: center; }
+    .strip-icon {
+      height: 16px;      /* fits within the strip's ~0.62rem padding on each side */
+      width: auto;
+      opacity: 0.7;
+      vertical-align: middle;
+    }
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ═══════════════════════════════
@@ -602,11 +608,11 @@
 <section id="hero">
   <div class="hero-l">
     <div class="hero-brand">
-      <img src="PRIMARY_LOGO.png" alt="Flor Keeps" class="hero-primary-logo">
+      <img src="SECONDARY_LOGO.png" alt="Flor Keeps" class="hero-secondary-logo">
     </div>
     <h1 class="hero-h1">
-      <span class="h1-heavy">Flowers</span> <span class="h1-mid">preserved</span><br>
-      <span class="h1-mid">in resin</span> <span class="h1-perm">forever.</span>
+      <span class="h1-mid">Flowers</span> <span class="h1-mid">and resin crafts</span><br>
+      <span class="h1-mid">to have</span> <span class="h1-perm">forever.</span>
     </h1>
     <p class="hero-sub">Dried florals, gemstones, and light — sealed in resin forever. Every piece one of a kind, by Shiela.</p>
     <div class="hero-actions">
@@ -623,11 +629,6 @@
 
 <!-- STRIP -->
 <div class="strip"><div class="strip-track" id="strip-track"></div></div>
-
-<!-- ICON DIVIDER -->
-<div class="icon-divider">
-  <img src="ICON.png" alt="" class="icon-divider-img">
-</div>
 
 <!-- SHOP -->
 <section id="shop">
@@ -835,7 +836,7 @@ document.querySelectorAll('.fpill').forEach(btn=>btn.addEventListener('click',()
 }));
 
 const sitems=['Flower Preservation','✦','Resin Crafts','✦','Dried Florals','✦','Custom Orders','✦','Made in Cebu, PH','✦','One of a Kind','✦','By Shiela','✦'];
-document.getElementById('strip-track').innerHTML=[...sitems,...sitems].map(t=>t==='✦'?`<span class="gem">✦</span>`:`<span>${t}</span>`).join('');
+document.getElementById('strip-track').innerHTML=[...sitems,...sitems].map(t=>t==='✦'?`<span class="gem"><img src="ICON.png" alt="" class="strip-icon"></span>`:`<span>${t}</span>`).join('');
 
 let toastT;
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3000); }
