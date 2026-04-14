@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#9CB7CE">
-  <meta name="description" content="Flower preservation & resin crafts ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â coasters, vases, sculptures & more. Made in Cebu, Philippines.">
+  <meta name="description" content="Flower preservation & resin crafts — coasters, vases, sculptures & more. Made in Cebu, Philippines.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Flor Keeps">
-  <title>Flor Keeps ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ Flower Preservation & Resin Crafts</title>
+  <title>Flor Keeps – Flower Preservation & Resin Crafts</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="SUBMARK_LOGO.png">
   <link rel="apple-touch-icon" href="SUBMARK_LOGO.png">
@@ -51,7 +51,7 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23g)'/%3E%3C/svg%3E");
     }
 
-    /* ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ BUTTONS (defined early so they cascade) ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ */
+    /* ── BUTTONS (defined early so they cascade) ── */
     .btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.72rem 1.8rem; border-radius: 2rem;
@@ -79,7 +79,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.3);
       box-shadow: 0 2px 16px rgba(10,16,20,0.10);
     }
-    /* ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ LOGO IMAGES ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ */
+    /* ── LOGO IMAGES ── */
     .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
     .logo-icon {
       width: 38px; height: 38px;
@@ -115,7 +115,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.15rem; font-weight: 400; letter-spacing: 0.02em;
       color: var(--navy); line-height: 1;
-      /* hidden when hero is visible ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â JS adds .scrolled to nav */
+      /* hidden when hero is visible — JS adds .scrolled to nav */
       opacity: 0; pointer-events: none;
       transition: opacity 0.3s;
     }
@@ -126,7 +126,7 @@
     }
     nav.scrolled .logo-name { opacity: 1; pointer-events: auto; }
     nav.scrolled .logo-tag  { opacity: 0.55; }
-    /* Centre links ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â desktop only */
+    /* Centre links — desktop only */
     .nav-links { display: flex; gap: 1rem; list-style: none; margin-left: auto; margin-right: 0.8rem; }
     .nav-links a {
       font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
@@ -134,7 +134,7 @@
       opacity: 0.65; transition: opacity 0.18s;
     }
     .nav-links a:hover { opacity: 1; }
-    /* Right side ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â cart + hamburger, always together at the right edge */
+    /* Right side — cart + hamburger, always together at the right edge */
     .nav-right { display: flex; align-items: center; gap: 0.5rem; margin-left: auto; }
     .nav-cart {
       display: flex; align-items: center; gap: 0.45rem;
@@ -155,10 +155,10 @@
       flex-direction: column; gap: 5px; padding: 4px; flex-shrink: 0;
     }
     .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); border-radius: 1px; }
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+    /* ═══════════════════════════════
        MOBILE NAV DRAWER
        Smaller type, visible, clean
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    ═══════════════════════════════ */
     .mobile-nav {
       position: fixed; inset: 0; z-index: 590;
       background: var(--navy);
@@ -200,36 +200,31 @@
       letter-spacing: 0.1em; text-transform: uppercase;
     }
 
-    /* ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ HERO: IKEA-style rounded card ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ */
+    /* ── HERO: IKEA-style rounded card ── */
     #hero {
-      padding: calc(62px + 0.75rem) 0.75rem 0.75rem;
-      background: var(--sky);
-      display: flex; flex-direction: column; gap: 0.75rem;
+      padding: calc(62px + 1rem) 1rem 0;   /* nav height + gap on top, side padding for card margins */
+      background: var(--sky);               /* page background shows as the "gap" around the card */
+      min-height: calc(100vh - 62px);
+      display: flex; flex-direction: column;
     }
-    /* The card itself ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â rounded, contains the photo without zooming */
+    /* The card itself — rounded, contains the photo without zooming */
     .hero-card {
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
       position: relative;
-      min-height: clamp(300px, 48vh, 560px);
-      max-height: 62vh;
-      background: #7d8ea4;
+      flex: 1;
+      min-height: 75vw;                     /* keeps it portrait-ish on mobile */
+      max-height: 88vh;
     }
-    /* Photo fills the card, centered, not zoomed ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â object-fit:contain shows the full image */
+    /* Photo fills the card, centered, not zoomed — object-fit:contain shows the full image */
     .hero-card img {
-      position: absolute;
-      inset: -5% 0;
-      width: 100%;
-      height: 112%;
-      object-fit: cover;
-      object-position: center 34%;
+      width: 100%; height: 100%;
+      object-fit: cover;                    /* cover so no empty space, but position:center preserves subject */
+      object-position: center center;
       display: block;
-      transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.04);
-      will-change: transform;
     }
     /* Very light gradient only at bottom for text legibility */
-    .hero-card::after,
-    .everyday-card::after {
+    .hero-card::after {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(
@@ -244,9 +239,8 @@
     .hero-l {
       position: absolute; bottom: 0; left: 0; right: 0;
       z-index: 2;
-      padding: 1.45rem 1.25rem 1.55rem;
+      padding: 1.8rem 1.6rem 2rem;
       display: flex; flex-direction: column; gap: 1rem;
-      max-width: min(82%, 560px);
     }
     .hero-eyebrow {
       font-family: 'DM Sans', sans-serif;
@@ -273,61 +267,46 @@
     }
     .hero-pip { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+    /* ═══════════════════════════════
        IKEA-STYLE ACCORDION CTA
        Expands from collapsed to full height as it enters viewport
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    ═══════════════════════════════ */
     .hero-accordion {
-      border-radius: 16px;
+      margin: 0.75rem 1rem 0;              /* same side margin as the hero card */
+      border-radius: 20px;
       background: var(--navy);
       overflow: hidden;
-      /* Start collapsed ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â JS adds .expanded when IntersectionObserver fires */
-      max-height: 132px;
+      /* Start collapsed — JS adds .expanded when IntersectionObserver fires */
+      max-height: 72px;
       transition: max-height 0.65s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .hero-accordion.expanded {
-      max-height: 320px;
+      max-height: 260px;                   /* enough for all category rows */
     }
-    /* The "Shop Collection ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢" header row ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â always visible */
-    .accordion-cta {
+    /* The "Shop Collection →" header row — always visible */
+    .accordion-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.1rem 1.15rem;
-      text-decoration: none;
+      padding: 1.3rem 1.4rem;
+      cursor: pointer;
     }
-    .accordion-cta span {
+    .accordion-header span {
       font-family: 'Julius Sans One', sans-serif;
       font-size: 1.35rem; font-weight: 400;
       color: #fff; letter-spacing: 0.01em;
     }
-    .cta-arrow,
     .accordion-arrow {
-      width: 34px; height: 34px; border-radius: 50%;
+      width: 40px; height: 40px; border-radius: 50%;
       background: #fff;
-      border: none;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      cursor: pointer;
       transition: transform 0.3s;
     }
     .hero-accordion.expanded .accordion-arrow { transform: rotate(90deg); }
-    .cta-arrow svg,
     .accordion-arrow svg { width: 18px; height: 18px; }
     /* Divider line between header and categories */
     .accordion-divider {
       height: 1px; background: rgba(255,255,255,0.12);
-      margin: 0 1.15rem;
-    }
-    .accordion-trigger {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem;
-      padding: 0.9rem 1.15rem;
-    }
-    .accordion-trigger-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.82);
-      font-weight: 500;
+      margin: 0 1.4rem;
     }
     /* Category rows */
     .accordion-cats {
@@ -335,7 +314,7 @@
     }
     .accordion-cat {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0.7rem 1.15rem;
+      padding: 0.75rem 1.4rem;
       text-decoration: none;
       border-bottom: 1px solid rgba(255,255,255,0.07);
       transition: background 0.15s;
@@ -349,9 +328,9 @@
     }
     .accordion-cat-arrow { color: rgba(255,255,255,0.35); font-size: 0.9rem; }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+    /* ═══════════════════════════════
        MARQUEE
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    ═══════════════════════════════ */
     .strip {
       background: var(--navy); overflow: hidden; padding: 0.62rem 0;
       position: relative; z-index: 1;
@@ -370,42 +349,42 @@
     }
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-       SHOP ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â white only here
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-       EVERYDAY BANNER ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â full-bleed photo with text overlay
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-       EVERYDAY BANNER ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â AP-style parallax
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ═══════════════════════════════
+       SHOP — white only here
+    ═══════════════════════════════ */
+    /* ═══════════════════════════════
+       EVERYDAY BANNER — full-bleed photo with text overlay
+    ═══════════════════════════════ */
+    /* ═══════════════════════════════
+       EVERYDAY BANNER — AP-style parallax
+    ═══════════════════════════════ */
     #everyday-banner {
-      padding: 0 0.75rem 0.75rem;
-      background: var(--sky);
-    }
-    .everyday-card {
       position: relative;
-      min-height: clamp(300px, 54vh, 560px);
-      border-radius: 16px;
+      min-height: 100vh;
       overflow: hidden;
-      background: #6a7a8b;
+      display: flex; align-items: flex-end;
     }
-    .banner-accordion { display: none !important; }
     .everyday-bg {
-      position: absolute; inset: -5% 0;
+      position: absolute; inset: 0;
       background: url('Photo2.png') center center / cover no-repeat;
       background-attachment: fixed;
       z-index: 0;
-      transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.04);
-      will-change: transform;
+    }
+    .everyday-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.08) 45%,
+        transparent 100%
+      );
     }
     .everyday-text {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      z-index: 2;
-      padding: 1.45rem 1.25rem 1.55rem;
+      position: relative; z-index: 2;
+      padding: 2rem 2rem 3.5rem;
       width: 100%;
       display: flex; flex-direction: column; gap: 1.4rem;
-      max-width: min(82%, 420px);
     }
     .everyday-text h2 {
       font-family: 'Julius Sans One', sans-serif;
@@ -419,6 +398,20 @@
       font-style: italic; font-weight: 300;
       font-size: 1.08em; letter-spacing: 0.02em;
     }
+    .everyday-cta {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .everyday-cta-line {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.7); flex-shrink: 0;
+    }
+    .everyday-cta a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-weight: 300; transition: color 0.2s;
+    }
+    .everyday-cta a:hover { color: #fff; }
 
     #shop {
       padding: 4.5rem 2.5rem;
@@ -508,9 +501,9 @@
     }
     .padd:hover { background: var(--pink-dk); transform: scale(1.1); }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-       CUSTOM VASE ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â light sky tint
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ═══════════════════════════════
+       CUSTOM VASE — light sky tint
+    ═══════════════════════════════ */
     #custom-vase {
       background: var(--pink-lt);
       border-top: 1px solid rgba(219,118,172,0.2);
@@ -543,9 +536,9 @@
       box-shadow: 0 1px 4px rgba(10,16,20,0.05);
     }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-       ABOUT ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â deep navy, premium
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ═══════════════════════════════
+       ABOUT — deep navy, premium
+    ═══════════════════════════════ */
     #about {
       padding: 5rem 2.5rem; background: var(--navy);
       display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
@@ -560,9 +553,9 @@
     .stat-n { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--butter); font-weight: 400; line-height: 1; }
     .stat-l { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.25rem; }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-       REVIEWS ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â off-white
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ═══════════════════════════════
+       REVIEWS — off-white
+    ═══════════════════════════════ */
     #testimonials { padding: 5rem 2.5rem; background: var(--off); border-top: 1px solid var(--line); }
     .rev-head { text-align: center; margin-bottom: 2.8rem; }
     .rev-head .sec-label { margin-bottom: 0.35rem; }
@@ -577,9 +570,9 @@
     .rtext { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.72; color: var(--navy); margin-bottom: 1rem; }
     .rauthor { font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sub); }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-       NEWSLETTER ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â sky blue
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ═══════════════════════════════
+       NEWSLETTER — sky blue
+    ═══════════════════════════════ */
     #newsletter {
       padding: 5rem 2.5rem; text-align: center;
       background: var(--sky); position: relative; overflow: hidden;
@@ -603,9 +596,9 @@
     .nl-form input::placeholder { color: rgba(10,16,20,0.38); }
     .nl-form input:focus { border-color: var(--pink); background: rgba(255,255,255,0.85); }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
-       FOOTER ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â navy
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ═══════════════════════════════
+       FOOTER — navy
+    ═══════════════════════════════ */
     footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 3.5rem 2.5rem 2rem; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
     .footer-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-bottom: 0.85rem; }
@@ -621,9 +614,9 @@
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.4rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
     .footer-bottom p { font-size: 0.68rem; }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â
+    /* ═══════════════════════════════
        CART DRAWER
-    ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    ═══════════════════════════════ */
     .cart-ov { position: fixed; inset: 0; background: rgba(10,16,20,0.4); z-index: 700; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .cart-ov.open { opacity: 1; pointer-events: all; }
     .cart-dw { position: fixed; top:0; right:0; bottom:0; width:380px; max-width:96vw; background:var(--off); border-left:1px solid var(--line); z-index:701; transform:translateX(100%); transition:transform 0.38s cubic-bezier(0.23,1,0.32,1); display:flex; flex-direction:column; box-shadow:-4px 0 16px rgba(10,16,20,0.08),-16px 0 48px rgba(10,16,20,0.12); }
@@ -648,11 +641,11 @@
     .cart-tot span { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--sub); }
     .cart-tot strong { font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--navy); font-weight:400; }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â TOAST ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ═══ TOAST ═══ */
     .toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:0.68rem 1.55rem; border-radius:2rem; font-size:0.78rem; z-index:999; transition:transform 0.34s cubic-bezier(0.23,1,0.32,1); white-space:nowrap; box-shadow:0 6px 24px rgba(10,16,20,0.22); }
     .toast.show { transform:translateX(-50%) translateY(0); }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â INSTALL BANNER ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ═══ INSTALL BANNER ═══ */
     #install-banner { position:fixed; bottom:1.4rem; right:1.4rem; z-index:800; background:var(--white); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.3rem; max-width:265px; box-shadow:0 8px 28px rgba(10,16,20,0.12); display:none; }
     #install-banner h4 { font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--navy); margin-bottom:0.3rem; }
     #install-banner p { font-size:0.72rem; color:var(--sub); margin-bottom:0.85rem; line-height:1.6; }
@@ -660,7 +653,7 @@
     .b-inst { background:var(--pink); color:#fff; border:none; padding:0.4rem 0.95rem; border-radius:2rem; font-size:0.7rem; font-weight:500; cursor:pointer; }
     .b-dis  { background:none; border:1.5px solid var(--line); color:var(--sub); padding:0.4rem 0.8rem; border-radius:2rem; font-size:0.7rem; cursor:pointer; }
 
-    /* ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â RESPONSIVE ÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚ÂÃƒÂ¢Ã¢â‚¬Â¢Ã‚Â */
+    /* ═══ RESPONSIVE ═══ */
     @keyframes up { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 
     @media (max-width: 1100px) { .pgrid { grid-template-columns: repeat(3,1fr); } }
@@ -669,7 +662,7 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .cart-label { display: none; }
-      .hero-l, .everyday-text { padding: 2rem 1.4rem 1.6rem; max-width: 92%; }
+      .hero-l { padding: 2rem 1.4rem 3rem; }
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
       #shop, #custom-vase, #about, #testimonials, #newsletter { padding-left: 1.4rem; padding-right: 1.4rem; }
       .vase-wrap { grid-template-columns: 1fr; gap: 2rem; }
@@ -679,14 +672,8 @@
       .rgrid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
       .stats { grid-template-columns: repeat(2,1fr); }
-      /* iOS doesn't support background-attachment:fixed ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â fall back to scroll */
-      .hero-card img {
-        inset: -7% 0;
-        height: 116%;
-        object-position: center 28%;
-        transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.08);
-      }
-      .everyday-bg {
+      /* iOS doesn't support background-attachment:fixed — fall back to scroll */
+      .hero-bg, .everyday-bg {
         inset: -8% 0;
         background-attachment: scroll;
         background-position: center center;
@@ -696,7 +683,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-card img, .everyday-bg {
+      .hero-bg, .everyday-bg {
         transform: none !important;
       }
     }
@@ -710,7 +697,7 @@
 </head>
 <body>
 
-<!-- NAV: logo Ãƒâ€šÃ‚Â· links Ãƒâ€šÃ‚Â· cart -->
+<!-- NAV: logo · links · cart -->
 <nav>
   <a href="#" class="logo">
     <img src="SUBMARK_LOGO.png" class="logo-icon" alt="Flor Keeps">
@@ -740,7 +727,7 @@
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobile-nav">
-  <button class="mobile-nav-close" onclick="toggleMobileNav()">ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¢</button>
+  <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
   <nav class="mobile-nav-links">
     <a href="#shop" onclick="toggleMobileNav()">Shop</a>
     <a href="#custom-vase" onclick="toggleMobileNav()">Custom Vase</a>
@@ -755,7 +742,7 @@
   <div class="hero-card">
     <img src="Hero1.jpg" alt="Flor Keeps resin vase with dried florals">
     <div class="hero-l">
-      <span class="hero-eyebrow">Flor Keeps Ãƒâ€šÃ‚Â· Flower Preservation &amp; Resin Crafts</span>
+      <span class="hero-eyebrow">Flor Keeps · Flower Preservation &amp; Resin Crafts</span>
       <h1 class="hero-h1">
         Nature poured<br>
         into something<br>
@@ -768,40 +755,38 @@
       </div>
     </div>
   </div>
+</section>
+
 <!-- IKEA-STYLE ACCORDION CTA -->
-  <div class="hero-accordion" id="hero-accordion">
-    <a href="#shop" class="accordion-cta">
-      <span>Shop Collection</span>
-      <span class="cta-arrow" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </span>
-    </a>
-    <div class="accordion-divider"></div>
-    <div class="accordion-trigger">
-      <span class="accordion-trigger-label">Categories</span>
-      <button class="accordion-arrow" type="button" onclick="toggleAccordion('hero-accordion')" aria-label="Toggle categories">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </button>
-    </div>
-    <div class="accordion-divider"></div>
-    <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coasters')"><span>Coasters</span><span class="accordion-cat-arrow">ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº</span></a>
-    <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>DÃƒÆ’Ã‚Â©cor</span><span class="accordion-cat-arrow">ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº</span></a>
-    <a href="#shop" class="accordion-cat" onclick="filterAndScroll('vessels')"><span>Vessels</span><span class="accordion-cat-arrow">ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº</span></a>
-    <a href="#shop" class="accordion-cat" onclick="filterAndScroll('floral')"><span>Floral</span><span class="accordion-cat-arrow">ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº</span></a>
+<div class="hero-accordion" id="hero-accordion">
+  <div class="accordion-header" onclick="toggleAccordion()">
+    <span>Shop Collection</span>
+    <div class="accordion-arrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </div>
   </div>
-</section>
+  <div class="accordion-divider"></div>
+  <div class="accordion-cats">
+    <a href="#shop" class="accordion-cat" onclick="filterAndScroll('all')"><span>All</span><span class="accordion-cat-arrow">›</span></a>
+    <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coasters')"><span>Coasters</span><span class="accordion-cat-arrow">›</span></a>
+    <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>Décor</span><span class="accordion-cat-arrow">›</span></a>
+    <a href="#shop" class="accordion-cat" onclick="filterAndScroll('vessels')"><span>Vessels</span><span class="accordion-cat-arrow">›</span></a>
+    <a href="#shop" class="accordion-cat" onclick="filterAndScroll('floral')"><span>Floral</span><span class="accordion-cat-arrow">›</span></a>
+  </div>
+</div>
 
 <!-- PHOTO 2 BANNER -->
 <section id="everyday-banner">
-  <div class="everyday-card">
-    <div class="everyday-bg"></div>
-    <div class="everyday-text">
-      <span class="hero-eyebrow">The Flor Keeps Philosophy</span>
-      <h2>
-        Art in the<br>
-        <em>everyday.</em>
-      </h2>
+  <div class="everyday-bg"></div>
+  <div class="everyday-text">
+    <span class="hero-eyebrow">The Flor Keeps Philosophy</span>
+    <h2>
+      Art in the<br>
+      <em>everyday.</em>
+    </h2>
+    <div class="everyday-cta">
+      <span class="everyday-cta-line"></span>
+      <a href="#shop">See the Collection</a>
     </div>
   </div>
 </section>
@@ -819,7 +804,7 @@
     <div class="filters">
       <button class="fpill on" data-filter="all">All</button>
       <button class="fpill" data-filter="coasters">Coasters</button>
-      <button class="fpill" data-filter="decor">DÃƒÆ’Ã‚Â©cor</button>
+      <button class="fpill" data-filter="decor">Décor</button>
       <button class="fpill" data-filter="vessels">Vessels</button>
       <button class="fpill" data-filter="floral">Floral</button>
     </div>
@@ -833,17 +818,17 @@
     <div class="vase-img">
       <img src="IMG_0802.jpeg" alt="Custom resin vase">
       <div class="vase-img-over"></div>
-      <div class="vase-soon">ÃƒÂ¢Ã…â€œÃ‚Â¦ 3D Builder ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Coming Soon</div>
+      <div class="vase-soon">✦ 3D Builder — Coming Soon</div>
     </div>
     <div class="vase-text">
       <div class="sec-label">Made to Order</div>
       <h2>Design your own resin vase</h2>
       <p>Choose your florals, resin tint, and size. Until the 3D builder launches, reach out and we'll pour something personal together.</p>
       <div class="vase-grid">
-        <div class="vopt">ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â¹ Dried roses</div>
-        <div class="vopt">ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â¸ Pressed wildflowers</div>
-        <div class="vopt">ÃƒÂ°Ã…Â¸Ã¢â‚¬â„¢Ã…â€œ Lavender sprigs</div>
-        <div class="vopt">ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â¼ Dried daisies</div>
+        <div class="vopt">🌹 Dried roses</div>
+        <div class="vopt">🌸 Pressed wildflowers</div>
+        <div class="vopt">💜 Lavender sprigs</div>
+        <div class="vopt">🌼 Dried daisies</div>
       </div>
       <a href="#newsletter" class="btn btn-navy">Get Notified</a>
     </div>
@@ -858,14 +843,14 @@
   <div class="about-text">
     <div class="sec-label">The Maker</div>
     <h2>Art born from a love of flowers</h2>
-    <img src="LOGO_TYPE.png" alt="Flor Keeps ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ Flower Preservation & Resin Crafts" class="about-logotype">
-    <p>Every piece begins with an intention ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â a flower pressed between fingers, a stone found at the shoreline, a color that lives only in memory.</p>
+    <img src="LOGO_TYPE.png" alt="Flor Keeps – Flower Preservation & Resin Crafts" class="about-logotype">
+    <p>Every piece begins with an intention — a flower pressed between fingers, a stone found at the shoreline, a color that lives only in memory.</p>
     <p>Shiela pours each creation slowly, layer by layer, letting nature and resin fuse into something irrepeatable. No two pieces are ever alike.</p>
     <div class="stats">
       <div class="stat"><div class="stat-n">200+</div><div class="stat-l">Pieces made</div></div>
       <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Handmade</div></div>
       <div class="stat"><div class="stat-n">3yr</div><div class="stat-l">Crafting</div></div>
-      <div class="stat"><div class="stat-n">ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ 5</div><div class="stat-l">Rating</div></div>
+      <div class="stat"><div class="stat-n">★ 5</div><div class="stat-l">Rating</div></div>
     </div>
   </div>
 </section>
@@ -877,9 +862,9 @@
     <h2 class="sec-h2">They said it best</h2>
   </div>
   <div class="rgrid">
-    <div class="rcard"><div class="rstars">ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦</div><p class="rtext">"The floral coaster set was even more gorgeous in person. The blooms look like they're still alive inside the resin."</p><div class="rauthor">ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Maria S., Cebu</div></div>
-    <div class="rcard"><div class="rstars">ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦</div><p class="rtext">"Bought the galaxy bowl as a gift ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â my friend cried when she opened it. True artistry. Worth every peso."</p><div class="rauthor">ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Jay L., Manila</div></div>
-    <div class="rcard"><div class="rstars">ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦ÃƒÂ¢Ã‹Å“Ã¢â‚¬Â¦</div><p class="rtext">"The rose cube sits on my desk and I get compliments every single day. Absolutely mesmerizing."</p><div class="rauthor">ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Christine D., Davao</div></div>
+    <div class="rcard"><div class="rstars">★★★★★</div><p class="rtext">"The floral coaster set was even more gorgeous in person. The blooms look like they're still alive inside the resin."</p><div class="rauthor">— Maria S., Cebu</div></div>
+    <div class="rcard"><div class="rstars">★★★★★</div><p class="rtext">"Bought the galaxy bowl as a gift — my friend cried when she opened it. True artistry. Worth every peso."</p><div class="rauthor">— Jay L., Manila</div></div>
+    <div class="rcard"><div class="rstars">★★★★★</div><p class="rtext">"The rose cube sits on my desk and I get compliments every single day. Absolutely mesmerizing."</p><div class="rauthor">— Christine D., Davao</div></div>
   </div>
 </section>
 
@@ -912,18 +897,18 @@
     <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li><li><a href="#">Shopee</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <p>Ãƒâ€šÃ‚Â© 2025 Flor Keeps by Shiela. All rights reserved.</p>
-    <p>Handmade in Cebu, Philippines ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Âº</p>
+    <p>© 2025 Flor Keeps by Shiela. All rights reserved.</p>
+    <p>Handmade in Cebu, Philippines 🌺</p>
   </div>
 </footer>
 
 <!-- CART -->
 <div class="cart-ov" id="cart-overlay" onclick="toggleCart()"></div>
 <div class="cart-dw" id="cart-drawer">
-  <div class="cart-hd"><h3>Your Cart</h3><button class="cart-x" onclick="toggleCart()">ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¢</button></div>
+  <div class="cart-hd"><h3>Your Cart</h3><button class="cart-x" onclick="toggleCart()">✕</button></div>
   <div class="cart-ls" id="cart-list"></div>
   <div class="cart-ft">
-    <div class="cart-tot"><span>Total</span><strong id="cart-total-amt">ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â±0</strong></div>
+    <div class="cart-tot"><span>Total</span><strong id="cart-total-amt">₱0</strong></div>
     <button class="btn btn-pink" style="width:100%;justify-content:center;" onclick="checkout()">Checkout</button>
   </div>
 </div>
@@ -955,7 +940,7 @@ function saveCart(){ localStorage.setItem('pp_cart',JSON.stringify(cart)); }
 function addToCart(id){
   const p=products.find(x=>x.id===id), ex=cart.find(i=>i.id===id);
   if(ex) ex.qty++; else cart.push({...p,qty:1});
-  saveCart(); updateCartUI(); toast(`"${p.name}" added ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂºÃ‚Â`);
+  saveCart(); updateCartUI(); toast(`"${p.name}" added 🛍`);
 }
 function removeFromCart(i){ cart.splice(i,1); saveCart(); updateCartUI(); renderCart(); }
 function updateCartUI(){
@@ -965,20 +950,20 @@ function updateCartUI(){
 function renderCart(){
   const ls=document.getElementById('cart-list');
   const total=cart.reduce((a,i)=>a+i.price*i.qty,0);
-  document.getElementById('cart-total-amt').textContent=`ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â±${total.toLocaleString()}`;
-  if(!cart.length){ ls.innerHTML=`<div class="cart-empty"><p>Your cart is empty</p><p>Add some beautiful pieces ÃƒÂ¢Ã…â€œÃ‚Â¨</p></div>`; return; }
+  document.getElementById('cart-total-amt').textContent=`₱${total.toLocaleString()}`;
+  if(!cart.length){ ls.innerHTML=`<div class="cart-empty"><p>Your cart is empty</p><p>Add some beautiful pieces ✨</p></div>`; return; }
   ls.innerHTML=cart.map((item,i)=>`
     <div class="citem">
       <div class="cthumb">${item.img?`<img src="${item.img}" alt="${item.name}">`:''}  </div>
-      <div class="cinfo"><div class="cname">${item.name}</div><div class="cprice">ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â±${item.price.toLocaleString()} ÃƒÆ’Ã¢â‚¬â€ ${item.qty}</div></div>
-      <button class="crm" onclick="removeFromCart(${i})">ÃƒÂ¢Ã…â€œÃ¢â‚¬Â¢</button>
+      <div class="cinfo"><div class="cname">${item.name}</div><div class="cprice">₱${item.price.toLocaleString()} × ${item.qty}</div></div>
+      <button class="crm" onclick="removeFromCart(${i})">✕</button>
     </div>`).join('');
 }
 function toggleCart(){
   document.getElementById('cart-overlay').classList.toggle('open');
   document.getElementById('cart-drawer').classList.toggle('open');
 }
-function checkout(){ toast('Redirecting to checkoutÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ ÃƒÂ°Ã…Â¸Ã…â€™Ã…Â¸'); toggleCart(); }
+function checkout(){ toast('Redirecting to checkout… 🌟'); toggleCart(); }
 function renderProducts(filter='all'){
   const grid=document.getElementById('products-grid');
   const list=filter==='all'?products:products.filter(p=>p.category===filter);
@@ -1002,7 +987,7 @@ function renderProducts(filter='all'){
         <div class="pcat">${p.category}</div>
         <div class="pname">${p.name}</div>
         <div class="pfoot">
-          <div class="pprice">ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â±${p.price.toLocaleString()}${p.old?`<s>ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â±${p.old.toLocaleString()}</s>`:''}</div>
+          <div class="pprice">₱${p.price.toLocaleString()}${p.old?`<s>₱${p.old.toLocaleString()}</s>`:''}</div>
           <button class="padd" onclick="addToCart(${p.id})">+</button>
         </div>
       </div>
@@ -1014,13 +999,13 @@ document.querySelectorAll('.fpill').forEach(btn=>btn.addEventListener('click',()
   btn.classList.add('on'); renderProducts(btn.dataset.filter);
 }));
 
-const sitems=['Flower Preservation','ÃƒÂ¢Ã…â€œÃ‚Â¦','Resin Crafts','ÃƒÂ¢Ã…â€œÃ‚Â¦','Dried Florals','ÃƒÂ¢Ã…â€œÃ‚Â¦','Custom Orders','ÃƒÂ¢Ã…â€œÃ‚Â¦','Made in Cebu, PH','ÃƒÂ¢Ã…â€œÃ‚Â¦','One of a Kind','ÃƒÂ¢Ã…â€œÃ‚Â¦','By Shiela','ÃƒÂ¢Ã…â€œÃ‚Â¦'];
-document.getElementById('strip-track').innerHTML=[...sitems,...sitems].map(t=>t==='ÃƒÂ¢Ã…â€œÃ‚Â¦'?`<span class="gem"><img src="ICON.png" alt="" class="strip-icon"></span>`:`<span>${t}</span>`).join('');
+const sitems=['Flower Preservation','✦','Resin Crafts','✦','Dried Florals','✦','Custom Orders','✦','Made in Cebu, PH','✦','One of a Kind','✦','By Shiela','✦'];
+document.getElementById('strip-track').innerHTML=[...sitems,...sitems].map(t=>t==='✦'?`<span class="gem"><img src="ICON.png" alt="" class="strip-icon"></span>`:`<span>${t}</span>`).join('');
 
 let toastT;
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3000); }
 function toggleMobileNav(){ document.getElementById('mobile-nav').classList.toggle('open'); }
-function handleSubscribe(e){ e.preventDefault(); toast('Thank you! ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â¸'); e.target.reset(); }
+function handleSubscribe(e){ e.preventDefault(); toast('Thank you! 🌸'); e.target.reset(); }
 
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('install-banner').style.display='block';});
@@ -1048,18 +1033,18 @@ const navEl = document.querySelector('nav');
 const heroEl = document.getElementById('hero');
 const mobileParallaxQuery = window.matchMedia('(max-width: 860px)');
 const mobileParallaxTargets = [
-  { section: document.getElementById('hero'), element: document.querySelector('.hero-card img'), range: 72, variable: '--hero-shift' },
-  { section: document.getElementById('everyday-banner'), element: document.querySelector('.everyday-bg'), range: 90, variable: '--parallax-shift' }
+  { section: document.getElementById('hero'), bg: document.querySelector('.hero-bg'), range: 90 },
+  { section: document.getElementById('everyday-banner'), bg: document.querySelector('.everyday-bg'), range: 90 }
 ];
 
 function updateMobileParallax() {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const shouldAnimate = mobileParallaxQuery.matches && !reduceMotion;
 
-  mobileParallaxTargets.forEach(({ section, element, range, variable }) => {
-    if (!section || !element) return;
+  mobileParallaxTargets.forEach(({ section, bg, range }) => {
+    if (!section || !bg) return;
     if (!shouldAnimate) {
-      element.style.removeProperty(variable);
+      bg.style.removeProperty('--parallax-shift');
       return;
     }
 
@@ -1068,26 +1053,31 @@ function updateMobileParallax() {
     const progress = (viewport - rect.top) / (viewport + rect.height);
     const clamped = Math.max(0, Math.min(1, progress));
     const shift = (clamped - 0.5) * range;
-    element.style.setProperty(variable, `${shift.toFixed(2)}px`);
+    bg.style.setProperty('--parallax-shift', `${shift.toFixed(2)}px`);
   });
 }
 
-// ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ ACCORDION CTA ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬ÃƒÂ¢Ã¢â‚¬ÂÃ¢â€šÂ¬
+// ── ACCORDION CTA ──
 // Intersection Observer watches the accordion element. When it enters
 // the viewport (threshold 0.3 = 30% visible), it adds the .expanded class
-// which triggers the max-height CSS transition ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â that's the "growing" effect.
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-window.addEventListener('load', () => {
-  if (!window.location.hash) {
-    window.scrollTo(0, 0);
-  }
-});
+// which triggers the max-height CSS transition — that's the "growing" effect.
+const accordion = document.getElementById('hero-accordion');
 
-function toggleAccordion(id) {
-  const accordion = document.getElementById(id);
-  if (!accordion) return;
+const accordionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Small delay so you can see the animation start, not just snap open
+      setTimeout(() => accordion.classList.add('expanded'), 120);
+      // Once expanded, no need to keep observing
+      accordionObserver.unobserve(accordion);
+    }
+  });
+}, { threshold: 0.3 });
+
+accordionObserver.observe(accordion);
+
+// Manual toggle when user taps the header
+function toggleAccordion() {
   accordion.classList.toggle('expanded');
 }
 
