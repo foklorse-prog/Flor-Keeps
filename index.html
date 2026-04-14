@@ -13,7 +13,7 @@
   <link rel="icon" href="SUBMARK_LOGO.png">
   <link rel="apple-touch-icon" href="SUBMARK_LOGO.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Julius+Sans+One&display=swap" rel="stylesheet">
   <style>
     :root {
       /* 60% Blues */
@@ -202,49 +202,80 @@
 
     #hero {
       padding-top: 62px;
-      min-height: 92vh;
+      min-height: 100vh;
       position: relative; overflow: hidden;
-      display: flex; align-items: flex-end;  /* text sits near the bottom, photo fills the top */
+      display: flex; align-items: flex-end;
       background: var(--navy);
     }
-    /* The actual photo — covers the whole section */
+    /* Parallax photo — background-attachment:fixed makes it scroll slower than the page */
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('Hero1.jpg') center center / cover no-repeat;
+      background: url('hero1.jpg') center center / cover no-repeat;
+      background-attachment: fixed;
       z-index: 0;
     }
-    /* Dark gradient from bottom up so text is always readable over any photo */
+    /* Very subtle gradient at the bottom only — just enough for text legibility, AP-style */
     .hero-bg::after {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(
         to top,
-        rgba(0,51,102,0.82) 0%,
-        rgba(0,51,102,0.35) 50%,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.1) 40%,
         transparent 100%
       );
     }
     .hero-l {
       position: relative; z-index: 2;
-      padding: 3rem 4rem 4.5rem;
-      max-width: 780px;
-      display: flex; flex-direction: column; gap: 1.8rem;
+      padding: 2rem 2rem 3.5rem;
+      width: 100%;
+      display: flex; flex-direction: column; gap: 1.4rem;
+    }
+    /* AP-style: small eyebrow label above the big title */
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); font-weight: 400;
     }
     .hero-h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 7vw, 6rem);
-      line-height: 0.95; margin: 0; font-weight: 600;
-      letter-spacing: 0.04em; text-transform: uppercase;
+      font-family: 'Julius Sans One', sans-serif;
+      font-size: clamp(2.6rem, 8vw, 5.5rem);
+      line-height: 0.96; margin: 0; font-weight: 400;
+      letter-spacing: 0.01em; text-transform: uppercase;
       color: #fff;
     }
+    /* italic lines use Cormorant to contrast with Julius, just like AP mixes serif weights */
+    .hero-h1 em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-weight: 300;
+      font-size: 1.08em;
+      letter-spacing: 0.02em;
+    }
+    /* AP-style CTA: a short line + small text */
+    .hero-cta {
+      display: flex; align-items: center; gap: 1rem;
+      margin-top: 0.4rem;
+    }
+    .hero-cta-line {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.7); flex-shrink: 0;
+    }
+    .hero-cta a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+    .hero-cta a:hover { color: #fff; }
     .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .hero-pills { display: flex; gap: 1rem; flex-wrap: wrap; }
     .hero-pill {
       display: flex; align-items: center; gap: 0.4rem;
-      font-size: 0.68rem; color: rgba(255,255,255,0.7);
+      font-size: 0.65rem; color: rgba(255,255,255,0.6);
       white-space: nowrap;
     }
-    .hero-pip { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .hero-pip { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
 
     /* ═══════════════════════════════
        MARQUEE
@@ -273,54 +304,63 @@
     /* ═══════════════════════════════
        EVERYDAY BANNER — full-bleed photo with text overlay
     ═══════════════════════════════ */
+    /* ═══════════════════════════════
+       EVERYDAY BANNER — AP-style parallax
+    ═══════════════════════════════ */
     #everyday-banner {
       position: relative;
-      min-height: 520px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
       overflow: hidden;
+      display: flex; align-items: flex-end;
     }
-    .everyday-img {
-      position: relative;
-      grid-column: 1 / -1;    /* photo spans full width behind both columns */
-      grid-row: 1;
+    .everyday-bg {
+      position: absolute; inset: 0;
+      background: url('photo2.png') center center / cover no-repeat;
+      background-attachment: fixed;
+      z-index: 0;
     }
-    .everyday-img img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      display: block; min-height: 520px;
-    }
-    .everyday-overlay {
+    .everyday-bg::after {
+      content: '';
       position: absolute; inset: 0;
       background: linear-gradient(
-        to right,
-        rgba(0,51,102,0.78) 0%,
-        rgba(0,51,102,0.45) 50%,
+        to top,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.08) 45%,
         transparent 100%
       );
     }
     .everyday-text {
-      position: absolute;   /* sits on top of the photo */
-      top: 0; left: 0; bottom: 0;
-      width: 50%;
-      display: flex; flex-direction: column; justify-content: center; gap: 1.2rem;
-      padding: 3.5rem 4rem;
-      z-index: 2;
+      position: relative; z-index: 2;
+      padding: 2rem 2rem 3.5rem;
+      width: 100%;
+      display: flex; flex-direction: column; gap: 1.4rem;
     }
     .everyday-text h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 3.4rem);
-      font-weight: 300; color: #fff;
-      line-height: 1.1;
+      font-family: 'Julius Sans One', sans-serif;
+      font-size: clamp(2.6rem, 8vw, 5.5rem);
+      font-weight: 400; color: #fff;
+      line-height: 0.96; text-transform: uppercase;
+      letter-spacing: 0.01em;
     }
     .everyday-text h2 em {
-      font-style: italic; font-weight: 600;
-      color: var(--pink-lt);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-weight: 300;
+      font-size: 1.08em; letter-spacing: 0.02em;
     }
-    .everyday-text p {
-      font-size: 0.88rem; color: rgba(255,255,255,0.72);
-      line-height: 1.85; max-width: 340px;
+    .everyday-cta {
+      display: flex; align-items: center; gap: 1rem;
     }
+    .everyday-cta-line {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,0.7); flex-shrink: 0;
+    }
+    .everyday-cta a {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-weight: 300; transition: color 0.2s;
+    }
+    .everyday-cta a:hover { color: #fff; }
 
     #shop {
       padding: 4.5rem 2.5rem;
@@ -571,7 +611,7 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .cart-label { display: none; }
-      .hero-l { padding: 2rem 1.6rem 3rem; }
+      .hero-l { padding: 2rem 1.4rem 3rem; }
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
       #shop, #custom-vase, #about, #testimonials, #newsletter { padding-left: 1.4rem; padding-right: 1.4rem; }
       .vase-wrap { grid-template-columns: 1fr; gap: 2rem; }
@@ -581,14 +621,9 @@
       .rgrid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
       .stats { grid-template-columns: repeat(2,1fr); }
-      /* Everyday banner — stack text on top of photo on mobile */
-      .everyday-text { width: 100%; padding: 2.5rem 1.6rem; }
-      .everyday-overlay {
-        background: linear-gradient(
-          to bottom,
-          rgba(0,51,102,0.72) 0%,
-          rgba(0,51,102,0.55) 100%
-        );
+      /* iOS doesn't support background-attachment:fixed — fall back to scroll */
+      .hero-bg, .everyday-bg {
+        background-attachment: scroll;
       }
     }
 
@@ -645,17 +680,19 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-l">
+    <span class="hero-eyebrow">Flor Keeps · Flower Preservation &amp; Resin Crafts</span>
     <h1 class="hero-h1">
       Nature poured<br>
       into something<br>
-      <em style="color:var(--pink);font-style:italic;">permanent.</em>
+      <em>permanent.</em>
     </h1>
-    <div class="hero-actions">
-      <a href="#shop" class="btn btn-pink">Shop Collection</a>
+    <div class="hero-cta">
+      <span class="hero-cta-line"></span>
+      <a href="#shop">Shop Collection</a>
     </div>
     <div class="hero-pills">
       <span class="hero-pill"><span class="hero-pip" style="background:var(--pink)"></span>100% Handmade</span>
-      <span class="hero-pill"><span class="hero-pip" style="background:var(--white)"></span>Ships PH-wide</span>
+      <span class="hero-pill"><span class="hero-pip" style="background:rgba(255,255,255,0.5)"></span>Ships PH-wide</span>
       <span class="hero-pill"><span class="hero-pip" style="background:var(--butter)"></span>Custom orders open</span>
     </div>
   </div>
@@ -664,17 +701,19 @@
 <!-- STRIP -->
 <div class="strip"><div class="strip-track" id="strip-track"></div></div>
 
-<!-- PHOTO 2 BANNER — "Art in the everyday" -->
+<!-- PHOTO 2 BANNER -->
 <section id="everyday-banner">
-  <div class="everyday-img">
-    <img src="Photo2.png" alt="Resin art in everyday life" loading="lazy">
-    <div class="everyday-overlay"></div>
-  </div>
+  <div class="everyday-bg"></div>
   <div class="everyday-text">
-    <div class="sec-label" style="color:var(--pink-lt);">The Flor Keeps Philosophy</div>
-    <h2>Beauty lives in<br><em>everyday things.</em></h2>
-    <p>A coaster. A vase. A keepsake on your desk. Every piece Shiela makes is designed to live beside you — not behind glass.</p>
-    <a href="#shop" class="btn btn-ghost-lt">See the Collection</a>
+    <span class="hero-eyebrow">The Flor Keeps Philosophy</span>
+    <h2>
+      Art in the<br>
+      <em>everyday.</em>
+    </h2>
+    <div class="everyday-cta">
+      <span class="everyday-cta-line"></span>
+      <a href="#shop">See the Collection</a>
+    </div>
   </div>
 </section>
 
