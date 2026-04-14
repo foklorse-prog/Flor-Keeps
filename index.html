@@ -708,9 +708,6 @@
   </div>
 </section>
 
-<!-- STRIP -->
-<div class="strip"><div class="strip-track" id="strip-track"></div></div>
-
 <!-- PHOTO 2 BANNER -->
 <section id="everyday-banner">
   <div class="everyday-bg"></div>
@@ -726,6 +723,9 @@
     </div>
   </div>
 </section>
+
+<!-- STRIP -->
+<div class="strip"><div class="strip-track" id="strip-track"></div></div>
 
 <!-- SHOP -->
 <section id="shop">
@@ -966,8 +966,8 @@ const navEl = document.querySelector('nav');
 const heroEl = document.getElementById('hero');
 const mobileParallaxQuery = window.matchMedia('(max-width: 860px)');
 const mobileParallaxTargets = [
-  { section: document.getElementById('hero'), bg: document.querySelector('.hero-bg'), range: 40 },
-  { section: document.getElementById('everyday-banner'), bg: document.querySelector('.everyday-bg'), range: 34 }
+  { section: document.getElementById('hero'), bg: document.querySelector('.hero-bg'), range: 60 },
+  { section: document.getElementById('everyday-banner'), bg: document.querySelector('.everyday-bg'), range: 52 }
 ];
 
 function updateMobileParallax() {
