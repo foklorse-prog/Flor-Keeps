@@ -272,88 +272,7 @@
     }
     .hero-pip { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
 
-    /* ═══════════════════════════════
-       IKEA-STYLE ACCORDION CTA
-       Expands from collapsed to full height as it enters viewport
-    ═══════════════════════════════ */
-    .hero-accordion {
-      border-radius: 16px;
-      background: var(--navy);
-      overflow: hidden;
-      /* Start collapsed —JS adds .expanded when IntersectionObserver fires */
-      max-height: 132px; */
-      transition: max-height 0.65s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .hero-accordion.expanded {
-      max-height: 320px;             /* enough for all category rows */
-    }
-    /* The "Shop Collection →" header row — always visible */
-   .accordion-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.3rem 1.4rem;
-      cursor: pointer;
-    }
-    .accordion-header span {
-      font-family: 'Julius Sans One', sans-serif;
-      font-size: 1.35rem; font-weight: 400;
-      color: #fff; letter-spacing: 0.01em;
-    }
-    .accordion-arrow {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: #fff;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      transition: transform 0.3s;
-    }
-    .hero-accordion.expanded .accordion-arrow { transform: rotate(90deg); }
-    .accordion-arrow svg { width: 18px; height: 18px; }
-    /* Divider line between header and categories */
-    .accordion-divider {
-      height: 1px; background: rgba(255,255,255,0.12);
-      margin: 0 1.4rem;
-    }
-    /* Category rows */
-    .accordion-cats {
-      padding: 0.5rem 0 0.8rem;
-    }
-    .accordion-cat {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.75rem 1.4rem;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      transition: background 0.15s;
-    }
-    .accordion-cat:last-child { border-bottom: none; }
-    .accordion-cat:hover { background: rgba(255,255,255,0.05); }
-    .accordion-cat span {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(255,255,255,0.75); font-weight: 400;
-    }
-    .accordion-cat-arrow { color: rgba(255,255,255,0.35); font-size: 0.9rem; }
 
-
-
-    /* ═══════════════════════════════
-       MARQUEE
-    ═══════════════════════════════ */
-    .strip {
-      background: var(--navy); overflow: hidden; padding: 0.62rem 0;
-      position: relative; z-index: 1;
-    }
-    .strip-track {
-      display: flex; gap: 2.5rem; white-space: nowrap;
-      animation: ticker 28s linear infinite;
-    }
-    .strip-track span { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.48); }
-    .strip-track .gem { display: inline-flex; align-items: center; }
-    .strip-icon {
-      height: 16px;      /* fits within the strip's ~0.62rem padding on each side */
-      width: auto;
-      opacity: 0.7;
-      vertical-align: middle;
-    }
-    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ═══════════════════════════════
        SHOP — white only here
@@ -970,9 +889,6 @@ document.querySelectorAll('.fpill').forEach(btn=>btn.addEventListener('click',()
   document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on'); renderProducts(btn.dataset.filter);
 }));
-
-const sitems=['Flower Preservation','✦','Resin Crafts','✦','Dried Florals','✦','Custom Orders','✦','Made in Cebu, PH','✦','One of a Kind','✦','By Shiela','✦'];
-document.getElementById('strip-track').innerHTML=[...sitems,...sitems].map(t=>t==='✦'?`<span class="gem"><img src="ICON.png" alt="" class="strip-icon"></span>`:`<span>${t}</span>`).join('');
 
 let toastT;
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3000); }
