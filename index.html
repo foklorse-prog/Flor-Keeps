@@ -3,36 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#9CB7CE">
-  <meta name="description" content="Flower preservation & resin crafts — coasters, vases, sculptures & more. Made in Cebu, Philippines.">
+  <meta name="theme-color" content="#A8C8E8">
+  <meta name="description" content="Handcrafted resin art — coasters, vases, sculptures & more. Made in Cebu, Philippines.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Flor Keeps">
-  <title>Flor Keeps – Flower Preservation & Resin Crafts</title>
+  <meta name="apple-mobile-web-app-title" content="Petals & Pour">
+  <title>Petals & Pour – Resin Studio</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="SUBMARK_LOGO.png">
-  <link rel="apple-touch-icon" href="SUBMARK_LOGO.png">
+  <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* 60% Blues */
-      --sky:        #9CB7CE;
-      --sky-dk:     #9CB7CE;
-      --sky-lt:     #9CB7CE;
-      --navy:       #003366;
-      --navy2:      #003366;
-      --sub:        #0A1014;
-      --white:      #DDE6EE;
-      --off:        #DDE6EE;
-      /* 30% Pink */
-      --pink:       #DB76AC;
-      --pink-dk:    #DB76AC;
-      --pink-lt:    #F4D7E7;
-      /* 10% Yellow */
-      --butter:     #E6E65C;
-      --butter-dk:  #E6E65C;
-      --line:       rgba(10,16,20,0.09);
+      --sky:        #A8C8E8;
+      --sky-dk:     #7AAAC8;
+      --sky-lt:     #EAF4FC;
+      --butter:     #E8C84A;
+      --butter-dk:  #C4A030;
+      --navy:       #1A2436;
+      --navy2:      #253350;
+      --sub:        #4A5870;
+      --pink:       #C4607C;   /* used as real accent everywhere */
+      --pink-dk:    #A04060;
+      --pink-lt:    #F9EEF1;
+      --white:      #FFFFFF;
+      --off:        #F8FAFC;
+      --line:       rgba(26,36,54,0.09);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -60,13 +57,13 @@
       border: none; transition: all 0.22s; white-space: nowrap;
     }
     .btn-sky     { background: var(--sky); color: var(--navy); }
-    .btn-sky:hover { background: var(--sky-dk); color: #fff; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(156,183,206,0.35); }
+    .btn-sky:hover { background: var(--sky-dk); color: #fff; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(168,200,232,0.35); }
     .btn-pink    { background: var(--pink);  color: #fff; }
-    .btn-pink:hover { background: var(--pink-dk); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(219,118,172,0.32); }
+    .btn-pink:hover { background: var(--pink-dk); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(196,96,124,0.32); }
     .btn-navy    { background: var(--navy);  color: #fff; }
-    .btn-navy:hover { background: var(--navy2); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,16,20,0.25); }
-    .btn-ghost   { background: transparent; color: var(--navy); border: 1.5px solid rgba(10,16,20,0.28); }
-    .btn-ghost:hover { border-color: var(--navy); background: rgba(10,16,20,0.04); transform: translateY(-1px); }
+    .btn-navy:hover { background: var(--navy2); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(26,36,54,0.25); }
+    .btn-ghost   { background: transparent; color: var(--navy); border: 1.5px solid rgba(26,36,54,0.28); }
+    .btn-ghost:hover { border-color: var(--navy); background: rgba(26,36,54,0.04); transform: translateY(-1px); }
     .btn-ghost-lt { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.45); }
     .btn-ghost-lt:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.8); transform: translateY(-1px); }
 
@@ -77,60 +74,32 @@
       padding: 0 1.6rem;
       background: var(--sky);
       border-bottom: 1px solid rgba(255,255,255,0.3);
-      box-shadow: 0 2px 16px rgba(10,16,20,0.10);
+      box-shadow: 0 2px 16px rgba(26,36,54,0.10);
     }
-    /* ── LOGO IMAGES ── */
-    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
-    .logo-icon {
-      width: 38px; height: 38px;
-      flex-shrink: 0; object-fit: contain;
-      display: block;
-    }
-    .hero-primary-logo {
-      width: min(340px, 80vw);
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 4px 16px rgba(10,16,20,0.12));
-    }
-    .icon-divider {
-      background: var(--white);
-      display: flex; align-items: center; justify-content: center;
-      padding: 2.2rem 0;
-    }
-    .icon-divider-img {
-      width: min(220px, 55vw);
-      height: auto;
-      opacity: 0.85;
-    }
-    .about-logotype {
-      width: min(260px, 70%);
-      height: auto;
-      margin-bottom: 1rem;
-      display: block;
-      filter: brightness(0) invert(1) opacity(0.75); /* makes it white/subtle on navy bg */
-    }
-    .footer-logo-icon { width: 30px; height: 30px; flex-shrink: 0; object-fit: contain; }
-    .logo-words { display: flex; flex-direction: column; gap: 3px; justify-content: center; }
+    /* Logo — always left, hides text when hero visible */
+    .logo { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; }
+    .logo-icon { width: 32px; height: 32px; flex-shrink: 0; }
+    .logo-words { display: flex; flex-direction: column; gap: 1px; }
     .logo-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem; font-weight: 400; letter-spacing: 0.02em;
+      font-size: 1.3rem; font-weight: 400; letter-spacing: 0.02em;
       color: var(--navy); line-height: 1;
       /* hidden when hero is visible — JS adds .scrolled to nav */
       opacity: 0; pointer-events: none;
       transition: opacity 0.3s;
     }
     .logo-tag {
-      font-size: 0.46rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--navy); font-weight: 600; opacity: 0; line-height: 1;
+      font-size: 0.48rem; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--navy); font-weight: 500; opacity: 0; line-height: 1;
       transition: opacity 0.3s;
     }
     nav.scrolled .logo-name { opacity: 1; pointer-events: auto; }
     nav.scrolled .logo-tag  { opacity: 0.55; }
     /* Centre links — desktop only */
-    .nav-links { display: flex; gap: 1rem; list-style: none; margin-left: auto; margin-right: 0.8rem; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
     .nav-links a {
-      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--navy); text-decoration: none; font-weight: 600;
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--navy); text-decoration: none; font-weight: 500;
       opacity: 0.65; transition: opacity 0.18s;
     }
     .nav-links a:hover { opacity: 1; }
@@ -202,7 +171,7 @@
 
     #hero {
       padding-top: 62px;
-      min-height: 520px;
+      min-height: 460px;
       position: relative; overflow: hidden;
       display: flex; align-items: center;
       background: var(--sky);
@@ -218,48 +187,45 @@
       content: '';
       position: absolute; bottom: -40%; left: 20%;
       width: 45vw; height: 45vw; border-radius: 50%;
-      background: radial-gradient(circle, rgba(219,118,172,0.10) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(196,96,124,0.10) 0%, transparent 65%);
       pointer-events: none;
     }
     .hero-l {
       position: relative; z-index: 2;
-      padding: 3.6rem 3rem 3.4rem 2.8rem;
+      padding: 3rem 3rem 3rem 2.8rem;
       max-width: 560px;
       display: flex; flex-direction: column; gap: 1.2rem;
     }
     .hero-brand {
-      display: flex; flex-direction: column; gap: 4px;
+      display: flex; flex-direction: column; gap: 3px;
     }
     .hero-brand-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 7.6vw, 5.8rem);
-      font-weight: 400; letter-spacing: 0.02em;
-      color: var(--navy); line-height: 0.9;
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      font-weight: 400; letter-spacing: 0.01em;
+      color: var(--navy); line-height: 1;
     }
     .hero-brand-tag {
-      font-size: 0.54rem; letter-spacing: 0.58em; text-transform: uppercase;
-      color: var(--navy); font-weight: 600; opacity: 0.5;
-      display: inline-block;
-      padding-right: 1.2rem;
-      padding-left: 0.2rem;
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--navy); font-weight: 500; opacity: 0.5;
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 0.6rem;
-      font-size: 0.5rem; letter-spacing: 0.36em; text-transform: uppercase;
-      color: var(--navy); opacity: 0.58; font-weight: 600;
+      font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--navy); opacity: 0.55; font-weight: 500;
     }
     .hero-eyebrow::before { content:''; width:16px; height:1.5px; background:var(--pink); flex-shrink:0; opacity:1; }
     .hero-h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.9rem, 4vw, 3.15rem);
-      line-height: 1.1; margin: 0; font-weight: 400;
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      line-height: 1.2; margin: 0; font-weight: 300;
     }
     .h1-heavy { font-weight: 600; color: var(--navy); }
-    .h1-mid   { font-weight: 400; color: var(--navy); opacity: 0.9; }
-    .h1-perm  { font-weight: 600; font-style: italic; color: var(--pink); letter-spacing: 0.015em; }
+    .h1-mid   { font-weight: 400; color: var(--navy); opacity: 0.85; }
+    .h1-perm  { font-weight: 600; font-style: italic; color: var(--pink); }
     .hero-sub {
-      font-size: 1rem; line-height: 1.78;
-      color: var(--navy); opacity: 0.68; max-width: 460px;
+      font-size: 0.9rem; line-height: 1.8;
+      color: var(--navy); opacity: 0.72; max-width: 420px;
     }
     .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .hero-pills { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -282,13 +248,7 @@
       animation: ticker 28s linear infinite;
     }
     .strip-track span { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.48); }
-    .strip-track .gem { display: inline-flex; align-items: center; }
-    .strip-icon {
-      height: 16px;      /* fits within the strip's ~0.62rem padding on each side */
-      width: auto;
-      opacity: 0.7;
-      vertical-align: middle;
-    }
+    .strip-track .gem { color: var(--butter); opacity: 1; font-size: 0.44rem; position: relative; top: -1px; }
     @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ═══════════════════════════════
@@ -319,7 +279,7 @@
     .filters { display: flex; gap: 0.35rem; flex-wrap: wrap; }
     .fpill {
       padding: 0.3rem 0.9rem; border-radius: 2rem;
-      border: 1.5px solid rgba(10,16,20,0.14);
+      border: 1.5px solid rgba(26,36,54,0.14);
       background: transparent; color: var(--sub);
       font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 400;
       letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.18s;
@@ -330,14 +290,14 @@
     .pgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
     .pcard {
       background: var(--white); border-radius: 14px; overflow: hidden;
-      box-shadow: 0 1px 3px rgba(10,16,20,0.05), 0 6px 18px rgba(10,16,20,0.07);
+      box-shadow: 0 1px 3px rgba(26,36,54,0.05), 0 6px 18px rgba(26,36,54,0.07);
       transition: transform 0.28s cubic-bezier(0.23,1,0.32,1), box-shadow 0.28s;
       display: flex; flex-direction: column;
-      border: 1px solid rgba(10,16,20,0.05);
+      border: 1px solid rgba(26,36,54,0.05);
     }
     .pcard:hover {
       transform: translateY(-6px);
-      box-shadow: 0 2px 6px rgba(10,16,20,0.06), 0 16px 40px rgba(10,16,20,0.12);
+      box-shadow: 0 2px 6px rgba(26,36,54,0.06), 0 16px 40px rgba(26,36,54,0.12);
     }
     .pcard-img { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--off); }
     .pcard-img img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s ease; }
@@ -358,14 +318,8 @@
       background: rgba(255,255,255,0.9); border: none;
       display: flex; align-items: center; justify-content: center;
       font-size: 0.78rem; cursor: pointer;
-      box-shadow: 0 2px 8px rgba(10,16,20,0.12); transition: transform 0.18s;
+      box-shadow: 0 2px 8px rgba(26,36,54,0.12); transition: transform 0.18s;
     }
-    .pwish svg { width: 18px; height: 18px; }
-    .pwish .petal-core { fill: var(--pink); opacity: 0.92; }
-    .pwish .petal-ring { fill: var(--pink-lt); opacity: 0.9; }
-    .pwish.on { background: var(--pink-lt); box-shadow: 0 2px 10px rgba(219,118,172,0.18); }
-    .pwish.on .petal-core { fill: var(--pink-dk); opacity: 1; }
-    .pwish.on .petal-ring { fill: #fff; opacity: 0.95; }
     .pwish:hover { transform: scale(1.12); }
     .pcard-body { padding: 0.9rem 1rem 1rem; flex:1; display:flex; flex-direction:column; }
     .pcat { font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sky-dk); margin-bottom: 0.2rem; font-weight: 500; }
@@ -378,7 +332,7 @@
       background: var(--pink); color: #fff;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.1rem; cursor: pointer; transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(219,118,172,0.28);
+      box-shadow: 0 2px 8px rgba(196,96,124,0.28);
     }
     .padd:hover { background: var(--pink-dk); transform: scale(1.1); }
 
@@ -386,18 +340,18 @@
        CUSTOM VASE — light sky tint
     ═══════════════════════════════ */
     #custom-vase {
-      background: var(--pink-lt);
-      border-top: 1px solid rgba(219,118,172,0.2);
-      border-bottom: 1px solid rgba(219,118,172,0.2);
+      background: var(--sky-lt);
+      border-top: 1px solid rgba(168,200,232,0.4);
+      border-bottom: 1px solid rgba(168,200,232,0.4);
       padding: 5rem 2.5rem;
     }
     .vase-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .vase-img {
       border-radius: 18px; overflow: hidden; aspect-ratio: 0.85;
-      box-shadow: 0 8px 40px rgba(10,16,20,0.14); position: relative;
+      box-shadow: 0 8px 40px rgba(26,36,54,0.14); position: relative;
     }
     .vase-img img { width:100%; height:100%; object-fit:cover; display:block; }
-    .vase-img-over { position: absolute; inset: 0; background: linear-gradient(160deg, transparent 55%, rgba(219,118,172,0.12) 100%); }
+    .vase-img-over { position: absolute; inset: 0; background: linear-gradient(160deg, transparent 55%, rgba(168,200,232,0.22) 100%); }
     .vase-soon {
       position: absolute; bottom: 1.3rem; left: 1.3rem;
       background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
@@ -410,11 +364,11 @@
     .vase-text p { font-size: 0.88rem; color: var(--sub); line-height: 1.85; margin-bottom: 1.8rem; }
     .vase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.8rem; }
     .vopt {
-      background: var(--white); border: 1px solid rgba(219,118,172,0.2);
+      background: var(--white); border: 1px solid rgba(168,200,232,0.3);
       border-radius: 10px; padding: 0.65rem 0.85rem;
       font-size: 0.8rem; color: var(--navy);
       display: flex; align-items: center; gap: 0.5rem;
-      box-shadow: 0 1px 4px rgba(10,16,20,0.05);
+      box-shadow: 0 1px 4px rgba(26,36,54,0.05);
     }
 
     /* ═══════════════════════════════
@@ -443,8 +397,8 @@
     .rgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
     .rcard {
       background: var(--white); border-radius: 14px; padding: 1.6rem;
-      box-shadow: 0 1px 3px rgba(10,16,20,0.04), 0 6px 18px rgba(10,16,20,0.07);
-      border: 1px solid rgba(10,16,20,0.05); transition: transform 0.22s;
+      box-shadow: 0 1px 3px rgba(26,36,54,0.04), 0 6px 18px rgba(26,36,54,0.07);
+      border: 1px solid rgba(26,36,54,0.05); transition: transform 0.22s;
     }
     .rcard:hover { transform: translateY(-4px); }
     .rstars { color: var(--butter-dk); font-size: 0.8rem; margin-bottom: 0.8rem; letter-spacing: 0.06em; }
@@ -462,7 +416,7 @@
       content: '';
       position: absolute; top: -40%; right: -10%; width: 500px; height: 500px;
       border-radius: 50%; pointer-events: none;
-      background: radial-gradient(circle, rgba(219,118,172,0.12) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(196,96,124,0.12) 0%, transparent 65%);
     }
     .nl-kicker { font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--navy); opacity: 0.55; margin-bottom: 0.7rem; position: relative; z-index: 1; }
     #newsletter h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem,3vw,2.6rem); font-weight: 300; color: var(--navy); margin-bottom: 0.7rem; line-height: 1.15; position: relative; z-index: 1; }
@@ -470,11 +424,11 @@
     .nl-form { display: flex; gap: 0.55rem; max-width: 400px; margin: 0 auto; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; }
     .nl-form input {
       flex: 1; min-width: 190px;
-      background: rgba(255,255,255,0.65); border: 1.5px solid rgba(10,16,20,0.18);
+      background: rgba(255,255,255,0.65); border: 1.5px solid rgba(26,36,54,0.18);
       color: var(--navy); padding: 0.68rem 1.2rem; border-radius: 2rem;
       font-family: 'DM Sans', sans-serif; font-size: 0.84rem; outline: none; transition: all 0.2s;
     }
-    .nl-form input::placeholder { color: rgba(10,16,20,0.38); }
+    .nl-form input::placeholder { color: rgba(26,36,54,0.38); }
     .nl-form input:focus { border-color: var(--pink); background: rgba(255,255,255,0.85); }
 
     /* ═══════════════════════════════
@@ -498,9 +452,9 @@
     /* ═══════════════════════════════
        CART DRAWER
     ═══════════════════════════════ */
-    .cart-ov { position: fixed; inset: 0; background: rgba(10,16,20,0.4); z-index: 700; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .cart-ov { position: fixed; inset: 0; background: rgba(26,36,54,0.4); z-index: 700; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
     .cart-ov.open { opacity: 1; pointer-events: all; }
-    .cart-dw { position: fixed; top:0; right:0; bottom:0; width:380px; max-width:96vw; background:var(--off); border-left:1px solid var(--line); z-index:701; transform:translateX(100%); transition:transform 0.38s cubic-bezier(0.23,1,0.32,1); display:flex; flex-direction:column; box-shadow:-4px 0 16px rgba(10,16,20,0.08),-16px 0 48px rgba(10,16,20,0.12); }
+    .cart-dw { position: fixed; top:0; right:0; bottom:0; width:380px; max-width:96vw; background:var(--off); border-left:1px solid var(--line); z-index:701; transform:translateX(100%); transition:transform 0.38s cubic-bezier(0.23,1,0.32,1); display:flex; flex-direction:column; box-shadow:-4px 0 16px rgba(26,36,54,0.08),-16px 0 48px rgba(26,36,54,0.12); }
     .cart-dw.open { transform: translateX(0); }
     .cart-hd { padding:1.2rem 1.5rem; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; background:var(--sky); }
     .cart-hd h3 { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:300; color:var(--navy); }
@@ -509,7 +463,7 @@
     .cart-empty { text-align:center; margin-top:2.5rem; }
     .cart-empty p:first-child { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--navy); }
     .cart-empty p:last-child { font-size:0.78rem; color:var(--sub); margin-top:0.35rem; }
-    .citem { display:flex; gap:0.85rem; align-items:center; padding:0.85rem; background:var(--white); border:1px solid var(--line); border-radius:10px; box-shadow:0 1px 4px rgba(10,16,20,0.04); }
+    .citem { display:flex; gap:0.85rem; align-items:center; padding:0.85rem; background:var(--white); border:1px solid var(--line); border-radius:10px; box-shadow:0 1px 4px rgba(26,36,54,0.04); }
     .cthumb { width:56px; height:56px; border-radius:8px; overflow:hidden; background:var(--off); flex-shrink:0; }
     .cthumb img { width:100%; height:100%; object-fit:cover; display:block; }
     .cinfo { flex:1; }
@@ -523,11 +477,11 @@
     .cart-tot strong { font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--navy); font-weight:400; }
 
     /* ═══ TOAST ═══ */
-    .toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:0.68rem 1.55rem; border-radius:2rem; font-size:0.78rem; z-index:999; transition:transform 0.34s cubic-bezier(0.23,1,0.32,1); white-space:nowrap; box-shadow:0 6px 24px rgba(10,16,20,0.22); }
+    .toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:0.68rem 1.55rem; border-radius:2rem; font-size:0.78rem; z-index:999; transition:transform 0.34s cubic-bezier(0.23,1,0.32,1); white-space:nowrap; box-shadow:0 6px 24px rgba(26,36,54,0.22); }
     .toast.show { transform:translateX(-50%) translateY(0); }
 
     /* ═══ INSTALL BANNER ═══ */
-    #install-banner { position:fixed; bottom:1.4rem; right:1.4rem; z-index:800; background:var(--white); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.3rem; max-width:265px; box-shadow:0 8px 28px rgba(10,16,20,0.12); display:none; }
+    #install-banner { position:fixed; bottom:1.4rem; right:1.4rem; z-index:800; background:var(--white); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.3rem; max-width:265px; box-shadow:0 8px 28px rgba(26,36,54,0.12); display:none; }
     #install-banner h4 { font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--navy); margin-bottom:0.3rem; }
     #install-banner p { font-size:0.72rem; color:var(--sub); margin-bottom:0.85rem; line-height:1.6; }
     .b-btns { display:flex; gap:0.55rem; }
@@ -543,7 +497,7 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .cart-label { display: none; }
-      .hero-l { padding: 2.6rem 1.6rem; max-width: 100%; }
+      .hero-l { padding: 2.2rem 1.4rem; max-width: 100%; }
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
       #shop, #custom-vase, #about, #testimonials, #newsletter { padding-left: 1.4rem; padding-right: 1.4rem; }
       .vase-wrap { grid-template-columns: 1fr; gap: 2rem; }
@@ -558,7 +512,7 @@
     @media (max-width: 520px) {
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.6rem; }
       .footer-top { grid-template-columns: 1fr; }
-      .hero-h1 { font-size: clamp(2.1rem, 7vw, 2.6rem); }
+      .hero-h1 { font-size: clamp(2.4rem, 8vw, 3rem); }
     }
   </style>
 </head>
@@ -567,10 +521,18 @@
 <!-- NAV: logo · links · cart -->
 <nav>
   <a href="#" class="logo">
-    <img src="SUBMARK_LOGO.png" class="logo-icon" alt="Flor Keeps">
+    <svg class="logo-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="44" fill="rgba(255,255,255,0.3)"/>
+      <ellipse cx="60" cy="46" rx="7" ry="12" fill="#C4607C" opacity="0.92"/>
+      <ellipse cx="60" cy="46" rx="7" ry="12" fill="#C4607C" opacity="0.84" transform="rotate(72 60 60)"/>
+      <ellipse cx="60" cy="46" rx="7" ry="12" fill="#D4708C" opacity="0.78" transform="rotate(144 60 60)"/>
+      <ellipse cx="60" cy="46" rx="7" ry="12" fill="#C4607C" opacity="0.84" transform="rotate(216 60 60)"/>
+      <ellipse cx="60" cy="46" rx="7" ry="12" fill="#D4708C" opacity="0.78" transform="rotate(288 60 60)"/>
+      <circle cx="60" cy="60" r="7.5" fill="#8A2040"/>
+    </svg>
     <div class="logo-words">
-      <span class="logo-name">Flor Keeps</span>
-      <span class="logo-tag">Flower Preservation &amp; Resin Crafts</span>
+      <span class="logo-name">Petals &amp; Pour</span>
+      <span class="logo-tag">Resin Studio</span>
     </div>
   </a>
 
@@ -607,16 +569,19 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-l">
+    <div class="hero-eyebrow">Handcrafted in Cebu, Philippines</div>
     <div class="hero-brand">
-      <img src="SECONDARY_LOGO.png" alt="Flor Keeps" class="hero-secondary-logo">
+      <span class="hero-brand-name">Petals &amp; Pour</span>
+      <span class="hero-brand-tag">Resin Studio</span>
     </div>
     <h1 class="hero-h1">
-      <span class="h1-mid">Flowers</span> <span class="h1-mid">and resin crafts</span><br>
-      <span class="h1-mid">to have</span> <span class="h1-perm">forever.</span>
+      <span class="h1-heavy">Nature poured into</span><br>
+      <span class="h1-mid">something </span><span class="h1-perm">permanent.</span>
     </h1>
+    <p class="hero-sub">Dried florals, gemstones, and light — sealed in resin forever. Every piece one of a kind.</p>
     <div class="hero-actions">
       <a href="#shop" class="btn btn-navy">Shop Collection</a>
-      <a href="#custom-vase" class="btn btn-ghost">Design Your Piece</a>
+      <a href="#custom-vase" class="btn btn-ghost">Design Your Vase</a>
     </div>
     <div class="hero-pills">
       <span class="hero-pill"><span class="hero-pip" style="background:var(--pink)"></span>100% Handmade</span>
@@ -677,10 +642,9 @@
   </div>
   <div class="about-text">
     <div class="sec-label">The Maker</div>
-    <h2>Art born from a love of flowers</h2>
-    <img src="LOGO_TYPE.png" alt="Flor Keeps – Flower Preservation & Resin Crafts" class="about-logotype">
+    <h2>Art born from curiosity</h2>
     <p>Every piece begins with an intention — a flower pressed between fingers, a stone found at the shoreline, a color that lives only in memory.</p>
-    <p>Shiela pours each creation slowly, layer by layer, letting nature and resin fuse into something irrepeatable. No two pieces are ever alike.</p>
+    <p>We pour each creation slowly, layer by layer, letting nature and resin fuse into something irrepeatable. No two pieces are ever alike.</p>
     <div class="stats">
       <div class="stat"><div class="stat-n">200+</div><div class="stat-l">Pieces made</div></div>
       <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Handmade</div></div>
@@ -719,20 +683,28 @@
   <div class="footer-top">
     <div class="footer-brand">
       <a href="#" class="footer-logo">
-        <img src="SUBMARK_LOGO.png" class="footer-logo-icon" alt="Flor Keeps">
+        <svg class="footer-logo-icon" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="44" fill="rgba(255,255,255,0.06)"/>
+          <ellipse cx="60" cy="46" rx="7" ry="12" fill="#C4607C" opacity="0.7"/>
+          <ellipse cx="60" cy="46" rx="7" ry="12" fill="#C4607C" opacity="0.62" transform="rotate(72 60 60)"/>
+          <ellipse cx="60" cy="46" rx="7" ry="12" fill="#D4708C" opacity="0.56" transform="rotate(144 60 60)"/>
+          <ellipse cx="60" cy="46" rx="7" ry="12" fill="#C4607C" opacity="0.62" transform="rotate(216 60 60)"/>
+          <ellipse cx="60" cy="46" rx="7" ry="12" fill="#D4708C" opacity="0.56" transform="rotate(288 60 60)"/>
+          <circle cx="60" cy="60" r="7.5" fill="#8A2040" opacity="0.8"/>
+        </svg>
         <div class="footer-logo-words">
-          <span class="footer-logo-name">Flor Keeps</span>
-          <span class="footer-logo-tag">by Shiela</span>
+          <span class="footer-logo-name">Petals &amp; Pour</span>
+          <span class="footer-logo-tag">Resin Studio</span>
         </div>
       </a>
-      <p>Flower preservation &amp; resin crafts from the heart of Cebu, Philippines. Every piece made with love and intention.</p>
+      <p>Handcrafted resin art from the heart of Cebu, Philippines. Every piece poured with love and intention.</p>
     </div>
     <div class="footer-col"><h5>Shop</h5><ul><li><a href="#shop">All Products</a></li><li><a href="#custom-vase">Custom Vase</a></li><li><a href="#shop">Coasters</a></li><li><a href="#shop">Floral Art</a></li></ul></div>
     <div class="footer-col"><h5>Info</h5><ul><li><a href="#about">Our Story</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">FAQ</a></li></ul></div>
     <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li><li><a href="#">Shopee</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Flor Keeps by Shiela. All rights reserved.</p>
+    <p>© 2025 Petals &amp; Pour. All rights reserved.</p>
     <p>Handmade in Cebu, Philippines 🌺</p>
   </div>
 </footer>
@@ -807,16 +779,7 @@ function renderProducts(filter='all'){
       <div class="pcard-img">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
         ${p.badge?`<span class="pbadge ${p.badge}">${p.blabel}</span>`:''}
-        <button class="pwish" onclick="toggleWish(this)">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <circle class="petal-ring" cx="60" cy="60" r="30"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12" transform="rotate(72 60 60)"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12" transform="rotate(144 60 60)"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12" transform="rotate(216 60 60)"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12" transform="rotate(288 60 60)"/>
-          </svg>
-        </button>
+        <button class="pwish" onclick="toggleWish(this)">🤍</button>
       </div>
       <div class="pcard-body">
         <div class="pcat">${p.category}</div>
@@ -828,14 +791,14 @@ function renderProducts(filter='all'){
       </div>
     </div>`).join('');
 }
-function toggleWish(btn){ btn.classList.toggle('on'); toast(btn.classList.contains('on')?'Added to wishlist':'Removed from wishlist'); }
+function toggleWish(btn){ btn.classList.toggle('on'); btn.textContent=btn.classList.contains('on')?'❤️':'🤍'; toast(btn.classList.contains('on')?'Added to wishlist':'Removed from wishlist'); }
 document.querySelectorAll('.fpill').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on'); renderProducts(btn.dataset.filter);
 }));
 
-const sitems=['Flower Preservation','✦','Resin Crafts','✦','Dried Florals','✦','Custom Orders','✦','Made in Cebu, PH','✦','One of a Kind','✦','By Shiela','✦'];
-document.getElementById('strip-track').innerHTML=[...sitems,...sitems].map(t=>t==='✦'?`<span class="gem"><img src="ICON.png" alt="" class="strip-icon"></span>`:`<span>${t}</span>`).join('');
+const sitems=['Handcrafted Resin Art','✦','Dried Florals','✦','Stone Inclusions','✦','Galaxy Themes','✦','Custom Orders','✦','Made in Cebu, PH','✦','One of a Kind','✦'];
+document.getElementById('strip-track').innerHTML=[...sitems,...sitems].map(t=>t==='✦'?`<span class="gem">✦</span>`:`<span>${t}</span>`).join('');
 
 let toastT;
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3000); }
