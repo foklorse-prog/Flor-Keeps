@@ -282,30 +282,46 @@
     .hero-accordion.expanded {
       max-height: 320px;             /* enough for all category rows */
     }
-   /* The "Shop Collection →" header row — always visible */
-    .accordion-header {
+    /* The "Shop Collection →" header row — always visible */
+   .accordion-cta {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.3rem 1.4rem;
-      cursor: pointer;
+      padding: 1.1rem 1.15rem;
+      text-decoration: none;
     }
-    .accordion-header span {
+    .accordion-cta span {
       font-family: 'Julius Sans One', sans-serif;
       font-size: 1.35rem; font-weight: 400;
       color: #fff; letter-spacing: 0.01em;
     }
+    .cta-arrow,
     .accordion-arrow {
-      width: 40px; height: 40px; border-radius: 50%;
+      width: 34px; height: 34px; border-radius: 50%;
       background: #fff;
+      border: none;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      cursor: pointer;
       transition: transform 0.3s;
     }
     .hero-accordion.expanded .accordion-arrow { transform: rotate(90deg); }
+    .cta-arrow svg,
     .accordion-arrow svg { width: 18px; height: 18px; }
     /* Divider line between header and categories */
     .accordion-divider {
       height: 1px; background: rgba(255,255,255,0.12);
-      margin: 0 1.4rem;
+      margin: 0 1.15rem;
+    }
+    .accordion-trigger {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.15rem;
+    }
+    .accordion-trigger-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.82);
+      font-weight: 500;
     }
     /* Category rows */
     .accordion-cats {
@@ -313,7 +329,7 @@
     }
     .accordion-cat {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0.75rem 1.4rem;
+      padding: 0.7rem 1.15rem;
       text-decoration: none;
       border-bottom: 1px solid rgba(255,255,255,0.07);
       transition: background 0.15s;
@@ -326,6 +342,28 @@
       color: rgba(255,255,255,0.75); font-weight: 400;
     }
     .accordion-cat-arrow { color: rgba(255,255,255,0.35); font-size: 0.9rem; }
+
+
+    /* ═══════════════════════════════
+       MARQUEE
+    ═══════════════════════════════ */
+    .strip {
+      background: var(--navy); overflow: hidden; padding: 0.62rem 0;
+      position: relative; z-index: 1;
+    }
+    .strip-track {
+      display: flex; gap: 2.5rem; white-space: nowrap;
+      animation: ticker 28s linear infinite;
+    }
+    .strip-track span { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.48); }
+    .strip-track .gem { display: inline-flex; align-items: center; }
+    .strip-icon {
+      height: 16px;      /* fits within the strip's ~0.62rem padding on each side */
+      width: auto;
+      opacity: 0.7;
+      vertical-align: middle;
+    }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ═══════════════════════════════
        SHOP — white only here
