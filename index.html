@@ -210,7 +210,7 @@
     /* Parallax photo — background-attachment:fixed makes it scroll slower than the page */
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('Hero1.jpg') center center / cover no-repeat;
+      background: url('hero1.jpg') center center / cover no-repeat;
       background-attachment: fixed;
       z-index: 0;
     }
@@ -315,7 +315,7 @@
     }
     .everyday-bg {
       position: absolute; inset: 0;
-      background: url('Photo2.png') center center / cover no-repeat;
+      background: url('photo2.png') center center / cover no-repeat;
       background-attachment: fixed;
       z-index: 0;
     }
@@ -623,7 +623,17 @@
       .stats { grid-template-columns: repeat(2,1fr); }
       /* iOS doesn't support background-attachment:fixed — fall back to scroll */
       .hero-bg, .everyday-bg {
+        inset: -8% 0;
         background-attachment: scroll;
+        background-position: center center;
+        transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.08);
+        will-change: transform;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg, .everyday-bg {
+        transform: none !important;
       }
     }
 
@@ -954,6 +964,32 @@ updateCartUI();
 // so the name never appears twice on screen at the same time
 const navEl = document.querySelector('nav');
 const heroEl = document.getElementById('hero');
+const mobileParallaxQuery = window.matchMedia('(max-width: 860px)');
+const mobileParallaxTargets = [
+  { section: document.getElementById('hero'), bg: document.querySelector('.hero-bg'), range: 40 },
+  { section: document.getElementById('everyday-banner'), bg: document.querySelector('.everyday-bg'), range: 34 }
+];
+
+function updateMobileParallax() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const shouldAnimate = mobileParallaxQuery.matches && !reduceMotion;
+
+  mobileParallaxTargets.forEach(({ section, bg, range }) => {
+    if (!section || !bg) return;
+    if (!shouldAnimate) {
+      bg.style.removeProperty('--parallax-shift');
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+    const viewport = window.innerHeight || document.documentElement.clientHeight;
+    const progress = (viewport - rect.top) / (viewport + rect.height);
+    const clamped = Math.max(0, Math.min(1, progress));
+    const shift = (clamped - 0.5) * range;
+    bg.style.setProperty('--parallax-shift', `${shift.toFixed(2)}px`);
+  });
+}
+
 function onScroll() {
   const heroBtm = heroEl.getBoundingClientRect().bottom;
   if (heroBtm <= 62) {
@@ -961,9 +997,13 @@ function onScroll() {
   } else {
     navEl.classList.remove('scrolled');
   }
+
+  updateMobileParallax();
 }
 window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', updateMobileParallax, { passive: true });
 onScroll(); // run once on load
+updateMobileParallax();
 </script>
 </body>
 </html>
