@@ -210,11 +210,7 @@
     /* Parallax photo — background-attachment:fixed makes it scroll slower than the page */
     .hero-bg {
       position: absolute; inset: 0;
-      background-color: #7d8ea4;
-      background-image: url('Hero1.jpg');
-      background-repeat: no-repeat;
-      background-position: center 32%;
-      background-size: min(68vw, 760px) auto;
+      background: url('Hero1.jpg') center center / cover no-repeat;
       background-attachment: fixed;
       z-index: 0;
     }
@@ -632,12 +628,6 @@
         background-position: center center;
         transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.08);
         will-change: transform;
-      }
-      .hero-bg {
-        inset: -4% 0;
-        background-position: center 16%;
-        background-size: min(122vw, 560px) auto;
-        transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.03);
       }
     }
 
