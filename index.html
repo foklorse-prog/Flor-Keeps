@@ -202,29 +202,34 @@
 
     /* ── HERO: IKEA-style rounded card ── */
     #hero {
-      padding: calc(62px + 1rem) 1rem 0;   /* nav height + gap on top, side padding for card margins */
-      background: var(--sky);               /* page background shows as the "gap" around the card */
-      min-height: calc(100vh - 62px);
-      display: flex; flex-direction: column;
+      padding: calc(62px + 1rem) 1rem 1rem;
+      background: var(--sky);
+      display: flex; flex-direction: column; gap: 0.75rem;
     }
     /* The card itself — rounded, contains the photo without zooming */
     .hero-card {
       border-radius: 20px;
       overflow: hidden;
       position: relative;
-      flex: 1;
-      min-height: 75vw;                     /* keeps it portrait-ish on mobile */
+      min-height: clamp(420px, 68vh, 760px);
       max-height: 88vh;
+      background: #7d8ea4;
     }
     /* Photo fills the card, centered, not zoomed — object-fit:contain shows the full image */
     .hero-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;                    /* cover so no empty space, but position:center preserves subject */
-      object-position: center center;
+      position: absolute;
+      inset: -5% 0;
+      width: 100%;
+      height: 112%;
+      object-fit: cover;
+      object-position: center 34%;
       display: block;
+      transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.04);
+      will-change: transform;
     }
     /* Very light gradient only at bottom for text legibility */
-    .hero-card::after {
+    .hero-card::after,
+    .everyday-card::after {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(
@@ -241,6 +246,7 @@
       z-index: 2;
       padding: 1.8rem 1.6rem 2rem;
       display: flex; flex-direction: column; gap: 1rem;
+      max-width: min(82%, 560px);
     }
     .hero-eyebrow {
       font-family: 'DM Sans', sans-serif;
@@ -271,23 +277,23 @@
        IKEA-STYLE ACCORDION CTA
        Expands from collapsed to full height as it enters viewport
     ═══════════════════════════════ */
-    .hero-accordion {
-      margin: 0.75rem 1rem 0;              /* same side margin as the hero card */
+    .hero-accordion,
+    .banner-accordion {
       border-radius: 20px;
       background: var(--navy);
       overflow: hidden;
       /* Start collapsed — JS adds .expanded when IntersectionObserver fires */
-      max-height: 72px;
+      max-height: 132px;
       transition: max-height 0.65s cubic-bezier(0.23, 1, 0.32, 1);
     }
-    .hero-accordion.expanded {
-      max-height: 260px;                   /* enough for all category rows */
+    .hero-accordion.expanded,
+    .banner-accordion.expanded {
+      max-height: 320px;
     }
     /* The "Shop Collection →" header row — always visible */
     .accordion-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.3rem 1.4rem;
-      cursor: pointer;
     }
     .accordion-header span {
       font-family: 'Julius Sans One', sans-serif;
@@ -297,16 +303,31 @@
     .accordion-arrow {
       width: 40px; height: 40px; border-radius: 50%;
       background: #fff;
+      border: none;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
+      cursor: pointer;
       transition: transform 0.3s;
     }
-    .hero-accordion.expanded .accordion-arrow { transform: rotate(90deg); }
+    .hero-accordion.expanded .accordion-arrow,
+    .banner-accordion.expanded .accordion-arrow { transform: rotate(90deg); }
     .accordion-arrow svg { width: 18px; height: 18px; }
     /* Divider line between header and categories */
     .accordion-divider {
       height: 1px; background: rgba(255,255,255,0.12);
       margin: 0 1.4rem;
+    }
+    .accordion-trigger {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.4rem;
+    }
+    .accordion-trigger-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.82);
+      font-weight: 500;
     }
     /* Category rows */
     .accordion-cats {
@@ -359,32 +380,34 @@
        EVERYDAY BANNER — AP-style parallax
     ═══════════════════════════════ */
     #everyday-banner {
+      padding: 0 1rem 1rem;
+      background: var(--sky);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .everyday-card {
       position: relative;
-      min-height: 100vh;
+      min-height: clamp(300px, 54vh, 560px);
+      border-radius: 20px;
       overflow: hidden;
-      display: flex; align-items: flex-end;
+      background: #6a7a8b;
     }
     .everyday-bg {
-      position: absolute; inset: 0;
+      position: absolute; inset: -5% 0;
       background: url('Photo2.png') center center / cover no-repeat;
       background-attachment: fixed;
       z-index: 0;
-    }
-    .everyday-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.55) 0%,
-        rgba(0,0,0,0.08) 45%,
-        transparent 100%
-      );
+      transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.04);
+      will-change: transform;
     }
     .everyday-text {
-      position: relative; z-index: 2;
-      padding: 2rem 2rem 3.5rem;
+      position: absolute; bottom: 0; left: 0; right: 0;
+      z-index: 2;
+      padding: 1.8rem 1.6rem 2rem;
       width: 100%;
       display: flex; flex-direction: column; gap: 1.4rem;
+      max-width: min(82%, 420px);
     }
     .everyday-text h2 {
       font-family: 'Julius Sans One', sans-serif;
@@ -398,20 +421,6 @@
       font-style: italic; font-weight: 300;
       font-size: 1.08em; letter-spacing: 0.02em;
     }
-    .everyday-cta {
-      display: flex; align-items: center; gap: 1rem;
-    }
-    .everyday-cta-line {
-      width: 40px; height: 1px;
-      background: rgba(255,255,255,0.7); flex-shrink: 0;
-    }
-    .everyday-cta a {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem; letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.85); text-decoration: none;
-      font-weight: 300; transition: color 0.2s;
-    }
-    .everyday-cta a:hover { color: #fff; }
 
     #shop {
       padding: 4.5rem 2.5rem;
@@ -662,7 +671,7 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .cart-label { display: none; }
-      .hero-l { padding: 2rem 1.4rem 3rem; }
+      .hero-l, .everyday-text { padding: 2rem 1.4rem 1.6rem; max-width: 92%; }
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
       #shop, #custom-vase, #about, #testimonials, #newsletter { padding-left: 1.4rem; padding-right: 1.4rem; }
       .vase-wrap { grid-template-columns: 1fr; gap: 2rem; }
@@ -673,7 +682,13 @@
       .footer-top { grid-template-columns: 1fr 1fr; }
       .stats { grid-template-columns: repeat(2,1fr); }
       /* iOS doesn't support background-attachment:fixed — fall back to scroll */
-      .hero-bg, .everyday-bg {
+      .hero-card img {
+        inset: -7% 0;
+        height: 116%;
+        object-position: center 28%;
+        transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.08);
+      }
+      .everyday-bg {
         inset: -8% 0;
         background-attachment: scroll;
         background-position: center center;
@@ -683,7 +698,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-bg, .everyday-bg {
+      .hero-card img, .everyday-bg {
         transform: none !important;
       }
     }
@@ -755,38 +770,57 @@
       </div>
     </div>
   </div>
-</section>
-
 <!-- IKEA-STYLE ACCORDION CTA -->
-<div class="hero-accordion" id="hero-accordion">
-  <div class="accordion-header" onclick="toggleAccordion()">
-    <span>Shop Collection</span>
-    <div class="accordion-arrow">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  <div class="hero-accordion" id="hero-accordion">
+    <div class="accordion-header">
+      <span>Categories</span>
     </div>
-  </div>
-  <div class="accordion-divider"></div>
-  <div class="accordion-cats">
+    <div class="accordion-divider"></div>
+    <div class="accordion-trigger">
+      <span class="accordion-trigger-label">Categories: Flor Keeps</span>
+      <button class="accordion-arrow" type="button" onclick="toggleAccordion('hero-accordion')" aria-label="Toggle categories">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="accordion-divider"></div>
+    <div class="accordion-cats">
     <a href="#shop" class="accordion-cat" onclick="filterAndScroll('all')"><span>All</span><span class="accordion-cat-arrow">›</span></a>
     <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coasters')"><span>Coasters</span><span class="accordion-cat-arrow">›</span></a>
     <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>Décor</span><span class="accordion-cat-arrow">›</span></a>
     <a href="#shop" class="accordion-cat" onclick="filterAndScroll('vessels')"><span>Vessels</span><span class="accordion-cat-arrow">›</span></a>
     <a href="#shop" class="accordion-cat" onclick="filterAndScroll('floral')"><span>Floral</span><span class="accordion-cat-arrow">›</span></a>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- PHOTO 2 BANNER -->
 <section id="everyday-banner">
-  <div class="everyday-bg"></div>
-  <div class="everyday-text">
-    <span class="hero-eyebrow">The Flor Keeps Philosophy</span>
-    <h2>
-      Art in the<br>
-      <em>everyday.</em>
-    </h2>
-    <div class="everyday-cta">
-      <span class="everyday-cta-line"></span>
-      <a href="#shop">See the Collection</a>
+  <div class="everyday-card">
+    <div class="everyday-bg"></div>
+    <div class="everyday-text">
+      <span class="hero-eyebrow">The Flor Keeps Philosophy</span>
+      <h2>
+        Art in the<br>
+        <em>everyday.</em>
+      </h2>
+    </div>
+  </div>
+  <div class="banner-accordion" id="everyday-accordion">
+    <div class="accordion-header">
+      <span>Go shopping</span>
+    </div>
+    <div class="accordion-divider"></div>
+    <div class="accordion-trigger">
+      <span class="accordion-trigger-label">Categories: Flor Keeps</span>
+      <button class="accordion-arrow" type="button" onclick="toggleAccordion('everyday-accordion')" aria-label="Toggle collection links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <div class="accordion-divider"></div>
+    <div class="accordion-cats">
+      <a href="#shop" class="accordion-cat"><span>Collection</span><span class="accordion-cat-arrow">â€º</span></a>
+      <a href="#custom-vase" class="accordion-cat"><span>Custom Vase</span><span class="accordion-cat-arrow">â€º</span></a>
+      <a href="#about" class="accordion-cat"><span>Our Story</span><span class="accordion-cat-arrow">â€º</span></a>
     </div>
   </div>
 </section>
@@ -1033,18 +1067,18 @@ const navEl = document.querySelector('nav');
 const heroEl = document.getElementById('hero');
 const mobileParallaxQuery = window.matchMedia('(max-width: 860px)');
 const mobileParallaxTargets = [
-  { section: document.getElementById('hero'), bg: document.querySelector('.hero-bg'), range: 90 },
-  { section: document.getElementById('everyday-banner'), bg: document.querySelector('.everyday-bg'), range: 90 }
+  { section: document.getElementById('hero'), element: document.querySelector('.hero-card img'), range: 72, variable: '--hero-shift' },
+  { section: document.getElementById('everyday-banner'), element: document.querySelector('.everyday-bg'), range: 90, variable: '--parallax-shift' }
 ];
 
 function updateMobileParallax() {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const shouldAnimate = mobileParallaxQuery.matches && !reduceMotion;
 
-  mobileParallaxTargets.forEach(({ section, bg, range }) => {
-    if (!section || !bg) return;
+  mobileParallaxTargets.forEach(({ section, element, range, variable }) => {
+    if (!section || !element) return;
     if (!shouldAnimate) {
-      bg.style.removeProperty('--parallax-shift');
+      element.style.removeProperty(variable);
       return;
     }
 
@@ -1053,7 +1087,7 @@ function updateMobileParallax() {
     const progress = (viewport - rect.top) / (viewport + rect.height);
     const clamped = Math.max(0, Math.min(1, progress));
     const shift = (clamped - 0.5) * range;
-    bg.style.setProperty('--parallax-shift', `${shift.toFixed(2)}px`);
+    element.style.setProperty(variable, `${shift.toFixed(2)}px`);
   });
 }
 
@@ -1061,23 +1095,18 @@ function updateMobileParallax() {
 // Intersection Observer watches the accordion element. When it enters
 // the viewport (threshold 0.3 = 30% visible), it adds the .expanded class
 // which triggers the max-height CSS transition — that's the "growing" effect.
-const accordion = document.getElementById('hero-accordion');
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.addEventListener('load', () => {
+  if (!window.location.hash) {
+    window.scrollTo(0, 0);
+  }
+});
 
-const accordionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Small delay so you can see the animation start, not just snap open
-      setTimeout(() => accordion.classList.add('expanded'), 120);
-      // Once expanded, no need to keep observing
-      accordionObserver.unobserve(accordion);
-    }
-  });
-}, { threshold: 0.3 });
-
-accordionObserver.observe(accordion);
-
-// Manual toggle when user taps the header
-function toggleAccordion() {
+function toggleAccordion(id) {
+  const accordion = document.getElementById(id);
+  if (!accordion) return;
   accordion.classList.toggle('expanded');
 }
 
