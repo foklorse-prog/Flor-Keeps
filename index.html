@@ -219,12 +219,12 @@
       inset: 0;
       background: url('Hero1.jpg') center center / cover no-repeat;
       z-index: 0;
-      transform: translate3d(0, var(--hero-shift, 0px), 0);
+      transform: translate3d(0, var(--parallax-shift, 0px), 0);
       will-change: transform;
 }
       object-position: center center;
       display: block;
-      transform: translate3d(0, var(--hero-shift, 0px), 0);
+      transform: translate3d(0, var(--parallax-shift, 0px), 0);
       will-change: transform;
     }
     /* Very light gradient only at bottom for text legibility */
@@ -999,7 +999,7 @@ const navEl = document.querySelector('nav');
 const heroEl = document.getElementById('hero');
 const mobileParallaxQuery = window.matchMedia('(max-width: 860px)');
 const mobileParallaxTargets = [
-  { section: document.getElementById('hero'), element: document.querySelector('.hero-bg'), range: 90, variable: '--hero-shift' },
+  { section: document.getElementById('hero'), element: document.querySelector('.hero-bg'), range: 90, variable: '--parallax-shift' },
   { section: document.getElementById('everyday-banner'), element: document.querySelector('.everyday-bg'), range: 90, variable: '--parallax-shift' }
 ];
 
