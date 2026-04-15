@@ -305,9 +305,11 @@
   opacity: 0.95;
   transform: translateY(-4px);
   transition:
-  max-height 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+  max-height 1s cubic-bezier(0.22, 1, 0.36, 1),
+  transform 1s cubic-bezier(0.22, 1, 0.36, 1);
   opacity 0.6s ease,
   transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(-2px);
 
 }
 
@@ -352,6 +354,16 @@
 }
 .hero-accordion.expanded {
   max-height: 300px;
+  transform: translateY(0);
+.hero-accordion .accordion-header,
+.hero-accordion .accordion-divider {
+  opacity: 0.6;
+  transition: opacity 0.6s ease;
+}
+
+.hero-accordion.expanded .accordion-header,
+.hero-accordion.expanded .accordion-divider {
+  opacity: 1;
 }
     /* Header row — the whole thing is an <a> linking to #shop */
     .accordion-header {
