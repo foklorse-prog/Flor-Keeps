@@ -286,25 +286,63 @@
        - Header row (text + arrow) = direct link to #shop
        - Footer row = category ticker when collapsed, hidden when expanded
     ═══════════════════════════════ */
-    .hero-accordion {
-      margin: 0;
-      border-radius: 16px;
-      background: var(--navy);
-      overflow: hidden;
-      /* Sticky: once the hero card scrolls off, the accordion pins under the nav */
-      position: sticky;
-      top: calc(62px + 0.5rem);
-      z-index: 100;
-      /* Start collapsed — only header row visible */
-      max-height: 68px;
-      transition: max-height 0.65s cubic-bezier(0.23, 1, 0.32, 1),
-                  border-radius 0.3s;
-    }
-    .hero-accordion.expanded {
-      max-height: 400px;
-      /* Slightly less rounding when open, like a real accordion panel */
-      border-radius: 16px;
-    }
+/* ACCORDION CTA CARD (shared behavior only) */
+/* ACCORDION CTA CARD */
+.hero-accordion {
+  margin: 0;
+  position: relative;
+  height: 52vh;
+  background: var(--navy);
+
+  position: sticky;
+  top: calc(62px + 0.5rem);
+  z-index: 100;
+
+  overflow: hidden;
+
+  max-height: 68px;
+  transition: max-height 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* TOP CARD ONLY */
+#hero-accordion-top {
+  border-radius: 16px 16px 0 0;
+}
+
+/* BOTTOM CARD ONLY */
+#hero-accordion-bottom {
+  border-radius: 0 0 16px 16px;
+}
+
+/* reset inner rounding */
+.hero-accordion > * {
+  border-radius: 0;
+}
+
+/* header layout fix */
+.hero-accordion .accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 18px 20px;
+
+  text-decoration: none;
+}
+
+/* text alignment */
+.accordion-header-text {
+  display: block;
+  line-height: 1;
+}
+
+/* arrow alignment */
+.accordion-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
     /* Header row — the whole thing is an <a> linking to #shop */
     .accordion-header {
       display: flex; align-items: center; justify-content: space-between;
@@ -1143,26 +1181,6 @@ function updateMobileParallax() {
   });
 }
 
-
-// ── ACCORDION: expand only when user has scrolled past the hero card ──
-// We watch the hero *card* (not the accordion itself). Once the card has
-// scrolled 80% out of view, we know the user has intentionally scrolled
-// and we expand the accordion. This way it never auto-opens on page load.
-const accordion = document.getElementById('hero-accordion-bottom');
-const heroCard = document.querySelector('.hero-card');
-
-if (accordion && heroCard) {
-  const heroCardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      // When the hero card is mostly gone (less than 20% visible), expand
-      if (!entry.isIntersecting || entry.intersectionRatio < 0.2) {
-        setTimeout(() => accordion.classList.add('expanded'), 120);
-        heroCardObserver.unobserve(heroCard);
-      }
-    });
-  }, { threshold: 0.2 });
-  heroCardObserver.observe(heroCard);
-}
 
 // ── CATEGORY TICKER: cycles through categories in the footer row ──
 // When the accordion is collapsed, the footer row shows category names
