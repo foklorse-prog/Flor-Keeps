@@ -805,17 +805,31 @@
     </div>
   </div>
 
-  <!-- ACCORDION CTA -->
-  <div class="hero-accordion" id="hero-accordion">
-    <!-- Header: entire row is a direct link to #shop -->
+  <!-- ✅ TOP: STATIC CTA -->
+  <div class="hero-accordion" id="hero-accordion-top">
     <a href="#shop" class="accordion-header">
       <span class="accordion-header-text">Shop Collection</span>
       <div class="accordion-arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
       </div>
     </a>
-    <!-- Categories — revealed when expanded -->
+  </div>
+
+  <!-- ✅ BOTTOM: FULL ACCORDION -->
+  <div class="hero-accordion" id="hero-accordion-bottom">
+    <a href="#shop" class="accordion-header">
+      <span class="accordion-header-text">Browse Categories</span>
+      <div class="accordion-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </a>
+
     <div class="accordion-divider"></div>
+
     <div class="accordion-cats">
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('all')"><span>All</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coasters')"><span>Coasters</span><span class="accordion-cat-arrow">›</span></a>
@@ -823,12 +837,13 @@
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('vessels')"><span>Vessels</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('floral')"><span>Floral</span><span class="accordion-cat-arrow">›</span></a>
     </div>
-    <!-- Footer ticker: fades category names in/out when collapsed -->
+
     <div class="accordion-footer">
       <span class="accordion-ticker" id="accordion-ticker">Coasters</span>
-      <span class="accordion-footer-chevron" onclick="toggleAccordion('hero-accordion')">&#8964;</span>
+      <span class="accordion-footer-chevron" onclick="toggleAccordion('hero-accordion-bottom')">&#8964;</span>
     </div>
   </div>
+</section>
 </section>
 
 <!-- PHOTO 2 BANNER -->
@@ -1133,7 +1148,7 @@ function updateMobileParallax() {
 // We watch the hero *card* (not the accordion itself). Once the card has
 // scrolled 80% out of view, we know the user has intentionally scrolled
 // and we expand the accordion. This way it never auto-opens on page load.
-const accordion = document.getElementById('hero-accordion');
+const accordion = document.getElementById('hero-accordion-bottom');
 const heroCard = document.querySelector('.hero-card');
 
 if (accordion && heroCard) {
