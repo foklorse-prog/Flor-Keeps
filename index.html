@@ -229,13 +229,11 @@
     }
     /* Very light gradient only at bottom for text legibility */
     .hero-card::after {
-      content: '';
-      position: absolute; inset: 0;
       background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.52) 0%,
-        rgba(0,0,0,0.08) 38%,
-        transparent 100%
+      to top,
+      rgba(0,0,0,0.45) 0%,
+      rgba(0,0,0,0.1) 50%,
+      transparent 100%
       );
       pointer-events: none;
     }
