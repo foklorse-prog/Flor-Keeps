@@ -202,16 +202,16 @@
 
     /* ── HERO: IKEA-style rounded card ── */
     #hero {
-      padding: calc(62px + 0.75rem) 0.75rem 0;
+      padding: 0.75rem 0.75rem 0.75rem;
       background: var(--sky);
       display: flex; flex-direction: column; gap: 0.75rem;
     }
     .hero-card {
-      border-radius: 16px;
-      overflow: hidden;
       position: relative;
-      height: 52vh;          /* fixed height so hero+accordion sit in ~100vh with peek below */
-      background: #7d8ea4;
+      min-height: clamp(300px, 54vh, 560px);
+      border-radius: 16px;          /* uniform with hero card and accordion */
+      overflow: hidden;
+      background: #6a7a8b;
     }
     /* No zoom — object-fit:contain shows the whole image, letterboxed if needed */
     .hero-card img {
@@ -221,6 +221,7 @@
       display: block;
       transform: translate3d(0, var(--hero-shift, 0px), 0);
       will-change: transform;
+    }
     }
     /* Very light gradient only at bottom for text legibility */
     .hero-card::after {
