@@ -290,16 +290,12 @@
 /* ACCORDION CTA CARD */
 .hero-accordion {
   margin: 0;
-  position: relative;
-  height: 52vh;
-  background: var(--navy);
-
   position: sticky;
   top: calc(62px + 0.5rem);
+  height: 52vh;
+  background: var(--navy);
   z-index: 100;
-
   overflow: hidden;
-
   max-height: 68px;
   transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -312,6 +308,7 @@
 /* BOTTOM CARD ONLY */
 #hero-accordion-bottom {
   border-radius: 0 0 16px 16px;
+  margin-top: -10px;
 }
 
 /* reset inner rounding */
@@ -345,6 +342,15 @@
 }
 .hero-accordion.expanded {
   max-height: 300px;
+}
+<div class="hero-accordion-stack">
+  <div id="hero-accordion-top" class="hero-accordion"></div>
+  <div id="hero-accordion-bottom" class="hero-accordion"></div>
+</div>
+.hero-accordion-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* <- THIS is your real spacing control */
 }
     /* Header row — the whole thing is an <a> linking to #shop */
     .accordion-header {
