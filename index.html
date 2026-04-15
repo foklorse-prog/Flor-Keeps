@@ -201,32 +201,26 @@
     }
 
     /* ── HERO: IKEA-style rounded card ── */
-      #hero {
-      padding: calc(62px + 0.75rem) 0.75rem 0.75rem;
+    #hero {
+      padding: calc(62px + 0.75rem) 0.75rem 0;
       background: var(--sky);
       display: flex; flex-direction: column; gap: 0.75rem;
     }
-    /* The card itself — rounded, contains the photo without zooming */
-  .hero-card {
+    .hero-card {
       border-radius: 16px;
       overflow: hidden;
       position: relative;
-      min-height: clamp(300px, 48vh, 560px);
-      max-height: 62vh;
+      height: 52vh;          /* fixed height so hero+accordion sit in ~100vh with peek below */
       background: #7d8ea4;
     }
-    /* Photo fills the card, centered, not zoomed — object-fit:contain shows the full image */
+    /* No zoom — object-fit:contain shows the whole image, letterboxed if needed */
     .hero-card img {
-      position: absolute;
-      inset: -5% 0;
-      width: 100%;
-      height: 112%;
-      object-fit: cover;
-      object-position: center 34%;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      object-position: center center;
       display: block;
-      transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.04);
+      transform: translate3d(0, var(--hero-shift, 0px), 0);
       will-change: transform;
-
     }
     /* Very light gradient only at bottom for text legibility */
     .hero-card::after {
@@ -275,41 +269,102 @@
 
 
     /* ═══════════════════════════════
-       SHOP — white only here
+       ACCORDION CTA CARD
     ═══════════════════════════════ */
+    .hero-accordion {
+      margin: 0 0.75rem 0;         /* same side padding as the photo cards */
+      border-radius: 16px;          /* uniform with both photo cards */
+      background: var(--navy);
+      overflow: hidden;
+      max-height: 68px;             /* collapsed: just the header row visible */
+      transition: max-height 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .hero-accordion.expanded {
+      max-height: 300px;
+    }
+    .accordion-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 1.4rem;
+      cursor: pointer;
+      min-height: 68px;
+    }
+    .accordion-header span {
+      font-family: 'Julius Sans One', sans-serif;
+      font-size: 1.25rem; font-weight: 400;
+      color: #fff; letter-spacing: 0.01em;
+    }
+    .accordion-arrow {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .hero-accordion.expanded .accordion-arrow { transform: rotate(90deg); }
+    .accordion-arrow svg { width: 17px; height: 17px; }
+    .accordion-divider {
+      height: 1px; background: rgba(255,255,255,0.1);
+      margin: 0 1.4rem;
+    }
+    .accordion-cats { padding: 0.4rem 0 0.6rem; }
+    .accordion-cat {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.7rem 1.4rem;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: background 0.15s;
+    }
+    .accordion-cat:last-child { border-bottom: none; }
+    .accordion-cat:hover { background: rgba(255,255,255,0.06); }
+    .accordion-cat span {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.72); font-weight: 400;
+    }
+    .accordion-cat-arrow { color: rgba(255,255,255,0.35); font-size: 0.85rem; }
+
     /* ═══════════════════════════════
-       EVERYDAY BANNER — full-bleed photo with text overlay
+       EVERYDAY BANNER
     ═══════════════════════════════ */
-    /* ═══════════════════════════════
-       EVERYDAY BANNER — AP-style parallax
-    ═══════════════════════════════ */
-   #everyday-banner {
-      padding: 0 0.75rem 0.75rem;
+    #everyday-banner {
+      padding: 0.75rem 0.75rem 0.75rem;
       background: var(--sky);
     }
     .everyday-card {
       position: relative;
       min-height: clamp(300px, 54vh, 560px);
-      border-radius: 16px;
+      border-radius: 16px;          /* uniform with hero card and accordion */
       overflow: hidden;
       background: #6a7a8b;
     }
     .banner-accordion { display: none !important; }
     .everyday-bg {
-      position: absolute; inset: -5% 0;
-      background: url('Photo2.png') center center / cover no-repeat;
-      background-attachment: fixed;
+      position: absolute; inset: 0;
+      background: url('photo2.png') center center / cover no-repeat;
       z-index: 0;
-      transform: translate3d(0, var(--parallax-shift, 0px), 0) scale(1.04);
+      transform: translate3d(0, var(--parallax-shift, 0px), 0);
       will-change: transform;
     }
+    /* Vertically centered overlay */
+    .everyday-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.45) 0%,
+        rgba(0,0,0,0.1) 50%,
+        transparent 100%
+      );
+      pointer-events: none; z-index: 1;
+    }
+    /* Text vertically centered */
     .everyday-text {
-      position: absolute; bottom: 0; left: 0; right: 0;
+      position: absolute; inset: 0;
       z-index: 2;
-      padding: 1.45rem 1.25rem 1.55rem;
-      width: 100%;
-      display: flex; flex-direction: column; gap: 1.4rem;
-      max-width: min(82%, 420px);
+      padding: 1.8rem 1.6rem;
+      display: flex; flex-direction: column;
+      justify-content: center;      /* vertically centered */
+      gap: 0.8rem;
     }
     .everyday-text h2 {
       font-family: 'Julius Sans One', sans-serif;
@@ -665,6 +720,24 @@
       </div>
     </div>
   </div>
+
+  <!-- ACCORDION CTA — sits inside #hero so it shares the sky background -->
+  <div class="hero-accordion" id="hero-accordion">
+    <div class="accordion-header" onclick="toggleAccordion('hero-accordion')">
+      <span>Shop Collection</span>
+      <div class="accordion-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+    <div class="accordion-divider"></div>
+    <div class="accordion-cats">
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('all')"><span>All</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coasters')"><span>Coasters</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>Décor</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('vessels')"><span>Vessels</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('floral')"><span>Floral</span><span class="accordion-cat-arrow">›</span></a>
+    </div>
+  </div>
 </section>
 
 <!-- PHOTO 2 BANNER -->
@@ -958,6 +1031,20 @@ window.addEventListener('load', () => {
     window.scrollTo(0, 0);
   }
 });
+
+// ── ACCORDION: auto-expand when it enters viewport ──
+const accordion = document.getElementById('hero-accordion');
+if (accordion) {
+  const accordionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => accordion.classList.add('expanded'), 150);
+        accordionObserver.unobserve(accordion);
+      }
+    });
+  }, { threshold: 0.25 });
+  accordionObserver.observe(accordion);
+}
 
 function toggleAccordion(id) {
   const accordion = document.getElementById(id);
