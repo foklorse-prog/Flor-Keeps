@@ -343,6 +343,9 @@
   align-items: center;
   justify-content: center;
 }
+.hero-accordion.expanded {
+  max-height: 400px;
+}
     /* Header row — the whole thing is an <a> linking to #shop */
     .accordion-header {
       display: flex; align-items: center; justify-content: space-between;
@@ -1248,6 +1251,27 @@ window.addEventListener('scroll', onScroll, { passive: true });
 window.addEventListener('resize', updateMobileParallax, { passive: true });
 onScroll();
 updateMobileParallax();
+</script>
+<script>
+  const topCTA = document.getElementById('hero-accordion-top');
+
+  let expanded = false;
+
+  function handleScroll() {
+    // user has started scrolling anywhere
+    if (window.scrollY > 0 && !expanded) {
+      topCTA.classList.add('expanded');
+      expanded = true;
+    }
+
+    // optional: if you want it to collapse again when back at top
+    if (window.scrollY === 0 && expanded) {
+      topCTA.classList.remove('expanded');
+      expanded = false;
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
 </script>
 </body>
 </html>
