@@ -13,7 +13,7 @@
   <link rel="icon" href="SUBMARK_LOGO.png">
   <link rel="apple-touch-icon" href="SUBMARK_LOGO.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Julius+Sans+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Great+Vibes&family=Julius+Sans+One&display=swap" rel="stylesheet">
   <style>
     :root {
       /* 60% Blues */
@@ -250,16 +250,24 @@
       color: rgba(255,255,255,0.7); font-weight: 400;
     }
     .hero-h1 {
-      font-family: 'Julius Sans One', sans-serif;
-      font-size: clamp(2.2rem, 7vw, 4.5rem);
-      line-height: 0.96; margin: 0; font-weight: 400;
-      letter-spacing: 0.01em; text-transform: uppercase;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3.8rem, 12vw, 7rem);
+      line-height: 1; margin: 0; font-weight: 400;
+      letter-spacing: 0.01em;
       color: #fff;
     }
     .hero-h1 em {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic; font-weight: 300;
       font-size: 1.08em; letter-spacing: 0.02em;
+    }
+    /* Subtext below brand name — Julius Sans One, smaller */
+    .hero-sub {
+      font-family: 'Julius Sans One', sans-serif;
+      font-size: clamp(0.6rem, 2.2vw, 0.85rem);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.82); font-weight: 400;
+      line-height: 1.6;
     }
     .hero-pills { display: flex; gap: 1rem; flex-wrap: wrap; }
     .hero-pill {
@@ -273,25 +281,38 @@
 
     /* ═══════════════════════════════
        ACCORDION CTA CARD
+       - Sticky: anchors to just below nav when user scrolls past it
+       - Collapsed by default, expands on scroll via IntersectionObserver
+       - Header row (text + arrow) = direct link to #shop
+       - Footer row = category ticker when collapsed, hidden when expanded
     ═══════════════════════════════ */
     .hero-accordion {
-      margin: 0;         /* same side padding as the photo cards */
-      border-radius: 16px;          /* uniform with both photo cards */
+      margin: 0;
+      border-radius: 16px;
       background: var(--navy);
       overflow: hidden;
-      max-height: 68px;             /* collapsed: just the header row visible */
-      transition: max-height 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+      /* Sticky: once the hero card scrolls off, the accordion pins under the nav */
+      position: sticky;
+      top: calc(62px + 0.5rem);
+      z-index: 100;
+      /* Start collapsed — only header row visible */
+      max-height: 68px;
+      transition: max-height 0.65s cubic-bezier(0.23, 1, 0.32, 1),
+                  border-radius 0.3s;
     }
     .hero-accordion.expanded {
-      max-height: 300px;
+      max-height: 400px;
+      /* Slightly less rounding when open, like a real accordion panel */
+      border-radius: 16px;
     }
+    /* Header row — the whole thing is an <a> linking to #shop */
     .accordion-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.1rem 1.4rem;
-      cursor: pointer;
       min-height: 68px;
+      text-decoration: none;
     }
-    .accordion-header span {
+    .accordion-header-text {
       font-family: 'Julius Sans One', sans-serif;
       font-size: 1.25rem; font-weight: 400;
       color: #fff; letter-spacing: 0.01em;
@@ -301,14 +322,14 @@
       background: #fff;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
     }
-    .hero-accordion.expanded .accordion-arrow { transform: rotate(90deg); }
     .accordion-arrow svg { width: 17px; height: 17px; }
+    /* Divider between header and categories — hidden when collapsed */
     .accordion-divider {
       height: 1px; background: rgba(255,255,255,0.1);
       margin: 0 1.4rem;
     }
+    /* Category rows — revealed when expanded */
     .accordion-cats { padding: 0.4rem 0 0.6rem; }
     .accordion-cat {
       display: flex; align-items: center; justify-content: space-between;
@@ -326,24 +347,57 @@
     }
     .accordion-cat-arrow { color: rgba(255,255,255,0.35); font-size: 0.85rem; }
 
+    /* Footer ticker row — shows cycling category names when collapsed */
+    .accordion-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.6rem 1.4rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      /* Fade out when expanded */
+      opacity: 1;
+      max-height: 40px;
+      transition: opacity 0.3s, max-height 0.3s;
+    }
+    .hero-accordion.expanded .accordion-footer {
+      opacity: 0;
+      max-height: 0;
+      padding: 0 1.4rem;
+    }
+    .accordion-ticker {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      /* The category name text fades in/out via JS */
+      transition: opacity 0.4s ease;
+    }
+    .accordion-ticker.fade { opacity: 0; }
+    .accordion-footer-chevron {
+      font-size: 0.75rem; color: rgba(255,255,255,0.35);
+      cursor: pointer;
+      padding: 0.2rem 0;
+      /* Tapping the chevron expands the accordion */
+    }
+
     /* ═══════════════════════════════
-       EVERYDAY BANNER
+       EVERYDAY BANNER + PHOTO3 BANNER
     ═══════════════════════════════ */
-    #everyday-banner {
-      padding: 0.75rem 0.75rem 0.75rem;
+    #everyday-banner, #custom-banner {
+      padding: 0.75rem 0.75rem 0;
       background: var(--sky);
     }
+    /* Last photo banner gets bottom padding */
+    #custom-banner { padding-bottom: 0.75rem; }
     .everyday-card {
       position: relative;
       min-height: clamp(300px, 54vh, 560px);
-      border-radius: 16px;          /* uniform with hero card and accordion */
+      border-radius: 16px;
       overflow: hidden;
       background: #6a7a8b;
     }
     .banner-accordion { display: none !important; }
     .everyday-bg {
       position: absolute; inset: 0;
-      background: url('Photo2.png') center center / cover no-repeat;
+      background: url('photo2.png') center center / cover no-repeat;
       z-index: 0;
       transform: translate3d(0, var(--parallax-shift, 0px), 0);
       will-change: transform;
@@ -380,6 +434,33 @@
       font-family: 'Cormorant Garamond', serif;
       font-style: italic; font-weight: 300;
       font-size: 1.08em; letter-spacing: 0.02em;
+    }
+    /* Photo3 background */
+    .custom-bg {
+      position: absolute; inset: 0;
+      background: url('photo3.png') center center / cover no-repeat;
+      z-index: 0;
+      will-change: transform;
+    }
+    /* Body text and CTA link inside photo banners */
+    .banner-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; color: rgba(255,255,255,0.78);
+      line-height: 1.75; max-width: 300px;
+    }
+    .banner-cta {
+      display: flex; align-items: center; gap: 0.8rem;
+      text-decoration: none; margin-top: 0.4rem;
+    }
+    .banner-cta-line {
+      width: 36px; height: 1px;
+      background: rgba(255,255,255,0.65); flex-shrink: 0;
+    }
+    .banner-cta span:last-child {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
     }
 
     #shop {
@@ -711,11 +792,11 @@
   <div class="hero-card">
     <div class="hero-bg"></div>
     <div class="hero-l">
-      <h1 class="hero-h1">
-        Nature poured<br>
-        into something<br>
-        <em>permanent.</em>
-      </h1>
+      <h1 class="hero-h1">Flor Keeps</h1>
+      <p class="hero-sub">
+        Flowers and Resin Crafts<br>
+        To Have Forever.
+      </p>
       <div class="hero-pills">
         <span class="hero-pill"><span class="hero-pip" style="background:var(--pink)"></span>100% Handmade</span>
         <span class="hero-pill"><span class="hero-pip" style="background:rgba(255,255,255,0.5)"></span>Ships PH-wide</span>
@@ -724,14 +805,16 @@
     </div>
   </div>
 
-  <!-- ACCORDION CTA — sits inside #hero so it shares the sky background -->
+  <!-- ACCORDION CTA -->
   <div class="hero-accordion" id="hero-accordion">
-    <div class="accordion-header" onclick="toggleAccordion('hero-accordion')">
-      <span>Shop Collection</span>
+    <!-- Header: entire row is a direct link to #shop -->
+    <a href="#shop" class="accordion-header">
+      <span class="accordion-header-text">Shop Collection</span>
       <div class="accordion-arrow">
         <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </div>
-    </div>
+    </a>
+    <!-- Categories — revealed when expanded -->
     <div class="accordion-divider"></div>
     <div class="accordion-cats">
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('all')"><span>All</span><span class="accordion-cat-arrow">›</span></a>
@@ -739,6 +822,11 @@
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>Décor</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('vessels')"><span>Vessels</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('floral')"><span>Floral</span><span class="accordion-cat-arrow">›</span></a>
+    </div>
+    <!-- Footer ticker: fades category names in/out when collapsed -->
+    <div class="accordion-footer">
+      <span class="accordion-ticker" id="accordion-ticker">Coasters</span>
+      <span class="accordion-footer-chevron" onclick="toggleAccordion('hero-accordion')">&#8964;</span>
     </div>
   </div>
 </section>
@@ -753,6 +841,25 @@
         Art in the<br>
         <em>everyday.</em>
       </h2>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO 3 BANNER — Custom Orders -->
+<section id="custom-banner">
+  <div class="everyday-card">
+    <div class="custom-bg"></div>
+    <div class="everyday-text">
+      <span class="hero-eyebrow">Made Just for You</span>
+      <h2>
+        Your flowers,<br>
+        <em>your keepsake.</em>
+      </h2>
+      <p class="banner-body">Choose your blooms, tint, and size — Shiela pours every custom piece by hand, one layer at a time.</p>
+      <a href="#custom-vase" class="banner-cta">
+        <span class="banner-cta-line"></span>
+        <span>Start Your Order</span>
+      </a>
     </div>
   </div>
 </section>
@@ -1022,42 +1129,73 @@ function updateMobileParallax() {
 }
 
 
-// ── ACCORDION CTA ──
-// Intersection Observer watches the accordion element. When it enters
-// the viewport (threshold 0.3 = 30% visible), it adds the .expanded class
-// which triggers the max-height CSS transition — that's the "growing" effect.
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-window.addEventListener('load', () => {
-  if (!window.location.hash) {
-    window.scrollTo(0, 0);
-  }
-});
-
-// ── ACCORDION: auto-expand when it enters viewport ──
+// ── ACCORDION: expand only when user has scrolled past the hero card ──
+// We watch the hero *card* (not the accordion itself). Once the card has
+// scrolled 80% out of view, we know the user has intentionally scrolled
+// and we expand the accordion. This way it never auto-opens on page load.
 const accordion = document.getElementById('hero-accordion');
-if (accordion) {
-  const accordionObserver = new IntersectionObserver((entries) => {
+const heroCard = document.querySelector('.hero-card');
+
+if (accordion && heroCard) {
+  const heroCardObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        setTimeout(() => accordion.classList.add('expanded'), 150);
-        accordionObserver.unobserve(accordion);
+      // When the hero card is mostly gone (less than 20% visible), expand
+      if (!entry.isIntersecting || entry.intersectionRatio < 0.2) {
+        setTimeout(() => accordion.classList.add('expanded'), 120);
+        heroCardObserver.unobserve(heroCard);
       }
     });
-  }, { threshold: 0.25 });
-  accordionObserver.observe(accordion);
+  }, { threshold: 0.2 });
+  heroCardObserver.observe(heroCard);
 }
+
+// ── CATEGORY TICKER: cycles through categories in the footer row ──
+// When the accordion is collapsed, the footer row shows category names
+// fading in and out one by one. When expanded, the footer row hides itself
+// via CSS so we just pause the JS interval.
+const tickerEl = document.getElementById('accordion-ticker');
+const tickerCats = ['Coasters', 'Décor', 'Vessels', 'Floral', 'All'];
+let tickerIndex = 0;
+let tickerInterval = null;
+
+function startTicker() {
+  if (tickerInterval) return; // already running
+  tickerInterval = setInterval(() => {
+    if (!accordion || accordion.classList.contains('expanded')) return;
+    // Step 1: fade out
+    tickerEl.classList.add('fade');
+    setTimeout(() => {
+      // Step 2: swap text while invisible
+      tickerIndex = (tickerIndex + 1) % tickerCats.length;
+      tickerEl.textContent = tickerCats[tickerIndex];
+      // Step 3: fade back in
+      tickerEl.classList.remove('fade');
+    }, 420); // matches the CSS transition duration
+  }, 2200);
+}
+
+function stopTicker() {
+  clearInterval(tickerInterval);
+  tickerInterval = null;
+}
+
+// Start immediately — ticker runs while accordion is collapsed
+if (tickerEl) startTicker();
 
 function toggleAccordion(id) {
-  const accordion = document.getElementById(id);
-  if (!accordion) return;
-  accordion.classList.toggle('expanded');
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle('expanded');
+  // Stop ticker when expanded (categories are visible), restart when collapsed
+  if (el.classList.contains('expanded')) {
+    stopTicker();
+  } else {
+    startTicker();
+  }
 }
 
-// Clicking a category row both filters the products and scrolls to #shop
+// Clicking a category row filters the products and goes to #shop
 function filterAndScroll(filter) {
-  // Activate the matching filter pill
   document.querySelectorAll('.fpill').forEach(b => b.classList.remove('on'));
   const pill = document.querySelector(`.fpill[data-filter="${filter}"]`);
   if (pill) pill.classList.add('on');
