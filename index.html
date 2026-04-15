@@ -214,9 +214,15 @@
       background: #7d8ea4;
     }
     /* No zoom — object-fit:contain shows the whole image, letterboxed if needed */
-    .hero-card img {
-      width: 100%; height: 100%;
-      object-fit: contain;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('Hero1.jpg') center center / cover no-repeat;
+      z-index: 0;
+
+      transform: translate3d(0, var(--hero-shift, 0px), 0);
+      will-change: transform;
+}
       object-position: center center;
       display: block;
       transform: translate3d(0, var(--hero-shift, 0px), 0);
@@ -272,7 +278,7 @@
        ACCORDION CTA CARD
     ═══════════════════════════════ */
     .hero-accordion {
-      margin: 0 0.75rem 0;         /* same side padding as the photo cards */
+      margin: 0;         /* same side padding as the photo cards */
       border-radius: 16px;          /* uniform with both photo cards */
       background: var(--navy);
       overflow: hidden;
@@ -340,7 +346,7 @@
     .banner-accordion { display: none !important; }
     .everyday-bg {
       position: absolute; inset: 0;
-      background: url('Photo2.png') center center / cover no-repeat;
+      background: url('photo2.png') center center / cover no-repeat;
       z-index: 0;
       transform: translate3d(0, var(--parallax-shift, 0px), 0);
       will-change: transform;
@@ -706,7 +712,7 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-card">
-    <img src="Hero1.jpg" alt="Flor Keeps resin vase with dried florals">
+    <div class="hero-bg"></div>
     <div class="hero-l">
       <h1 class="hero-h1">
         Nature poured<br>
@@ -994,7 +1000,7 @@ const navEl = document.querySelector('nav');
 const heroEl = document.getElementById('hero');
 const mobileParallaxQuery = window.matchMedia('(max-width: 860px)');
 const mobileParallaxTargets = [
-  { section: document.getElementById('hero'), element: document.querySelector('.hero-card img'), range: 72, variable: '--hero-shift' },
+  { section: document.getElementById('hero'), element: document.querySelector('.hero-bg'), range: 90, variable: '--hero-shift' },
   { section: document.getElementById('everyday-banner'), element: document.querySelector('.everyday-bg'), range: 90, variable: '--parallax-shift' }
 ];
 
