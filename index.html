@@ -410,7 +410,22 @@
       font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
       color: rgba(255,255,255,0.72); font-weight: 400;
     }
-    .accordion-cat-arrow { color: rgba(255,255,255,0.35); font-size: 0.85rem; }
+    .accordion-cat-arrow { 
+  color: rgba(255,255,255,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+}
+
+.accordion-cat-arrow svg {
+  width: 14px;
+  height: 14px;
+  line-height: 0;
+  display: block;
+}
 
     #hero-accordion-bottom .accordion-cats {
       display: none;
@@ -460,7 +475,7 @@
       background: transparent;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: #ffffff;
       /* The category name text fades in/out via JS */
       transition: opacity 0.4s ease;
       cursor: pointer;
@@ -474,7 +489,7 @@
       appearance: none;
       border: 0;
       background: transparent;
-      font-size: .9rem; color: rgba(255,255,255,0.35);
+      font-size: 1rem; color: #ffffff;
       cursor: pointer;
       padding: 0.2rem 0;
       /* Tapping the chevron expands the accordion */
@@ -491,10 +506,15 @@
       justify-content: center;
 
       margin-left: auto;
-}
+    }
 
     #hero-accordion-bottom[data-open="true"] .accordion-footer-chevron {
       transform: rotate(0deg);
+    }
+
+    .accordion-footer-chevron svg {
+    width: 14px;
+    height: 14px;
     }
 
     /* ═══════════════════════════════
@@ -947,7 +967,14 @@
 
     <div class="accordion-footer">
       <button class="accordion-ticker" id="accordion-ticker" type="button" data-filter="coasters" onclick="filterAndScroll(this.getAttribute('data-filter') || 'coasters')">Coasters</button>
-      <button class="accordion-footer-chevron" type="button" aria-label="Toggle categories" onclick="var acc=document.getElementById('hero-accordion-bottom'); var cats=document.getElementById('hero-accordion-bottom-cats'); var open=acc.getAttribute('data-open')==='true'; acc.setAttribute('data-open', open ? 'false' : 'true'); cats.style.display=open ? 'none' : 'block'; if(open){startTicker();}else{stopTicker();}">&#8964;</button>
+
+<button class="accordion-footer-chevron" type="button" aria-label="Toggle categories" onclick="var acc=document.getElementById('hero-accordion-bottom'); var cats=document.getElementById('hero-accordion-bottom-cats'); var open=acc.getAttribute('data-open')==='true'; acc.setAttribute('data-open', open ? 'false' : 'true'); cats.style.display=open ? 'none' : 'block'; if(open){startTicker();}else{stopTicker();}">
+  
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <path d="M6 9l6 6 6-6"/>
+  </svg>
+
+</button>
     </div>
   </div>
 </section>
