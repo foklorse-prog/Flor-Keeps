@@ -311,7 +311,6 @@
   margin-top: -10px;
   position: static;
   height: auto;
-  max-height: none;
   overflow: visible;
 }
 
@@ -475,15 +474,27 @@
       appearance: none;
       border: 0;
       background: transparent;
-      font-size: 0.75rem; color: rgba(255,255,255,0.35);
+      font-size: .9rem; color: rgba(255,255,255,0.35);
       cursor: pointer;
       padding: 0.2rem 0;
       /* Tapping the chevron expands the accordion */
       transition: transform 0.3s ease;
+      transform: rotate(180deg);
     }
+    #hero-accordion-bottom .accordion-footer-chevron {
+      background: none;
+      width: 38px;
+      height: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-left: auto;
+}
 
     #hero-accordion-bottom[data-open="true"] .accordion-footer-chevron {
-      transform: rotate(180deg);
+      transform: rotate(0deg);
     }
 
     /* ═══════════════════════════════
@@ -928,7 +939,6 @@
   <!-- ✅ BOTTOM: FULL ACCORDION -->
   <div class="hero-accordion" id="hero-accordion-bottom">
     <div class="accordion-cats" id="hero-accordion-bottom-cats">
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('all')"><span>All</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coasters')"><span>Coasters</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>Décor</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('vessels')"><span>Vessels</span><span class="accordion-cat-arrow">›</span></a>
@@ -1246,10 +1256,10 @@ function updateMobileParallax() {
 // via CSS so we just pause the JS interval.
 const tickerEl = document.getElementById('accordion-ticker');
 const accordion = document.getElementById('hero-accordion-bottom');
-const tickerCats = ['Coasters', 'Décor', 'Vessels', 'Floral', 'All'];
+const tickerCats = ['Coasters', 'Décor', 'Vessels', 'Floral'];
 let tickerIndex = 0;
 let tickerInterval = null;
-const tickerFilters = ['coasters', 'decor', 'vessels', 'floral', 'all'];
+const tickerFilters = ['coasters', 'decor', 'vessels', 'floral'];
 
 function startTicker() {
   if (tickerInterval) return; // already running
