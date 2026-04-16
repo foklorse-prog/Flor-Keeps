@@ -309,6 +309,18 @@
 #hero-accordion-bottom {
   border-radius: 0 0 16px 16px;
   margin-top: -10px;
+  position: static;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+#hero-accordion-bottom[data-open="true"] {
+  max-height: none;
+}
+
+#hero-accordion-bottom .accordion-header {
+  height: auto;
 }
 
 /* reset inner rounding */
@@ -343,10 +355,6 @@
 .hero-accordion.expanded {
   max-height: 300px;
 }
-<div class="hero-accordion-stack">
-  <div id="hero-accordion-top" class="hero-accordion"></div>
-  <div id="hero-accordion-bottom" class="hero-accordion"></div>
-</div>
 .hero-accordion-stack {
   display: flex;
   flex-direction: column;
@@ -376,6 +384,17 @@
       height: 1px; background: rgba(255,255,255,0.1);
       margin: 0 1.4rem;
     }
+    #hero-accordion-bottom .accordion-arrow {
+    background: none;
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+    }
     /* Category rows — revealed when expanded */
     .accordion-cats { padding: 0.4rem 0 0.6rem; }
     .accordion-cat {
@@ -394,8 +413,34 @@
     }
     .accordion-cat-arrow { color: rgba(255,255,255,0.35); font-size: 0.85rem; }
 
+    #hero-accordion-bottom .accordion-cats {
+      display: none;
+    }
+
+    #hero-accordion-bottom[data-open="true"] .accordion-cats {
+      display: block;
+    }
+
+    #hero-accordion-bottom .accordion-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 1;
+      min-height: 68px;
+      max-height: none;
+      padding: 1.1rem 1.4rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      transition: opacity 0.3s, max-height 0.3s, padding 0.3s;
+    }
+
+    #hero-accordion-bottom.expanded .accordion-footer {
+      opacity: 1;
+      max-height: 40px;
+      padding: 0.6rem 1.4rem;
+    }
+
     /* Footer ticker row — shows cycling category names when collapsed */
-    .accordion-footer {
+    .hero-accordion-bottom {
       display: flex; align-items: center; justify-content: space-between;
       padding: 0.6rem 1.4rem;
       border-top: 1px solid rgba(255,255,255,0.08);
@@ -406,23 +451,39 @@
       transition: opacity 0.3s, max-height 0.3s;
     }
     .hero-accordion.expanded .accordion-footer {
-      opacity: 0;
-      max-height: 0;
-      padding: 0 1.4rem;
+      opacity: 1;
+      max-height: 40px;
+      padding: 0.6rem 1.4rem;
     }
     .accordion-ticker {
+      appearance: none;
+      border: 0;
+      background: transparent;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
       color: rgba(255,255,255,0.5);
       /* The category name text fades in/out via JS */
       transition: opacity 0.4s ease;
+      cursor: pointer;
     }
     .accordion-ticker.fade { opacity: 0; }
+    #hero-accordion-bottom[data-open="true"] .accordion-ticker {
+      opacity: 0;
+      pointer-events: none;
+    }
     .accordion-footer-chevron {
+      appearance: none;
+      border: 0;
+      background: transparent;
       font-size: 0.75rem; color: rgba(255,255,255,0.35);
       cursor: pointer;
       padding: 0.2rem 0;
       /* Tapping the chevron expands the accordion */
+      transition: transform 0.3s ease;
+    }
+
+    #hero-accordion-bottom[data-open="true"] .accordion-footer-chevron {
+      transform: rotate(180deg);
     }
 
     /* ═══════════════════════════════
@@ -866,18 +927,7 @@
 
   <!-- ✅ BOTTOM: FULL ACCORDION -->
   <div class="hero-accordion" id="hero-accordion-bottom">
-    <a href="#shop" class="accordion-header">
-      <span class="accordion-header-text">Browse Categories</span>
-      <div class="accordion-arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </div>
-    </a>
-
-    <div class="accordion-divider"></div>
-
-    <div class="accordion-cats">
+    <div class="accordion-cats" id="hero-accordion-bottom-cats">
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('all')"><span>All</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coasters')"><span>Coasters</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>Décor</span><span class="accordion-cat-arrow">›</span></a>
@@ -886,11 +936,10 @@
     </div>
 
     <div class="accordion-footer">
-      <span class="accordion-ticker" id="accordion-ticker">Coasters</span>
-      <span class="accordion-footer-chevron" onclick="toggleAccordion('hero-accordion-bottom')">&#8964;</span>
+      <button class="accordion-ticker" id="accordion-ticker" type="button" data-filter="coasters" onclick="filterAndScroll(this.getAttribute('data-filter') || 'coasters')">Coasters</button>
+      <button class="accordion-footer-chevron" type="button" aria-label="Toggle categories" onclick="var acc=document.getElementById('hero-accordion-bottom'); var cats=document.getElementById('hero-accordion-bottom-cats'); var open=acc.getAttribute('data-open')==='true'; acc.setAttribute('data-open', open ? 'false' : 'true'); cats.style.display=open ? 'none' : 'block'; if(open){startTicker();}else{stopTicker();}">&#8964;</button>
     </div>
   </div>
-</section>
 </section>
 
 <!-- PHOTO 2 BANNER -->
@@ -1196,20 +1245,23 @@ function updateMobileParallax() {
 // fading in and out one by one. When expanded, the footer row hides itself
 // via CSS so we just pause the JS interval.
 const tickerEl = document.getElementById('accordion-ticker');
+const accordion = document.getElementById('hero-accordion-bottom');
 const tickerCats = ['Coasters', 'Décor', 'Vessels', 'Floral', 'All'];
 let tickerIndex = 0;
 let tickerInterval = null;
+const tickerFilters = ['coasters', 'decor', 'vessels', 'floral', 'all'];
 
 function startTicker() {
   if (tickerInterval) return; // already running
   tickerInterval = setInterval(() => {
-    if (!accordion || accordion.classList.contains('expanded')) return;
+    if (!accordion || accordion.getAttribute('data-open') === 'true') return;
     // Step 1: fade out
     tickerEl.classList.add('fade');
     setTimeout(() => {
       // Step 2: swap text while invisible
       tickerIndex = (tickerIndex + 1) % tickerCats.length;
       tickerEl.textContent = tickerCats[tickerIndex];
+      tickerEl.setAttribute('data-filter', tickerFilters[tickerIndex]);
       // Step 3: fade back in
       tickerEl.classList.remove('fade');
     }, 420); // matches the CSS transition duration
@@ -1258,7 +1310,8 @@ window.addEventListener('resize', updateMobileParallax, { passive: true });
 onScroll();
 updateMobileParallax();
 </script>
-    /* ── Accordion expand function ── */
+
+  <!-- Accordion expand function -->
 <script>
   const topCTA = document.getElementById('hero-accordion-top');
 
@@ -1279,6 +1332,35 @@ updateMobileParallax();
   }
 
   window.addEventListener('scroll', handleScroll, { passive: true });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const bottom = document.getElementById('hero-accordion-bottom');
+  const chevron = bottom?.querySelector('.accordion-footer-chevron');
+
+  if (!bottom) return;
+
+  function toggle() {
+    bottom.classList.toggle('expanded');
+
+    if (bottom.classList.contains('expanded')) {
+      stopTicker();
+    } else {
+      startTicker();
+    }
+  }
+
+  if (chevron) chevron.addEventListener('click', toggle);
+  if (chevron) {
+    chevron.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggle();
+      }
+    });
+  }
+});
+
+
 </script>
 </body>
 </html>
