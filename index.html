@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#9CB7CE">
-  <meta name="description" content="Flower preservation & resin crafts — coasters, vases, sculptures & more. Made in Cebu, Philippines.">
+  <meta name="description" content="Flower preservation & resin crafts — coaster, vases, sculptures & more. Made in Cebu, Philippines.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Flor Keeps">
@@ -965,14 +965,19 @@
   <!-- ✅ BOTTOM: FULL ACCORDION -->
   <div class="hero-accordion" id="hero-accordion-bottom">
     <div class="accordion-cats" id="hero-accordion-bottom-cats">
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coasters')"><span>Coasters</span><span class="accordion-cat-arrow">›</span></a>
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>Décor</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('candle holder')"><span>Candle holder</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coaster')"><span>Coaster</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>decor</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('keychain')"><span>Keychain</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('lamp')"><span>Lamp</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('pen holder')"><span>Pen Holder</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('stationary set')"><span>Stationary Set</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('vase')"><span>Vase</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('vessels')"><span>Vessels</span><span class="accordion-cat-arrow">›</span></a>
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('floral')"><span>Floral</span><span class="accordion-cat-arrow">›</span></a>
     </div>
 
     <div class="accordion-footer">
-      <button class="accordion-ticker" id="accordion-ticker" type="button" data-filter="coasters" onclick="filterAndScroll(this.getAttribute('data-filter') || 'coasters')">Coasters</button>
+      <button class="accordion-ticker" id="accordion-ticker" type="button" data-filter="candle holder" onclick="filterAndScroll(this.getAttribute('data-filter') || 'candle holder')">candle holder</button>
 
 <button class="accordion-footer-chevron" type="button" aria-label="Toggle categories" onclick="var acc=document.getElementById('hero-accordion-bottom'); var cats=document.getElementById('hero-accordion-bottom-cats'); var open=acc.getAttribute('data-open')==='true'; acc.setAttribute('data-open', open ? 'false' : 'true');  if(open){startTicker();}else{stopTicker();}">
   
@@ -1031,10 +1036,15 @@
     </div>
     <div class="filters">
       <button class="fpill on" data-filter="all">All</button>
-      <button class="fpill" data-filter="coasters">Coasters</button>
-      <button class="fpill" data-filter="decor">Décor</button>
+      <button class="fpill" data-filter="candle holder">Candle Holder</button>
+      <button class="fpill" data-filter="coaster">coaster</button>
+      <button class="fpill" data-filter="decor">decor</button>
+      <button class="fpill" data-filter="keychain">Keychain</button>
+      <button class="fpill" data-filter="lamp">Lamp</button>
+      <button class="fpill" data-filter="pen holder">Pen Holder</button>
+      <button class="fpill" data-filter="stationary set">Stationary Set</button>
+      <button class="fpill" data-filter="vase">Vase</button>
       <button class="fpill" data-filter="vessels">Vessels</button>
-      <button class="fpill" data-filter="floral">Floral</button>
     </div>
   </div>
   <div class="pgrid" id="products-grid"></div>
@@ -1120,7 +1130,7 @@
       </a>
       <p>Flower preservation &amp; resin crafts from the heart of Cebu, Philippines. Every piece made with love and intention.</p>
     </div>
-    <div class="footer-col"><h5>Shop</h5><ul><li><a href="#shop">All Products</a></li><li><a href="#custom-vase">Custom Vase</a></li><li><a href="#shop">Coasters</a></li><li><a href="#shop">Floral Art</a></li></ul></div>
+    <div class="footer-col"><h5>Shop</h5><ul><li><a href="#shop">All Products</a></li><li><a href="#custom-vase">Custom Vase</a></li><li><a href="#shop">Coaster</a></li><li><a href="#shop">Floral Art</a></li></ul></div>
     <div class="footer-col"><h5>Info</h5><ul><li><a href="#about">Our Story</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">FAQ</a></li></ul></div>
     <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li><li><a href="#">Shopee</a></li></ul></div>
   </div>
@@ -1152,12 +1162,12 @@
 
 <script>
 const products = [
-  {id:1,name:"Bloom Coaster Set",          category:"coasters",price:680, old:850,  badge:"pb-best",blabel:"Bestseller",img:"IMG_0837.jpeg"},
-  {id:2,name:"Pressed Botanicals Coasters",category:"coasters",price:750, old:null, badge:null,      blabel:null,       img:"IMG_0835.jpeg"},
+  {id:1,name:"Bloom Coaster Set",          category:"coaster",price:680, old:850,  badge:"pb-best",blabel:"Bestseller",img:"IMG_0837.jpeg"},
+  {id:2,name:"Pressed Botanicals coaster",category:"coaster",price:750, old:null, badge:null,      blabel:null,       img:"IMG_0835.jpeg"},
   {id:3,name:"Arch Resin Sculpture",       category:"decor",   price:920, old:1100, badge:"pb-new",  blabel:"New",      img:"IMG_0834.jpeg"},
   {id:4,name:"Galaxy Cat Candle Holder",   category:"decor",   price:850, old:null, badge:null,      blabel:null,       img:"IMG_0833.jpeg"},
   {id:5,name:"Crystal Facet Pen Cup",      category:"vessels", price:600, old:null, badge:null,      blabel:null,       img:"IMG_0824.jpeg"},
-  {id:6,name:"Ocean Stone Coaster Set",    category:"coasters",price:790, old:950,  badge:"pb-sale", blabel:"Sale",     img:"IMG_0822.jpeg"},
+  {id:6,name:"Ocean Stone Coaster Set",    category:"coaster",price:790, old:950,  badge:"pb-sale", blabel:"Sale",     img:"IMG_0822.jpeg"},
   {id:7,name:"Starry Night Bowl",          category:"decor",   price:880, old:null, badge:null,      blabel:null,       img:"IMG_0813.jpeg"},
   {id:8,name:"Eternal Floral Vase",        category:"floral",  price:1450,old:null, badge:"pb-prem", blabel:"Premium",  img:"IMG_0802.jpeg"},
   {id:9,name:"Forever Rose Cube",          category:"floral",  price:550, old:null, badge:null,      blabel:null,       img:"IMG_0829.jpeg"},
@@ -1289,10 +1299,10 @@ function updateMobileParallax() {
 // via CSS so we just pause the JS interval.
 const tickerEl = document.getElementById('accordion-ticker');
 const accordion = document.getElementById('hero-accordion-bottom');
-const tickerCats = ['Coasters', 'Décor', 'Vessels', 'Floral'];
+const tickerCats = ['Candle Holder', 'Coaster', 'Decor', 'Keychain', 'Lamp', 'Pen Holder', 'Stationary Set', 'Vase', 'Vessels'];
 let tickerIndex = 0;
 let tickerInterval = null;
-const tickerFilters = ['coasters', 'decor', 'vessels', 'floral'];
+const tickerFilters = ['Candle Holder', 'Coaster', 'Decor', 'Keychain', 'Lamp', 'Pen Holder', 'Stationary Set', 'Vase', 'Vessels'];
 
 function startTicker() {
   if (tickerInterval) return; // already running
