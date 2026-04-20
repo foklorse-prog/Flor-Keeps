@@ -74,7 +74,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 600;
       height: 62px;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 1.6rem;
+      padding: 0 .75rem;
       background: var(--sky);
       border-bottom: 1px solid rgba(255,255,255,0.3);
       box-shadow: 0 2px 16px rgba(10,16,20,0.10);
@@ -200,7 +200,7 @@
       letter-spacing: 0.1em; text-transform: uppercase;
     }
 
-    /* ── HERO: IKEA-style rounded card ── */
+    /* ── HERO: Rounded card ── */
     #hero {
       padding: calc(62px + 0.75rem) 0.75rem 0;
       background: var(--sky);
@@ -251,23 +251,26 @@
     }
     .hero-h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(3.8rem, 12vw, 7rem);
+      font-size: clamp(2rem, 10vw, 5rem);
       line-height: 1; margin: 0; font-weight: 400;
       letter-spacing: 0.01em;
       color: #fff;
     }
-    .hero-h1 em {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-weight: 300;
-      font-size: 1.08em; letter-spacing: 0.02em;
-    }
     /* Subtext below brand name — Julius Sans One, smaller */
     .hero-sub {
       font-family: 'Julius Sans One', sans-serif;
-      font-size: clamp(0.6rem, 2.2vw, 0.85rem);
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(255,255,255,0.82); font-weight: 400;
-      line-height: 1.6;
+      font-size: clamp(1rem, 5vw, 3rem);
+      font-weight: 400; color: #fff;
+      line-height: 0.96; text-transform: uppercase;
+      letter-spacing: .01em;
+    }
+    .hero-h1-em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 5vw, 3rem);
+      font-weight: 400; color: #fff;
+      line-height: 0.16; text-transform: uppercase;
+      letter-spacing: .01em;
     }
     .hero-pills { display: flex; gap: 1rem; flex-wrap: wrap; }
     .hero-pill {
@@ -286,79 +289,79 @@
        - Header row (text + arrow) = direct link to #shop
        - Footer row = category ticker when collapsed, hidden when expanded
     ═══════════════════════════════ */
-/* ACCORDION CTA CARD (shared behavior only) */
-/* ACCORDION CTA CARD */
-.hero-accordion {
-  margin: 0;
-  position: sticky;
-  top: calc(62px + 0.5rem);
-  height: 52vh;
-  background: var(--navy);
-  z-index: 100;
-  overflow: hidden;
-  max-height: 68px;
-  transition: max-height 2s cubic-bezier(0.22, 1, 0.36, 1);
-}
+    /* ACCORDION CTA CARD (shared behavior only) */
+    /* ACCORDION CTA CARD */
+.accordion {
+    margin: 0;
+    position: sticky;
+    top: calc(62px + 0.5rem);
+    height: 52vh;
+    background: var(--navy);
+    z-index: 100;
+    overflow: hidden;
+    max-height: 68px;
+    transition: max-height 2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-/* TOP CARD ONLY */
-#hero-accordion-top {
-  border-radius: 16px 16px 0 0;
-}
+    /* TOP CARD ONLY */
+    #accordion-top {
+    border-radius: 16px 16px 0 0;
+    }
 
-/* BOTTOM CARD ONLY */
-#hero-accordion-bottom {
-  border-radius: 0 0 16px 16px;
-  margin-top: -10px;
-  position: static;
-  height: auto;
-  overflow: visible;
-}
+    /* BOTTOM CARD ONLY */
+    #accordion-bottom {
+    border-radius: 0 0 16px 16px;
+    margin-top: -10px;
+    position: static;
+    height: auto;
+    overflow: visible;
+    }
 
-#hero-accordion-bottom[data-open="true"] {
-  max-height: none;
-}
+    #accordion-bottom[data-open="true"] {
+    max-height: none;
+    }
 
-#hero-accordion-bottom .accordion-header {
-  height: auto;
-}
+    #accordion-bottom .accordion-header {
+    height: auto;
+    }
 
-/* reset inner rounding */
-.hero-accordion > * {
-  border-radius: 0;
-}
+    /* reset inner rounding */
+    .accordion > * {
+    border-radius: 0;
+    }
 
-.hero-accordion .accordion-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    .accordion .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  width: 100%;
-  height: 100%;
-  padding: 0 20px;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
 
-  text-decoration: none;
-}
+    text-decoration: none;
+    }
 
-/* text alignment */
-.accordion-header-text {
-  display: block;
-  line-height: 1;
-}
+    /* text alignment */
+    .accordion-header-text {
+    display: block;
+    line-height: 1;
+    }
 
-/* arrow alignment */
-.accordion-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero-accordion.expanded {
-  max-height: 300px;
-}
-.hero-accordion-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 6px; /* <- THIS is your real spacing control */
-}
+    /* arrow alignment */
+    .accordion-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    .accordion.expanded {
+    max-height: 300px;
+    }
+    .accordion-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* <- THIS is your real spacing control */
+    }
     /* Header row — the whole thing is an <a> linking to #shop */
     .accordion-header {
       display: flex; align-items: center; justify-content: space-between;
@@ -383,7 +386,7 @@
       height: 1px; background: rgba(255,255,255,0.1);
       margin: 0 1.4rem;
     }
-    #hero-accordion-bottom .accordion-arrow {
+    #accordion-bottom .accordion-arrow {
     background: none;
     width: 38px;
     height: 38px;
@@ -411,30 +414,30 @@
       color: rgba(255,255,255,0.72); font-weight: 400;
     }
     .accordion-cat-arrow { 
-  color: rgba(255,255,255,0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  width: 38px;
-  height: 38px;
-}
+    width: 38px;
+    height: 38px;
+    }
 
-.accordion-cat-arrow svg {
-  width: 14px;
-  height: 14px;
-  line-height: 0;
-  display: block;
-}
+    .accordion-cat-arrow svg {
+    width: 14px;
+    height: 14px;
+    line-height: 0;
+    display: block;
+    }
 
-    #hero-accordion-bottom .accordion-cats {
+    #accordion-bottom .accordion-cats {
       display: none;
     }
-    #hero-accordion-bottom {
+    #accordion-bottom {
     --state: false;
     }
 
-    #hero-accordion-bottom .accordion-footer {
+    #accordion-bottom .accordion-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -443,17 +446,17 @@
       max-height: none;
       padding: 1.1rem 1.4rem;
       border-top: 1px solid rgba(255,255,255,0.1);
-      transition: opacity 0.3s, max-height 0.3s, padding 0.3s;
+      transition: opacity 0.2s, max-height 0.1s, padding 0.3s;
     }
 
-    #hero-accordion-bottom.expanded .accordion-footer {
+    #accordion-bottom.expanded .accordion-footer {
       opacity: 1;
       max-height: 40px;
       padding: 0.6rem 1.4rem;
     }
 
     /* Footer ticker row — shows cycling category names when collapsed */
-    .hero-accordion-bottom {
+    .accordion-bottom {
       display: flex; align-items: center; justify-content: space-between;
       padding: 0.6rem 1.4rem;
       border-top: 1px solid rgba(255,255,255,0.08);
@@ -463,7 +466,7 @@
       max-height: 40px;
       transition: opacity 0.3s, max-height 0.3s;
     }
-    .hero-accordion.expanded .accordion-footer {
+    .accordion.expanded .accordion-footer {
       opacity: 1;
       max-height: 40px;
       padding: 0.6rem 1.4rem;
@@ -480,7 +483,7 @@
       cursor: pointer;
     }
     .accordion-ticker.fade { opacity: 0; }
-    #hero-accordion-bottom[data-open="true"] .accordion-ticker {
+    #accordion-bottom[data-open="true"] .accordion-ticker {
       opacity: 0;
       pointer-events: none;
     }
@@ -495,7 +498,7 @@
       transition: transform 0.3s ease;
       transform: rotate(180deg);
     }
-    #hero-accordion-bottom .accordion-footer-chevron {
+    #accordion-bottom .accordion-footer-chevron {
       background: none;
       width: 38px;
       height: 38px;
@@ -507,7 +510,7 @@
       margin-left: auto;
     }
 
-    #hero-accordion-bottom[data-open="true"] .accordion-footer-chevron {
+    #accordion-bottom[data-open="true"] .accordion-footer-chevron {
       transform: rotate(0deg);
     }
 
@@ -515,11 +518,11 @@
     width: 14px;
     height: 14px;
     }
-#hero-accordion-bottom .accordion-cats {
+#accordion-bottom .accordion-cats {
   display: none;
 }
 
-#hero-accordion-bottom.expanded .accordion-cats {
+#accordion-bottom.expanded .accordion-cats {
   display: block;
 }
 
@@ -886,7 +889,7 @@
     @media (max-width: 520px) {
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.6rem; }
       .footer-top { grid-template-columns: 1fr; }
-      .hero-h1 { font-size: clamp(2.1rem, 7vw, 2.6rem); }
+      .hero-h1 { font-size: clamp(3.8rem, 7vw, 2.6rem); }
     }
   </style>
 </head>
@@ -939,8 +942,8 @@
     <div class="hero-l">
       <h1 class="hero-h1">Flor Keeps</h1>
       <p class="hero-sub">
-        Flowers and Resin Crafts<br>
-        To Have Forever.
+      Flowers & Resin Crafts<br>
+      To Have Forever.
       </p>
       <div class="hero-pills">
         <span class="hero-pill"><span class="hero-pip" style="background:var(--pink)"></span>100% Handmade</span>
@@ -951,7 +954,7 @@
   </div>
 
   <!-- ✅ TOP: CTA -->
-  <div class="hero-accordion" id="hero-accordion-top">
+  <div class="accordion" id="accordion-top">
     <a href="#shop" class="accordion-header">
       <span class="accordion-header-text">Shop Collection</span>
       <div class="accordion-arrow">
@@ -963,8 +966,8 @@
   </div>
 
   <!-- ✅ BOTTOM: FULL ACCORDION -->
-  <div class="hero-accordion" id="hero-accordion-bottom">
-    <div class="accordion-cats" id="hero-accordion-bottom-cats">
+  <div class="accordion" id="accordion-bottom">
+    <div class="accordion-cats" id="accordion-bottom-cats">
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('candle holder')"><span>Candle holder</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coaster')"><span>Coaster</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>decor</span><span class="accordion-cat-arrow">›</span></a>
@@ -979,7 +982,7 @@
     <div class="accordion-footer">
       <button class="accordion-ticker" id="accordion-ticker" type="button" data-filter="candle holder" onclick="filterAndScroll(this.getAttribute('data-filter') || 'candle holder')">candle holder</button>
 
-<button class="accordion-footer-chevron" type="button" aria-label="Toggle categories" onclick="var acc=document.getElementById('hero-accordion-bottom'); var cats=document.getElementById('hero-accordion-bottom-cats'); var open=acc.getAttribute('data-open')==='true'; acc.setAttribute('data-open', open ? 'false' : 'true');  if(open){startTicker();}else{stopTicker();}">
+<button class="accordion-footer-chevron" type="button" aria-label="Toggle categories" onclick="var acc=document.getElementById('accordion-bottom'); var cats=document.getElementById('accordion-bottom-cats'); var open=acc.getAttribute('data-open')==='true'; acc.setAttribute('data-open', open ? 'false' : 'true');  if(open){startTicker();}else{stopTicker();}">
   
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
     <path d="M6 9l6 6 6-6"/>
@@ -1165,7 +1168,7 @@ const products = [
   {id:1,name:"Galaxy Cat Candle Holder", category:"candle holder", price:240, old: null,  badge:"pb-best",blabel:"Bestseller",img:"Galaxy_cat_candle_holder.png"},
   {id:2,name:"Bloom Coaster", category:"coaster", price:190, old: null,  badge: null, blabel:null,img:"Bloom_coaster.png"},
   {id:3,name:"Coffee Beans Coaster", category:"coaster", price:170, old: null,  badge: null, blabel:null,img:"Coffee_beans.jpg"},
-  {id:4,name:"Pressed Flowers Coaster",          category:"coaster",price:170, old: null,  badge: null,      blabel:null,img:"Pressed_flowers_coaster.JPG"},
+  {id:4,name:"Pressed Flowers Coaster",          category:"coaster",price:170, old: null,  badge: null,      blabel:null,img:"Pressed_flowers_coaster.jpg"},
   {id:5,name:"Ocean Stone Coaster", category:"coaster", price:170, old:null,  badge:"pb-sale", blabel:"Sale", img:"Ocean_stone_coaster.png"},
   {id:6,name:"Arch Resin Sculpture", category:"decor", price:170, old: null,  badge: null, blabel:null, img:"IMG_0834.jpeg"},
   {id:7,name:"Forever Rose Cube", category:"decor", price:1030, old: null,  badge: "pb-prem", blabel:"Premium", img:"Forever_rose_cube.png"},
@@ -1306,7 +1309,7 @@ function updateMobileParallax() {
 // fading in and out one by one. When expanded, the footer row hides itself
 // via CSS so we just pause the JS interval.
 const tickerEl = document.getElementById('accordion-ticker');
-const accordion = document.getElementById('hero-accordion-bottom');
+const accordion = document.getElementById('accordion-bottom');
 const tickerCats = ['Candle Holder', 'Coaster', 'Decor', 'Keychain', 'Lamp', 'Pen Holder', 'Stationary Set', 'Vase', 'vessel'];
 let tickerIndex = 0;
 let tickerInterval = null;
@@ -1375,8 +1378,8 @@ updateMobileParallax();
   <!-- Accordion expand function -->
 <!-- Accordion expand function -->
 <script>
-  const topCTA = document.getElementById('hero-accordion-top');
-  const bottomCTA = document.getElementById('hero-accordion-bottom');
+  const topCTA = document.getElementById('accordion-top');
+  const bottomCTA = document.getElementById('accordion-bottom');
 
   let expanded = false;
 
@@ -1405,7 +1408,7 @@ updateMobileParallax();
   window.addEventListener('scroll', handleScroll, { passive: true });
 
   document.addEventListener('DOMContentLoaded', () => {
-    const bottom = document.getElementById('hero-accordion-bottom');
+    const bottom = document.getElementById('accordion-bottom');
     const chevron = bottom?.querySelector('.accordion-footer-chevron');
 
     if (!bottom) return;
