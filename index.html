@@ -968,7 +968,6 @@
   <!-- ✅ BOTTOM: FULL ACCORDION -->
   <div class="accordion" id="accordion-bottom">
     <div class="accordion-cats" id="accordion-bottom-cats">
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('candle holder')"><span>Candle holder</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coaster')"><span>Coaster</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>decor</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('pen holder')"><span>Pen Holder</span><span class="accordion-cat-arrow">›</span></a>
@@ -1035,7 +1034,6 @@
     </div>
     <div class="filters">
       <button class="fpill on" data-filter="all">All</button>
-      <button class="fpill" data-filter="candle holder">Candle Holder</button>
       <button class="fpill" data-filter="coaster">coaster</button>
       <button class="fpill" data-filter="decor">decor</button>
       <button class="fpill" data-filter="pen holder">Pen Holder</button>
@@ -1157,25 +1155,29 @@
 
 <script>
 const products = [
-  {id:1,name:"Galaxy Cat Candle Holder", category:"candle holder", price:240, old: null,  badge:"pb-best",blabel:"Bestseller",img:"Galaxy_cat_candle_holder.png"},
-  {id:2,name:"Bloom Coaster", category:"coaster", price:190, old: null,  badge: null, blabel:null,img:"Bloom_coaster.png"},
-  {id:3,name:"Coffee Beans Coaster", category:"coaster", price:170, old: null,  badge: null, blabel:null,img:"Coffee_beans.jpg"},
-  {id:4,name:"Pressed Flowers Coaster",          category:"coaster",price:170, old: null,  badge: null,      blabel:null,img:"Pressed_flowers_coaster.JPG"},
-  {id:5,name:"Ocean Stone Coaster", category:"coaster", price:170, old:null,  badge:"pb-sale", blabel:"Sale", img:"Ocean_stone_coaster.png"},
-  {id:6,name:"Arch Resin Sculpture", category:"decor", price:170, old: null,  badge: null, blabel:null, img:"IMG_0834.jpeg"},
-  {id:7,name:"Forever Rose Cube", category:"decor", price:1030, old: null,  badge: "pb-prem", blabel:"Premium", img:"Forever_rose_cube.png"},
-  {id:8,name:"Letter Keychain", category:"stationery set", price:135, old: null,  badge: null, blabel:null, img:"Letter_keychain.jpg"},
-  {id:9,name:"Lamp", category:"decor", price:500, old:null,  badge:"pb-new", blabel:"New", img:"Letter_keychain.jpg"},
-  {id:10,name:"Blue Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:null, blabel:null, img:"Blue_flower_pen_holder.png"},
-  {id:11,name:"Pink Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null, img:"Pink_hexagon_pen_holder.png"},
+  {id:2,name:"Bloom Flower Coaster", category:"coaster", price:190, old: null,  badge: null, blabel:null,img:"Bloom_coaster.png"},
+  {id:3,name:"Coffee Round Coaster", category:"coaster", price:170, old: null,  badge: null, blabel:null,img:"Coffee_beans.jpg"},
+  {id:4,name:"Pressed Flower Round Coaster", category:"coaster",price:170, old: null,  badge: null, blabel:null,img:"Pressed_flowers_coaster.JPG"},
+  {id:5,name:"Ocean Blue Coaster", category:"coaster", price:170, old:null,  badge:"pb-sale", blabel:"Sale", img:"Ocean_blue_coaster.jpg"},
+  {id:6,name:"Coaster Set", category:"coaster", price:770, old:null,  badge:"pb-sale", blabel:"Sale", img:"Ocean_stone_coaster.png"},
+
+  {id:1,name:"Galaxy Cat Candle Holder", category:"decor", price:240, old: null,  badge:"pb-best",blabel:"Bestseller",img:"Galaxy_cat_candle_holder.png"},
+  {id:7,name:"Rose Cube", category:"decor", price:1030, old: null,  badge: "pb-prem", blabel:"Premium", img:"Rose_cube.png"},
+  {id:9,name:"Lamp", category:"decor", price:600, old:null,  badge:"pb-new", blabel:"New", img:"Letter_keychain.jpg"},
+{id:15,name:"Eternal Floral Vase", category:"decor", price:2000, old:null,  badge:"pb-prem", blabel:"Premium", img:"Eternal_floral_vase.png"},
+  {id:16,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null, img:"Colorful_accent_jar.jpg"},
+  {id:17,name:"Lotus Flower", category:"decor", price:190, old:null,  badge:null, blabel:null, img:"Lotus_container.png"},
+
+  {id:10,name:"Blue Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:null, blabel:null, img:"Blue_flower_pen_holder.jpg"},
+  {id:11,name:"Pink Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null, img:"Pink_hexagon_pen_holder.jpg"},
   {id:12,name:"Transparent Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:"pb-best", blabel:"Bestseller", img:"Transparent_flower_pen_holder.png"},
-  {id:13,name:"White Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null, img:"White_hexagon_pen_holder.png"},
-  {id:14,name:"Stationery Set", category:"stationery set", price:350, old:null,  badge:null, blabel:null, img:"White_hexagon_pen_holder.png"},
-  {id:15,name:"Eternal Floral Vase", category:"decor", price:1999, old:null,  badge:"pb-prem", blabel:"Premium", img:"Eternal_floral_vase.jpg"},
-  {id:16,name:"Candy Jar", category:"decor", price:270, old:null,  badge:null, blabel:null, img:"Lotus_container.png"},
-  {id:17,name:"Lotus Flower", category:"candle holder", price:190, old:null,  badge:null, blabel:null, img:"Lotus_container.png"},
-  {id:18,name:"Bookmark", category:"stationery set", price:150, old:null,  badge:null, blabel:null, img:"Lotus_container.png"},
-  {id:19,name:"Pen", category:"stationery set", price:160, old:null,  badge:null, blabel:null, img:"Lotus_container.png"},
+  {id:13,name:"Classic Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null, img:"Classic_hexagon_pen_holder.jpg"},
+
+  {id:8,name:"Letter Keychain", category:"stationery set", price:135, old: null,  badge: null, blabel:null, img:"Letter_keychain.jpg"},
+  {id:18,name:"Bookmark", category:"stationery set", price:150, old:null,  badge:null, blabel:null, img:"Bookmark.jpg"},
+  {id:19,name:"Pen", category:"stationery set", price:160, old:null,  badge:null, blabel:null, img:"Pen.jpg"},
+  {id:14,name:"Stationery Set", category:"stationery set", price:350, old:null,  badge:null, blabel:null, img:"Stationery_set.jpg"},
+
 ];
 
 let cart = JSON.parse(localStorage.getItem('pp_cart')||'[]');
