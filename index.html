@@ -839,6 +839,161 @@
     .cart-tot span { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--sub); }
     .cart-tot strong { font-family:'Cormorant Garamond',serif; font-size:1.5rem; color:var(--navy); font-weight:400; }
 
+    /* ═══ CUSTOMIZATION POPUP ═══ */
+    .custom-ov {
+      position: fixed; inset: 0; background: rgba(10,16,20,0.45);
+      z-index: 800; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .custom-ov.open { opacity: 1; pointer-events: all; }
+    .custom-pop {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--off); border-radius: 20px 20px 0 0;
+      padding: 1.6rem 1.5rem 2rem;
+      z-index: 801;
+      transform: translateY(100%);
+      transition: transform 0.38s cubic-bezier(0.23,1,0.32,1);
+      box-shadow: 0 -4px 32px rgba(10,16,20,0.14);
+    }
+    .custom-pop.open { transform: translateY(0); }
+    .custom-pop-handle {
+      width: 36px; height: 4px; background: rgba(10,16,20,0.15);
+      border-radius: 2px; margin: 0 auto 1.2rem;
+    }
+    .custom-pop h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 400; color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+    .custom-pop .cpop-product {
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 1rem;
+    }
+    .custom-pop textarea {
+      width: 100%; min-height: 90px; resize: none;
+      background: var(--white); border: 1.5px solid rgba(10,16,20,0.14);
+      border-radius: 12px; padding: 0.85rem 1rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.86rem;
+      color: var(--navy); outline: none; transition: border-color 0.2s;
+      line-height: 1.6;
+    }
+    .custom-pop textarea::placeholder { color: rgba(10,16,20,0.35); }
+    .custom-pop textarea:focus { border-color: var(--pink); }
+    .cpop-hint {
+      font-size: 0.7rem; color: rgba(10,16,20,0.4);
+      margin-top: 0.45rem; margin-bottom: 1.1rem; line-height: 1.5;
+    }
+    .cpop-btns { display: flex; flex-direction: column; gap: 0.55rem; }
+    .cpop-btns .btn { width: 100%; justify-content: center; }
+    .cpop-skip {
+      text-align: center; font-size: 0.74rem; color: rgba(10,16,20,0.4);
+      cursor: pointer; padding: 0.3rem; margin-top: 0.1rem;
+      transition: color 0.18s;
+    }
+    .cpop-skip:hover { color: var(--navy); }
+
+    /* ═══ CART NOTE DISPLAY ═══ */
+    .cnote {
+      font-size: 0.7rem; color: rgba(10,16,20,0.5);
+      margin-top: 0.22rem; font-style: italic; line-height: 1.4;
+    }
+    .cedit {
+      background: none; border: none; cursor: pointer;
+      font-size: 0.68rem; color: var(--pink);
+      padding: 0; margin-top: 0.15rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: opacity 0.18s;
+    }
+    .cedit:hover { opacity: 0.7; }
+
+    /* ═══ CHECKOUT MODAL ═══ */
+    .chk-ov {
+      position: fixed; inset: 0; background: rgba(10,16,20,0.5);
+      z-index: 800; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .chk-ov.open { opacity: 1; pointer-events: all; }
+    .chk-modal {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.96);
+      background: var(--off); border-radius: 20px;
+      width: min(480px, 94vw); max-height: 90vh; overflow-y: auto;
+      padding: 2rem 1.8rem 2rem;
+      z-index: 801;
+      opacity: 0; pointer-events: none;
+      transition: transform 0.32s cubic-bezier(0.23,1,0.32,1), opacity 0.25s;
+      box-shadow: 0 16px 60px rgba(10,16,20,0.22);
+    }
+    .chk-modal.open { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: all; }
+    .chk-modal h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+    .chk-modal .chk-sub {
+      font-size: 0.76rem; color: rgba(10,16,20,0.45);
+      margin-bottom: 1.5rem; line-height: 1.5;
+    }
+    .chk-modal .chk-sub.has-custom {
+      background: var(--pink-lt); border-radius: 10px;
+      padding: 0.65rem 0.9rem; color: var(--navy);
+      font-size: 0.76rem; margin-bottom: 1.4rem;
+    }
+    .chk-field { margin-bottom: 1rem; }
+    .chk-field label {
+      display: block; font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(10,16,20,0.5);
+      margin-bottom: 0.35rem; font-weight: 500;
+    }
+    .chk-field input {
+      width: 100%; background: var(--white);
+      border: 1.5px solid rgba(10,16,20,0.13);
+      border-radius: 10px; padding: 0.72rem 1rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.86rem;
+      color: var(--navy); outline: none; transition: border-color 0.2s;
+    }
+    .chk-field input:focus { border-color: var(--pink); }
+    .chk-field input::placeholder { color: rgba(10,16,20,0.3); }
+    .chk-divider {
+      border: none; border-top: 1px solid var(--line);
+      margin: 1.3rem 0;
+    }
+    .chk-order-summary {
+      background: var(--white); border-radius: 12px;
+      padding: 0.9rem 1rem; margin-bottom: 1.2rem;
+      border: 1px solid var(--line);
+    }
+    .chk-order-summary .chk-sum-label {
+      font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(10,16,20,0.4); margin-bottom: 0.65rem;
+    }
+    .chk-sum-item {
+      display: flex; justify-content: space-between;
+      font-size: 0.82rem; color: var(--navy); margin-bottom: 0.35rem;
+    }
+    .chk-sum-item span:last-child { font-weight: 500; }
+    .chk-sum-note {
+      font-size: 0.68rem; color: var(--pink);
+      font-style: italic; margin-top: 0.15rem;
+    }
+    .chk-total-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      border-top: 1px solid var(--line); margin-top: 0.6rem; padding-top: 0.6rem;
+    }
+    .chk-total-row span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(10,16,20,0.45); }
+    .chk-total-row strong { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--navy); }
+    .chk-modal-btns { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 0.5rem; }
+    .chk-modal-btns .btn { width: 100%; justify-content: center; }
+    .chk-cancel {
+      text-align: center; font-size: 0.74rem; color: rgba(10,16,20,0.4);
+      cursor: pointer; padding: 0.3rem; margin-top: 0.1rem; transition: color 0.18s;
+    }
+    .chk-cancel:hover { color: var(--navy); }
+    .chk-success {
+      text-align: center; padding: 1.5rem 0 0.5rem;
+      display: none;
+    }
+    .chk-success .chk-success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+    .chk-success h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; color: var(--navy); margin-bottom: 0.5rem; }
+    .chk-success p { font-size: 0.82rem; color: rgba(10,16,20,0.55); line-height: 1.7; margin-bottom: 1.2rem; }
     /* ═══ TOAST ═══ */
     .toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:0.68rem 1.55rem; border-radius:2rem; font-size:0.78rem; z-index:999; transition:transform 0.34s cubic-bezier(0.23,1,0.32,1); white-space:nowrap; box-shadow:0 6px 24px rgba(10,16,20,0.22); }
     .toast.show { transform:translateX(-50%) translateY(0); }
@@ -1133,6 +1288,60 @@
   </div>
 </footer>
 
+<!-- CUSTOMIZATION POPUP -->
+<div class="custom-ov" id="custom-overlay" onclick="closeCustomPopup()"></div>
+<div class="custom-pop" id="custom-popup">
+  <div class="custom-pop-handle"></div>
+  <div class="cpop-product" id="cpop-product-name"></div>
+  <h4>Any preferences for this piece?</h4>
+  <textarea id="cpop-textarea" placeholder="e.g. purple tint, dried lavender, it's a gift for my mom…" rows="3"></textarea>
+  <p class="cpop-hint">Not sure? Leave blank and we'll make it just like the photo.</p>
+  <div class="cpop-btns">
+    <button class="btn btn-pink" onclick="confirmAddToCart()">Add to Cart</button>
+  </div>
+  <p class="cpop-skip" onclick="skipCustomization()">Skip — add as shown</p>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="chk-ov" id="chk-overlay" onclick="closeCheckout()"></div>
+<div class="chk-modal" id="chk-modal">
+  <div id="chk-form-view">
+    <h3>Almost there 🌸</h3>
+    <p class="chk-sub" id="chk-sub-msg">Fill in your details and we'll get your order sorted.</p>
+
+    <div class="chk-order-summary" id="chk-order-summary"></div>
+
+    <div class="chk-field">
+      <label>Full Name</label>
+      <input type="text" id="chk-name" placeholder="Your name">
+    </div>
+    <div class="chk-field">
+      <label>Email</label>
+      <input type="email" id="chk-email" placeholder="your@email.com">
+    </div>
+    <div class="chk-field">
+      <label>Viber / Messenger / Phone</label>
+      <input type="text" id="chk-contact" placeholder="+63 or Messenger name">
+    </div>
+    <div class="chk-field">
+      <label>Full Delivery Address</label>
+      <input type="text" id="chk-address" placeholder="Street, Barangay, City, Province">
+    </div>
+
+    <div class="chk-modal-btns">
+      <button class="btn btn-pink" id="chk-submit-btn" onclick="submitOrder()">Place Order</button>
+    </div>
+    <p class="chk-cancel" onclick="closeCheckout()">Cancel</p>
+  </div>
+
+  <div class="chk-success" id="chk-success-view">
+    <div class="chk-success-icon">🌺</div>
+    <h4 id="chk-success-title">Order received!</h4>
+    <p id="chk-success-msg">Shiela will reach out to you shortly to confirm your order and arrange payment.</p>
+    <button class="btn btn-sky" style="width:100%;justify-content:center;" onclick="closeCheckoutAfterSuccess()">Done</button>
+  </div>
+</div>
+
 <!-- CART -->
 <div class="cart-ov" id="cart-overlay" onclick="toggleCart()"></div>
 <div class="cart-dw" id="cart-drawer">
@@ -1146,7 +1355,7 @@
 <div class="toast" id="toast"></div>
 <div id="install-banner">
   <h4>Add to Home Screen</h4>
-  <p>Install Petals &amp; Pour for quick access anytime.</p>
+  <p>Install Flor Keeps for quick access anytime.</p>
   <div class="b-btns">
     <button class="b-inst" id="install-btn">Install</button>
     <button class="b-dis" onclick="document.getElementById('install-banner').style.display='none'">Later</button>
@@ -1182,11 +1391,66 @@ const products = [
 
 let cart = JSON.parse(localStorage.getItem('pp_cart')||'[]');
 function saveCart(){ localStorage.setItem('pp_cart',JSON.stringify(cart)); }
+
+// ── CUSTOMIZATION POPUP ──
+let _pendingProductId = null;
+let _editingCartIndex = null;
+
 function addToCart(id){
-  const p=products.find(x=>x.id===id), ex=cart.find(i=>i.id===id);
-  if(ex) ex.qty++; else cart.push({...p,qty:1});
-  saveCart(); updateCartUI(); toast(`"${p.name}" added 🛍`);
+  _pendingProductId = id;
+  _editingCartIndex = null;
+  const p = products.find(x => x.id === id);
+  document.getElementById('cpop-product-name').textContent = p.name;
+  document.getElementById('cpop-textarea').value = '';
+  document.getElementById('custom-overlay').classList.add('open');
+  document.getElementById('custom-popup').classList.add('open');
+  setTimeout(()=>document.getElementById('cpop-textarea').focus(), 350);
 }
+
+function closeCustomPopup(){
+  document.getElementById('custom-overlay').classList.remove('open');
+  document.getElementById('custom-popup').classList.remove('open');
+  _pendingProductId = null;
+  _editingCartIndex = null;
+}
+
+function confirmAddToCart(){
+  const note = document.getElementById('cpop-textarea').value.trim();
+  if(_editingCartIndex !== null){
+    cart[_editingCartIndex].note = note;
+    saveCart(); updateCartUI();
+    toast('Preferences updated ✨');
+  } else {
+    const p = products.find(x => x.id === _pendingProductId);
+    const ex = cart.find(i => i.id === _pendingProductId);
+    if(ex){ ex.qty++; ex.note = note || ex.note; }
+    else cart.push({...p, qty:1, note});
+    saveCart(); updateCartUI();
+    toast(`"${p.name}" added 🛍`);
+  }
+  closeCustomPopup();
+}
+
+function skipCustomization(){
+  const p = products.find(x => x.id === _pendingProductId);
+  const ex = cart.find(i => i.id === _pendingProductId);
+  if(ex) ex.qty++; else cart.push({...p, qty:1, note:''});
+  saveCart(); updateCartUI();
+  toast(`"${p.name}" added 🛍`);
+  closeCustomPopup();
+}
+
+function editCartNote(i){
+  _editingCartIndex = i;
+  _pendingProductId = null;
+  const item = cart[i];
+  document.getElementById('cpop-product-name').textContent = item.name;
+  document.getElementById('cpop-textarea').value = item.note || '';
+  document.getElementById('custom-overlay').classList.add('open');
+  document.getElementById('custom-popup').classList.add('open');
+  setTimeout(()=>document.getElementById('cpop-textarea').focus(), 350);
+}
+
 function removeFromCart(i){ cart.splice(i,1); saveCart(); updateCartUI(); renderCart(); }
 function updateCartUI(){
   document.getElementById('cart-count').textContent=cart.reduce((a,i)=>a+i.qty,0);
@@ -1200,7 +1464,12 @@ function renderCart(){
   ls.innerHTML=cart.map((item,i)=>`
     <div class="citem">
       <div class="cthumb">${item.img?`<img src="${item.img}" alt="${item.name}">`:''}  </div>
-      <div class="cinfo"><div class="cname">${item.name}</div><div class="cprice">₱${item.price.toLocaleString()} × ${item.qty}</div></div>
+      <div class="cinfo">
+        <div class="cname">${item.name}</div>
+        <div class="cprice">₱${item.price.toLocaleString()} × ${item.qty}</div>
+        ${item.note ? `<div class="cnote">✏️ ${item.note}</div>` : '<div class="cnote" style="color:rgba(10,16,20,0.3)">No customization</div>'}
+        <button class="cedit" onclick="editCartNote(${i})">Edit preferences</button>
+      </div>
       <button class="crm" onclick="removeFromCart(${i})">✕</button>
     </div>`).join('');
 }
@@ -1208,7 +1477,101 @@ function toggleCart(){
   document.getElementById('cart-overlay').classList.toggle('open');
   document.getElementById('cart-drawer').classList.toggle('open');
 }
-function checkout(){ toast('Redirecting to checkout… 🌟'); toggleCart(); }
+
+// ── CHECKOUT MODAL ──
+function checkout(){
+  if(!cart.length){ toast('Your cart is empty 🛒'); return; }
+  const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
+
+  const summaryEl = document.getElementById('chk-order-summary');
+  let summaryHTML = '<div class="chk-sum-label">Order Summary</div>';
+  cart.forEach(item => {
+    summaryHTML += `<div class="chk-sum-item"><span>${item.name} × ${item.qty}</span><span>₱${(item.price * item.qty).toLocaleString()}</span></div>`;
+    if(item.note) summaryHTML += `<div class="chk-sum-note">✏️ ${item.note}</div>`;
+  });
+  const total = cart.reduce((a,i) => a + i.price * i.qty, 0);
+  summaryHTML += `<div class="chk-total-row"><span>Total</span><strong>₱${total.toLocaleString()}</strong></div>`;
+  summaryEl.innerHTML = summaryHTML;
+
+  const subMsg = document.getElementById('chk-sub-msg');
+  if(hasCustom){
+    subMsg.className = 'chk-sub has-custom';
+    subMsg.textContent = '🌸 Your order has custom pieces — Shiela will review and send you the final quote before payment.';
+  } else {
+    subMsg.className = 'chk-sub';
+    subMsg.textContent = "Fill in your details and we'll get your order sorted.";
+  }
+
+  document.getElementById('chk-form-view').style.display = '';
+  document.getElementById('chk-success-view').style.display = 'none';
+  document.getElementById('chk-submit-btn').textContent = 'Place Order';
+  document.getElementById('chk-submit-btn').disabled = false;
+  document.getElementById('chk-overlay').classList.add('open');
+  document.getElementById('chk-modal').classList.add('open');
+  toggleCart();
+}
+
+function closeCheckout(){
+  document.getElementById('chk-overlay').classList.remove('open');
+  document.getElementById('chk-modal').classList.remove('open');
+}
+
+function closeCheckoutAfterSuccess(){
+  closeCheckout();
+  cart = []; saveCart(); updateCartUI();
+}
+
+async function submitOrder(){
+  const name = document.getElementById('chk-name').value.trim();
+  const email = document.getElementById('chk-email').value.trim();
+  const contact = document.getElementById('chk-contact').value.trim();
+  const address = document.getElementById('chk-address').value.trim();
+
+  if(!name || !email || !address){
+    toast('Please fill in your name, email, and address 🌸'); return;
+  }
+
+  const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
+  const btn = document.getElementById('chk-submit-btn');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+
+  let orderDetails = cart.map(item =>
+    `${item.name} × ${item.qty} — ₱${(item.price * item.qty).toLocaleString()}` +
+    (item.note ? `\nCustomization: ${item.note}` : '\nNo customization')
+  ).join('\n\n');
+  const total = cart.reduce((a,i) => a + i.price * i.qty, 0);
+
+  const body = new FormData();
+  body.append('_replyto', email);
+  body.append('_subject', hasCustom ? `[Flor Keeps] Custom Order from ${name}` : `[Flor Keeps] New Order from ${name}`);
+  body.append('Name', name);
+  body.append('Email', email);
+  body.append('Contact', contact || 'Not provided');
+  body.append('Delivery Address', address);
+  body.append('Order Type', hasCustom ? 'Custom (Quote needed)' : 'Standard');
+  body.append('Order Details', orderDetails);
+  body.append('Order Total', `₱${total.toLocaleString()}`);
+
+  try {
+    const res = await fetch('https://formspree.io/f/xvgodwgp', { method:'POST', body, headers:{ Accept:'application/json' } });
+    if(res.ok){
+      document.getElementById('chk-form-view').style.display = 'none';
+      const successView = document.getElementById('chk-success-view');
+      successView.style.display = 'block';
+      if(hasCustom){
+        document.getElementById('chk-success-title').textContent = 'Order received! 🌸';
+        document.getElementById('chk-success-msg').textContent = `Thank you, ${name}! Shiela will review your custom pieces and send you the final quote to ${email} within 24 hours.`;
+      } else {
+        document.getElementById('chk-success-title').textContent = 'Order placed! 🎉';
+        document.getElementById('chk-success-msg').textContent = `Thank you, ${name}! Shiela will reach out to ${email} shortly to arrange payment and shipping.`;
+      }
+    } else {
+      toast('Something went wrong. Please try again.'); btn.textContent = 'Place Order'; btn.disabled = false;
+    }
+  } catch(e){
+    toast('Connection error. Please try again.'); btn.textContent = 'Place Order'; btn.disabled = false;
+  }
+}
 function renderProducts(filter='all'){
   const grid=document.getElementById('products-grid');
   const list=filter==='all'?products:products.filter(p=>p.category===filter);
