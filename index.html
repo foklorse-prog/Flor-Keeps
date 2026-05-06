@@ -832,8 +832,32 @@
     .cinfo { flex:1; }
     .cname { font-family:'Cormorant Garamond',serif; font-size:0.95rem; color:var(--navy); line-height:1.3; }
     .cprice { font-size:0.78rem; color:var(--sub); margin-top:0.18rem; }
-    .crm { background:none; border:none; color:var(--sub); cursor:pointer; font-size:0.88rem; transition:color 0.18s; }
+    .crm { background:none; border:none; color:var(--sub); cursor:pointer; font-size:0.88rem; transition:color 0.18s; align-self: flex-start; margin-top: 0.15rem; }
     .crm:hover { color:var(--pink); }
+    /* Quantity stepper */
+    .cqty {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 0.3rem;
+    }
+    .cqty-btn {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--line);
+      background: var(--off);
+      color: var(--navy);
+      font-size: 0.85rem; line-height: 1;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.18s, background 0.18s, color 0.18s;
+      flex-shrink: 0;
+    }
+    .cqty-btn:hover { border-color: var(--pink); color: var(--pink); background: var(--white); }
+    .cqty-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 400;
+      color: var(--navy); min-width: 14px; text-align: center;
+      line-height: 1;
+    }
     .cart-ft { padding:1.2rem 1.5rem; border-top:1px solid var(--line); }
     .cart-tot { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:1.1rem; }
     .cart-tot span { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--sub); }
@@ -846,19 +870,26 @@
     }
     .custom-ov.open { opacity: 1; pointer-events: all; }
     .custom-pop {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: var(--off); border-radius: 20px 20px 0 0;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: min(440px, 92vw);
+      background: var(--off);
+      border-radius: 20px;
       padding: 1.6rem 1.5rem 2rem;
       z-index: 801;
-      transform: translateY(100%);
-      transition: transform 0.38s cubic-bezier(0.23,1,0.32,1);
-      box-shadow: 0 -4px 32px rgba(10,16,20,0.14);
+      transform: translate(-50%, -50%) scale(0.96);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.32s cubic-bezier(0.23,1,0.32,1), opacity 0.25s;
+      box-shadow: 0 16px 60px rgba(10,16,20,0.22);
     }
-    .custom-pop.open { transform: translateY(0); }
-    .custom-pop-handle {
-      width: 36px; height: 4px; background: rgba(10,16,20,0.15);
-      border-radius: 2px; margin: 0 auto 1.2rem;
+    .custom-pop.open {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      pointer-events: all;
     }
+    .custom-pop-handle { display: none; }
     .custom-pop h4 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.15rem; font-weight: 400; color: var(--navy);
@@ -912,17 +943,28 @@
     }
     .chk-ov.open { opacity: 1; pointer-events: all; }
     .chk-modal {
-      position: fixed; top: 50%; left: 50%;
+      position: fixed;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%) scale(0.96);
-      background: var(--off); border-radius: 20px;
-      width: min(480px, 94vw); max-height: 90vh; overflow-y: auto;
+      background: var(--off);
+      border-radius: 20px;
+      width: min(480px, 92vw);   /* caps width on desktop, fluid on mobile */
+      max-height: 88vh;
+      overflow-y: auto;
       padding: 2rem 1.8rem 2rem;
       z-index: 801;
-      opacity: 0; pointer-events: none;
+      opacity: 0;
+      pointer-events: none;
+      /* keep translate in transition so centering never shifts */
       transition: transform 0.32s cubic-bezier(0.23,1,0.32,1), opacity 0.25s;
       box-shadow: 0 16px 60px rgba(10,16,20,0.22);
     }
-    .chk-modal.open { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: all; }
+    .chk-modal.open {
+      transform: translate(-50%, -50%) scale(1); /* same anchor, just scale up */
+      opacity: 1;
+      pointer-events: all;
+    }
     .chk-modal h3 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.5rem; font-weight: 300; color: var(--navy);
@@ -1311,21 +1353,55 @@
 
     <div class="chk-order-summary" id="chk-order-summary"></div>
 
-    <div class="chk-field">
-      <label>Full Name</label>
-      <input type="text" id="chk-name" placeholder="Your name">
+    <div style="display:flex; gap:0.75rem;">
+      <div class="chk-field" style="flex:1">
+        <label>First Name <span style="color:var(--pink)">*</span></label>
+        <input type="text" id="chk-fname" placeholder="First name" autocomplete="given-name">
+      </div>
+      <div class="chk-field" style="flex:1">
+        <label>Last Name <span style="color:var(--pink)">*</span></label>
+        <input type="text" id="chk-lname" placeholder="Last name" autocomplete="family-name">
+      </div>
     </div>
     <div class="chk-field">
-      <label>Email</label>
-      <input type="email" id="chk-email" placeholder="your@email.com">
+      <label>Contact Number <span style="color:var(--pink)">*</span></label>
+      <input type="tel" id="chk-contact" placeholder="+63 9XX XXX XXXX" autocomplete="tel">
     </div>
     <div class="chk-field">
-      <label>Viber / Messenger / Phone</label>
-      <input type="text" id="chk-contact" placeholder="+63 or Messenger name">
+      <label>Messenger / Viber <span style="color:var(--pink)">*</span></label>
+      <input type="text" id="chk-messenger" placeholder="Messenger name or Viber number" autocomplete="off">
     </div>
     <div class="chk-field">
-      <label>Full Delivery Address</label>
-      <input type="text" id="chk-address" placeholder="Street, Barangay, City, Province">
+      <label>Email (optional)</label>
+      <input type="email" id="chk-email" placeholder="your@email.com" autocomplete="email">
+    </div>
+    <div style="display:flex; gap:0.75rem;">
+      <div class="chk-field" style="flex:0 0 120px">
+        <label>House No.</label>
+        <input type="text" id="chk-houseno" placeholder="e.g. 12B" autocomplete="address-line2">
+      </div>
+      <div class="chk-field" style="flex:1">
+        <label>Street <span style="color:var(--pink)">*</span></label>
+        <input type="text" id="chk-street" placeholder="Street name" autocomplete="address-line1">
+      </div>
+    </div>
+    <div class="chk-field">
+      <label>Barangay <span style="color:var(--pink)">*</span></label>
+      <input type="text" id="chk-barangay" placeholder="Barangay" autocomplete="address-level3">
+    </div>
+    <div style="display:flex; gap:0.75rem;">
+      <div class="chk-field" style="flex:1">
+        <label>City / Municipality <span style="color:var(--pink)">*</span></label>
+        <input type="text" id="chk-city" placeholder="City or Municipality" autocomplete="address-level2">
+      </div>
+      <div class="chk-field" style="flex:1">
+        <label>Province <span style="color:var(--pink)">*</span></label>
+        <input type="text" id="chk-province" placeholder="Province" autocomplete="address-level1">
+      </div>
+    </div>
+    <div class="chk-field" style="max-width:160px">
+      <label>ZIP Code <span style="color:var(--pink)">*</span></label>
+      <input type="text" id="chk-zip" placeholder="ZIP" autocomplete="postal-code" inputmode="numeric">
     </div>
 
     <div class="chk-modal-btns">
@@ -1371,8 +1447,8 @@ const products = [
   {id:6,name:"Coaster Set", category:"coaster", price:770, old:null,  badge:"pb-sale", blabel:"Sale", img:"Ocean_stone_coaster.png"},
 
   {id:1,name:"Galaxy Cat Candle Holder", category:"decor", price:240, old: null,  badge:"pb-best",blabel:"Bestseller",img:"Galaxy_cat_candle_holder.png"},
-  {id:7,name:"Rose Cube", category:"decor", price:1000, old: null,  badge: "pb-prem", blabel:"Premium", img:"Rose_cube.png"},
-  {id:9,name:"Lamp", category:"decor", price:600, old:null,  badge:"pb-new", blabel:"New", img:"6-Customizable_lamp_photo1.png"},
+  {id:7,name:"Rose Cube", category:"decor", price:1030, old: null,  badge: "pb-prem", blabel:"Premium", img:"Rose_cube.png"},
+  {id:9,name:"Lamp", category:"decor", price:600, old:null,  badge:"pb-new", blabel:"New", img:"Letter_keychain.jpg"},
 {id:15,name:"Eternal Floral Vase", category:"decor", price:2000, old:null,  badge:"pb-prem", blabel:"Premium", img:"Eternal_floral_vase.png"},
   {id:16,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null, img:"Colorful_accent_jar.jpg"},
   {id:17,name:"Lotus Flower", category:"decor", price:190, old:null,  badge:null, blabel:null, img:"Lotus_container.png"},
@@ -1452,6 +1528,11 @@ function editCartNote(i){
 }
 
 function removeFromCart(i){ cart.splice(i,1); saveCart(); updateCartUI(); renderCart(); }
+function updateQty(i, delta){
+  cart[i].qty += delta;
+  if(cart[i].qty <= 0){ cart.splice(i,1); }
+  saveCart(); updateCartUI();
+}
 function updateCartUI(){
   document.getElementById('cart-count').textContent=cart.reduce((a,i)=>a+i.qty,0);
   renderCart();
@@ -1466,7 +1547,12 @@ function renderCart(){
       <div class="cthumb">${item.img?`<img src="${item.img}" alt="${item.name}">`:''}  </div>
       <div class="cinfo">
         <div class="cname">${item.name}</div>
-        <div class="cprice">₱${item.price.toLocaleString()} × ${item.qty}</div>
+        <div class="cprice">₱${item.price.toLocaleString()}</div>
+        <div class="cqty">
+          <button class="cqty-btn" onclick="updateQty(${i},-1)" aria-label="Decrease">−</button>
+          <span class="cqty-num">${item.qty}</span>
+          <button class="cqty-btn" onclick="updateQty(${i},1)" aria-label="Increase">+</button>
+        </div>
         ${item.note ? `<div class="cnote">✏️ ${item.note}</div>` : '<div class="cnote" style="color:rgba(10,16,20,0.3)">No customization</div>'}
         <button class="cedit" onclick="editCartNote(${i})">Edit preferences</button>
       </div>
@@ -1522,15 +1608,24 @@ function closeCheckoutAfterSuccess(){
 }
 
 async function submitOrder(){
-  const name = document.getElementById('chk-name').value.trim();
-  const email = document.getElementById('chk-email').value.trim();
-  const contact = document.getElementById('chk-contact').value.trim();
-  const address = document.getElementById('chk-address').value.trim();
+  const fname    = document.getElementById('chk-fname').value.trim();
+  const lname    = document.getElementById('chk-lname').value.trim();
+  const contact  = document.getElementById('chk-contact').value.trim();
+  const messenger= document.getElementById('chk-messenger').value.trim();
+  const email    = document.getElementById('chk-email').value.trim();
+  const street   = document.getElementById('chk-street').value.trim();
+  const barangay = document.getElementById('chk-barangay').value.trim();
+  const city     = document.getElementById('chk-city').value.trim();
+  const province = document.getElementById('chk-province').value.trim();
+  const zip      = document.getElementById('chk-zip').value.trim();
 
-  if(!name || !email || !address){
-    toast('Please fill in your name, email, and address 🌸'); return;
+  if(!fname || !lname || !contact || !messenger || !street || !barangay || !city || !province || !zip){
+    toast('Please fill in all required fields 🌸'); return;
   }
 
+  const fullName = `${fname} ${lname}`;
+  const houseno = document.getElementById('chk-houseno').value.trim();
+  const fullAddress = `${houseno ? houseno + ' ' : ''}${street}, Brgy. ${barangay}, ${city}, ${province} ${zip}`;
   const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
   const btn = document.getElementById('chk-submit-btn');
   btn.textContent = 'Sending…'; btn.disabled = true;
@@ -1542,28 +1637,29 @@ async function submitOrder(){
   const total = cart.reduce((a,i) => a + i.price * i.qty, 0);
 
   const body = new FormData();
-  body.append('_replyto', email);
-  body.append('_subject', hasCustom ? `[Flor Keeps] Custom Order from ${name}` : `[Flor Keeps] New Order from ${name}`);
-  body.append('Name', name);
-  body.append('Email', email);
-  body.append('Contact', contact || 'Not provided');
-  body.append('Delivery Address', address);
+  if(email) body.append('_replyto', email);
+  body.append('_subject', hasCustom ? `[Flor Keeps] Custom Order from ${fullName}` : `[Flor Keeps] New Order from ${fullName}`);
+  body.append('Name', fullName);
+  body.append('Contact Number', contact);
+  body.append('Messenger / Viber', messenger);
+  if(email) body.append('Email', email);
+  body.append('Delivery Address', fullAddress);
   body.append('Order Type', hasCustom ? 'Custom (Quote needed)' : 'Standard');
   body.append('Order Details', orderDetails);
   body.append('Order Total', `₱${total.toLocaleString()}`);
 
   try {
-    const res = await fetch('https://formspree.io/f/xgodkdzz', { method:'POST', body, headers:{ Accept:'application/json' } });
+    const res = await fetch('https://formspree.io/f/xvgodwgp', { method:'POST', body, headers:{ Accept:'application/json' } });
     if(res.ok){
       document.getElementById('chk-form-view').style.display = 'none';
       const successView = document.getElementById('chk-success-view');
       successView.style.display = 'block';
       if(hasCustom){
         document.getElementById('chk-success-title').textContent = 'Order received! 🌸';
-        document.getElementById('chk-success-msg').textContent = `Thank you, ${name}! Shiela will review your custom pieces and send you the final quote to ${email} within 24 hours.`;
+        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Shiela will review your custom pieces and reach out via Messenger or Viber with the final quote.`;
       } else {
         document.getElementById('chk-success-title').textContent = 'Order placed! 🎉';
-        document.getElementById('chk-success-msg').textContent = `Thank you, ${name}! Shiela will reach out to ${email} shortly to arrange payment and shipping.`;
+        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Shiela will reach out via Messenger or Viber shortly to arrange payment and shipping.`;
       }
     } else {
       toast('Something went wrong. Please try again.'); btn.textContent = 'Place Order'; btn.disabled = false;
@@ -1798,8 +1894,9 @@ updateMobileParallax();
 
   
   <!-- Start of HubSpot Embed Code -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/245992675.js"></script>
+
 <!-- End of HubSpot Embed Code -->
   
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/245992675.js"></script>
 </body>
 </html>
