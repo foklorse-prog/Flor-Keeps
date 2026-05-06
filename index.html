@@ -1649,7 +1649,7 @@ async function submitOrder(){
   body.append('Order Total', `₱${total.toLocaleString()}`);
 
   try {
-    const res = await fetch('https://formspree.io/f/xvgodwgp', { method:'POST', body, headers:{ Accept:'application/json' } });
+    const res = await fetch('https://formspree.io/f/xgodkdzz', { method:'POST', body, headers:{ Accept:'application/json' } });
     if(res.ok){
       document.getElementById('chk-form-view').style.display = 'none';
       const successView = document.getElementById('chk-success-view');
