@@ -1375,15 +1375,9 @@
       <label>Email (optional)</label>
       <input type="email" id="chk-email" placeholder="your@email.com" autocomplete="email">
     </div>
-    <div style="display:flex; gap:0.75rem;">
-      <div class="chk-field" style="flex:0 0 120px">
-        <label>House No.</label>
-        <input type="text" id="chk-houseno" placeholder="e.g. 12B" autocomplete="address-line2">
-      </div>
-      <div class="chk-field" style="flex:1">
-        <label>Street <span style="color:var(--pink)">*</span></label>
-        <input type="text" id="chk-street" placeholder="Street name" autocomplete="address-line1">
-      </div>
+    <div class="chk-field">
+      <label>House # / Building / Street / Subdivision <span style="color:var(--pink)">*</span></label>
+      <input type="text" id="chk-street" placeholder="e.g. 12B Mabini St., Sunshine Subd." autocomplete="address-line1">
     </div>
     <div class="chk-field">
       <label>Barangay <span style="color:var(--pink)">*</span></label>
@@ -1404,6 +1398,7 @@
       <input type="text" id="chk-zip" placeholder="ZIP" autocomplete="postal-code" inputmode="numeric">
     </div>
 
+    <p style="font-size:0.72rem; color:rgba(10,16,20,0.45); line-height:1.6; margin-bottom:1rem;">Production takes 3–5 business days after payment. Shipping is arranged once your piece is ready — fees vary by location.</p>
     <div class="chk-modal-btns">
       <button class="btn btn-pink" id="chk-submit-btn" onclick="submitOrder()">Place Order</button>
     </div>
@@ -1448,7 +1443,7 @@ const products = [
 
   {id:1,name:"Galaxy Cat Candle Holder", category:"decor", price:240, old: null,  badge:"pb-best",blabel:"Bestseller",img:"Galaxy_cat_candle_holder.png"},
   {id:7,name:"Rose Cube", category:"decor", price:1030, old: null,  badge: "pb-prem", blabel:"Premium", img:"Rose_cube.png"},
-  {id:9,name:"Lamp", category:"decor", price:600, old:null,  badge:"pb-new", blabel:"New", img:"6-Customizable_lamp_photo1.png"},
+  {id:9,name:"Lamp", category:"decor", price:600, old:null,  badge:"pb-new", blabel:"New", img:"Letter_keychain.jpg"},
 {id:15,name:"Eternal Floral Vase", category:"decor", price:2000, old:null,  badge:"pb-prem", blabel:"Premium", img:"Eternal_floral_vase.png"},
   {id:16,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null, img:"Colorful_accent_jar.jpg"},
   {id:17,name:"Lotus Flower", category:"decor", price:190, old:null,  badge:null, blabel:null, img:"Lotus_container.png"},
@@ -1624,8 +1619,7 @@ async function submitOrder(){
   }
 
   const fullName = `${fname} ${lname}`;
-  const houseno = document.getElementById('chk-houseno').value.trim();
-  const fullAddress = `${houseno ? houseno + ' ' : ''}${street}, Brgy. ${barangay}, ${city}, ${province} ${zip}`;
+  const fullAddress = `${street}, Brgy. ${barangay}, ${city}, ${province} ${zip}`;
   const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
   const btn = document.getElementById('chk-submit-btn');
   btn.textContent = 'Sending…'; btn.disabled = true;
@@ -1656,10 +1650,10 @@ async function submitOrder(){
       successView.style.display = 'block';
       if(hasCustom){
         document.getElementById('chk-success-title').textContent = 'Order received! 🌸';
-        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Shiela will review your custom pieces and reach out via Messenger or Viber with the final quote.`;
+        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Shiela will reach out via Messenger or Viber with your quote and payment details.`;
       } else {
         document.getElementById('chk-success-title').textContent = 'Order placed! 🎉';
-        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Shiela will reach out via Messenger or Viber shortly to arrange payment and shipping.`;
+        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Shiela will reach out via Messenger or Viber with your payment details.`;
       }
     } else {
       toast('Something went wrong. Please try again.'); btn.textContent = 'Place Order'; btn.disabled = false;
