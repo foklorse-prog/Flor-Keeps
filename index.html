@@ -1351,8 +1351,7 @@
     <h3>Almost there 🌸</h3>
     <p class="chk-sub" id="chk-sub-msg">Fill in your details and we'll get your order sorted.</p>
 
-    <div class="chk-order-summary" id="chk-order-summary"></div>
-
+    <!-- Contact details -->
     <div style="display:flex; gap:0.75rem;">
       <div class="chk-field" style="flex:1">
         <label>First Name <span style="color:var(--pink)">*</span></label>
@@ -1375,6 +1374,8 @@
       <label>Email (optional)</label>
       <input type="email" id="chk-email" placeholder="your@email.com" autocomplete="email">
     </div>
+
+    <!-- Delivery address -->
     <div class="chk-field">
       <label>House # / Building / Street / Subdivision <span style="color:var(--pink)">*</span></label>
       <input type="text" id="chk-street" placeholder="e.g. 12B Mabini St., Sunshine Subd." autocomplete="address-line1">
@@ -1390,7 +1391,10 @@
       </div>
       <div class="chk-field" style="flex:1">
         <label>Province <span style="color:var(--pink)">*</span></label>
-        <input type="text" id="chk-province" placeholder="Province" autocomplete="address-level1">
+        <select id="chk-province" autocomplete="address-level1" onchange="updateShippingFee()" style="width:100%; background:var(--white); border:1.5px solid rgba(10,16,20,0.13); border-radius:10px; padding:0.72rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.86rem; color:var(--navy); outline:none; transition:border-color 0.2s; appearance:none;">
+          <option value="">Select province</option>
+          <option>Abra</option><option>Agusan del Norte</option><option>Agusan del Sur</option><option>Aklan</option><option>Albay</option><option>Antique</option><option>Apayao</option><option>Aurora</option><option>Basilan</option><option>Bataan</option><option>Batanes</option><option>Batangas</option><option>Benguet</option><option>Biliran</option><option>Bohol</option><option>Bukidnon</option><option>Bulacan</option><option>Cagayan</option><option>Camarines Norte</option><option>Camarines Sur</option><option>Camiguin</option><option>Capiz</option><option>Catanduanes</option><option>Cavite</option><option>Cebu</option><option>Cotabato</option><option>Davao de Oro</option><option>Davao del Norte</option><option>Davao del Sur</option><option>Davao Occidental</option><option>Davao Oriental</option><option>Dinagat Islands</option><option>Eastern Samar</option><option>Guimaras</option><option>Ifugao</option><option>Ilocos Norte</option><option>Ilocos Sur</option><option>Iloilo</option><option>Isabela</option><option>Kalinga</option><option>La Union</option><option>Laguna</option><option>Lanao del Norte</option><option>Lanao del Sur</option><option>Leyte</option><option>Maguindanao del Norte</option><option>Maguindanao del Sur</option><option>Marinduque</option><option>Masbate</option><option>Metro Manila</option><option>Misamis Occidental</option><option>Misamis Oriental</option><option>Mountain Province</option><option>Negros Occidental</option><option>Negros Oriental</option><option>Northern Samar</option><option>Nueva Ecija</option><option>Nueva Vizcaya</option><option>Occidental Mindoro</option><option>Oriental Mindoro</option><option>Palawan</option><option>Pampanga</option><option>Pangasinan</option><option>Quezon</option><option>Quirino</option><option>Rizal</option><option>Romblon</option><option>Samar</option><option>Sarangani</option><option>Siquijor</option><option>Sorsogon</option><option>South Cotabato</option><option>Southern Leyte</option><option>Sultan Kudarat</option><option>Sulu</option><option>Surigao del Norte</option><option>Surigao del Sur</option><option>Tarlac</option><option>Tawi-Tawi</option><option>Zambales</option><option>Zamboanga del Norte</option><option>Zamboanga del Sur</option><option>Zamboanga Sibugay</option>
+        </select>
       </div>
     </div>
     <div class="chk-field" style="max-width:160px">
@@ -1398,7 +1402,29 @@
       <input type="text" id="chk-zip" placeholder="ZIP" autocomplete="postal-code" inputmode="numeric">
     </div>
 
-    <p style="font-size:0.72rem; color:rgba(10,16,20,0.45); line-height:1.6; margin-bottom:1rem;">Production takes 3–5 business days after payment. Shipping is arranged once your piece is ready — fees vary by location.</p>
+    <!-- Order summary with shipping and total -->
+    <div class="chk-order-summary" id="chk-order-summary" style="margin-top:1rem;"></div>
+
+    <!-- Standard order: payment method + proof -->
+    <div id="chk-qr-section" style="display:none; margin-bottom:1rem;">
+      <p style="font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(10,16,20,0.45); margin-bottom:0.75rem; font-weight:500;">Select Payment Method</p>
+      <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:1rem;">
+        <div style="text-align:center;">
+          <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); margin-bottom:0.3rem;">GCash QR<br>coming soon</div>
+          <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">GCash</span>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); margin-bottom:0.3rem;">Maya QR<br>coming soon</div>
+          <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">Maya</span>
+        </div>
+      </div>
+      <div class="chk-field">
+        <label>Proof of Payment <span style="color:var(--pink)">*</span></label>
+        <input type="file" id="chk-proof" accept="image/*" style="width:100%; background:var(--white); border:1.5px solid rgba(10,16,20,0.13); border-radius:10px; padding:0.65rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; color:var(--navy);">
+      </div>
+    </div>
+
+    <p style="font-size:0.72rem; color:rgba(10,16,20,0.45); line-height:1.6; margin-bottom:1rem;">All pieces are made within 3–5 business days after payment. Shipping within Cebu is TBD, and ₱80 for all other destinations. All sales are final — no refunds or returns.</p>
     <div class="chk-modal-btns">
       <button class="btn btn-pink" id="chk-submit-btn" onclick="submitOrder()">Place Order</button>
     </div>
@@ -1503,6 +1529,14 @@ function confirmAddToCart(){
 }
 
 function skipCustomization(){
+  if(_editingCartIndex !== null){
+    // In edit mode — just clear the note, don't add a new item
+    cart[_editingCartIndex].note = '';
+    saveCart(); updateCartUI();
+    toast('Preferences cleared ✨');
+    closeCustomPopup();
+    return;
+  }
   const p = products.find(x => x.id === _pendingProductId);
   const ex = cart.find(i => i.id === _pendingProductId);
   if(ex) ex.qty++; else cart.push({...p, qty:1, note:''});
@@ -1529,6 +1563,9 @@ function updateQty(i, delta){
   saveCart(); updateCartUI();
 }
 function updateCartUI(){
+  // Clean up any undefined/corrupted items
+  cart = cart.filter(i => i && i.id && i.name && i.price);
+  saveCart();
   document.getElementById('cart-count').textContent=cart.reduce((a,i)=>a+i.qty,0);
   renderCart();
 }
@@ -1564,15 +1601,8 @@ function checkout(){
   if(!cart.length){ toast('Your cart is empty 🛒'); return; }
   const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
 
-  const summaryEl = document.getElementById('chk-order-summary');
-  let summaryHTML = '<div class="chk-sum-label">Order Summary</div>';
-  cart.forEach(item => {
-    summaryHTML += `<div class="chk-sum-item"><span>${item.name} × ${item.qty}</span><span>₱${(item.price * item.qty).toLocaleString()}</span></div>`;
-    if(item.note) summaryHTML += `<div class="chk-sum-note">✏️ ${item.note}</div>`;
-  });
-  const total = cart.reduce((a,i) => a + i.price * i.qty, 0);
-  summaryHTML += `<div class="chk-total-row"><span>Total</span><strong>₱${total.toLocaleString()}</strong></div>`;
-  summaryEl.innerHTML = summaryHTML;
+  // Build order summary immediately, shipping updates when province is selected
+  buildOrderSummary('');
 
   const subMsg = document.getElementById('chk-sub-msg');
   if(hasCustom){
@@ -1587,6 +1617,9 @@ function checkout(){
   document.getElementById('chk-success-view').style.display = 'none';
   document.getElementById('chk-submit-btn').textContent = 'Place Order';
   document.getElementById('chk-submit-btn').disabled = false;
+  document.getElementById('chk-province').value = '';
+  // Show QR section only for standard orders
+  document.getElementById('chk-qr-section').style.display = hasCustom ? 'none' : 'block';
   document.getElementById('chk-overlay').classList.add('open');
   document.getElementById('chk-modal').classList.add('open');
   toggleCart();
@@ -1602,6 +1635,31 @@ function closeCheckoutAfterSuccess(){
   cart = []; saveCart(); updateCartUI();
 }
 
+function updateShippingFee(){
+  const province = document.getElementById('chk-province').value;
+  if(!province) return;
+  buildOrderSummary(province);
+}
+
+function buildOrderSummary(province){
+  const summaryEl = document.getElementById('chk-order-summary');
+  if(!summaryEl) return;
+  const isCebu = province === 'Cebu';
+  const noProvince = !province;
+  const productTotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
+  const shippingLabel = noProvince ? '—' : isCebu ? 'TBD' : '₱80';
+  const totalLabel = noProvince ? `₱${productTotal.toLocaleString()} + shipping` : isCebu ? `₱${productTotal.toLocaleString()} + TBD shipping` : `₱${(productTotal + 80).toLocaleString()}`;
+
+  let html = '<div class="chk-sum-label">Order Summary</div>';
+  cart.forEach(item => {
+    html += `<div class="chk-sum-item"><span>${item.name} × ${item.qty}</span><span>₱${(item.price * item.qty).toLocaleString()}</span></div>`;
+    if(item.note) html += `<div class="chk-sum-note">✏️ ${item.note}</div>`;
+  });
+  html += `<div class="chk-sum-item" style="margin-top:0.35rem;"><span>Shipping</span><span>${shippingLabel}</span></div>`;
+  html += `<div class="chk-total-row"><span>Total</span><strong>${totalLabel}</strong></div>`;
+  summaryEl.innerHTML = html;
+}
+
 async function submitOrder(){
   const fname    = document.getElementById('chk-fname').value.trim();
   const lname    = document.getElementById('chk-lname').value.trim();
@@ -1611,16 +1669,25 @@ async function submitOrder(){
   const street   = document.getElementById('chk-street').value.trim();
   const barangay = document.getElementById('chk-barangay').value.trim();
   const city     = document.getElementById('chk-city').value.trim();
-  const province = document.getElementById('chk-province').value.trim();
+  const province = document.getElementById('chk-province').value;
   const zip      = document.getElementById('chk-zip').value.trim();
 
   if(!fname || !lname || !contact || !messenger || !street || !barangay || !city || !province || !zip){
     toast('Please fill in all required fields 🌸'); return;
   }
 
-  const fullName = `${fname} ${lname}`;
-  const fullAddress = `${street}, Brgy. ${barangay}, ${city}, ${province} ${zip}`;
   const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
+
+  // Validate proof of payment for standard orders
+  if(!hasCustom){
+    const proof = document.getElementById('chk-proof').files[0];
+    if(!proof){ toast('Please attach your proof of payment 🌸'); return; }
+  }
+
+  const fullName = `${fname} ${lname}`;
+  const isCebu = province === 'Cebu';
+  const shippingFee = isCebu ? 'TBD (Cebu)' : '₱80';
+  const fullAddress = `${street}, Brgy. ${barangay}, ${city}, ${province} ${zip}`;
   const btn = document.getElementById('chk-submit-btn');
   btn.textContent = 'Sending…'; btn.disabled = true;
 
@@ -1628,7 +1695,8 @@ async function submitOrder(){
     `${item.name} × ${item.qty} — ₱${(item.price * item.qty).toLocaleString()}` +
     (item.note ? `\nCustomization: ${item.note}` : '\nNo customization')
   ).join('\n\n');
-  const total = cart.reduce((a,i) => a + i.price * i.qty, 0);
+  const productTotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
+  const grandTotal = (!hasCustom && !isCebu) ? productTotal + 80 : productTotal;
 
   const body = new FormData();
   if(email) body.append('_replyto', email);
@@ -1638,9 +1706,14 @@ async function submitOrder(){
   body.append('Messenger / Viber', messenger);
   if(email) body.append('Email', email);
   body.append('Delivery Address', fullAddress);
+  body.append('Shipping Fee', shippingFee);
   body.append('Order Type', hasCustom ? 'Custom (Quote needed)' : 'Standard');
   body.append('Order Details', orderDetails);
-  body.append('Order Total', `₱${total.toLocaleString()}`);
+  body.append('Order Total', `₱${grandTotal.toLocaleString()}${isCebu ? ' + TBD shipping' : ''}`);
+  if(!hasCustom){
+    const proof = document.getElementById('chk-proof').files[0];
+    if(proof) body.append('Proof of Payment', proof);
+  };
 
   try {
     const res = await fetch('https://formspree.io/f/xgodkdzz', { method:'POST', body, headers:{ Accept:'application/json' } });
@@ -1653,7 +1726,7 @@ async function submitOrder(){
         document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Shiela will reach out via Messenger or Viber with your quote and payment details.`;
       } else {
         document.getElementById('chk-success-title').textContent = 'Order placed! 🎉';
-        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Shiela will reach out via Messenger or Viber with your payment details.`;
+        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Your order is confirmed. Shiela will begin working on your piece right away.`;
       }
     } else {
       toast('Something went wrong. Please try again.'); btn.textContent = 'Place Order'; btn.disabled = false;
