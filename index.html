@@ -1720,11 +1720,7 @@ async function submitOrder(){
 
   const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
 
-  // Validate proof of payment for standard orders outside Cebu City
-  if(!hasCustom && !isCebuCity){
-    const proof = document.getElementById('chk-proof').files[0];
-    if(!proof){ toast('Please attach your proof of payment 🌸'); return; }
-  }
+  // Proof of payment handled separately for now
 
   const fullName = `${fname} ${lname}`;
   const shippingFee = isCebuCity ? 'Shouldered by receiver (Maxim, Grab, or Move It)' : '₱80';
@@ -1739,22 +1735,6 @@ async function submitOrder(){
   const productTotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
   const grandTotal = (!hasCustom && !isCebuCity) ? productTotal + 80 : productTotal;
 
-  // Convert proof of payment to base64 if present
-  let proofBase64 = '';
-  let proofFileName = '';
-  if(!hasCustom && !isCebuCity){
-    const proofFile = document.getElementById('chk-proof').files[0];
-    if(proofFile){
-      proofBase64 = await new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(proofFile);
-      });
-      proofFileName = proofFile.name;
-    }
-  }
-
   const payload = {
     Name: fullName,
     'Contact Number': contact,
@@ -1764,9 +1744,7 @@ async function submitOrder(){
     'Shipping Fee': shippingFee,
     'Order Type': hasCustom ? 'Custom (Quote needed)' : 'Standard',
     'Order Details': orderDetails,
-    'Order Total': `₱${grandTotal.toLocaleString()}${isCebuCity ? ' (delivery by receiver)' : ' incl. ₱80 shipping'}`,
-    'Proof Base64': proofBase64,
-    'Proof File Name': proofFileName
+    'Order Total': `₱${grandTotal.toLocaleString()}${isCebuCity ? ' (delivery by receiver)' : ' incl. ₱80 shipping'}`
   };
 
   try {
