@@ -1430,6 +1430,11 @@
           <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">Maya</span>
         </div>
       </div>
+      <div class="chk-field">
+        <label>Proof of Payment <span style="color:var(--pink)">*</span></label>
+        <input type="file" id="chk-proof" accept="image/*" style="width:100%; background:var(--white); border:1.5px solid rgba(10,16,20,0.13); border-radius:10px; padding:0.65rem 1rem; font-family:'DM Sans',sans-serif; font-size:0.82rem; color:var(--navy);">
+        <p style="font-size:0.68rem; color:rgba(10,16,20,0.4); margin-top:0.3rem;">Images only. Max 15 MB.</p>
+      </div>
     </div>
 
     <p style="font-size:0.72rem; color:rgba(10,16,20,0.45); line-height:1.6; margin-bottom:1rem;">All pieces are made within 3–5 business days after payment. Delivery within Cebu City is arranged by the receiver via Maxim, Grab, or Move It. Outside Cebu City, a ₱80 shipping fee applies. All sales are final — no refunds or returns.</p>
@@ -1493,6 +1498,10 @@ const products = [
   {id:14,name:"Stationery Set", category:"stationery", price:350, old:null,  badge:null, blabel:null, img:"Stationery_set.jpg"},
 
 ];
+
+const CLOUDINARY_CLOUD_NAME = 'dvz4vhlid';
+const CLOUDINARY_UPLOAD_PRESET = 'Flor_Keeps_Payment_Proofs';
+const MAX_PROOF_SIZE = 15 * 1024 * 1024;
 
 let cart = JSON.parse(localStorage.getItem('pp_cart')||'[]');
 function saveCart(){ localStorage.setItem('pp_cart',JSON.stringify(cart)); }
@@ -1626,8 +1635,10 @@ function checkout(){
   document.getElementById('chk-submit-btn').textContent = 'Place Order';
   document.getElementById('chk-submit-btn').disabled = false;
   document.getElementById('chk-province').value = '';
+  const proofInput = document.getElementById('chk-proof');
+  if(proofInput) proofInput.value = '';
   // Show QR section only for standard orders
-  document.getElementById('chk-qr-section').style.display = 'none'; // shown dynamically by updateShippingFee
+  document.getElementById('chk-qr-section').style.display = hasCustom ? 'none' : 'block';
   document.getElementById('chk-overlay').classList.add('open');
   document.getElementById('chk-modal').classList.add('open');
   toggleCart();
@@ -1662,10 +1673,10 @@ function updateShippingFee(){
   const isOutside = cebuNo && cebuNo.checked;
   const selected = isCebu ? 'cebu' : isOutside ? 'outside' : '';
   buildOrderSummary(selected);
-  // Show QR section only for standard orders outside Cebu City
+  // Show proof section only for standard orders
   const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
   const qr = document.getElementById('chk-qr-section');
-  if(qr) qr.style.display = (!hasCustom && isOutside) ? 'block' : 'none';
+  if(qr) qr.style.display = hasCustom ? 'none' : 'block';
 }
 
 function buildOrderSummary(location){
@@ -1689,6 +1700,25 @@ function buildOrderSummary(location){
   html += `<div class="chk-sum-item" style="margin-top:0.35rem;"><span>Delivery</span><span>${shippingLabel}</span></div>`;
   html += `<div class="chk-total-row"><span>Total</span><strong>${totalLabel}</strong></div>`;
   summaryEl.innerHTML = html;
+}
+
+async function uploadProofOfPayment(file){
+  const body = new FormData();
+  body.append('file', file);
+  body.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+  const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+    method: 'POST',
+    body
+  });
+  const data = await res.json();
+  if(!res.ok || !data.secure_url){
+    throw new Error(data.error?.message || 'Proof upload failed.');
+  }
+  return {
+    url: data.secure_url,
+    filename: file.name
+  };
 }
 
 async function submitOrder(){
@@ -1716,13 +1746,26 @@ async function submitOrder(){
 
   const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
 
-  // Proof of payment handled separately for now
+  let proofFile = null;
+  if(!hasCustom){
+    const proofInput = document.getElementById('chk-proof');
+    proofFile = proofInput && proofInput.files ? proofInput.files[0] : null;
+    if(!proofFile){
+      toast('Please upload your proof of payment.'); return;
+    }
+    if(!proofFile.type || !proofFile.type.startsWith('image/')){
+      toast('Please upload an image file.'); return;
+    }
+    if(proofFile.size > MAX_PROOF_SIZE){
+      toast('Proof image must be 15 MB or smaller.'); return;
+    }
+  }
 
   const fullName = `${fname} ${lname}`;
   const shippingFee = isCebuCity ? 'Shouldered by receiver (Maxim, Grab, or Move It)' : '₱80';
   const fullAddress = `${street}, Brgy. ${barangay}, ${city}, ${province} ${zip}`;
   const btn = document.getElementById('chk-submit-btn');
-  btn.textContent = 'Sending…'; btn.disabled = true;
+  btn.textContent = proofFile ? 'Uploading proof...' : 'Sending...'; btn.disabled = true;
 
   let orderDetails = cart.map(item =>
     `${item.name} × ${item.qty} — ₱${(item.price * item.qty).toLocaleString()}` +
@@ -1742,6 +1785,19 @@ async function submitOrder(){
     'Order Details': orderDetails,
     'Order Total': `₱${grandTotal.toLocaleString()}${isCebuCity ? ' (delivery by receiver)' : ' incl. ₱80 shipping'}`
   };
+
+  if(proofFile){
+    try {
+      const proof = await uploadProofOfPayment(proofFile);
+      payload['Proof of Payment Filename'] = proof.filename;
+      payload['Proof of Payment URL'] = proof.url;
+      btn.textContent = 'Sending...';
+    } catch(e){
+      console.error('Cloudinary proof upload failed:', e);
+      toast('Proof upload failed. Please try again.'); btn.textContent = 'Place Order'; btn.disabled = false;
+      return;
+    }
+  }
 
   const body = new FormData();
   if(email) body.append('_replyto', email);
