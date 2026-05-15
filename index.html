@@ -1739,27 +1739,44 @@ async function submitOrder(){
   const productTotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
   const grandTotal = (!hasCustom && !isCebuCity) ? productTotal + 80 : productTotal;
 
-  const body = new FormData();
-  if(email) body.append('_replyto', email);
-  body.append('_subject', hasCustom ? `[Flor Keeps] Custom Order from ${fullName}` : `[Flor Keeps] New Order from ${fullName}`);
-  body.append('Name', fullName);
-  body.append('Contact Number', contact);
-  body.append('Messenger / Viber', messenger);
-  if(email) body.append('Email', email);
-  body.append('Delivery Address', fullAddress);
-  body.append('Shipping Fee', shippingFee);
-  body.append('Order Type', hasCustom ? 'Custom (Quote needed)' : 'Standard');
-  body.append('Order Details', orderDetails);
-  body.append('Order Total', `₱${grandTotal.toLocaleString()}${isCebuCity ? ' (delivery by receiver)' : ' incl. ₱80 shipping'}`);
+  // Convert proof of payment to base64 if present
+  let proofBase64 = '';
+  let proofFileName = '';
   if(!hasCustom && !isCebuCity){
-    const proof = document.getElementById('chk-proof').files[0];
-    if(proof) body.append('Proof of Payment', proof);
+    const proofFile = document.getElementById('chk-proof').files[0];
+    if(proofFile){
+      proofBase64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(proofFile);
+      });
+      proofFileName = proofFile.name;
+    }
+  }
+
+  const payload = {
+    Name: fullName,
+    'Contact Number': contact,
+    'Messenger / Viber': messenger,
+    Email: email || '',
+    'Delivery Address': fullAddress,
+    'Shipping Fee': shippingFee,
+    'Order Type': hasCustom ? 'Custom (Quote needed)' : 'Standard',
+    'Order Details': orderDetails,
+    'Order Total': `₱${grandTotal.toLocaleString()}${isCebuCity ? ' (delivery by receiver)' : ' incl. ₱80 shipping'}`,
+    'Proof Base64': proofBase64,
+    'Proof File Name': proofFileName
   };
 
   try {
-    const res = await fetch('https://script.google.com/macros/s/AKfycbzFSQj8TobwaQJnjfZ9C1Pg7_1P30LQhU7I12aANyZphc2AVor2_OZT1sOJbnvO8IP7Hw/exec', { method:'POST', body });
+    const res = await fetch('https://script.google.com/macros/s/AKfycbyrj0RA6ggdXkRbVEE9qWUkHAUll4TBdXkeYoK-5Xr72_4F0w3fpzVx2UvzH5G2O8rvWg/exec', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'text/plain' }
+    });
     const data = await res.json();
-    if(res.ok && data.result === 'success'){
+    if(data.result === 'success'){
       document.getElementById('chk-form-view').style.display = 'none';
       const successView = document.getElementById('chk-success-view');
       successView.style.display = 'block';
