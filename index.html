@@ -1046,6 +1046,31 @@
     .toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:0.68rem 1.55rem; border-radius:2rem; font-size:0.78rem; z-index:999; transition:transform 0.34s cubic-bezier(0.23,1,0.32,1); white-space:nowrap; box-shadow:0 6px 24px rgba(10,16,20,0.22); }
     .toast.show { transform:translateX(-50%) translateY(0); }
 
+    .pending-payment-card {
+      position: fixed; right: 1.4rem; bottom: 1.4rem; z-index: 850;
+      width: min(320px, calc(100vw - 2rem));
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 14px; padding: 1rem 1.1rem;
+      box-shadow: 0 8px 28px rgba(10,16,20,0.14);
+      display: none;
+    }
+    .pending-payment-card.show { display: block; }
+    .pending-payment-card h4 {
+      font-family:'Cormorant Garamond',serif; font-size:1rem;
+      color:var(--navy); margin-bottom:0.25rem; font-weight:400;
+    }
+    .pending-payment-card p {
+      font-size:0.72rem; color:var(--sub); line-height:1.55; margin-bottom:0.75rem;
+      font-family:'Poppins',sans-serif;
+    }
+    .pending-payment-card button {
+      width:100%; justify-content:center;
+    }
+
+    @media (max-width: 520px) {
+      .pending-payment-card { left: 1rem; right: 1rem; bottom: 1rem; width: auto; }
+    }
+
     /* ═══ INSTALL BANNER ═══ */
     #install-banner { position:fixed; bottom:1.4rem; right:1.4rem; z-index:800; background:var(--white); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.3rem; max-width:265px; box-shadow:0 8px 28px rgba(10,16,20,0.12); display:none; }
     #install-banner h4 { font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--navy); margin-bottom:0.3rem; }
@@ -1451,7 +1476,7 @@
     <p style="font-size:0.72rem; color:rgba(10,16,20,0.45); line-height:1.6; margin-bottom:0.4rem; font-family:'Poppins',sans-serif;">All pieces are made within 3–5 business days after payment. All sales are final — no refunds or returns.</p>
     <p id="chk-shipping-note" style="font-size:0.72rem; color:rgba(10,16,20,0.45); line-height:1.6; margin-bottom:1rem; font-family:'Poppins',sans-serif; display:none;"></p>
     <div class="chk-modal-btns">
-      <button class="btn btn-pink" id="chk-submit-btn" onclick="submitOrder()">Place Order</button>
+      <button class="btn btn-pink" id="chk-submit-btn" onclick="submitOrderV2()">Place Order</button>
     </div>
     <p class="chk-cancel" onclick="closeCheckout()">Cancel</p>
   </div>
@@ -1477,6 +1502,11 @@
   </div>
 </div>
 <div class="toast" id="toast"></div>
+<div class="pending-payment-card" id="pending-payment-card">
+  <h4>Payment pending</h4>
+  <p id="pending-payment-text">Complete payment for your order.</p>
+  <button class="btn btn-pink" onclick="resumePendingPayment()">Complete Payment</button>
+</div>
 <div id="install-banner">
   <h4>Add to Home Screen</h4>
   <p>Install Flor Keeps for quick access anytime.</p>
@@ -1515,10 +1545,164 @@ const products = [
 
 const CLOUDINARY_CLOUD_NAME = 'dvz4vhlid';
 const CLOUDINARY_UPLOAD_PRESET = 'Flor_Keeps_Payment_Proofs';
-const MAX_PROOF_SIZE = 15 * 1024 * 1024;
+const MAX_PROOF_SIZE = 10 * 1024 * 1024;
+const CHECKOUT_DB_NAME = 'flor_keeps_checkout';
+const CHECKOUT_DB_STORE = 'pending_orders';
+const PENDING_ORDER_KEY = 'current';
+let currentPendingOrder = null;
 
 let cart = JSON.parse(localStorage.getItem('pp_cart')||'[]');
 function saveCart(){ localStorage.setItem('pp_cart',JSON.stringify(cart)); }
+
+function openCheckoutDb(){
+  return new Promise((resolve, reject) => {
+    if(!window.indexedDB){ reject(new Error('IndexedDB is not available.')); return; }
+    const req = indexedDB.open(CHECKOUT_DB_NAME, 1);
+    req.onupgradeneeded = () => {
+      const db = req.result;
+      if(!db.objectStoreNames.contains(CHECKOUT_DB_STORE)){
+        db.createObjectStore(CHECKOUT_DB_STORE, { keyPath: 'key' });
+      }
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error || new Error('Could not open checkout storage.'));
+  });
+}
+
+async function savePendingOrder(order){
+  currentPendingOrder = order;
+  renderPendingPaymentCard(order);
+  const db = await openCheckoutDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(CHECKOUT_DB_STORE, 'readwrite');
+    tx.objectStore(CHECKOUT_DB_STORE).put({ ...order, key: PENDING_ORDER_KEY });
+    tx.oncomplete = () => { db.close(); resolve(); };
+    tx.onerror = () => { db.close(); reject(tx.error || new Error('Could not save pending order.')); };
+  });
+}
+
+async function getPendingOrder(){
+  const db = await openCheckoutDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(CHECKOUT_DB_STORE, 'readonly');
+    const req = tx.objectStore(CHECKOUT_DB_STORE).get(PENDING_ORDER_KEY);
+    req.onsuccess = () => {
+      db.close();
+      const value = req.result;
+      currentPendingOrder = value ? value : null;
+      renderPendingPaymentCard(currentPendingOrder);
+      resolve(currentPendingOrder);
+    };
+    req.onerror = () => { db.close(); reject(req.error || new Error('Could not read pending order.')); };
+  });
+}
+
+async function clearPendingOrder(){
+  currentPendingOrder = null;
+  renderPendingPaymentCard(null);
+  const db = await openCheckoutDb();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(CHECKOUT_DB_STORE, 'readwrite');
+    tx.objectStore(CHECKOUT_DB_STORE).delete(PENDING_ORDER_KEY);
+    tx.oncomplete = () => { db.close(); resolve(); };
+    tx.onerror = () => { db.close(); reject(tx.error || new Error('Could not clear pending order.')); };
+  });
+}
+
+function renderPendingPaymentCard(order){
+  const card = document.getElementById('pending-payment-card');
+  const text = document.getElementById('pending-payment-text');
+  if(!card || !text) return;
+  if(order && order.status === 'waiting_for_payment'){
+    text.textContent = `Complete payment for order ${order.orderId}.`;
+    card.classList.add('show');
+  } else {
+    card.classList.remove('show');
+  }
+}
+
+async function resumePendingPayment(){
+  try {
+    const pending = currentPendingOrder || await getPendingOrder();
+    if(pending && pending.status === 'waiting_for_payment'){
+      showPaymentView(pending);
+      return;
+    }
+  } catch(e){
+    console.error('Pending payment resume failed:', e);
+  }
+  toast('No pending payment found.');
+}
+
+function createOrderId(){
+  const now = new Date();
+  const yy = String(now.getFullYear()).slice(2);
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const date = `${yy}${mm}${dd}`;
+  const bytes = new Uint8Array(8);
+  crypto.getRandomValues(bytes);
+  const code = Array.from(bytes, b => (b % 36).toString(36).toUpperCase()).join('');
+  return `FK-${date}-${code}`;
+}
+
+function isValidEmail(value){
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function escapeHtml(value){
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function resetProofInput(){
+  const proofInput = document.getElementById('pay-proof') || document.getElementById('chk-proof');
+  if(proofInput) proofInput.value = '';
+  const proofText = document.getElementById('pay-proof-text') || document.getElementById('chk-proof-text');
+  if(proofText){
+    proofText.textContent = 'Tap to upload screenshot';
+    proofText.style.color = 'rgba(10,16,20,0.35)';
+  }
+}
+
+function updateProofFilename(input){
+  const text = document.getElementById('pay-proof-text') || document.getElementById('chk-proof-text');
+  if(!text) return;
+  if(input.files && input.files[0]){
+    const n = input.files[0].name;
+    const dot = n.lastIndexOf('.');
+    const ext = dot !== -1 ? n.slice(dot) : '';
+    const base = dot !== -1 ? n.slice(0, dot) : n;
+    text.textContent = base.length > 20 ? `${base.slice(0, 20)}...${ext}` : n;
+    text.style.color = 'var(--navy)';
+  } else {
+    text.textContent = 'Tap to upload screenshot';
+    text.style.color = 'rgba(10,16,20,0.35)';
+  }
+}
+
+function getFormspreeError(data){
+  return data?.errors?.[0]?.message || data?.error || 'Something went wrong. Please try again.';
+}
+
+async function submitFormspree(body){
+  const res = await fetch('https://formspree.io/f/xgodkdzz', {
+    method: 'POST',
+    body,
+    headers: { 'Accept': 'application/json' }
+  });
+  let data = {};
+  try { data = await res.json(); } catch(e) {}
+  if(!res.ok){
+    console.error('Formspree submission failed:', data);
+    throw new Error(getFormspreeError(data));
+  }
+  return data;
+}
 
 // ── CUSTOMIZATION POPUP ──
 let _pendingProductId = null;
@@ -1628,7 +1812,17 @@ function toggleCart(){
 }
 
 // ── CHECKOUT MODAL ──
-function checkout(){
+async function checkout(){
+  try {
+    const pending = currentPendingOrder || await getPendingOrder();
+    if(pending && pending.status === 'waiting_for_payment'){
+      toast('Please complete payment for your pending order first.');
+      showPaymentView(pending);
+      return;
+    }
+  } catch(e){
+    console.error('Pending order lookup failed:', e);
+  }
   if(!cart.length){ toast('Your cart is empty 🛒'); return; }
   const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
 
@@ -1646,13 +1840,12 @@ function checkout(){
 
   document.getElementById('chk-form-view').style.display = '';
   document.getElementById('chk-success-view').style.display = 'none';
-  document.getElementById('chk-submit-btn').textContent = 'Place Order';
+  document.getElementById('chk-submit-btn').textContent = hasCustom ? 'Request Quote' : 'Place Order';
   document.getElementById('chk-submit-btn').disabled = false;
   document.getElementById('chk-province').value = '';
-  const proofInput = document.getElementById('chk-proof');
-  if(proofInput) proofInput.value = '';
-  // Show QR section only for standard orders
-  document.getElementById('chk-qr-section').style.display = hasCustom ? 'none' : 'block';
+  resetProofInput();
+  const qr = document.getElementById('chk-qr-section');
+  if(qr) qr.style.display = 'none';
   document.getElementById('chk-overlay').classList.add('open');
   document.getElementById('chk-modal').classList.add('open');
   toggleCart();
@@ -1692,10 +1885,8 @@ function updateShippingFee(){
   const isOutside = cebuNo && cebuNo.checked;
   const selected = isCebu ? 'cebu' : isOutside ? 'outside' : '';
   buildOrderSummary(selected);
-  // Show proof section only for standard orders
-  const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
   const qr = document.getElementById('chk-qr-section');
-  if(qr) qr.style.display = hasCustom ? 'none' : 'block';
+  if(qr) qr.style.display = 'none';
   // Update shipping note dynamically
   const note = document.getElementById('chk-shipping-note');
   if(note){
@@ -1864,6 +2055,220 @@ async function submitOrder(){
     toast('Connection error. Please try again.'); btn.textContent = 'Place Order'; btn.disabled = false;
   }
 }
+
+function showSuccessViewV2(title, message){
+  document.getElementById('chk-form-view').style.display = 'none';
+  const successView = document.getElementById('chk-success-view');
+  successView.style.display = 'block';
+  successView.innerHTML = `
+    <div class="chk-success-icon">OK</div>
+    <h4 id="chk-success-title">${escapeHtml(title)}</h4>
+    <p id="chk-success-msg">${escapeHtml(message)}</p>
+    <button class="btn btn-sky" style="width:100%;justify-content:center;" onclick="closeCheckoutAfterSuccess()">Done</button>
+  `;
+}
+
+function showPaymentView(order){
+  currentPendingOrder = order;
+  document.getElementById('chk-form-view').style.display = 'none';
+  document.getElementById('chk-overlay').classList.add('open');
+  document.getElementById('chk-modal').classList.add('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.getElementById('cart-drawer').classList.remove('open');
+  const successView = document.getElementById('chk-success-view');
+  successView.style.display = 'block';
+  successView.innerHTML = `
+    <h4 id="chk-success-title">Complete payment</h4>
+    <p id="chk-success-msg">Order ${escapeHtml(order.orderId)} was received. Please complete payment and upload your proof.</p>
+    <div class="chk-order-summary">
+      <div class="chk-sum-label">Payment Summary</div>
+      <div class="chk-sum-item"><span>Order ID</span><span>${escapeHtml(order.orderId)}</span></div>
+      <div class="chk-sum-item"><span>Total</span><span>${escapeHtml(order.orderTotal)}</span></div>
+      <div class="chk-sum-item"><span>Name</span><span>${escapeHtml(order.name)}</span></div>
+    </div>
+    <p style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(10,16,20,0.5); margin-bottom:0.75rem; font-weight:500; font-family:'Poppins',sans-serif;">Select Payment Method</p>
+    <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:1rem;">
+      <div style="text-align:center;">
+        <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); margin-bottom:0.3rem;">GCash QR<br>coming soon</div>
+        <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">GCash</span>
+      </div>
+      <div style="text-align:center;">
+        <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); margin-bottom:0.3rem;">Maya QR<br>coming soon</div>
+        <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">Maya</span>
+      </div>
+    </div>
+    <div class="chk-field" style="text-align:left;">
+      <label>Proof of Payment <span style="color:var(--pink)">*</span></label>
+      <label for="pay-proof" style="display:flex; align-items:center; gap:0.75rem; width:100%; background:var(--white); border:1.5px solid rgba(10,16,20,0.13); border-radius:10px; padding:0.72rem 1rem; cursor:pointer; transition:border-color 0.2s; text-transform:none; letter-spacing:0; font-size:0.86rem; font-weight:400; margin-bottom:0;">
+        <span id="pay-proof-text" style="font-family:'Poppins',sans-serif; font-size:0.82rem; color:rgba(10,16,20,0.35);">${escapeHtml(order.proofFilename || 'Tap to upload screenshot')}</span>
+      </label>
+      <input type="file" id="pay-proof" accept="image/*" style="display:none;" onchange="updateProofFilename(this)">
+      <p style="font-size:0.68rem; color:rgba(10,16,20,0.4); margin-top:0.3rem;">Screenshot must not exceed 10MB</p>
+    </div>
+    <button class="btn btn-pink" id="chk-proof-submit-btn" style="width:100%;justify-content:center;" onclick="submitPaymentProof()">Submit Payment Proof</button>
+  `;
+}
+
+async function submitOrderV2(){
+  const fname    = document.getElementById('chk-fname').value.trim();
+  const lname    = document.getElementById('chk-lname').value.trim();
+  const contact  = document.getElementById('chk-contact').value.trim();
+  const messenger= document.getElementById('chk-messenger').value.trim();
+  const email    = document.getElementById('chk-email').value.trim();
+  const street   = document.getElementById('chk-street').value.trim();
+  const barangay = document.getElementById('chk-barangay').value.trim();
+  const city     = document.getElementById('chk-city').value.trim();
+  const province  = document.getElementById('chk-province').value.trim();
+  const zip       = document.getElementById('chk-zip').value.trim();
+  const cebuYes   = document.getElementById('chk-cebu-yes');
+  const cebuNo    = document.getElementById('chk-cebu-no');
+  const isCebuCity = cebuYes && cebuYes.checked;
+  const locationSelected = (cebuYes && cebuYes.checked) || (cebuNo && cebuNo.checked);
+
+  if(!fname || !lname || !contact || !messenger || !street || !barangay || !city || !province || !zip){
+    toast('Please fill in all required fields.'); return;
+  }
+  if(email && !isValidEmail(email)){
+    toast('Please enter a valid email or leave it blank.'); return;
+  }
+  if(!locationSelected){
+    toast("Please let us know if you're in Cebu City."); return;
+  }
+
+  const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
+  const fullName = `${fname} ${lname}`;
+  const shippingFee = isCebuCity ? 'Shouldered by receiver (Maxim, Grab, or Move It)' : 'PHP 80';
+  const fullAddress = `${street}, Brgy. ${barangay}, ${city}, ${province} ${zip}`;
+  const btn = document.getElementById('chk-submit-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+
+  const orderDetails = cart.map(item =>
+    `${item.name} x ${item.qty} - PHP ${(item.price * item.qty).toLocaleString()}` +
+    (item.note ? `\nCustomization: ${item.note}` : '\nNo customization')
+  ).join('\n\n');
+  const productTotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
+  const grandTotal = (!hasCustom && !isCebuCity) ? productTotal + 80 : productTotal;
+  const orderTotal = `PHP ${grandTotal.toLocaleString()}${isCebuCity ? ' (delivery by receiver)' : ' incl. PHP 80 shipping'}`;
+  const orderId = createOrderId();
+
+  const payload = {
+    'Order ID': orderId,
+    Name: fullName,
+    'Contact Number': contact,
+    'Messenger / Viber': messenger,
+    Email: email || '',
+    'Delivery Address': fullAddress,
+    'Shipping Fee': shippingFee,
+    'Order Type': hasCustom ? 'Custom (Quote needed)' : 'Standard',
+    'Order Details': orderDetails,
+    'Order Total': orderTotal
+  };
+
+  const body = new FormData();
+  if(email) body.append('_replyto', email);
+  body.append('_subject', hasCustom ? `[Flor Keeps] Quote Request ${orderId} from ${fullName}` : `[Flor Keeps] New Order ${orderId} from ${fullName}`);
+  Object.entries(payload).forEach(([key, value]) => body.append(key, value));
+
+  try {
+    await submitFormspree(body);
+    if(hasCustom){
+      cart = []; saveCart(); updateCartUI();
+      showSuccessViewV2('Quote request received', `Thank you, ${fullName}. Shiela will reach out via Messenger or Viber with your quote and payment details. Order ID: ${orderId}`);
+      return;
+    }
+
+    const pending = {
+      orderId,
+      name: fullName,
+      contact,
+      email,
+      messenger,
+      orderTotal,
+      orderDetails,
+      shippingFee,
+      createdAt: new Date().toISOString(),
+      status: 'waiting_for_payment'
+    };
+    try {
+      await savePendingOrder(pending);
+    } catch(storageError){
+      console.error('Pending order storage failed:', storageError);
+      currentPendingOrder = pending;
+      renderPendingPaymentCard(pending);
+    }
+    cart = []; saveCart(); updateCartUI();
+    resetProofInput();
+    showPaymentView(pending);
+  } catch(e){
+    console.error('Order submission failed:', e);
+    toast(e.message || 'Order could not be sent. Please try again.');
+    btn.textContent = hasCustom ? 'Request Quote' : 'Place Order';
+    btn.disabled = false;
+  }
+}
+
+async function submitPaymentProof(){
+  const order = currentPendingOrder || await getPendingOrder();
+  if(!order || order.status !== 'waiting_for_payment'){
+    toast('No pending payment found.');
+    return;
+  }
+
+  const btn = document.getElementById('chk-proof-submit-btn');
+  const proofInput = document.getElementById('pay-proof');
+  const proofFile = proofInput && proofInput.files ? proofInput.files[0] : null;
+
+  if(!order.proofUrl){
+    if(!proofFile){ toast('Please upload your proof of payment.'); return; }
+    if(!proofFile.type || !proofFile.type.startsWith('image/')){
+      toast('Please upload an image file.'); return;
+    }
+    if(proofFile.size > MAX_PROOF_SIZE){
+      toast('Proof image must be 10 MB or smaller.'); return;
+    }
+  }
+
+  btn.textContent = order.proofUrl ? 'Sending...' : 'Uploading proof...';
+  btn.disabled = true;
+
+  try {
+    let proofUrl = order.proofUrl;
+    let proofFilename = order.proofFilename;
+    if(!proofUrl){
+      const proof = await uploadProofOfPayment(proofFile);
+      proofUrl = proof.url;
+      proofFilename = proof.filename;
+      currentPendingOrder = { ...order, proofUrl, proofFilename };
+      renderPendingPaymentCard(currentPendingOrder);
+      try {
+        await savePendingOrder(currentPendingOrder);
+      } catch(storageError){
+        console.error('Proof retry storage failed:', storageError);
+      }
+    }
+
+    const body = new FormData();
+    body.append('_subject', `[Flor Keeps] Payment Proof for ${order.orderId}`);
+    body.append('Order ID', order.orderId);
+    body.append('Name', order.name);
+    body.append('Contact Number', order.contact);
+    if(order.email) body.append('Email', order.email);
+    body.append('Order Total', order.orderTotal);
+    body.append('Proof of Payment Filename', proofFilename);
+    body.append('Proof of Payment URL', proofUrl);
+    await submitFormspree(body);
+
+    await clearPendingOrder();
+    resetProofInput();
+    showSuccessViewV2('Payment proof received', `Thank you. Shiela will verify your payment for order ${order.orderId}.`);
+  } catch(e){
+    console.error('Payment proof submission failed:', e);
+    toast(e.message || 'Payment proof could not be sent. Please try again.');
+    btn.textContent = 'Submit Payment Proof';
+    btn.disabled = false;
+  }
+}
+
 function renderProducts(filter='all'){
   const grid=document.getElementById('products-grid');
   const list=filter==='all'?products:products.filter(p=>p.category===filter);
@@ -1923,6 +2328,17 @@ if('serviceWorker' in navigator){
 
 renderProducts();
 updateCartUI();
+
+(async function restorePendingPayment(){
+  try {
+    const pending = await getPendingOrder();
+    if(pending && pending.status === 'waiting_for_payment'){
+      toast(`Pending payment for order ${pending.orderId}`);
+    }
+  } catch(e){
+    console.error('Pending payment restore failed:', e);
+  }
+})();
 
 // Show brand name in nav only once hero is scrolled past
 // so the name never appears twice on screen at the same time
