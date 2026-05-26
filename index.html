@@ -1048,27 +1048,27 @@
 
     .pending-payment-card {
       position: fixed; right: 1.4rem; bottom: 1.4rem; z-index: 850;
-      width: min(320px, calc(100vw - 2rem));
+      width: min(280px, calc(100vw - 2.8rem));
       background: var(--white); border: 1px solid var(--line);
-      border-radius: 14px; padding: 1rem 1.1rem;
-      box-shadow: 0 8px 28px rgba(10,16,20,0.14);
-      display: none;
+      border-radius: 40px; padding: 0.55rem 1rem;
+      box-shadow: 0 4px 16px rgba(10,16,20,0.1);
+      display: none; cursor: pointer;
+      transition: box-shadow 0.18s;
     }
-    .pending-payment-card.show { display: block; }
-    .pending-payment-card h4 {
-      font-family:'Cormorant Garamond',serif; font-size:1rem;
-      color:var(--navy); margin-bottom:0.25rem; font-weight:400;
+    .pending-payment-card:hover { box-shadow: 0 6px 20px rgba(10,16,20,0.16); }
+    .pending-payment-card.show { display: flex; align-items: center; gap: 0.5rem; }
+    .pending-payment-card-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--pink); flex-shrink: 0;
     }
-    .pending-payment-card p {
-      font-size:0.72rem; color:var(--sub); line-height:1.55; margin-bottom:0.75rem;
-      font-family:'Poppins',sans-serif;
+    .pending-payment-card-text {
+      font-family: 'Poppins', sans-serif; font-size: 0.76rem;
+      color: var(--navy); flex: 1; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
     }
-    .pending-payment-card button {
-      width:100%; justify-content:center;
-    }
-
-    @media (max-width: 520px) {
-      .pending-payment-card { left: 1rem; right: 1rem; bottom: 1rem; width: auto; }
+    .pending-payment-card-action {
+      font-family: 'Poppins', sans-serif; font-size: 0.72rem;
+      color: var(--pink); flex-shrink: 0; font-weight: 500;
     }
 
     /* ═══ INSTALL BANNER ═══ */
@@ -1498,14 +1498,14 @@
   <div class="cart-ls" id="cart-list"></div>
   <div class="cart-ft">
     <div class="cart-tot"><span>Total</span><strong id="cart-total-amt">₱0</strong></div>
-    <button class="btn btn-pink" style="width:100%;justify-content:center;" onclick="checkout()">Checkout</button>
+    <button class="btn btn-pink" id="cart-checkout-btn" style="width:100%;justify-content:center;" onclick="checkout()">Checkout</button>
   </div>
 </div>
 <div class="toast" id="toast"></div>
-<div class="pending-payment-card" id="pending-payment-card">
-  <h4>Payment pending</h4>
-  <p id="pending-payment-text">Complete payment for your order.</p>
-  <button class="btn btn-pink" onclick="resumePendingPayment()">Complete Payment</button>
+<div class="pending-payment-card" id="pending-payment-card" onclick="resumePendingPayment()">
+  <div class="pending-payment-card-dot"></div>
+  <span class="pending-payment-card-text" id="pending-payment-text">Payment pending</span>
+  <span class="pending-payment-card-action">Complete →</span>
 </div>
 <div id="install-banner">
   <h4>Add to Home Screen</h4>
@@ -1571,7 +1571,6 @@ function openCheckoutDb(){
 
 async function savePendingOrder(order){
   currentPendingOrder = order;
-  renderPendingPaymentCard(order);
   const db = await openCheckoutDb();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(CHECKOUT_DB_STORE, 'readwrite');
@@ -1614,7 +1613,7 @@ function renderPendingPaymentCard(order){
   const text = document.getElementById('pending-payment-text');
   if(!card || !text) return;
   if(order && order.status === 'waiting_for_payment'){
-    text.textContent = `Complete payment for order ${order.orderId}.`;
+    text.textContent = `Order ${order.orderId} · Payment pending`;
     card.classList.add('show');
   } else {
     card.classList.remove('show');
@@ -1809,6 +1808,20 @@ function renderCart(){
 function toggleCart(){
   document.getElementById('cart-overlay').classList.toggle('open');
   document.getElementById('cart-drawer').classList.toggle('open');
+  const cartOpen = document.getElementById('cart-drawer').classList.contains('open');
+  const card = document.getElementById('pending-payment-card');
+  const checkoutBtn = document.getElementById('cart-checkout-btn');
+  if(card){
+    if(cartOpen){
+      card.classList.remove('show');
+    } else if(currentPendingOrder && currentPendingOrder.status === 'waiting_for_payment'){
+      card.classList.add('show');
+    }
+  }
+  if(checkoutBtn && cartOpen){
+    const hasPending = currentPendingOrder && currentPendingOrder.status === 'waiting_for_payment';
+    checkoutBtn.textContent = hasPending ? 'Complete Pending Order First' : 'Checkout';
+  }
 }
 
 // ── CHECKOUT MODAL ──
@@ -1816,7 +1829,6 @@ async function checkout(){
   try {
     const pending = currentPendingOrder || await getPendingOrder();
     if(pending && pending.status === 'waiting_for_payment'){
-      toast('Please complete payment for your pending order first.');
       showPaymentView(pending);
       return;
     }
@@ -1854,6 +1866,9 @@ async function checkout(){
 function closeCheckout(){
   document.getElementById('chk-overlay').classList.remove('open');
   document.getElementById('chk-modal').classList.remove('open');
+  if(currentPendingOrder && currentPendingOrder.status === 'waiting_for_payment'){
+    renderPendingPaymentCard(currentPendingOrder);
+  }
 }
 
 function closeCheckoutAfterSuccess(){
@@ -2061,7 +2076,7 @@ function showSuccessViewV2(title, message){
   const successView = document.getElementById('chk-success-view');
   successView.style.display = 'block';
   successView.innerHTML = `
-    <div class="chk-success-icon">OK</div>
+    <div class="chk-success-icon">🌺</div>
     <h4 id="chk-success-title">${escapeHtml(title)}</h4>
     <p id="chk-success-msg">${escapeHtml(message)}</p>
     <button class="btn btn-sky" style="width:100%;justify-content:center;" onclick="closeCheckoutAfterSuccess()">Done</button>
@@ -2070,6 +2085,8 @@ function showSuccessViewV2(title, message){
 
 function showPaymentView(order){
   currentPendingOrder = order;
+  const card = document.getElementById('pending-payment-card');
+  if(card) card.classList.remove('show');
   document.getElementById('chk-form-view').style.display = 'none';
   document.getElementById('chk-overlay').classList.add('open');
   document.getElementById('chk-modal').classList.add('open');
@@ -2260,7 +2277,7 @@ async function submitPaymentProof(){
 
     await clearPendingOrder();
     resetProofInput();
-    showSuccessViewV2('Payment proof received', `Thank you. Shiela will verify your payment for order ${order.orderId}.`);
+    showSuccessViewV2('Payment proof received! 🌺', `Thank you, ${order.name}! Shiela will verify your payment and begin preparing your order.`);
   } catch(e){
     console.error('Payment proof submission failed:', e);
     toast(e.message || 'Payment proof could not be sent. Please try again.');
@@ -2333,7 +2350,7 @@ updateCartUI();
   try {
     const pending = await getPendingOrder();
     if(pending && pending.status === 'waiting_for_payment'){
-      toast(`Pending payment for order ${pending.orderId}`);
+      renderPendingPaymentCard(pending);
     }
   } catch(e){
     console.error('Pending payment restore failed:', e);
