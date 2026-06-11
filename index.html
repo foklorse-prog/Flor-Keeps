@@ -533,6 +533,7 @@
       padding: 0.75rem 0.75rem 0;
       background: var(--sky);
     }
+    #everyday-banner { padding-bottom: 0; }
     /* Last photo banner gets bottom padding */
     #custom-banner { padding-bottom: 0.75rem; }
     .everyday-card {
@@ -704,9 +705,10 @@
     ═══════════════════════════════ */
     #custom-vase {
       background: var(--pink-lt);
-      border-top: 1px solid rgba(219,118,172,0.2);
-      border-bottom: 1px solid rgba(219,118,172,0.2);
-      padding: 5rem 2.5rem;
+      border-radius: 16px;
+      margin: 0.75rem;
+      padding: 3rem 2rem;
+      overflow: hidden;
     }
     .vase-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
     .vase-img {
@@ -738,7 +740,14 @@
        ABOUT — deep navy, premium
     ═══════════════════════════════ */
     #about {
-      padding: 5rem 2.5rem; background: var(--navy);
+      background: var(--sky);
+      padding: 0.75rem;
+    }
+    .about-inner {
+      background: var(--navy);
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 3rem 2rem;
       display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
     }
     .about-img { border-radius: 18px; overflow: hidden; aspect-ratio: 0.88; box-shadow: 0 8px 48px rgba(0,0,0,0.35); }
@@ -750,49 +759,6 @@
     .stat { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10); border-radius: 10px; padding: 0.9rem; text-align: center; }
     .stat-n { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--butter); font-weight: 400; line-height: 1; }
     .stat-l { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.25rem; }
-
-    /* ═══════════════════════════════
-       REVIEWS — off-white
-    ═══════════════════════════════ */
-    #testimonials { padding: 5rem 2.5rem; background: var(--off); border-top: 1px solid var(--line); }
-    .rev-head { text-align: center; margin-bottom: 2.8rem; }
-    .rev-head .sec-label { margin-bottom: 0.35rem; }
-    .rgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
-    .rcard {
-      background: var(--white); border-radius: 14px; padding: 1.6rem;
-      box-shadow: 0 1px 3px rgba(10,16,20,0.04), 0 6px 18px rgba(10,16,20,0.07);
-      border: 1px solid rgba(10,16,20,0.05); transition: transform 0.22s;
-    }
-    .rcard:hover { transform: translateY(-4px); }
-    .rstars { color: var(--butter-dk); font-size: 0.8rem; margin-bottom: 0.8rem; letter-spacing: 0.06em; }
-    .rtext { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.72; color: var(--navy); margin-bottom: 1rem; }
-    .rauthor { font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sub); }
-
-    /* ═══════════════════════════════
-       NEWSLETTER — sky blue
-    ═══════════════════════════════ */
-    #newsletter {
-      padding: 5rem 2.5rem; text-align: center;
-      background: var(--sky); position: relative; overflow: hidden;
-    }
-    #newsletter::before {
-      content: '';
-      position: absolute; top: -40%; right: -10%; width: 500px; height: 500px;
-      border-radius: 50%; pointer-events: none;
-      background: radial-gradient(circle, rgba(219,118,172,0.12) 0%, transparent 65%);
-    }
-    .nl-kicker { font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--navy); opacity: 0.55; margin-bottom: 0.7rem; position: relative; z-index: 1; }
-    #newsletter h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem,3vw,2.6rem); font-weight: 300; color: var(--navy); margin-bottom: 0.7rem; line-height: 1.15; position: relative; z-index: 1; }
-    #newsletter p { font-size: 0.86rem; color: var(--navy); opacity: 0.62; margin-bottom: 1.8rem; line-height: 1.78; position: relative; z-index: 1; }
-    .nl-form { display: flex; gap: 0.55rem; max-width: 400px; margin: 0 auto; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; }
-    .nl-form input {
-      flex: 1; min-width: 190px;
-      background: rgba(255,255,255,0.65); border: 1.5px solid rgba(10,16,20,0.18);
-      color: var(--navy); padding: 0.68rem 1.2rem; border-radius: 2rem;
-      font-family: 'Poppins', sans-serif; font-size: 0.84rem; outline: none; transition: all 0.2s;
-    }
-    .nl-form input::placeholder { color: rgba(10,16,20,0.38); }
-    .nl-form input:focus { border-color: var(--pink); background: rgba(255,255,255,0.85); }
 
     /* ═══════════════════════════════
        FOOTER — navy
@@ -1042,6 +1008,99 @@
     .chk-success .chk-success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
     .chk-success h4 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; }
     .chk-success p { font-size: 0.82rem; color: rgba(10,16,20,0.55); line-height: 1.7; margin-bottom: 1.2rem; }
+    /* ═══ PRODUCT OVERLAY ═══ */
+    .prod-ov {
+      position: fixed; inset: 0;
+      background: rgba(10,16,20,0.55);
+      z-index: 900; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .prod-ov.open { opacity: 1; pointer-events: all; }
+    .prod-modal {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.96);
+      width: min(520px, 94vw);
+      max-height: 92vh;
+      overflow: hidden;
+      background: var(--off);
+      border-radius: 16px;
+      z-index: 901;
+      opacity: 0; pointer-events: none;
+      transition: transform 0.32s cubic-bezier(0.23,1,0.32,1), opacity 0.25s;
+      box-shadow: 0 16px 60px rgba(10,16,20,0.22);
+      display: flex; flex-direction: column;
+    }
+    .prod-modal.open { transform: translate(-50%,-50%) scale(1); opacity: 1; pointer-events: all; }
+    .prod-modal-scroll { overflow-y: auto; max-height: 92vh; }
+    /* Carousel */
+    .prod-carousel {
+      position: relative;
+      background: var(--sky);
+      aspect-ratio: 1/1;
+      overflow: hidden;
+    }
+    .prod-carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.35s cubic-bezier(0.23,1,0.32,1);
+    }
+    .prod-carousel-track img {
+      min-width: 100%; height: 100%;
+      object-fit: cover; flex-shrink: 0;
+    }
+    .prod-carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.85); border: none; cursor: pointer;
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; color: var(--navy);
+      box-shadow: 0 2px 8px rgba(10,16,20,0.12);
+      transition: background 0.18s;
+      z-index: 2;
+    }
+    .prod-carousel-btn:hover { background: var(--white); }
+    .prod-carousel-btn.prev { left: 0.75rem; }
+    .prod-carousel-btn.next { right: 0.75rem; }
+    .prod-carousel-dots {
+      position: absolute; bottom: 0.65rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 5px;
+    }
+    .prod-carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      transition: background 0.18s;
+    }
+    .prod-carousel-dot.active { background: var(--white); }
+    /* Product info */
+    .prod-info {
+      padding: 1.4rem 1.5rem 1.8rem;
+    }
+    .prod-info .pcat {
+      font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--pink);
+      font-weight: 500; margin-bottom: 0.3rem;
+    }
+    .prod-info .pname {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 400;
+      color: var(--navy); margin-bottom: 0.5rem; line-height: 1.2;
+    }
+    .prod-info .pprice {
+      font-size: 1.1rem; font-weight: 500;
+      color: var(--navy); margin-bottom: 1.2rem;
+    }
+    .prod-close {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      background: rgba(255,255,255,0.85); border: none; cursor: pointer;
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; color: var(--navy); z-index: 3;
+      box-shadow: 0 2px 8px rgba(10,16,20,0.12);
+      transition: background 0.18s;
+    }
+    .prod-close:hover { background: var(--white); }
+
     /* ═══ TOAST ═══ */
     .toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:0.68rem 1.55rem; border-radius:2rem; font-size:0.78rem; z-index:999; transition:transform 0.34s cubic-bezier(0.23,1,0.32,1); white-space:nowrap; box-shadow:0 6px 24px rgba(10,16,20,0.22); }
     .toast.show { transform:translateX(-50%) translateY(0); }
@@ -1090,7 +1149,7 @@
       .cart-label { display: none; }
       .hero-l { padding: 2rem 1.4rem 3rem; }
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
-      #shop, #custom-vase, #about, #testimonials, #newsletter { padding-left: 1.4rem; padding-right: 1.4rem; }
+      #shop, #custom-vase, #about { padding-left: 1.4rem; padding-right: 1.4rem; }
       .vase-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .vase-img { display: none; }
       #about { grid-template-columns: 1fr; gap: 2rem; }
@@ -1137,7 +1196,6 @@
     <li><a href="#shop">Shop</a></li>
     <li><a href="#custom-vase">Custom Vase</a></li>
     <li><a href="#about">Story</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
   </ul>
 
   <div class="nav-right">
@@ -1158,7 +1216,6 @@
     <a href="#shop" onclick="toggleMobileNav()">Shop</a>
     <a href="#custom-vase" onclick="toggleMobileNav()">Custom Vase</a>
     <a href="#about" onclick="toggleMobileNav()">Our Story</a>
-    <a href="#testimonials" onclick="toggleMobileNav()">Reviews</a>
   </nav>
   <div class="mobile-nav-footer">Handmade in Cebu, Philippines</div>
 </div>
@@ -1289,13 +1346,13 @@
         <div class="vopt">💜 Lavender sprigs</div>
         <div class="vopt">🌼 Dried daisies</div>
       </div>
-      <a href="#newsletter" class="btn btn-navy">Get Notified</a>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
+  <div class="about-inner">
   <div class="about-img">
     <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=700&q=80" alt="Craft artist" loading="lazy">
   </div>
@@ -1312,30 +1369,7 @@
       <div class="stat"><div class="stat-n">★ 5</div><div class="stat-l">Rating</div></div>
     </div>
   </div>
-</section>
-
-<!-- REVIEWS -->
-<section id="testimonials">
-  <div class="rev-head">
-    <div class="sec-label">Customer Love</div>
-    <h2 class="sec-h2">They said it best</h2>
   </div>
-  <div class="rgrid">
-    <div class="rcard"><div class="rstars">★★★★★</div><p class="rtext">"The floral coaster set was even more gorgeous in person. The blooms look like they're still alive inside the resin."</p><div class="rauthor">— Maria S., Cebu</div></div>
-    <div class="rcard"><div class="rstars">★★★★★</div><p class="rtext">"Bought the galaxy bowl as a gift — my friend cried when she opened it. True artistry. Worth every peso."</p><div class="rauthor">— Jay L., Manila</div></div>
-    <div class="rcard"><div class="rstars">★★★★★</div><p class="rtext">"The rose cube sits on my desk and I get compliments every single day. Absolutely mesmerizing."</p><div class="rauthor">— Christine D., Davao</div></div>
-  </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section id="newsletter">
-  <div class="nl-kicker">Stay in the loop</div>
-  <h2>New pieces, first to know</h2>
-  <p>Early access to new collections, behind-the-scenes, and exclusive offers.</p>
-  <form class="nl-form" onsubmit="handleSubscribe(event)">
-    <input type="email" placeholder="your@email.com" required>
-    <button type="submit" class="btn btn-pink">Subscribe</button>
-  </form>
 </section>
 
 <!-- FOOTER -->
@@ -1353,13 +1387,33 @@
     </div>
     <div class="footer-col"><h5>Shop</h5><ul><li><a href="#shop">All Products</a></li><li><a href="#custom-vase">Custom Vase</a></li><li><a href="#shop">Coaster</a></li><li><a href="#shop">Floral Art</a></li></ul></div>
     <div class="footer-col"><h5>Info</h5><ul><li><a href="#about">Our Story</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">FAQ</a></li></ul></div>
-    <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li><li><a href="#">Shopee</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">TikTok</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 Flor Keeps by Shiela. All rights reserved.</p>
     <p>Handmade in Cebu, Philippines 🌺</p>
   </div>
 </footer>
+
+<!-- PRODUCT OVERLAY -->
+<div class="prod-ov" id="prod-overlay" onclick="closeProductOverlay()"></div>
+<div class="prod-modal" id="prod-modal">
+  <button class="prod-close" onclick="closeProductOverlay()">✕</button>
+  <div class="prod-modal-scroll">
+    <div class="prod-carousel" id="prod-carousel">
+      <div class="prod-carousel-track" id="prod-track"></div>
+      <button class="prod-carousel-btn prev" id="prod-prev" onclick="prodCarouselNav(-1)">&#8249;</button>
+      <button class="prod-carousel-btn next" id="prod-next" onclick="prodCarouselNav(1)">&#8250;</button>
+      <div class="prod-carousel-dots" id="prod-dots"></div>
+    </div>
+    <div class="prod-info">
+      <div class="pcat" id="prod-cat"></div>
+      <div class="pname" id="prod-name"></div>
+      <div class="pprice" id="prod-price"></div>
+      <button class="btn btn-pink" style="width:100%;justify-content:center;" id="prod-add-btn">Add to Cart</button>
+    </div>
+  </div>
+</div>
 
 <!-- CUSTOMIZATION POPUP -->
 <div class="custom-ov" id="custom-overlay" onclick="closeCustomPopup()"></div>
@@ -1518,28 +1572,28 @@
 
 <script>
 const products = [
-  {id:2,name:"Bloom Flower Coaster", category:"coaster", price:190, old: null,  badge: null, blabel:null,img:"Bloom_coaster.png"},
-  {id:3,name:"Coffee Round Coaster", category:"coaster", price:170, old: null,  badge: null, blabel:null,img:"Coffee_beans.jpg"},
-  {id:4,name:"Pressed Flower Round Coaster", category:"coaster",price:170, old: null,  badge: null, blabel:null,img:"Pressed_flowers_coaster.JPG"},
-  {id:5,name:"Ocean Blue Coaster", category:"coaster", price:170, old:null,  badge:"pb-sale", blabel:"Sale", img:"Ocean_blue_coaster.jpg"},
-  {id:6,name:"Coaster Set", category:"coaster", price:770, old:null,  badge:"pb-sale", blabel:"Sale", img:"Ocean_stone_coaster.png"},
+  {id:2,name:"Bloom Flower Coaster", category:"coaster", price:190, old: null,  badge: null, blabel:null,imgs:["Bloom_coaster.png"]},
+  {id:3,name:"Coffee Round Coaster", category:"coaster", price:170, old: null,  badge: null, blabel:null,imgs:["Coffee_beans.jpg"]},
+  {id:4,name:"Pressed Flower Round Coaster", category:"coaster",price:170, old: null,  badge: null, blabel:null,imgs:["Pressed_flowers_coaster.JPG"]},
+  {id:5,name:"Ocean Blue Coaster", category:"coaster", price:170, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Ocean_blue_coaster.jpg"]},
+  {id:6,name:"Coaster Set", category:"coaster", price:770, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Ocean_stone_coaster.png"]},
 
-  {id:1,name:"Galaxy Cat Candle Holder", category:"decor", price:240, old: null,  badge:"pb-best",blabel:"Bestseller",img:"Galaxy_cat_candle_holder.png"},
-  {id:7,name:"Rose Cube", category:"decor", price:1030, old: null,  badge: "pb-prem", blabel:"Premium", img:"Rose_cube.png"},
-  {id:9,name:"Lamp", category:"decor", price:600, old:null,  badge:"pb-new", blabel:"New", img:"Letter_keychain.jpg"},
-{id:15,name:"Eternal Floral Vase", category:"decor", price:2000, old:null,  badge:"pb-prem", blabel:"Premium", img:"Eternal_floral_vase.png"},
-  {id:16,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null, img:"Colorful_accent_jar.jpg"},
-  {id:17,name:"Lotus Flower", category:"decor", price:190, old:null,  badge:null, blabel:null, img:"Lotus_container.png"},
+  {id:1,name:"Galaxy Cat Candle Holder", category:"decor", price:240, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:["Galaxy_cat_candle_holder.png"]},
+  {id:7,name:"Rose Cube", category:"decor", price:1030, old: null,  badge: "pb-prem", blabel:"Premium",imgs:["Rose_cube.png"]},
+  {id:9,name:"Lamp", category:"decor", price:600, old:null,  badge:"pb-new", blabel:"New",imgs:["Letter_keychain.jpg"]},
+{id:15,name:"Eternal Floral Vase", category:"decor", price:2000, old:null,  badge:"pb-prem", blabel:"Premium",imgs:["Eternal_floral_vase.png"]},
+  {id:16,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null,imgs:["Colorful_accent_jar.jpg"]},
+  {id:17,name:"Lotus Flower", category:"decor", price:190, old:null,  badge:null, blabel:null,imgs:["Lotus_container.png"]},
 
-  {id:10,name:"Blue Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:null, blabel:null, img:"Blue_flower_pen_holder.jpg"},
-  {id:11,name:"Pink Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null, img:"Pink_hexagon_pen_holder.jpg"},
-  {id:12,name:"Transparent Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:"pb-best", blabel:"Bestseller", img:"Transparent_flower_pen_holder.png"},
-  {id:13,name:"Classic Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null, img:"Classic_hexagon_pen_holder.jpg"},
+  {id:10,name:"Blue Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:null, blabel:null,imgs:["Blue_flower_pen_holder.jpg"]},
+  {id:11,name:"Pink Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:["Pink_hexagon_pen_holder.jpg"]},
+  {id:12,name:"Transparent Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:"pb-best", blabel:"Bestseller",imgs:["Transparent_flower_pen_holder.png"]},
+  {id:13,name:"Classic Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:["Classic_hexagon_pen_holder.jpg"]},
 
-  {id:8,name:"Letter Keychain", category:"stationery", price:135, old: null,  badge: null, blabel:null, img:"Letter_keychain.jpg"},
-  {id:18,name:"Bookmark", category:"stationery", price:150, old:null,  badge:null, blabel:null, img:"Bookmark.jpg"},
-  {id:19,name:"Pen", category:"stationery", price:160, old:null,  badge:null, blabel:null, img:"Pen.jpg"},
-  {id:14,name:"Stationery Set", category:"stationery", price:350, old:null,  badge:null, blabel:null, img:"Stationery_set.jpg"},
+  {id:8,name:"Letter Keychain", category:"stationery", price:135, old: null,  badge: null, blabel:null,imgs:["Letter_keychain.jpg"]},
+  {id:18,name:"Bookmark", category:"stationery", price:150, old:null,  badge:null, blabel:null,imgs:["Bookmark.jpg"]},
+  {id:19,name:"Pen", category:"stationery", price:160, old:null,  badge:null, blabel:null,imgs:["Pen.jpg"]},
+  {id:14,name:"Stationery Set", category:"stationery", price:350, old:null,  badge:null, blabel:null,imgs:["Stationery_set.jpg"]},
 
 ];
 
@@ -1701,6 +1755,60 @@ async function submitFormspree(body){
     throw new Error(getFormspreeError(data));
   }
   return data;
+}
+
+// ── PRODUCT OVERLAY ──
+let _prodOverlayIndex = 0;
+let _prodOverlayId = null;
+let _prodTouchStartX = 0;
+
+function openProductOverlay(id){
+  const p = products.find(x => x.id === id);
+  if(!p) return;
+  _prodOverlayId = id;
+  _prodOverlayIndex = 0;
+
+  // Build carousel
+  const track = document.getElementById('prod-track');
+  const dots = document.getElementById('prod-dots');
+  track.innerHTML = p.imgs.map(src => `<img src="${src}" alt="${p.name}">`).join('');
+  dots.innerHTML = p.imgs.map((_,i) => `<div class="prod-carousel-dot${i===0?' active':''}"></div>`).join('');
+
+  // Show/hide nav buttons
+  document.getElementById('prod-prev').style.display = p.imgs.length > 1 ? 'flex' : 'none';
+  document.getElementById('prod-next').style.display = p.imgs.length > 1 ? 'flex' : 'none';
+
+  // Product info
+  document.getElementById('prod-cat').textContent = p.category;
+  document.getElementById('prod-name').textContent = p.name;
+  document.getElementById('prod-price').textContent = `₱${p.price.toLocaleString()}`;
+  document.getElementById('prod-add-btn').onclick = () => { closeProductOverlay(); addToCart(id); };
+
+  // Touch events for swipe
+  const carousel = document.getElementById('prod-carousel');
+  carousel.addEventListener('touchstart', e => { _prodTouchStartX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', e => {
+    const diff = _prodTouchStartX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40) prodCarouselNav(diff > 0 ? 1 : -1);
+  }, { passive: true });
+
+  document.getElementById('prod-overlay').classList.add('open');
+  document.getElementById('prod-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProductOverlay(){
+  document.getElementById('prod-overlay').classList.remove('open');
+  document.getElementById('prod-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function prodCarouselNav(dir){
+  const p = products.find(x => x.id === _prodOverlayId);
+  if(!p) return;
+  _prodOverlayIndex = (_prodOverlayIndex + dir + p.imgs.length) % p.imgs.length;
+  document.getElementById('prod-track').style.transform = `translateX(-${_prodOverlayIndex * 100}%)`;
+  document.querySelectorAll('.prod-carousel-dot').forEach((d,i) => d.classList.toggle('active', i === _prodOverlayIndex));
 }
 
 // ── CUSTOMIZATION POPUP ──
@@ -2291,19 +2399,9 @@ function renderProducts(filter='all'){
   const list=filter==='all'?products:products.filter(p=>p.category===filter);
   grid.innerHTML=list.map(p=>`
     <div class="pcard">
-      <div class="pcard-img">
-        <img src="${p.img}" alt="${p.name}" loading="lazy">
+      <div class="pcard-img" onclick="openProductOverlay(${p.id})" style="cursor:pointer;">
+        <img src="${p.imgs[0]}" alt="${p.name}" loading="lazy">
         ${p.badge?`<span class="pbadge ${p.badge}">${p.blabel}</span>`:''}
-        <button class="pwish" onclick="toggleWish(this)">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <circle class="petal-ring" cx="60" cy="60" r="30"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12" transform="rotate(72 60 60)"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12" transform="rotate(144 60 60)"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12" transform="rotate(216 60 60)"/>
-            <ellipse class="petal-core" cx="60" cy="46" rx="7" ry="12" transform="rotate(288 60 60)"/>
-          </svg>
-        </button>
       </div>
       <div class="pcard-body">
         <div class="pcat">${p.category}</div>
@@ -2315,7 +2413,6 @@ function renderProducts(filter='all'){
       </div>
     </div>`).join('');
 }
-function toggleWish(btn){ btn.classList.toggle('on'); toast(btn.classList.contains('on')?'Added to wishlist':'Removed from wishlist'); }
 document.querySelectorAll('.fpill').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on'); renderProducts(btn.dataset.filter);
