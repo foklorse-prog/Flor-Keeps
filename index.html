@@ -1032,12 +1032,50 @@
     }
     .prod-modal.open { transform: translate(-50%,-50%) scale(1); opacity: 1; pointer-events: all; }
     .prod-modal-scroll { overflow-y: auto; max-height: 92vh; }
+
+    /* Mobile: full screen overlay */
+    @media (max-width: 639px) {
+      .prod-modal {
+        top: 0; left: 0;
+        transform: translateY(100%);
+        width: 100vw; height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+        transition: transform 0.38s cubic-bezier(0.23,1,0.32,1), opacity 0.25s;
+      }
+      .prod-modal.open {
+        transform: translateY(0);
+        opacity: 1; pointer-events: all;
+      }
+      .prod-modal-scroll { max-height: 100vh; }
+    }
+
     /* Carousel */
     .prod-carousel {
       position: relative;
       background: var(--sky);
-      aspect-ratio: 1/1;
+      aspect-ratio: 3/4;
       overflow: hidden;
+    }
+
+    /* Mobile: image contained with breathing room */
+    @media (max-width: 639px) {
+      .prod-carousel {
+        aspect-ratio: unset;
+        height: 55vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--off);
+      }
+      .prod-carousel-track {
+        height: 100%;
+        align-items: center;
+      }
+      .prod-carousel-track img {
+        object-fit: contain;
+        padding: 1.5rem;
+      }
     }
     .prod-carousel-track {
       display: flex;
@@ -1100,6 +1138,13 @@
       transition: background 0.18s;
     }
     .prod-close:hover { background: var(--white); }
+
+    @media (max-width: 639px) {
+      .products-grid { gap: 0.6rem; }
+      .pcard-body { padding: 0.65rem 0.75rem 0.75rem; }
+      .sec-head { padding: 1.5rem 1rem 0.75rem; }
+      #shop { padding: 0 0.75rem 2rem; }
+    }
 
     /* ═══ TOAST ═══ */
     .toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:0.68rem 1.55rem; border-radius:2rem; font-size:0.78rem; z-index:999; transition:transform 0.34s cubic-bezier(0.23,1,0.32,1); white-space:nowrap; box-shadow:0 6px 24px rgba(10,16,20,0.22); }
