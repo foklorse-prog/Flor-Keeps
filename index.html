@@ -613,7 +613,7 @@
     }
 
     #shop {
-      padding: 4.5rem 2.5rem;
+      padding: 4.5rem 0.75rem;
       background: var(--white);
       position: relative;
     }
@@ -747,7 +747,7 @@
       background: var(--navy);
       border-radius: 16px;
       overflow: hidden;
-      padding: 3rem 2rem;
+      padding: 3rem 1.5rem;
       display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
     }
     .about-img { border-radius: 18px; overflow: hidden; aspect-ratio: 0.88; box-shadow: 0 8px 48px rgba(0,0,0,0.35); }
@@ -1067,14 +1067,20 @@
         align-items: center;
         justify-content: center;
         background: var(--off);
+        padding: 0 0.75rem;
       }
       .prod-carousel-track {
         height: 100%;
         align-items: center;
+        justify-content: center;
       }
       .prod-carousel-track img {
         object-fit: contain;
-        padding: 1.5rem;
+        max-width: calc(100% - 1.5rem);
+        margin: 0 auto;
+      }
+      .prod-info {
+        padding: 1.2rem 0.75rem 1.8rem;
       }
     }
     .prod-carousel-track {
@@ -1113,7 +1119,14 @@
     /* Product info */
     .prod-info {
       padding: 1.4rem 1.5rem 1.8rem;
+      display: flex;
+      flex-direction: column;
     }
+    .prod-info .pcat { font-size: 0.58rem; letter-spacing: 0.16em; color: var(--pink); margin-bottom: 0.4rem; }
+    .prod-info .pname { font-family: 'Poppins', sans-serif !important; font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; line-height: 1.3; }
+    .prod-info .pprice { font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 0.85rem; }
+    #prod-desc { font-size: 0.76rem; color: rgba(10,16,20,0.5); line-height: 1.75; margin-bottom: 1.2rem; }
+    .prod-info .btn { padding: 0.7rem 1rem; font-size: 0.82rem; }
     .prod-info .pcat {
       font-size: 0.62rem; letter-spacing: 0.14em;
       text-transform: uppercase; color: var(--pink);
@@ -1142,7 +1155,7 @@
     @media (max-width: 639px) {
       .products-grid { gap: 0.6rem; }
       .pcard-body { padding: 0.65rem 0.75rem 0.75rem; }
-      .sec-head { padding: 1.5rem 1rem 0.75rem; }
+      .sec-head { padding: 1.5rem 0 0.75rem; }
       #shop { padding: 0 0.75rem 2rem; }
     }
 
@@ -1194,7 +1207,7 @@
       .cart-label { display: none; }
       .hero-l { padding: 2rem 1.4rem 3rem; }
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
-      #shop, #custom-vase, #about { padding-left: 1.4rem; padding-right: 1.4rem; }
+      #shop, #custom-vase, #about { padding-left: 0.75rem; padding-right: 0.75rem; }
       .vase-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .vase-img { display: none; }
       #about { grid-template-columns: 1fr; gap: 2rem; }
@@ -1455,6 +1468,7 @@
       <div class="pcat" id="prod-cat"></div>
       <div class="pname" id="prod-name"></div>
       <div class="pprice" id="prod-price"></div>
+      <div id="prod-desc" style="font-size:0.8rem; color:rgba(10,16,20,0.55); line-height:1.7; margin-bottom:1.2rem;"></div>
       <button class="btn btn-pink" style="width:100%;justify-content:center;" id="prod-add-btn">Add to Cart</button>
     </div>
   </div>
@@ -1617,28 +1631,28 @@
 
 <script>
 const products = [
-  {id:2,name:"Bloom Flower Coaster", category:"coaster", price:190, old: null,  badge: null, blabel:null,imgs:["Bloom_coaster.png"]},
-  {id:3,name:"Coffee Round Coaster", category:"coaster", price:170, old: null,  badge: null, blabel:null,imgs:["Coffee_beans.jpg"]},
-  {id:4,name:"Pressed Flower Round Coaster", category:"coaster",price:170, old: null,  badge: null, blabel:null,imgs:["Pressed_flowers_coaster.JPG"]},
-  {id:5,name:"Ocean Blue Coaster", category:"coaster", price:170, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Ocean_blue_coaster.jpg"]},
-  {id:6,name:"Coaster Set", category:"coaster", price:770, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Ocean_stone_coaster.png"]},
+  {id:2,name:"Bloom Flower Coaster", category:"coaster", price:190, old: null,  badge: null, blabel:null,imgs:["Bloom_coaster.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:3,name:"Coffee Round Coaster", category:"coaster", price:170, old: null,  badge: null, blabel:null,imgs:["Coffee_beans.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:4,name:"Pressed Flower Round Coaster", category:"coaster",price:170, old: null,  badge: null, blabel:null,imgs:["Pressed_flowers_coaster.JPG"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:5,name:"Ocean Blue Coaster", category:"coaster", price:170, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Ocean_blue_coaster.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:6,name:"Coaster Set", category:"coaster", price:770, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Ocean_stone_coaster.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 
-  {id:1,name:"Galaxy Cat Candle Holder", category:"decor", price:240, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:["Galaxy_cat_candle_holder.png"]},
-  {id:7,name:"Rose Cube", category:"decor", price:1030, old: null,  badge: "pb-prem", blabel:"Premium",imgs:["Rose_cube.png"]},
-  {id:9,name:"Lamp", category:"decor", price:600, old:null,  badge:"pb-new", blabel:"New",imgs:["Letter_keychain.jpg"]},
-{id:15,name:"Eternal Floral Vase", category:"decor", price:2000, old:null,  badge:"pb-prem", blabel:"Premium",imgs:["Eternal_floral_vase.png"]},
-  {id:16,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null,imgs:["Colorful_accent_jar.jpg"]},
-  {id:17,name:"Lotus Flower", category:"decor", price:190, old:null,  badge:null, blabel:null,imgs:["Lotus_container.png"]},
+  {id:1,name:"Galaxy Cat Candle Holder", category:"decor", price:240, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:["Galaxy_cat_candle_holder.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:7,name:"Rose Cube", category:"decor", price:1030, old: null,  badge: "pb-prem", blabel:"Premium",imgs:["Rose_cube.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:9,name:"Lamp", category:"decor", price:600, old:null,  badge:"pb-new", blabel:"New",imgs:["Letter_keychain.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+{id:15,name:"Eternal Floral Vase", category:"decor", price:2000, old:null,  badge:"pb-prem", blabel:"Premium",imgs:["Eternal_floral_vase.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:16,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null,imgs:["Colorful_accent_jar.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:17,name:"Lotus Flower", category:"decor", price:190, old:null,  badge:null, blabel:null,imgs:["Lotus_container.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 
-  {id:10,name:"Blue Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:null, blabel:null,imgs:["Blue_flower_pen_holder.jpg"]},
-  {id:11,name:"Pink Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:["Pink_hexagon_pen_holder.jpg"]},
-  {id:12,name:"Transparent Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:"pb-best", blabel:"Bestseller",imgs:["Transparent_flower_pen_holder.png"]},
-  {id:13,name:"Classic Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:["Classic_hexagon_pen_holder.jpg"]},
+  {id:10,name:"Blue Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:null, blabel:null,imgs:["Blue_flower_pen_holder.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:11,name:"Pink Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:["Pink_hexagon_pen_holder.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:12,name:"Transparent Flower Pen Holder", category:"pen holder", price:300, old:null,  badge:"pb-best", blabel:"Bestseller",imgs:["Transparent_flower_pen_holder.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:13,name:"Classic Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:["Classic_hexagon_pen_holder.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 
-  {id:8,name:"Letter Keychain", category:"stationery", price:135, old: null,  badge: null, blabel:null,imgs:["Letter_keychain.jpg"]},
-  {id:18,name:"Bookmark", category:"stationery", price:150, old:null,  badge:null, blabel:null,imgs:["Bookmark.jpg"]},
-  {id:19,name:"Pen", category:"stationery", price:160, old:null,  badge:null, blabel:null,imgs:["Pen.jpg"]},
-  {id:14,name:"Stationery Set", category:"stationery", price:350, old:null,  badge:null, blabel:null,imgs:["Stationery_set.jpg"]},
+  {id:8,name:"Letter Keychain", category:"stationery", price:135, old: null,  badge: null, blabel:null,imgs:["Letter_keychain.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:18,name:"Bookmark", category:"stationery", price:150, old:null,  badge:null, blabel:null,imgs:["Bookmark.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:19,name:"Pen", category:"stationery", price:160, old:null,  badge:null, blabel:null,imgs:["Pen.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:14,name:"Stationery Set", category:"stationery", price:350, old:null,  badge:null, blabel:null,imgs:["Stationery_set.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 
 ];
 
@@ -1827,6 +1841,7 @@ function openProductOverlay(id){
   document.getElementById('prod-cat').textContent = p.category;
   document.getElementById('prod-name').textContent = p.name;
   document.getElementById('prod-price').textContent = `₱${p.price.toLocaleString()}`;
+  document.getElementById('prod-desc').textContent = p.description || '';
   document.getElementById('prod-add-btn').onclick = () => { closeProductOverlay(); addToCart(id); };
 
   // Touch events for swipe
