@@ -1445,11 +1445,14 @@
       <div class="prod-carousel-dots" id="prod-dots"></div>
     </div>
     <div class="prod-info">
-      <div class="pcat" id="prod-cat"></div>
-      <div class="pname" id="prod-name"></div>
-      <div class="pprice" id="prod-price"></div>
-      <div id="prod-desc" style="font-size:0.8rem; color:rgba(10,16,20,0.55); line-height:1.7; margin-bottom:1.2rem;"></div>
-      <button class="btn btn-pink" style="width:100%;justify-content:center;" id="prod-add-btn">Add to Cart</button>
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+        <div>
+          <div class="pname" id="prod-name"></div>
+          <div class="pprice" id="prod-price"></div>
+        </div>
+        <button id="prod-add-btn" style="background:var(--pink); color:var(--white); border:none; border-radius:40px; padding:0.45rem 1rem; font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:500; cursor:pointer; white-space:nowrap; flex-shrink:0;">Add to Cart</button>
+      </div>
+      <div id="prod-desc" style="font-size:0.8rem; color:rgba(10,16,20,0.55); line-height:1.7; margin-top:0.85rem;"></div>
     </div>
   </div>
 </div>
@@ -1828,7 +1831,7 @@ function openProductOverlay(id){
   document.getElementById('prod-next').style.display = p.imgs.length > 1 ? 'flex' : 'none';
 
   // Product info
-  document.getElementById('prod-cat').textContent = p.category;
+  // category not shown in overlay
   document.getElementById('prod-name').textContent = p.name;
   document.getElementById('prod-price').textContent = `₱${p.price.toLocaleString()}`;
   document.getElementById('prod-desc').textContent = p.description || '';
