@@ -1055,14 +1055,10 @@
       position: relative;
       background: var(--sky);
       width: 100%;
-      height: 60vh;
       overflow: hidden;
     }
 
     @media (max-width: 639px) {
-      .prod-carousel {
-        aspect-ratio: 3/4;
-      }
       .prod-info {
         padding: 1.2rem 0.75rem 1.8rem;
       }
@@ -1814,8 +1810,18 @@ function openProductOverlay(id){
   // Build carousel
   const track = document.getElementById('prod-track');
   const dots = document.getElementById('prod-dots');
+  const carouselEl = document.getElementById('prod-carousel');
   track.innerHTML = p.imgs.map(src => `<img src="${src}" alt="${p.name}">`).join('');
   dots.innerHTML = p.imgs.map((_,i) => `<div class="prod-carousel-dot${i===0?' active':''}"></div>`).join('');
+
+  // Set aspect ratio from first image, capped at 4:5
+  const firstImg = new Image();
+  firstImg.onload = function(){
+    const naturalRatio = this.naturalWidth / this.naturalHeight;
+    const cappedRatio = Math.max(naturalRatio, 4/5); // 4:5 is minimum (tallest allowed)
+    carouselEl.style.aspectRatio = String(cappedRatio);
+  };
+  firstImg.src = p.imgs[0];
 
   // Show/hide nav buttons
   document.getElementById('prod-prev').style.display = p.imgs.length > 1 ? 'flex' : 'none';
