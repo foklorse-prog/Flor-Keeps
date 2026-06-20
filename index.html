@@ -1054,30 +1054,14 @@
     .prod-carousel {
       position: relative;
       background: var(--sky);
-      aspect-ratio: 3/4;
+      width: 100%;
+      height: 60vh;
       overflow: hidden;
     }
 
-    /* Mobile: image contained with breathing room */
     @media (max-width: 639px) {
       .prod-carousel {
-        aspect-ratio: unset;
-        height: 55vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--off);
-        padding: 0 0.75rem;
-      }
-      .prod-carousel-track {
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-      }
-      .prod-carousel-track img {
-        object-fit: contain;
-        max-width: calc(100% - 1.5rem);
-        margin: 0 auto;
+        aspect-ratio: 3/4;
       }
       .prod-info {
         padding: 1.2rem 0.75rem 1.8rem;
