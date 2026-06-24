@@ -1396,7 +1396,8 @@
   </div>
   <div class="about-text">
     <div class="sec-label">The Story of Flor Keeps:</div>
-    <h2>Capturing Memories in Bloom</h2>
+    <h2>Capturing Memories in Blooms</h2>
+    <img src="LOGO_TYPE.png" alt="Flor Keeps – Flower Preservation & Resin Crafts" class="about-logotype">
     <p>Flor Keeps was born out of a deep love for flowers and a desire to make their fleeting beauty—and the precious milestones they represent—last a lifetime.</p>
     <p>​The journey began with my own wedding. Like many brides, I was completely in love with my bridal bouquet and wanted to "freeze" it in time so I could cherish it forever. However, I quickly realized that professional resin flower preservation was incredibly expensive. Though I ultimately saved up to have my own bouquet preserved, the experience sparked a curiosity that I couldn't shake.</p>
     <p>​Driven to master the craft, I spent the following months researching the intricate science and art of flower preservation. The true turning point came around Valentine's Day, when I finally put my research to the test and preserved a bouquet myself. When my husband saw the stunning final result, he recognized my passion and encouraged me to turn my creativity into a business.​</p>
@@ -1427,9 +1428,10 @@
     <div class="footer-col"><h5>Shop</h5><ul><li><a href="#shop">All Products</a></li><li><a href="#custom-vase">Custom Vase</a></li><li><a href="#shop">Coaster</a></li><li><a href="#shop">Floral Art</a></li></ul></div>
     <div class="footer-col"><h5>Info</h5><ul><li><a href="#about">Our Story</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">FAQ</a></li></ul></div>
     <div class="footer-col"><h5>Connect</h5><ul><li><a href="https://www.instagram.com/florkeepsph" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://www.facebook.com/people/Flor-Keeps-Ph/61575435265765/" target="_blank" rel="noopener noreferrer">Facebook</a></li><li><a href="https://www.tiktok.com/@florkeepsph" target="_blank" rel="noopener noreferrer">TikTok</a></li></ul></div>
+
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Flor Keeps Ph by Shiela. All rights reserved.</p>
+    <p>© 2026 Flor Keeps by Shiela. All rights reserved.</p>
     <p>Handmade in Cebu, Philippines 🌺</p>
   </div>
 </footer>
@@ -1445,6 +1447,7 @@
       <button class="prod-carousel-btn next" id="prod-next" onclick="prodCarouselNav(1)">&#8250;</button>
       <div class="prod-carousel-dots" id="prod-dots"></div>
     </div>
+    <p id="prod-swipe-hint" style="text-align:center; font-size:0.68rem; color:rgba(10,16,20,0.35); font-family:'Poppins',sans-serif; padding:0.4rem 0; display:none;">Swipe to see variations</p>
     <div class="prod-info">
       <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
         <div class="pname" id="prod-name"></div>
@@ -1463,7 +1466,7 @@
   <div class="cpop-product" id="cpop-product-name"></div>
   <h4>Any preferences for this piece?</h4>
   <textarea id="cpop-textarea" placeholder="e.g. purple tint, dried lavender, it's a gift for my mom…" rows="3"></textarea>
-  <p class="cpop-hint">Not sure? Leave blank and we'll make it just like the photo.</p>
+  <p class="cpop-hint">All pieces are customizable. Type in your preferences for colors, flowers, size, or any detail — or leave blank and we'll make it just like the selected variation.</p>
   <div class="cpop-btns">
     <button class="btn btn-pink" onclick="confirmAddToCart()">Add to Cart</button>
   </div>
@@ -1619,25 +1622,23 @@ const products = [
   {id:5,name:"Ocean Blue Coaster", category:"coaster", price:170, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Ocean_blue_coaster.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:6,name:"Coaster Set", category:"coaster", price:700, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Ocean_stone_coaster.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 
-  {id:1,name:"Galaxy Cat Candle Holder", category:"decor", price:235, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:["Galaxy_cat_candle_holder.png", "cat_candle_holder2.JPG"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:1,name:"Cat Tealight Holder", category:"decor", price:235, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:[{src:"Galaxy_cat_candle_holder.png", label:"Purple"}, {src:"cat_candle_holder2.JPG", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:7,name:"Rose Cube", category:"decor", price:850, old: null,  badge: "pb-prem", blabel:"Premium",imgs:["Rose_cube.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:9,name:"Lamp", category:"decor", price:730, old:null,  badge:"pb-new", blabel:"New",imgs:["Letter_keychain.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 {id:15,name:"Eternal Floral Vase", category:"decor", price:2000, old:null,  badge:"pb-prem", blabel:"Premium",imgs:["Eternal_floral_vase.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:16,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null,imgs:["Colorful_accent_jar.jpg", "accent_jar2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:17,name:"Lotus Flower", category:"decor", price:195, old:null,  badge:null, blabel:null,imgs:["Lotus_container.png", "lotus_flower2.JPG"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 
-  {id:10,name:"Blue Flower Pen Holder", category:"pen holder", price:325, old:null,  badge:null, blabel:null,imgs:["Blue_flower_pen_holder.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:11,name:"Pink Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:["Pink_hexagon_pen_holder.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:12,name:"Transparent Flower Pen Holder", category:"pen holder", price:325, old:null,  badge:"pb-best", blabel:"Bestseller",imgs:["Transparent_flower_pen_holder.png"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:13,name:"Classic Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:["Classic_hexagon_pen_holder.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:10,name:"Classic Pen Holder", category:"pen holder", price:325, old:null,  badge:null, blabel:null,imgs:[{src:"Blue_flower_pen_holder.jpg", label:"Blue"}, {src:"Transparent_flower_pen_holder.png", label:"Transparent"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:11,name:"Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:[{src:"Classic_hexagon_pen_holder.jpg", label:"White"}, {src:"Pink_hexagon_pen_holder.jpg", label:"Pink"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 
-  {id:8,name:"Letter Keychain", category:"stationery", price:130, old: null,  badge: null, blabel:null,imgs:["Letter_keychain.jpg", "keychain2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:18,name:"Bookmark", category:"stationery", price:135, old:null,  badge:null, blabel:null,imgs:["Bookmark.jpg", "bookmark2.JPG"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:19,name:"Pen", category:"stationery", price:145, old:null,  badge:null, blabel:null,imgs:["Pen.jpg", "pen2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:14,name:"Stationery Set", category:"stationery", price:340, old:null,  badge:null, blabel:null,imgs:["Stationery_set.jpg", "red_stationery2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:8,name:"Letter Keychain", category:"stationery", price:130, old: null,  badge: null, blabel:null,imgs:[{src:"Letter_keychain.jpg", label:"Peach"}, {src:"keychain2.jpg", label:"Red"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:18,name:"Bookmark", category:"stationery", price:135, old:null,  badge:null, blabel:null,imgs:[{src:"Bookmark.jpg", label:"Red"}, {src:"bookmark2.JPG", label:"Yellow"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:19,name:"Pen", category:"stationery", price:145, old:null,  badge:null, blabel:null,imgs:[{src:"Bookmark.jpg", label:"Red"}, {src:"bookmark2.JPG", label:"Yellow"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:14,name:"Stationery Set", category:"stationery", price:340, old:null,  badge:null, blabel:null,imgs:[{src:Stationery_set.jpg, label:"Yellow"}, {src:"red_stationery2.jpg", label:"Red"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 
-  {id:20,name:"Soap Holder", category:"decor", price:285, old:null,  badge:null, blabel:null,imgs:["Soap_holder.jpg", "Soap_holder2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:21,name:"Oval Trinket Holder", category:"decor", price:335, old:null,  badge:null, blabel:null,imgs:["Oval_trinket_holder2.jpg", "Oval_trinket_holder.jpg", "Oval_trinket_holder3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+{id:20,name:"Soap Holder", category:"decor", price:285, old:null,  badge:null, blabel:null,imgs:["Soap_holder.jpg", "Soap_holder2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:21,name:"Oval Trinket Holder", category:"decor", price:335, old:null,  badge:null, blabel:null,imgs:["Oval_trinket_holder.jpg", "Oval_trinket_holder2.jpg", "Oval_trinket_holder3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:22,name:"Tulip Jar", category:"decor", price:375, old:null,  badge:null, blabel:null,imgs:["Tulip_jar.jpg", "Tulip_jar2.jpg", "Tulip_jar3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},    
   {id:23,name:"Petal Treasure Jar", category:"decor", price:255, old:null,  badge:null, blabel:null,imgs:["Petal_treasure_jar.jpg", "Petal_treasure_jar2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:24,name:"Cylinder Tealight Holder", category:"decor", price:255, old:null,  badge:null, blabel:null,imgs:["Cylinder_tealight_holder.jpg", "Cylinder_tealight_holder2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
@@ -1820,7 +1821,7 @@ function openProductOverlay(id){
   const track = document.getElementById('prod-track');
   const dots = document.getElementById('prod-dots');
   const carouselEl = document.getElementById('prod-carousel');
-  track.innerHTML = p.imgs.map(src => `<img src="${src}" alt="${p.name}">`).join('');
+  track.innerHTML = p.imgs.map(img => { const src = typeof img === 'string' ? img : img.src; return `<img src="${src}" alt="${p.name}">`; }).join('');
   dots.innerHTML = p.imgs.map((_,i) => `<div class="prod-carousel-dot${i===0?' active':''}"></div>`).join('');
 
   // Set aspect ratio from first image, capped at 4:5
@@ -1830,18 +1831,25 @@ function openProductOverlay(id){
     const cappedRatio = Math.max(naturalRatio, 4/5); // 4:5 is minimum (tallest allowed)
     carouselEl.style.aspectRatio = String(cappedRatio);
   };
-  firstImg.src = p.imgs[0];
+  firstImg.src = typeof p.imgs[0] === 'string' ? p.imgs[0] : p.imgs[0].src;
 
-  // Show/hide nav buttons
+  // Show/hide nav buttons and hint
   document.getElementById('prod-prev').style.display = p.imgs.length > 1 ? 'flex' : 'none';
   document.getElementById('prod-next').style.display = p.imgs.length > 1 ? 'flex' : 'none';
+  const hintEl = document.getElementById('prod-swipe-hint');
+  if(hintEl) hintEl.style.display = p.imgs.length > 1 ? 'block' : 'none';
 
   // Product info
   // category not shown in overlay
   document.getElementById('prod-name').textContent = p.name;
   document.getElementById('prod-price').textContent = `₱${p.price.toLocaleString()}`;
   document.getElementById('prod-desc').textContent = p.description || '';
-  document.getElementById('prod-add-btn').onclick = () => { closeProductOverlay(); addToCart(id); };
+  document.getElementById('prod-add-btn').onclick = () => {
+    const currentImg = p.imgs[_prodOverlayIndex];
+    const variant = (currentImg && typeof currentImg === 'object' && currentImg.label) ? currentImg.label : null;
+    closeProductOverlay();
+    addToCart(id, variant);
+  };
 
   // Touch events for swipe
   const carousel = document.getElementById('prod-carousel');
@@ -1860,6 +1868,7 @@ function closeProductOverlay(){
   document.getElementById('prod-overlay').classList.remove('open');
   document.getElementById('prod-modal').classList.remove('open');
   document.body.style.overflow = '';
+  _prodOverlayIndex = 0;
 }
 
 function prodCarouselNav(dir){
@@ -1872,10 +1881,12 @@ function prodCarouselNav(dir){
 
 // ── CUSTOMIZATION POPUP ──
 let _pendingProductId = null;
+let _pendingVariant = null;
 let _editingCartIndex = null;
 
-function addToCart(id){
+function addToCart(id, variant=null){
   _pendingProductId = id;
+  _pendingVariant = variant;
   _editingCartIndex = null;
   const p = products.find(x => x.id === id);
   document.getElementById('cpop-product-name').textContent = p.name;
@@ -1900,12 +1911,13 @@ function confirmAddToCart(){
     toast('Preferences updated ✨');
   } else {
     const p = products.find(x => x.id === _pendingProductId);
-    const ex = cart.find(i => i.id === _pendingProductId);
+    const ex = cart.find(i => i.id === _pendingProductId && i.variant === _pendingVariant);
     if(ex){ ex.qty++; ex.note = note || ex.note; }
-    else cart.push({...p, qty:1, note});
+    else cart.push({...p, qty:1, note, variant: _pendingVariant});
     saveCart(); updateCartUI();
     toast(`"${p.name}" added 🛍`);
   }
+  _pendingVariant = null;
   closeCustomPopup();
 }
 
@@ -1919,10 +1931,11 @@ function skipCustomization(){
     return;
   }
   const p = products.find(x => x.id === _pendingProductId);
-  const ex = cart.find(i => i.id === _pendingProductId);
-  if(ex) ex.qty++; else cart.push({...p, qty:1, note:''});
+  const ex = cart.find(i => i.id === _pendingProductId && i.variant === _pendingVariant);
+  if(ex) ex.qty++; else cart.push({...p, qty:1, note:'', variant: _pendingVariant});
   saveCart(); updateCartUI();
   toast(`"${p.name}" added 🛍`);
+  _pendingVariant = null;
   closeCustomPopup();
 }
 
@@ -1957,7 +1970,7 @@ function renderCart(){
   if(!cart.length){ ls.innerHTML=`<div class="cart-empty"><p>Your cart is empty</p><p>Add some beautiful pieces ✨</p></div>`; return; }
   ls.innerHTML=cart.map((item,i)=>`
     <div class="citem">
-      <div class="cthumb">${item.img?`<img src="${item.img}" alt="${item.name}">`:''}  </div>
+      <div class="cthumb">${item.imgs && item.imgs[0] ? `<img src="${typeof item.imgs[0] === 'string' ? item.imgs[0] : item.imgs[0].src}" alt="${item.name}">` : ''}  </div>
       <div class="cinfo">
         <div class="cname">${item.name}</div>
         <div class="cprice">₱${item.price.toLocaleString()}</div>
@@ -1966,6 +1979,7 @@ function renderCart(){
           <span class="cqty-num">${item.qty}</span>
           <button class="cqty-btn" onclick="updateQty(${i},1)" aria-label="Increase">+</button>
         </div>
+        ${item.variant ? `<div class="cnote" style="color:var(--pink)">Variation: ${item.variant}</div>` : ''}
         ${item.note ? `<div class="cnote">✏️ ${item.note}</div>` : '<div class="cnote" style="color:rgba(10,16,20,0.3)">No customization</div>'}
         <button class="cedit" onclick="editCartNote(${i})">Edit preferences</button>
       </div>
@@ -2174,6 +2188,7 @@ async function submitOrder(){
 
   let orderDetails = cart.map(item =>
     `${item.name} × ${item.qty} — ₱${(item.price * item.qty).toLocaleString()}` +
+    (item.variant ? `\nVariation: ${item.variant}` : '') +
     (item.note ? `\nCustomization: ${item.note}` : '\nNo customization')
   ).join('\n\n');
   const productTotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
@@ -2459,7 +2474,7 @@ function renderProducts(filter='all'){
   grid.innerHTML=list.map(p=>`
     <div class="pcard">
       <div class="pcard-img" onclick="openProductOverlay(${p.id})" style="cursor:pointer;">
-        <img src="${p.imgs[0]}" alt="${p.name}" loading="lazy">
+        <img src="${typeof p.imgs[0] === 'string' ? p.imgs[0] : p.imgs[0].src}" alt="${p.name}" loading="lazy">
         ${p.badge?`<span class="pbadge ${p.badge}">${p.blabel}</span>`:''}
       </div>
       <div class="pcard-body">
