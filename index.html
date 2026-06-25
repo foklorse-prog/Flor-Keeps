@@ -1426,9 +1426,7 @@
       <p>Flower preservation &amp; resin crafts from the heart of Cebu, Philippines. Every piece made with love and intention.</p>
     </div>
     <div class="footer-col"><h5>Shop</h5><ul><li><a href="#shop">All Products</a></li><li><a href="#custom-vase">Custom Vase</a></li><li><a href="#shop">Coaster</a></li><li><a href="#shop">Floral Art</a></li></ul></div>
-    <div class="footer-col"><h5>Info</h5><ul><li><a href="#about">Our Story</a></li><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">FAQ</a></li></ul></div>
     <div class="footer-col"><h5>Connect</h5><ul><li><a href="https://www.instagram.com/florkeepsph" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://www.facebook.com/people/Flor-Keeps-Ph/61575435265765/" target="_blank" rel="noopener noreferrer">Facebook</a></li><li><a href="https://www.tiktok.com/@florkeepsph" target="_blank" rel="noopener noreferrer">TikTok</a></li></ul></div>
-
   </div>
   <div class="footer-bottom">
     <p>© 2026 Flor Keeps by Shiela. All rights reserved.</p>
@@ -1447,7 +1445,6 @@
       <button class="prod-carousel-btn next" id="prod-next" onclick="prodCarouselNav(1)">&#8250;</button>
       <div class="prod-carousel-dots" id="prod-dots"></div>
     </div>
-    <p id="prod-swipe-hint" style="text-align:center; font-size:0.68rem; color:rgba(10,16,20,0.35); font-family:'Poppins',sans-serif; padding:0.4rem 0; display:none;">Swipe to see variations</p>
     <div class="prod-info">
       <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
         <div class="pname" id="prod-name"></div>
@@ -1816,6 +1813,10 @@ function openProductOverlay(id){
   if(!p) return;
   _prodOverlayId = id;
   _prodOverlayIndex = 0;
+
+  // Reset carousel track to first slide
+  const trackReset = document.getElementById('prod-track');
+  if(trackReset) trackReset.style.transform = 'translateX(0)';
 
   // Build carousel
   const track = document.getElementById('prod-track');
