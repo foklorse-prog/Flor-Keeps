@@ -1066,7 +1066,9 @@
     .prod-carousel-track {
       display: flex;
       height: 100%;
-      transition: transform 0.35s cubic-bezier(0.23,1,0.32,1);
+      will-change: transform;
+      transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translate3d(0, 0, 0);
     }
     .prod-carousel-track img {
       min-width: 100%; height: 100%;
@@ -1877,14 +1879,14 @@ function closeProductOverlay(){
   document.body.style.overflow = '';
   _prodOverlayIndex = 0;
   const trackReset = document.getElementById('prod-track');
-  if(trackReset) trackReset.style.transform = 'translateX(0)';
+  if(trackReset) trackReset.style.transform = 'translate3d(0, 0, 0)';
 }
 
 function prodCarouselNav(dir){
   const p = products.find(x => x.id === _prodOverlayId);
   if(!p) return;
   _prodOverlayIndex = (_prodOverlayIndex + dir + p.imgs.length) % p.imgs.length;
-  document.getElementById('prod-track').style.transform = `translateX(-${_prodOverlayIndex * 100}%)`;
+  document.getElementById('prod-track').style.transform = `translate3d(-${_prodOverlayIndex * 100}%, 0, 0)`;
   document.querySelectorAll('.prod-carousel-dot').forEach((d,i) => d.classList.toggle('active', i === _prodOverlayIndex));
 }
 
