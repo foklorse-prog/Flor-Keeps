@@ -793,9 +793,9 @@
     .cart-empty { text-align:center; margin-top:2.5rem; }
     .cart-empty p:first-child { font-family:'Poppins',sans-serif; font-size:0.95rem; font-weight:500; color:var(--navy); }
     .cart-empty p:last-child { font-size:0.78rem; color:var(--sub); margin-top:0.35rem; }
-    .citem { display:flex; gap:0.85rem; align-items:center; padding:0.85rem; background:var(--white); border:1px solid var(--line); border-radius:10px; box-shadow:0 1px 4px rgba(10,16,20,0.04); }
-    .cthumb { width:56px; height:56px; border-radius:8px; overflow:hidden; background:var(--off); flex-shrink:0; }
-    .cthumb img { width:100%; height:100%; object-fit:cover; display:block; }
+    .citem { display:flex; gap:0.85rem; align-items:flex-start; padding:0.85rem; background:var(--white); border:1px solid var(--line); border-radius:10px; box-shadow:0 1px 4px rgba(10,16,20,0.04); }
+    .cthumb { width:80px; height:80px; border-radius:10px; overflow:hidden; background:var(--off); flex-shrink:0; }
+    .cthumb img { width:100%; height:100%; object-fit:cover; object-position:top left; display:block; }
     .cinfo { flex:1; }
     .cname { font-family:'Poppins',sans-serif; font-size:0.85rem; font-weight:500; color:var(--navy); line-height:1.3; }
     .cprice { font-size:0.78rem; color:var(--sub); margin-top:0.18rem; }
@@ -1462,22 +1462,23 @@
 <div class="custom-ov" id="custom-overlay" onclick="closeCustomPopup()"></div>
 <div class="custom-pop" id="custom-popup">
   <div class="custom-pop-handle"></div>
-  <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.9rem;">
-    <div id="cpop-img-wrap" style="width:52px; height:52px; border-radius:8px; overflow:hidden; background:var(--sky); flex-shrink:0;">
-      <img id="cpop-img" src="" alt="" style="width:100%; height:100%; object-fit:cover; display:none;">
+  <div style="display:flex; align-items:flex-start; gap:0.85rem; margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid var(--line);">
+    <div id="cpop-img-wrap" style="width:80px; height:80px; border-radius:10px; overflow:hidden; background:var(--sky); flex-shrink:0;">
+      <img id="cpop-img" src="" alt="" style="width:100%; height:100%; object-fit:cover; object-position:top left; display:none;">
     </div>
-    <div>
-      <div class="cpop-product" id="cpop-product-name" style="margin-bottom:0.15rem;"></div>
-      <div id="cpop-variant-label" style="font-size:0.68rem; color:var(--pink); font-family:'Poppins',sans-serif; display:none;"></div>
+    <div style="flex:1; padding-top:0.1rem;">
+      <div id="cpop-product-name" style="font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:500; color:var(--navy); line-height:1.3; margin-bottom:0.25rem;"></div>
+      <div id="cpop-variant-label" style="font-size:0.72rem; color:var(--pink); font-family:'Poppins',sans-serif; margin-bottom:0.25rem; display:none;"></div>
+      <div id="cpop-price" style="font-family:'Poppins',sans-serif; font-size:0.9rem; font-weight:600; color:var(--navy);"></div>
     </div>
   </div>
-  <h4>Any preferences for this piece?</h4>
-  <textarea id="cpop-textarea" placeholder="e.g. purple tint, dried lavender, it's a gift for my mom…" rows="3"></textarea>
-  <p class="cpop-hint">All pieces are customizable. Type in your preferences for colors, flowers, size, or any detail — or leave blank and we'll make it just like the selected photo.</p>
+  <p style="font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(10,16,20,0.45); font-weight:500; font-family:'Poppins',sans-serif; margin-bottom:0.3rem;">Any preferences?</p>
+  <p class="cpop-hint">All pieces are customizable. Type in your preferences for colors, flowers, or any detail — or leave blank and we'll make it just like the selected variation.</p>
+  <textarea id="cpop-textarea" placeholder="e.g. purple tint, dried lavender, it's a gift for my mom…" rows="2"></textarea>
   <div class="cpop-btns">
     <button class="btn btn-pink" onclick="confirmAddToCart()">Add to Cart</button>
   </div>
-  <p class="cpop-skip" onclick="skipCustomization()">Skip — add as shown</p>
+
 </div>
 
 <!-- CHECKOUT MODAL -->
@@ -1860,13 +1861,33 @@ function openProductOverlay(id){
     addToCart(id, variant, variantSrc);
   };
 
-  // Touch events for swipe
-  const carousel = document.getElementById('prod-carousel');
-  carousel.addEventListener('touchstart', e => { _prodTouchStartX = e.touches[0].clientX; }, { passive: true });
-  carousel.addEventListener('touchend', e => {
+  // Touch events for swipe — remove old listeners first to prevent stacking
+  const carouselSwipe = document.getElementById('prod-carousel');
+  if(carouselSwipe._touchStart) carouselSwipe.removeEventListener('touchstart', carouselSwipe._touchStart);
+  if(carouselSwipe._touchMove) carouselSwipe.removeEventListener('touchmove', carouselSwipe._touchMove);
+  if(carouselSwipe._touchEnd) carouselSwipe.removeEventListener('touchend', carouselSwipe._touchEnd);
+
+  let _swipeLocked = false;
+  carouselSwipe._touchStart = e => {
+    _prodTouchStartX = e.touches[0].clientX;
+    _swipeLocked = false;
+  };
+  carouselSwipe._touchMove = e => {
+    if(_swipeLocked) return;
+    const diff = _prodTouchStartX - e.touches[0].clientX;
+    if(Math.abs(diff) > 10) e.preventDefault(); // prevent page scroll during swipe
+  };
+  carouselSwipe._touchEnd = e => {
+    if(_swipeLocked) return;
     const diff = _prodTouchStartX - e.changedTouches[0].clientX;
-    if(Math.abs(diff) > 40) prodCarouselNav(diff > 0 ? 1 : -1);
-  }, { passive: true });
+    if(Math.abs(diff) > 50){
+      _swipeLocked = true;
+      prodCarouselNav(diff > 0 ? 1 : -1);
+    }
+  };
+  carouselSwipe.addEventListener('touchstart', carouselSwipe._touchStart, { passive: true });
+  carouselSwipe.addEventListener('touchmove', carouselSwipe._touchMove, { passive: false });
+  carouselSwipe.addEventListener('touchend', carouselSwipe._touchEnd, { passive: true });
 
   document.getElementById('prod-overlay').classList.add('open');
   document.getElementById('prod-modal').classList.add('open');
@@ -1903,6 +1924,8 @@ function addToCart(id, variant=null, variantSrc=null){
   _editingCartIndex = null;
   const p = products.find(x => x.id === id);
   document.getElementById('cpop-product-name').textContent = p.name;
+  const cpopPrice = document.getElementById('cpop-price');
+  if(cpopPrice) cpopPrice.textContent = `₱${p.price.toLocaleString()}`;
   document.getElementById('cpop-textarea').value = '';
   // Show product image in popup
   const cpopImg = document.getElementById('cpop-img');
@@ -1995,7 +2018,7 @@ function renderCart(){
   if(!cart.length){ ls.innerHTML=`<div class="cart-empty"><p>Your cart is empty</p><p>Add some beautiful pieces ✨</p></div>`; return; }
   ls.innerHTML=cart.map((item,i)=>`
     <div class="citem">
-      <div class="cthumb">${(item.variantSrc || (item.imgs && item.imgs[0])) ? `<img src="${item.variantSrc || (typeof item.imgs[0] === 'string' ? item.imgs[0] : item.imgs[0].src)}" alt="${item.name}" style="object-position:top left;">` : ''}  </div>
+      <div class="cthumb">${(()=>{ const src = item.variantSrc || (item.imgs && item.imgs[0] && (typeof item.imgs[0] === 'string' ? item.imgs[0] : item.imgs[0].src)) || item.img || ''; return src ? `<img src="${src}" alt="${item.name}" style="object-fit:cover;object-position:top left;width:100%;height:100%;display:block;">` : ''; })()}  </div>
       <div class="cinfo">
         <div class="cname">${item.name}</div>
         <div class="cprice">₱${item.price.toLocaleString()}</div>
