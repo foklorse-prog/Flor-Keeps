@@ -110,10 +110,10 @@
       filter: brightness(0) invert(1) opacity(0.75); /* makes it white/subtle on navy bg */
     }
     .footer-logo-icon { width: 30px; height: 30px; flex-shrink: 0; object-fit: contain; }
-    .logo-words { display: flex; flex-direction: column; gap: 3px; justify-content: center; }
+    .logo-words { display: flex; flex-direction: column; justify-content: center; }
     .logo-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem; font-weight: 400; letter-spacing: 0.02em;
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.55rem; font-weight: 400; letter-spacing: 0.02em;
       color: var(--navy); line-height: 1;
       /* hidden when hero is visible — JS adds .scrolled to nav */
       opacity: 0; pointer-events: none;
@@ -689,7 +689,7 @@
     .pcat { font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sky-dk); margin-bottom: 0.2rem; font-weight: 500; }
     .pname { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 400; color: var(--navy); line-height: 1.3; flex:1; margin-bottom: 0.7rem; }
     .pfoot { display: flex; align-items: center; justify-content: space-between; }
-    .pprice { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--navy); font-weight: 400; }
+    .pprice { font-family: 'Poppins', sans-serif; font-size: 0.85rem; color: var(--navy); font-weight: 600; }
     .pprice s { font-family: 'Poppins', sans-serif; font-size: 0.72rem; color: var(--sub); margin-left: 0.25rem; text-decoration: line-through; }
     .padd {
       width: 32px; height: 32px; border-radius: 50%; border: none;
@@ -768,7 +768,7 @@
     .footer-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-bottom: 0.85rem; }
     .footer-logo-icon { width: 30px; height: 30px; flex-shrink: 0; }
     .footer-logo-words { display: flex; flex-direction: column; gap: 2px; }
-    .footer-logo-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: #fff; letter-spacing: 0.02em; line-height: 1; }
+    .footer-logo-name { font-family: 'Great Vibes', cursive; font-size: 1.6rem; color: #fff; letter-spacing: 0.02em; line-height: 1; }
     .footer-logo-tag { font-size: 0.5rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--sky); font-weight: 500; }
     .footer-brand p { font-size: 0.76rem; line-height: 1.82; }
     footer h5 { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.9rem; font-weight: 500; }
@@ -798,7 +798,7 @@
     .cthumb img { width:100%; height:100%; object-fit:cover; object-position:top left; display:block; }
     .cinfo { flex:1; }
     .cname { font-family:'Poppins',sans-serif; font-size:0.85rem; font-weight:500; color:var(--navy); line-height:1.3; }
-    .cprice { font-size:0.78rem; color:var(--sub); margin-top:0.18rem; }
+    .cprice { font-family:'Poppins',sans-serif; font-size:0.85rem; font-weight:600; color:var(--navy); margin-top:0.18rem; }
     .crm { background:none; border:none; color:var(--sub); cursor:pointer; font-size:0.88rem; transition:color 0.18s; align-self: flex-start; margin-top: 0.15rem; }
     .crm:hover { color:var(--pink); }
     /* Quantity stepper */
@@ -867,10 +867,10 @@
       color: var(--pink); margin-bottom: 1rem;
     }
     .custom-pop textarea {
-      width: 100%; min-height: 90px; resize: none;
+      width: 100%; min-height: 70px; resize: none;
       background: var(--white); border: 1.5px solid rgba(10,16,20,0.14);
       border-radius: 12px; padding: 0.85rem 1rem;
-      font-family: 'Poppins', sans-serif; font-size: 0.86rem;
+      font-family: 'Poppins', sans-serif; font-size: 0.8rem;
       color: var(--navy); outline: none; transition: border-color 0.2s;
       line-height: 1.6;
     }
@@ -880,7 +880,7 @@
       font-size: 0.7rem; color: rgba(10,16,20,0.4);
       margin-top: 0.45rem; margin-bottom: 1.1rem; line-height: 1.5;
     }
-    .cpop-btns { display: flex; flex-direction: column; gap: 0.55rem; }
+    .cpop-btns { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1.1rem; }
     .cpop-btns .btn { width: 100%; justify-content: center; }
     .cpop-skip {
       text-align: center; font-size: 0.74rem; color: rgba(10,16,20,0.4);
@@ -982,8 +982,9 @@
     .chk-sum-item {
       display: flex; justify-content: space-between;
       font-size: 0.82rem; color: var(--navy); margin-bottom: 0.35rem;
+      font-family: 'Poppins', sans-serif;
     }
-    .chk-sum-item span:last-child { font-weight: 500; }
+    .chk-sum-item span:last-child { font-weight: 600; }
     .chk-sum-note {
       font-size: 0.68rem; color: var(--pink);
       font-style: italic; margin-top: 0.15rem;
@@ -1106,7 +1107,7 @@
     }
     .prod-info .pcat { font-size: 0.58rem; letter-spacing: 0.16em; color: var(--pink); margin-bottom: 0.4rem; }
     .prod-info .pname { font-family: 'Poppins', sans-serif !important; font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; line-height: 1.3; }
-    .prod-info .pprice { font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 0.85rem; }
+    .prod-info .pprice { font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-bottom: 0.85rem; }
     #prod-desc { font-size: 0.76rem; color: rgba(10,16,20,0.5); line-height: 1.75; margin-bottom: 1.2rem; }
     .prod-info .btn { padding: 0.7rem 1rem; font-size: 0.82rem; }
     .prod-info .pcat {
@@ -1228,7 +1229,6 @@
     <img src="SUBMARK_LOGO.png" class="logo-icon" alt="Flor Keeps">
     <div class="logo-words">
       <span class="logo-name">Flor Keeps</span>
-      <span class="logo-tag">Flower Preservation &amp; Resin Crafts</span>
     </div>
   </a>
 
@@ -1469,7 +1469,7 @@
     <div style="flex:1; padding-top:0.1rem;">
       <div id="cpop-product-name" style="font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:500; color:var(--navy); line-height:1.3; margin-bottom:0.25rem;"></div>
       <div id="cpop-variant-label" style="font-size:0.72rem; color:var(--pink); font-family:'Poppins',sans-serif; margin-bottom:0.25rem; display:none;"></div>
-      <div id="cpop-price" style="font-family:'Poppins',sans-serif; font-size:0.9rem; font-weight:600; color:var(--navy);"></div>
+      <div id="cpop-price" style="font-family:'Poppins',sans-serif; font-size:0.85rem; font-weight:600; color:var(--navy);"></div>
     </div>
   </div>
   <p style="font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(10,16,20,0.45); font-weight:500; font-family:'Poppins',sans-serif; margin-bottom:0.3rem;">Any preferences?</p>
@@ -1589,6 +1589,7 @@
 
   <div class="chk-success" id="chk-success-view">
     <div class="chk-success-icon">🌺</div>
+    <div style="font-family:'Great Vibes',cursive; font-size:2rem; color:var(--pink); line-height:1; margin-bottom:0.3rem;">Thank you</div>
     <h4 id="chk-success-title">Order received!</h4>
     <p id="chk-success-msg">Shiela will reach out to you shortly to confirm your order and arrange payment.</p>
     <button class="btn btn-sky" style="width:100%;justify-content:center;" onclick="closeCheckoutAfterSuccess()">Done</button>
@@ -2028,7 +2029,7 @@ function renderCart(){
           <button class="cqty-btn" onclick="updateQty(${i},1)" aria-label="Increase">+</button>
         </div>
         ${item.variant ? `<div class="cnote" style="color:var(--pink)">Variation: ${item.variant}</div>` : ''}
-        ${item.note ? `<div class="cnote">✏️ ${item.note}</div>` : '<div class="cnote" style="color:rgba(10,16,20,0.3)">No customization</div>'}
+        ${item.note ? `<div class="cnote"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-1px;margin-right:3px;"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>${item.note}</div>` : '<div class="cnote" style="color:rgba(10,16,20,0.3)">No customization</div>'}
         <button class="cedit" onclick="editCartNote(${i})">Edit preferences</button>
       </div>
       <button class="crm" onclick="removeFromCart(${i})">✕</button>
@@ -2162,7 +2163,7 @@ function buildOrderSummary(location){
   let html = '<div class="chk-sum-label">Order Summary</div>';
   cart.forEach(item => {
     html += `<div class="chk-sum-item"><span>${item.name} × ${item.qty}</span><span>₱${(item.price * item.qty).toLocaleString()}</span></div>`;
-    if(item.note) html += `<div class="chk-sum-note">✏️ ${item.note}</div>`;
+    if(item.note) html += `<div class="chk-sum-note"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:-1px;margin-right:3px;"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>${item.note}</div>`;
   });
   html += `<div class="chk-sum-item" style="margin-top:0.35rem;"><span>Delivery</span><span>${shippingLabel}</span></div>`;
   html += `<div class="chk-total-row"><span>Total</span><strong>${totalLabel}</strong></div>`;
@@ -2307,6 +2308,7 @@ function showSuccessViewV2(title, message){
   successView.style.display = 'block';
   successView.innerHTML = `
     <div class="chk-success-icon">🌺</div>
+    <div style="font-family:'Great Vibes',cursive; font-size:2rem; color:var(--pink); line-height:1; margin-bottom:0.3rem;">Thank you</div>
     <h4 id="chk-success-title">${escapeHtml(title)}</h4>
     <p id="chk-success-msg">${escapeHtml(message)}</p>
     <button class="btn btn-sky" style="width:100%;justify-content:center;" onclick="closeCheckoutAfterSuccess()">Done</button>
