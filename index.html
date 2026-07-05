@@ -1545,6 +1545,21 @@
     <!-- Order summary with shipping and total -->
     <div class="chk-order-summary" id="chk-order-summary" style="margin-top:1rem;"></div>
 
+    <div class="chk-field" id="chk-payoption-wrap" style="display:none;">
+      <label style="display:block; font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(10,16,20,0.5); margin-bottom:0.35rem; font-weight:500;">Payment Option</label>
+      <div style="display:flex; border:1.5px solid var(--line); border-radius:10px; overflow:hidden; background:var(--white);">
+        <label id="toggle-pay-full" style="display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.82rem; color:var(--navy); padding:0.72rem 1rem; flex:1; font-family:'Poppins',sans-serif; text-transform:none; letter-spacing:0; font-weight:400; transition:background 0.18s;">
+          <input type="radio" name="pay-option" id="chk-pay-full" value="full" checked onchange="updatePayOptionSummary()" style="display:none;">
+          Pay in Full
+        </label>
+        <label id="toggle-pay-half" style="display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.82rem; color:var(--navy); padding:0.72rem 1rem; border-left:1.5px solid var(--line); flex:1; font-family:'Poppins',sans-serif; text-transform:none; letter-spacing:0; font-weight:400; transition:background 0.18s;">
+          <input type="radio" name="pay-option" id="chk-pay-half" value="half" onchange="updatePayOptionSummary()" style="display:none;">
+          Pay 50% Now
+        </label>
+      </div>
+    </div>
+    <div id="chk-payoption-summary" style="display:none; background:var(--white); border:1px solid var(--line); border-radius:10px; padding:0.75rem 1rem; margin-bottom:1rem; font-family:'Poppins',sans-serif;"></div>
+
     <!-- Standard order: payment method -->
     <div id="chk-qr-section" style="display:none; margin-bottom:1rem;">
       <p style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(10,16,20,0.5); margin-bottom:0.75rem; font-weight:500; font-family:'Poppins',sans-serif;">Select Payment Method</p>
@@ -2137,6 +2152,8 @@ function updateShippingFee(){
   }
 }
 
+let _chkGrandTotal = null;
+
 function buildOrderSummary(location){
   const summaryEl = document.getElementById('chk-order-summary');
   if(!summaryEl) return;
@@ -2144,11 +2161,10 @@ function buildOrderSummary(location){
   const noSelection = !location;
   const productTotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
   const shippingLabel = noSelection ? '—' : isCebu ? 'Shouldered by receiver' : '₱80';
+  const grandTotal = isCebu ? productTotal : productTotal + 80;
   const totalLabel = noSelection
     ? `₱${productTotal.toLocaleString()} + shipping`
-    : isCebu
-      ? `₱${productTotal.toLocaleString()}`
-      : `₱${(productTotal + 80).toLocaleString()}`;
+    : `₱${grandTotal.toLocaleString()}`;
 
   let html = '<div class="chk-sum-label">Order Summary</div>';
   cart.forEach(item => {
@@ -2158,6 +2174,49 @@ function buildOrderSummary(location){
   html += `<div class="chk-sum-item" style="margin-top:0.35rem;"><span>Delivery</span><span>${shippingLabel}</span></div>`;
   html += `<div class="chk-total-row"><span>Total</span><strong>${totalLabel}</strong></div>`;
   summaryEl.innerHTML = html;
+
+  // Show payment option toggle only once a location is selected, and only for standard orders
+  const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
+  const payWrap = document.getElementById('chk-payoption-wrap');
+  const paySummary = document.getElementById('chk-payoption-summary');
+  if(!noSelection && !hasCustom){
+    _chkGrandTotal = grandTotal;
+    if(payWrap) payWrap.style.display = 'block';
+    if(paySummary) paySummary.style.display = 'block';
+    updatePayOptionSummary();
+  } else {
+    _chkGrandTotal = null;
+    if(payWrap) payWrap.style.display = 'none';
+    if(paySummary) paySummary.style.display = 'none';
+  }
+}
+
+function updatePayOptionSummary(){
+  if(_chkGrandTotal === null) return;
+  const payHalf = document.getElementById('chk-pay-half');
+  const isHalf = payHalf && payHalf.checked;
+  const summaryEl = document.getElementById('chk-payoption-summary');
+  if(!summaryEl) return;
+
+  const tFull = document.getElementById('toggle-pay-full');
+  const tHalf = document.getElementById('toggle-pay-half');
+  const pink = getComputedStyle(document.documentElement).getPropertyValue('--pink-lt').trim() || '#fce8ef';
+  if(tFull && tHalf){
+    tFull.style.background = !isHalf ? pink : '';
+    tHalf.style.background = isHalf ? pink : '';
+  }
+
+  if(isHalf){
+    const half = Math.round(_chkGrandTotal / 2);
+    const remaining = _chkGrandTotal - half;
+    summaryEl.innerHTML = `
+      <div class="chk-sum-item"><span>Amount due now</span><span>₱${half.toLocaleString()}</span></div>
+      <div class="chk-sum-item" style="color:var(--pink);"><span>Remaining balance</span><span>₱${remaining.toLocaleString()}</span></div>
+      <p style="font-size:0.68rem; color:rgba(10,16,20,0.45); margin-top:0.4rem; margin-bottom:0;">Remaining balance is due before delivery.</p>
+    `;
+  } else {
+    summaryEl.innerHTML = `<div class="chk-sum-item"><span>Amount due now</span><span>₱${_chkGrandTotal.toLocaleString()}</span></div>`;
+  }
 }
 
 async function uploadProofOfPayment(file){
@@ -2324,7 +2383,14 @@ function showPaymentView(order){
       <div class="chk-sum-item"><span>Order ID</span><span>${escapeHtml(order.orderId)}</span></div>
       <div class="chk-sum-item"><span>Total</span><span>${escapeHtml(order.orderTotal)}</span></div>
       <div class="chk-sum-item"><span>Name</span><span>${escapeHtml(order.name)}</span></div>
+      ${order.paymentOption === 'half' ? `
+        <div class="chk-sum-item" style="margin-top:0.35rem;"><span>Amount due now</span><span>PHP ${(order.amountDueNow||0).toLocaleString()}</span></div>
+        <div class="chk-sum-item" style="color:var(--pink);"><span>Remaining balance</span><span>PHP ${(order.remainingBalance||0).toLocaleString()}</span></div>
+      ` : `
+        <div class="chk-sum-item" style="margin-top:0.35rem;"><span>Amount due now</span><span>PHP ${(order.amountDueNow||0).toLocaleString()}</span></div>
+      `}
     </div>
+
     <p style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(10,16,20,0.5); margin-bottom:0.75rem; font-weight:500; font-family:'Poppins',sans-serif;">Select Payment Method</p>
     <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:1rem;">
       <div style="text-align:center;">
@@ -2391,6 +2457,11 @@ async function submitOrderV2(){
   const orderTotal = `PHP ${grandTotal.toLocaleString()}${isCebuCity ? ' (delivery by receiver)' : ' incl. PHP 80 shipping'}`;
   const orderId = createOrderId();
 
+  const payHalfEl = document.getElementById('chk-pay-half');
+  const isHalfPayment = !hasCustom && payHalfEl && payHalfEl.checked;
+  const amountDueNow = isHalfPayment ? Math.round(grandTotal / 2) : grandTotal;
+  const remainingBalance = isHalfPayment ? grandTotal - amountDueNow : 0;
+
   const payload = {
     'Order ID': orderId,
     Name: fullName,
@@ -2401,7 +2472,10 @@ async function submitOrderV2(){
     'Shipping Fee': shippingFee,
     'Order Type': hasCustom ? 'Custom (Quote needed)' : 'Standard',
     'Order Details': orderDetails,
-    'Order Total': orderTotal
+    'Order Total': orderTotal,
+    'Payment Option': hasCustom ? 'N/A (Quote needed)' : (isHalfPayment ? '50% Down Payment' : 'Paid in Full'),
+    'Amount Due Now': hasCustom ? 'N/A' : `PHP ${amountDueNow.toLocaleString()}`,
+    'Remaining Balance': hasCustom ? 'N/A' : (isHalfPayment ? `PHP ${remainingBalance.toLocaleString()} (due before delivery)` : 'None')
   };
 
   const body = new FormData();
@@ -2424,8 +2498,12 @@ async function submitOrderV2(){
       email,
       messenger,
       orderTotal,
+      grandTotal,
       orderDetails,
       shippingFee,
+      paymentOption: isHalfPayment ? 'half' : 'full',
+      amountDueNow,
+      remainingBalance,
       createdAt: new Date().toISOString(),
       status: 'waiting_for_payment'
     };
@@ -2487,6 +2565,8 @@ async function submitPaymentProof(){
       }
     }
 
+    const isHalfPayment = order.paymentOption === 'half';
+
     const body = new FormData();
     body.append('_subject', `[Flor Keeps] Payment Proof for ${order.orderId}`);
     body.append('Order ID', order.orderId);
@@ -2494,13 +2574,19 @@ async function submitPaymentProof(){
     body.append('Contact Number', order.contact);
     if(order.email) body.append('Email', order.email);
     body.append('Order Total', order.orderTotal);
+    body.append('Payment Option', isHalfPayment ? '50% Down Payment' : 'Paid in Full');
+    body.append('Amount Paid Now', `PHP ${(order.amountDueNow || order.grandTotal).toLocaleString()}`);
+    body.append('Remaining Balance', isHalfPayment ? `PHP ${(order.remainingBalance || 0).toLocaleString()} (due before delivery)` : 'None');
     body.append('Proof of Payment Filename', proofFilename);
     body.append('Proof of Payment URL', proofUrl);
     await submitFormspree(body);
 
     await clearPendingOrder();
     resetProofInput();
-    showSuccessViewV2('Payment proof received! 🌺', `Thank you, ${order.name}! Shiela will verify your payment and begin preparing your order.`);
+    const successMsg = isHalfPayment
+      ? `Thank you, ${order.name}! Shiela will verify your down payment. The remaining balance of PHP ${(order.remainingBalance || 0).toLocaleString()} is due before delivery.`
+      : `Thank you, ${order.name}! Shiela will verify your payment and begin preparing your order.`;
+    showSuccessViewV2('Payment proof received! 🌺', successMsg);
   } catch(e){
     console.error('Payment proof submission failed:', e);
     toast(e.message || 'Payment proof could not be sent. Please try again.');
