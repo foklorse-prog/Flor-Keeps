@@ -2176,10 +2176,9 @@ function buildOrderSummary(location){
   summaryEl.innerHTML = html;
 
   // Show payment option toggle only once a location is selected, and only for standard orders
-  const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
   const payWrap = document.getElementById('chk-payoption-wrap');
   const paySummary = document.getElementById('chk-payoption-summary');
-  if(!noSelection && !hasCustom){
+  if(!noSelection){
     _chkGrandTotal = grandTotal;
     if(payWrap) payWrap.style.display = 'block';
     if(paySummary) paySummary.style.display = 'block';
@@ -2206,7 +2205,11 @@ function updatePayOptionSummary(){
     tHalf.style.background = isHalf ? pink : '';
   }
 
-  if(isHalf){
+  const hasCustomNow = cart.some(i => i.note && i.note.trim() !== '');
+
+  if(hasCustomNow){
+    summaryEl.innerHTML = `<p style="font-size:0.72rem; color:rgba(10,16,20,0.5); margin:0; line-height:1.6;">Your total may change based on your customization. Shiela will confirm the final quote — you've noted <strong style="color:var(--navy);">${isHalf ? '50% down payment' : 'full payment'}</strong> as your preference.</p>`;
+  } else if(isHalf){
     const half = Math.round(_chkGrandTotal / 2);
     const remaining = _chkGrandTotal - half;
     summaryEl.innerHTML = `
@@ -2458,7 +2461,7 @@ async function submitOrderV2(){
   const orderId = createOrderId();
 
   const payHalfEl = document.getElementById('chk-pay-half');
-  const isHalfPayment = !hasCustom && payHalfEl && payHalfEl.checked;
+  const isHalfPayment = payHalfEl && payHalfEl.checked;
   const amountDueNow = isHalfPayment ? Math.round(grandTotal / 2) : grandTotal;
   const remainingBalance = isHalfPayment ? grandTotal - amountDueNow : 0;
 
@@ -2473,9 +2476,9 @@ async function submitOrderV2(){
     'Order Type': hasCustom ? 'Custom (Quote needed)' : 'Standard',
     'Order Details': orderDetails,
     'Order Total': orderTotal,
-    'Payment Option': hasCustom ? 'N/A (Quote needed)' : (isHalfPayment ? '50% Down Payment' : 'Paid in Full'),
-    'Amount Due Now': hasCustom ? 'N/A' : `PHP ${amountDueNow.toLocaleString()}`,
-    'Remaining Balance': hasCustom ? 'N/A' : (isHalfPayment ? `PHP ${remainingBalance.toLocaleString()} (due before delivery)` : 'None')
+    'Payment Preference': isHalfPayment ? '50% Down Payment' : 'Paid in Full',
+    'Amount Due Now': hasCustom ? 'Pending final quote' : `PHP ${amountDueNow.toLocaleString()}`,
+    'Remaining Balance': hasCustom ? 'Pending final quote' : (isHalfPayment ? `PHP ${remainingBalance.toLocaleString()} (due before delivery)` : 'None')
   };
 
   const body = new FormData();
@@ -2487,7 +2490,8 @@ async function submitOrderV2(){
     await submitFormspree(body);
     if(hasCustom){
       cart = []; saveCart(); updateCartUI();
-      showSuccessViewV2('Quote request received', `Thank you, ${fullName}. Shiela will reach out via Messenger or Viber with your quote and payment details. Order ID: ${orderId}`);
+      const prefText = isHalfPayment ? '50% down payment' : 'full payment';
+      showSuccessViewV2('Quote request received', `Thank you, ${fullName}. Shiela will reach out via Messenger or Viber with your final quote — you've noted a preference for ${prefText}. Order ID: ${orderId}`);
       return;
     }
 
