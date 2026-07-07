@@ -2178,16 +2178,11 @@ function buildOrderSummary(location){
   // Show payment option toggle only once a location is selected, and only for standard orders
   const payWrap = document.getElementById('chk-payoption-wrap');
   const paySummary = document.getElementById('chk-payoption-summary');
-  if(!noSelection){
-    _chkGrandTotal = grandTotal;
-    if(payWrap) payWrap.style.display = 'block';
-    if(paySummary) paySummary.style.display = 'block';
-    updatePayOptionSummary();
-  } else {
-    _chkGrandTotal = null;
-    if(payWrap) payWrap.style.display = 'none';
-    if(paySummary) paySummary.style.display = 'none';
-  }
+  // Toggle always shows — uses grandTotal once location is picked, otherwise falls back to productTotal + shipping unresolved
+  _chkGrandTotal = noSelection ? productTotal : grandTotal;
+  if(payWrap) payWrap.style.display = 'block';
+  if(paySummary) paySummary.style.display = 'block';
+  updatePayOptionSummary();
 }
 
 function updatePayOptionSummary(){
