@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#9CB7CE">
   <meta name="description" content="Flower preservation & resin crafts — coaster, vases, sculptures & more. Made in Cebu, Philippines.">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -259,11 +259,11 @@
     }
     /* Subtext below brand name — Julius Sans One, smaller */
     .hero-sub {
-      font-family: 'Julius Sans One', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(1rem, 5vw, 3rem);
       font-weight: 400; color: #fff;
       line-height: 0.96; text-transform: uppercase; margin-bottom: 0.8rem;
-      letter-spacing: .01em;
+      letter-spacing: .08em;
     }
     .hero-h1-em {
       font-family: 'Cormorant Garamond', serif;
@@ -332,7 +332,7 @@
 
     width: 100%;
     height: 100%;
-    padding: 0 20px;
+    padding: 0 1.6rem;
 
     text-decoration: none;
     }
@@ -365,9 +365,9 @@
       text-decoration: none;
     }
     .accordion-header-text {
-      font-family: 'Julius Sans One', sans-serif;
-      font-size: 1.25rem; font-weight: 400;
-      color: #fff; letter-spacing: 0.01em;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1rem, 5vw, 3rem); font-weight: 400;
+      color: #fff; letter-spacing: 0.08em; text-transform: uppercase;
     }
     .accordion-arrow {
       width: 38px; height: 38px; border-radius: 50%;
@@ -568,16 +568,17 @@
       gap: 0.8rem;
     }
     .everyday-text h2 {
-      font-family: 'Julius Sans One', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: clamp(2.6rem, 8vw, 5.5rem);
       font-weight: 400; color: #fff;
       line-height: 0.96; text-transform: uppercase;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.08em;
     }
     .everyday-text h2 em {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-weight: 300;
-      font-size: 1.08em; letter-spacing: 0.02em;
+      font-family: 'Poppins', sans-serif;
+      font-style: italic; font-weight: 400;
+      font-size: 1em; text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
     /* Photo3 background */
     .custom-bg {
@@ -589,7 +590,7 @@
     /* Body text and CTA link inside photo banners */
     .banner-body {
       font-family: 'Poppins', sans-serif;
-      font-size: 0.85rem; color: rgba(255,255,255,0.78);
+      font-size: 0.62rem; color: rgba(255,255,255,0.78);
       line-height: 1.75; max-width: 300px;
     }
     .banner-cta {
@@ -612,29 +613,58 @@
       background: var(--white);
       position: relative;
     }
-    #shop::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--sky-dk), var(--pink), var(--butter));
+    .shop-marquee {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      padding: 0.55rem 0;
+      border-top: 3px solid transparent;
+      border-image: linear-gradient(90deg, var(--sky-dk), var(--pink), var(--butter)) 1;
+    }
+    .shop-marquee-track {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      width: max-content;
+      animation: shopMarqueeScroll 22s linear infinite;
+    }
+    .shop-marquee-track span {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem; letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.85);
+      padding: 0 0.9rem;
+      display: inline-flex; align-items: center;
+      white-space: nowrap;
+    }
+    .marquee-sep {
+      color: var(--pink);
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @keyframes shopMarqueeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
     .sec-head {
       display: flex; align-items: flex-end; justify-content: space-between;
       margin-bottom: 2.2rem; flex-wrap: wrap; gap: 1rem;
     }
     .sec-label {
-      font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+      font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
       color: var(--pink); font-weight: 500; margin-bottom: 0.35rem;
     }
     .sec-h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 300; color: var(--navy);
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1rem, 5vw, 3rem); font-weight: 400; color: var(--navy);
     }
     .filters { display: flex; gap: 0.35rem; flex-wrap: wrap; }
     .fpill {
       padding: 0.3rem 0.9rem; border-radius: 2rem;
       border: 1.5px solid rgba(10,16,20,0.14);
       background: transparent; color: var(--sub);
-      font-family: 'Poppins', sans-serif; font-size: 0.65rem; font-weight: 400;
+      font-family: 'Poppins', sans-serif; font-size: 0.62rem; font-weight: 400;
       letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.18s;
     }
     .fpill:hover { border-color: var(--pink); color: var(--pink); }
@@ -681,8 +711,8 @@
     .pwish.on .petal-ring { fill: #fff; opacity: 0.95; }
     .pwish:hover { transform: scale(1.12); }
     .pcard-body { padding: 0.9rem 1rem 1rem; flex:1; display:flex; flex-direction:column; }
-    .pcat { font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sky-dk); margin-bottom: 0.2rem; font-weight: 500; }
-    .pname { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 400; color: var(--navy); line-height: 1.3; flex:1; margin-bottom: 0.7rem; }
+    .pcat { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sky-dk); margin-bottom: 0.2rem; font-weight: 500; }
+    .pname { font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 500; color: var(--navy); line-height: 1.3; flex:1; margin-bottom: 0.7rem; }
     .pfoot { display: flex; align-items: center; justify-content: space-between; }
     .pprice { font-family: 'Poppins', sans-serif; font-size: 0.85rem; color: var(--navy); font-weight: 600; }
     .pprice s { font-family: 'Poppins', sans-serif; font-size: 0.72rem; color: var(--sub); margin-left: 0.25rem; text-decoration: line-through; }
@@ -699,9 +729,12 @@
        CUSTOM VASE — light sky tint
     ═══════════════════════════════ */
     #custom-vase {
+      background: var(--off);
+      padding: 0.75rem;
+    }
+    .vase-inner {
       background: var(--pink-lt);
       border-radius: 16px;
-      margin: 0.75rem;
       padding: 3rem 2rem;
       overflow: hidden;
     }
@@ -722,14 +755,22 @@
     .vase-text .sec-label { margin-bottom: 0.35rem; }
     .vase-text h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem,3.2vw,3rem); font-weight: 300; color: var(--navy); line-height: 1.1; margin-bottom: 1rem; }
     .vase-text p { font-size: 0.88rem; color: var(--sub); line-height: 1.85; margin-bottom: 1.8rem; }
-    .vase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.8rem; }
-    .vopt {
+    .vase-hint {
+      font-size: 0.76rem; color: rgba(10,16,20,0.55);
       background: var(--white); border: 1px solid rgba(219,118,172,0.2);
-      border-radius: 10px; padding: 0.65rem 0.85rem;
-      font-size: 0.8rem; color: var(--navy);
-      display: flex; align-items: center; gap: 0.5rem;
-      box-shadow: 0 1px 4px rgba(10,16,20,0.05);
+      border-radius: 10px; padding: 0.75rem 0.9rem;
+      margin-bottom: 1.4rem; line-height: 1.6;
     }
+    .vase-contact-options { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .vase-contact-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: var(--navy); color: var(--white);
+      border-radius: 2rem; padding: 0.65rem 1.1rem;
+      font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 500;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .vase-contact-btn:hover { background: var(--pink); }
+    .vase-contact-icon { font-size: 0.9rem; }
 
     /* ═══════════════════════════════
        ABOUT — deep navy, premium
@@ -1137,6 +1178,192 @@
       #shop { padding: 0 0.75rem 2rem; }
     }
 
+    /* ═══ BLOG POST OVERLAY ═══ */
+    .blog-ov {
+      position: fixed; inset: 0;
+      background: rgba(10,16,20,0.55);
+      z-index: 900; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .blog-ov.open { opacity: 1; pointer-events: all; }
+    .blog-modal {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.96);
+      width: min(560px, 94vw);
+      max-height: 90vh;
+      overflow: hidden;
+      background: var(--off);
+      border-radius: 16px;
+      z-index: 901;
+      opacity: 0; pointer-events: none;
+      transition: transform 0.32s cubic-bezier(0.23,1,0.32,1), opacity 0.25s;
+      box-shadow: 0 16px 60px rgba(10,16,20,0.22);
+    }
+    .blog-modal.open { transform: translate(-50%,-50%) scale(1); opacity: 1; pointer-events: all; }
+    .blog-modal-scroll { overflow-y: auto; max-height: 90vh; }
+    @media (max-width: 639px) {
+      .blog-modal {
+        top: 0; left: 0;
+        transform: translateY(100%);
+        width: 100vw; height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+      }
+      .blog-modal.open { transform: translateY(0); }
+      .blog-modal-scroll { max-height: 100vh; }
+    }
+    .blog-close {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      background: rgba(255,255,255,0.85); border: none; cursor: pointer;
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; color: var(--navy); z-index: 3;
+      box-shadow: 0 2px 8px rgba(10,16,20,0.12);
+      transition: background 0.18s;
+    }
+    .blog-close:hover { background: var(--white); }
+    /* Portfolio slider */
+    .blog-slider {
+      position: relative;
+      width: 100%;
+      height: 42vh;
+      background: var(--sky);
+      overflow: hidden;
+    }
+    .blog-slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.65,0,0.35,1);
+    }
+    .blog-slider-track img {
+      min-width: 100%; height: 100%;
+      object-fit: cover; flex-shrink: 0;
+    }
+    .blog-slider-dots {
+      position: absolute; bottom: 0.75rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 5px;
+    }
+    .blog-slider-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      transition: background 0.18s;
+    }
+    .blog-slider-dot.active { background: var(--white); }
+    /* Body */
+    .blog-body { padding: 1.8rem 1.8rem 2.2rem; }
+    .blog-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--pink); font-weight: 500; margin-bottom: 0.5rem;
+    }
+    .blog-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1rem, 5vw, 3rem); font-weight: 400; color: var(--navy);
+      text-transform: uppercase; letter-spacing: 0.02em;
+      line-height: 1.25; margin-bottom: 1.2rem;
+    }
+    .blog-title em { font-style: italic; }
+    .blog-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem; line-height: 1.85; color: rgba(10,16,20,0.7);
+    }
+    .blog-text p { margin-bottom: 1.1rem; }
+    .blog-text strong { color: var(--navy); font-weight: 600; }
+    .blog-subhead {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--pink); font-weight: 500; margin-bottom: 0.9rem;
+    }
+    .blog-text .blog-pair { margin-bottom: 0.35rem; }
+    .blog-text .blog-pair:last-of-type { margin-bottom: 1.6rem; }
+    .testimonial-card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 12px; overflow: hidden;
+      margin-bottom: 1.2rem;
+    }
+    .testimonial-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; background: var(--sky); }
+    .testimonial-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .testimonial-quote {
+      font-style: italic; font-size: 0.85rem; color: rgba(10,16,20,0.7);
+      padding: 1rem 1rem 0.4rem; margin: 0; line-height: 1.7;
+    }
+    .testimonial-name {
+      font-size: 0.72rem; color: var(--pink); font-weight: 500;
+      padding: 0 1rem 1rem;
+    }
+    .about-readmore {
+      display: inline-block; cursor: pointer;
+      font-family: 'Poppins', sans-serif; font-size: 0.68rem;
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.65);
+      margin-top: -0.3rem;
+    }
+
+    /* ═══ FEEDBACK CARD ═══ */
+    #feedback {
+      background: var(--off);
+      padding: 0.75rem;
+    }
+    .feedback-inner {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      overflow: hidden;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .feedback-field { margin-bottom: 1rem; }
+    .feedback-field label {
+      display: block; font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(10,16,20,0.5);
+      margin-bottom: 0.35rem; font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+    }
+    .feedback-field input, .feedback-field textarea {
+      width: 100%; background: var(--off);
+      border: 1.5px solid rgba(10,16,20,0.13);
+      border-radius: 10px; padding: 0.72rem 1rem;
+      font-family: 'Poppins', sans-serif; font-size: 0.86rem;
+      color: var(--navy); outline: none; transition: border-color 0.2s;
+      resize: none;
+    }
+    .feedback-field input:focus, .feedback-field textarea:focus { border-color: var(--pink); }
+    .feedback-note {
+      font-size: 0.78rem; color: rgba(10,16,20,0.55);
+      background: var(--off); border-radius: 10px;
+      padding: 0.9rem 1rem; margin-top: 1.6rem;
+      line-height: 1.7;
+    }
+    .feedback-note a { color: var(--pink); font-weight: 500; text-decoration: none; }
+    .feedback-note a:hover { text-decoration: underline; }
+    .feedback-success {
+      display: none; text-align: center; padding: 1rem 0;
+      font-family: 'Poppins', sans-serif; font-size: 0.88rem; color: var(--navy);
+    }
+
+    /* ═══ SCROLL REVEAL ═══ */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(45px);
+      transition: opacity 1.1s cubic-bezier(0.16,1,0.3,1), transform 1.1s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-on-open {
+      opacity: 0;
+      transform: translateY(45px);
+      transition: opacity 1.1s cubic-bezier(0.16,1,0.3,1), transform 1.1s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-on-open.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-on-scroll, .reveal-on-open { opacity: 1; transform: none; transition: none; }
+    }
+
     /* ═══ TOAST ═══ */
     .toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:0.68rem 1.55rem; border-radius:2rem; font-size:0.78rem; z-index:999; transition:transform 0.34s cubic-bezier(0.23,1,0.32,1); white-space:nowrap; box-shadow:0 6px 24px rgba(10,16,20,0.22); }
     .toast.show { transform:translateX(-50%) translateY(0); }
@@ -1188,7 +1415,7 @@
       #shop, #custom-vase, #about { padding-left: 0.75rem; padding-right: 0.75rem; }
       .vase-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .vase-img { display: none; }
-      #about { grid-template-columns: 1fr; gap: 2rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 2rem; }
       .about-img { display: none; }
       .rgrid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; }
@@ -1263,7 +1490,7 @@
       <h1 class="hero-h1">Flor Keeps</h1>
       <p class="hero-sub">
       Flowers & Resin Crafts<br>
-      To Have Forever.
+      To Have Forever
       </p>
       <p class="hero-tagline-pills">100% Handmade <span style="color:var(--pink); font-size:1.3em; font-weight:700;">&nbsp;·&nbsp;</span> Ships PH-wide <span style="color:var(--butter); font-size:1.3em; font-weight:700;">&nbsp;·&nbsp;</span> Custom orders open</p>
     </div>
@@ -1306,21 +1533,22 @@
 
 <!-- PHOTO 2 BANNER -->
 <section id="everyday-banner">
-  <div class="everyday-card">
+  <div class="everyday-card reveal-on-open">
     <div class="everyday-bg"></div>
-    <div class="everyday-text">
+    <div class="everyday-text" onclick="openBlogPost('philosophy')" style="cursor:pointer;">
       <span class="hero-eyebrow">The Flor Keeps Philosophy</span>
       <h2>
         Art in the<br>
         <em>everyday.</em>
       </h2>
+      <span style="display:inline-block; margin-top:0.6rem; font-family:'Poppins',sans-serif; font-size:0.68rem; letter-spacing:0.06em; color:rgba(255,255,255,0.65);">Read more &rarr;</span>
     </div>
   </div>
 </section>
 
 <!-- PHOTO 3 BANNER — Custom Orders -->
 <section id="custom-banner">
-  <div class="everyday-card">
+  <div class="everyday-card reveal-on-scroll">
     <div class="custom-bg"></div>
     <div class="everyday-text">
       <span class="hero-eyebrow">Made Just for You</span>
@@ -1328,11 +1556,6 @@
         Your flowers,<br>
         <em>your keepsake.</em>
       </h2>
-      <p class="banner-body">Choose your blooms, tint, and size — Shiela pours every custom piece by hand, one layer at a time.</p>
-      <a href="#custom-vase" class="banner-cta">
-        <span class="banner-cta-line"></span>
-        <span>Start Your Order</span>
-      </a>
     </div>
   </div>
 </section>
@@ -1342,8 +1565,29 @@
 <div class="strip"><div class="strip-track" id="strip-track"></div></div>
 
 <!-- SHOP -->
+<div class="shop-marquee">
+  <div class="shop-marquee-track">
+    <span>100% Handmade</span>
+    <svg class="marquee-sep" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><circle cx="12" cy="18" r="3.2"/><circle cx="6" cy="12" r="3.2"/><circle cx="18" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.4" fill="#fff"/></svg>
+    <span>50% Down Payment Available</span>
+    <svg class="marquee-sep" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><circle cx="12" cy="18" r="3.2"/><circle cx="6" cy="12" r="3.2"/><circle cx="18" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.4" fill="#fff"/></svg>
+    <span>Ships PH-wide</span>
+    <svg class="marquee-sep" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><circle cx="12" cy="18" r="3.2"/><circle cx="6" cy="12" r="3.2"/><circle cx="18" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.4" fill="#fff"/></svg>
+    <span>3–5 Day Turnaround</span>
+    <svg class="marquee-sep" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><circle cx="12" cy="18" r="3.2"/><circle cx="6" cy="12" r="3.2"/><circle cx="18" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.4" fill="#fff"/></svg>
+    <span>100% Handmade</span>
+    <svg class="marquee-sep" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><circle cx="12" cy="18" r="3.2"/><circle cx="6" cy="12" r="3.2"/><circle cx="18" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.4" fill="#fff"/></svg>
+    <span>50% Down Payment Available</span>
+    <svg class="marquee-sep" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><circle cx="12" cy="18" r="3.2"/><circle cx="6" cy="12" r="3.2"/><circle cx="18" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.4" fill="#fff"/></svg>
+    <span>Ships PH-wide</span>
+    <svg class="marquee-sep" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><circle cx="12" cy="18" r="3.2"/><circle cx="6" cy="12" r="3.2"/><circle cx="18" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.4" fill="#fff"/></svg>
+    <span>3–5 Day Turnaround</span>
+    <svg class="marquee-sep" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><circle cx="12" cy="18" r="3.2"/><circle cx="6" cy="12" r="3.2"/><circle cx="18" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.4" fill="#fff"/></svg>
+  </div>
+</div>
+
 <section id="shop">
-  <div class="sec-head">
+  <div class="sec-head reveal-on-scroll">
     <div>
       <div class="sec-label">Handmade Collection</div>
       <h2 class="sec-h2">Every piece, one of a kind</h2>
@@ -1361,29 +1605,37 @@
 
 <!-- CUSTOM VASE -->
 <section id="custom-vase">
+  <div class="vase-inner reveal-on-scroll">
   <div class="vase-wrap">
     <div class="vase-img">
       <img src="IMG_0802.jpeg" alt="Custom resin vase">
       <div class="vase-img-over"></div>
-      <div class="vase-soon">✦ 3D Builder — Coming Soon</div>
+      <div class="vase-soon">✦ Every Story, Preserved</div>
     </div>
     <div class="vase-text">
-      <div class="sec-label">Made to Order</div>
-      <h2>Design your own resin vase</h2>
-      <p>Choose your florals, resin tint, and size. Until the 3D builder launches, reach out and we'll pour something personal together.</p>
-      <div class="vase-grid">
-        <div class="vopt">🌹 Dried roses</div>
-        <div class="vopt">🌸 Pressed wildflowers</div>
-        <div class="vopt">💜 Lavender sprigs</div>
-        <div class="vopt">🌼 Dried daisies</div>
+      <div class="sec-label">Have Something to Preserve?</div>
+      <h2>Tell us your vision</h2>
+      <p>Wedding flowers, a bouquet, a memory in bloom — whatever you're hoping to keep forever, tell Shiela your idea and she'll bring it to life.</p>
+      <p class="vase-hint">💬 Tell us the occasion, flower type, and size you have in mind — Shiela will take it from there.</p>
+      <div class="vase-contact-options">
+        <a href="#" class="vase-contact-btn" target="_blank" rel="noopener">
+          <span class="vase-contact-icon">💬</span> Messenger
+        </a>
+        <a href="#" class="vase-contact-btn" target="_blank" rel="noopener">
+          <span class="vase-contact-icon">📞</span> Viber
+        </a>
+        <a href="#" class="vase-contact-btn" target="_blank" rel="noopener">
+          <span class="vase-contact-icon">📷</span> Instagram DM
+        </a>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-inner">
+  <div class="about-inner reveal-on-scroll">
   <div class="about-img">
     <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=700&q=80" alt="Craft artist" loading="lazy">
   </div>
@@ -1392,16 +1644,41 @@
     <h2>Capturing Memories in Blooms</h2>
     <img src="LOGO_TYPE.png" alt="Flor Keeps – Flower Preservation & Resin Crafts" class="about-logotype">
     <p>Flor Keeps was born out of a deep love for flowers and a desire to make their fleeting beauty—and the precious milestones they represent—last a lifetime.</p>
-    <p>​The journey began with my own wedding. Like many brides, I was completely in love with my bridal bouquet and wanted to "freeze" it in time so I could cherish it forever. However, I quickly realized that professional resin flower preservation was incredibly expensive. Though I ultimately saved up to have my own bouquet preserved, the experience sparked a curiosity that I couldn't shake.</p>
-    <p>​Driven to master the craft, I spent the following months researching the intricate science and art of flower preservation. The true turning point came around Valentine's Day, when I finally put my research to the test and preserved a bouquet myself. When my husband saw the stunning final result, he recognized my passion and encouraged me to turn my creativity into a business.​</p>
-    <p>​With his encouragement and a leap of faith, Flor Keeps was officially born.</p>
-    <div class="stats">
-      <div class="stat"><div class="stat-n">200+</div><div class="stat-l">Pieces made</div></div>
-      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Handmade</div></div>
-      <div class="stat"><div class="stat-n">3yr</div><div class="stat-l">Crafting</div></div>
-      <div class="stat"><div class="stat-n">★ 5</div><div class="stat-l">Rating</div></div>
+    <span class="about-readmore" onclick="openBlogPost('story')">Read more &rarr;</span>
     </div>
   </div>
+</section>
+
+<section id="feedback">
+  <div class="feedback-inner reveal-on-scroll">
+    <div class="sec-label">Tell Us What You Think</div>
+    <h2 style="font-family:'Poppins',sans-serif; font-size:clamp(1.4rem, 5vw, 1.9rem); font-weight:500; color:var(--navy); margin-bottom:0.6rem;">We'd love to hear from you</h2>
+    <p style="font-size:0.85rem; color:rgba(10,16,20,0.6); line-height:1.7; margin-bottom:1.6rem;">Have feedback or suggestions about Flor Keeps or this site? We'd genuinely love to know.</p>
+
+    <div id="feedback-form-view">
+      <div class="feedback-field">
+        <label>Name (optional)</label>
+        <input type="text" id="fb-name" placeholder="Your name">
+      </div>
+      <div class="feedback-field">
+        <label>Email (optional)</label>
+        <input type="email" id="fb-email" placeholder="your@email.com">
+      </div>
+      <div class="feedback-field">
+        <label>Your Message <span style="color:var(--pink)">*</span></label>
+        <textarea id="fb-message" rows="4" placeholder="Share your thoughts, suggestions, or feedback..."></textarea>
+      </div>
+      <button class="btn btn-pink" style="width:100%;justify-content:center;" id="fb-submit-btn" onclick="submitFeedback()">Send Feedback</button>
+    </div>
+
+    <div class="feedback-success" id="feedback-success-view">
+      <div style="font-size:1.6rem; margin-bottom:0.5rem;">🌸</div>
+      <p>Thank you for sharing! Your feedback means a lot to us.</p>
+    </div>
+
+    <div class="feedback-note">
+      Curious about getting a site like this for your own business? Reach out to <a href="mailto:siarragalvez@gmail.com">siarragalvez@gmail.com</a> for a helping hand in building yours, free.
+    </div>
   </div>
 </section>
 
@@ -1445,6 +1722,23 @@
       </div>
       <div class="pprice" id="prod-price"></div>
       <div id="prod-desc" style="font-size:0.8rem; color:rgba(10,16,20,0.55); line-height:1.7; margin-top:0.85rem;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG POST OVERLAY -->
+<div class="blog-ov" id="blog-overlay" onclick="closeBlogPost()"></div>
+<div class="blog-modal" id="blog-modal">
+  <button class="blog-close" onclick="closeBlogPost()">✕</button>
+  <div class="blog-modal-scroll">
+    <div class="blog-slider" id="blog-slider" style="display:none;">
+      <div class="blog-slider-track" id="blog-slider-track"></div>
+      <div class="blog-slider-dots" id="blog-slider-dots"></div>
+    </div>
+    <div class="blog-body">
+      <div class="blog-eyebrow" id="blog-eyebrow"></div>
+      <div class="blog-title" id="blog-title"></div>
+      <div class="blog-text" id="blog-text"></div>
     </div>
   </div>
 </div>
@@ -1566,11 +1860,17 @@
       <p style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(10,16,20,0.5); margin-bottom:0.75rem; font-weight:500; font-family:'Poppins',sans-serif;">Select Payment Method</p>
       <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:1rem;">
         <div style="text-align:center;">
-          <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); margin-bottom:0.3rem;">GCash QR<br>coming soon</div>
+          <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; margin-bottom:0.3rem;">
+            <img src="GCash_QR.png" alt="GCash QR" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); text-align:center;">GCash QR<br>coming soon</div>
+          </div>
           <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">GCash</span>
         </div>
         <div style="text-align:center;">
-          <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); margin-bottom:0.3rem;">Maya QR<br>coming soon</div>
+          <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; margin-bottom:0.3rem;">
+            <img src="Maya_QR.png" alt="Maya QR" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); text-align:center;">Maya QR<br>coming soon</div>
+          </div>
           <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">Maya</span>
         </div>
       </div>
@@ -1807,6 +2107,48 @@ function getFormspreeError(data){
   return data?.errors?.[0]?.message || data?.error || 'Something went wrong. Please try again.';
 }
 
+async function submitFeedback(){
+  const name = document.getElementById('fb-name').value.trim();
+  const email = document.getElementById('fb-email').value.trim();
+  const message = document.getElementById('fb-message').value.trim();
+
+  if(!message){
+    toast('Please share your feedback before sending 🌸');
+    return;
+  }
+
+  const btn = document.getElementById('fb-submit-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const payload = {
+    Name: name || 'Anonymous',
+    Email: email || 'Not provided',
+    Message: message
+  };
+
+  try {
+    const res = await fetch('https://script.google.com/macros/s/PASTE_FEEDBACK_SCRIPT_URL_HERE/exec', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'text/plain' },
+      redirect: 'follow'
+    });
+    const data = await res.json();
+    if(data.result === 'success'){
+      document.getElementById('feedback-form-view').style.display = 'none';
+      document.getElementById('feedback-success-view').style.display = 'block';
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch(e){
+    console.error('Feedback submission failed:', e);
+    toast('Something went wrong. Please try again.');
+    btn.textContent = 'Send Feedback';
+    btn.disabled = false;
+  }
+}
+
 async function submitFormspree(body){
   const res = await fetch('https://formspree.io/f/xgodkdzz', {
     method: 'POST',
@@ -1820,6 +2162,102 @@ async function submitFormspree(body){
     throw new Error(getFormspreeError(data));
   }
   return data;
+}
+
+// ── BLOG POST OVERLAY ──
+const blogPosts = {
+  story: {
+    eyebrow: 'The Story of Flor Keeps',
+    title: 'Capturing Memories in Blooms',
+    images: [],
+    body: `
+      <p>Flor Keeps was born out of a deep love for flowers and a desire to make their fleeting beauty, and the precious milestones they represent, last a lifetime.</p>
+      <p>The journey began with my own wedding. Like many brides, I was completely in love with my bridal bouquet and wanted to "freeze" it in time so I could cherish it forever. However, I quickly realized that professional resin flower preservation was incredibly expensive. Though I ultimately saved up to have my own bouquet preserved, the experience sparked a curiosity that I couldn't shake.</p>
+      <p>Driven to master the craft, I spent the following months researching the intricate science and art of flower preservation. The true turning point came around Valentine's Day, when I finally put my research to the test and preserved a bouquet myself. When my husband saw the stunning final result, he recognized my passion and encouraged me to turn my creativity into a business.</p>
+      <p>With his encouragement and a leap of faith, Flor Keeps was officially born.</p>
+    `
+  },
+  portfolio: {
+    eyebrow: 'Made Just for You',
+    title: 'Your flowers,<br><em>your keepsake.</em>',
+    images: [],
+    body: `
+      <div class="blog-subhead">Real Pieces, Real Stories</div>
+      <p>A few of the keepsakes Shiela has poured for clients — each one holding a memory of its own.</p>
+      <div class="testimonial-card">
+        <div class="testimonial-img"><img src="Flower_coaster.jpg" alt="Client order placeholder"></div>
+        <p class="testimonial-quote">"Placeholder quote from client about their custom piece."</p>
+        <div class="testimonial-name">— Client Name Placeholder</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-img"><img src="Eternal_floral_vase.jpg" alt="Client order placeholder"></div>
+        <p class="testimonial-quote">"Placeholder quote from client about their custom piece."</p>
+        <div class="testimonial-name">— Client Name Placeholder</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-img"><img src="Rose_cube.jpg" alt="Client order placeholder"></div>
+        <p class="testimonial-quote">"Placeholder quote from client about their custom piece."</p>
+        <div class="testimonial-name">— Client Name Placeholder</div>
+      </div>
+    `
+  },
+  philosophy: {
+    eyebrow: 'The Flor Keeps Philosophy',
+    title: 'Art in the <em>everyday.</em>',
+    images: ['Flower_coaster.jpg','Galaxy_cat_candle_holder.jpg','Eternal_floral_vase.jpg','Rose_cube.jpg','Lotus_container.jpg'],
+    body: `
+      <div class="blog-subhead">What's in a Name?</div>
+      <p>The name perfectly captures our heart and mission:</p>
+      <p class="blog-pair"><strong>Flor:</strong> Representing the natural elegance of flowers.</p>
+      <p class="blog-pair"><strong>Keeps:</strong> Signifying a forever keepsake.</p>
+      <p><strong>Our Philosophy:</strong> We don't just preserve petals; we encapsulate your most cherished memories, transforming temporary blooms into timeless keepsakes you can look at every single day.</p>
+    `
+  }
+};
+
+let _blogSliderIndex = 0;
+let _blogSliderTimer = null;
+
+function openBlogPost(key){
+  const post = blogPosts[key];
+  if(!post) return;
+
+  document.getElementById('blog-eyebrow').textContent = post.eyebrow;
+  document.getElementById('blog-title').innerHTML = post.title;
+  document.getElementById('blog-text').innerHTML = post.body;
+
+  const slider = document.getElementById('blog-slider');
+  const track = document.getElementById('blog-slider-track');
+  const dots = document.getElementById('blog-slider-dots');
+  clearInterval(_blogSliderTimer);
+  _blogSliderIndex = 0;
+
+  if(post.images && post.images.length > 0){
+    track.innerHTML = post.images.map(src => `<img src="${src}" alt="${post.eyebrow}">`).join('');
+    dots.innerHTML = post.images.map((_,i) => `<div class="blog-slider-dot${i===0?' active':''}"></div>`).join('');
+    track.style.transform = 'translateX(0)';
+    slider.style.display = 'block';
+    if(post.images.length > 1){
+      _blogSliderTimer = setInterval(() => {
+        _blogSliderIndex = (_blogSliderIndex + 1) % post.images.length;
+        track.style.transform = `translateX(-${_blogSliderIndex * 100}%)`;
+        document.querySelectorAll('.blog-slider-dot').forEach((d,i) => d.classList.toggle('active', i === _blogSliderIndex));
+      }, 3200);
+    }
+  } else {
+    slider.style.display = 'none';
+  }
+
+  document.getElementById('blog-overlay').classList.add('open');
+  document.getElementById('blog-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBlogPost(){
+  document.getElementById('blog-overlay').classList.remove('open');
+  document.getElementById('blog-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  clearInterval(_blogSliderTimer);
 }
 
 // ── PRODUCT OVERLAY ──
@@ -2393,11 +2831,17 @@ function showPaymentView(order){
     <p style="font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(10,16,20,0.5); margin-bottom:0.75rem; font-weight:500; font-family:'Poppins',sans-serif;">Select Payment Method</p>
     <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:1rem;">
       <div style="text-align:center;">
-        <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); margin-bottom:0.3rem;">GCash QR<br>coming soon</div>
+        <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; margin-bottom:0.3rem;">
+          <img src="GCash_QR.png" alt="GCash QR" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); text-align:center;">GCash QR<br>coming soon</div>
+        </div>
         <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">GCash</span>
       </div>
       <div style="text-align:center;">
-        <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); margin-bottom:0.3rem;">Maya QR<br>coming soon</div>
+        <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; margin-bottom:0.3rem;">
+          <img src="Maya_QR.png" alt="Maya QR" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); text-align:center;">Maya QR<br>coming soon</div>
+        </div>
         <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">Maya</span>
       </div>
     </div>
@@ -2742,6 +3186,44 @@ function filterAndScroll(filter) {
   if (pill) pill.classList.add('on');
   renderProducts(filter);
 }
+
+// ── SCROLL REVEAL (bento box build-in effect) ──
+if('IntersectionObserver' in window){
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        // Double rAF ensures the hidden state is painted first so the transition is visible,
+        // even for elements already in view on page load (e.g. everyday-card)
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            entry.target.classList.add('revealed');
+          });
+        });
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -120px 0px' });
+
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+} else {
+  // Fallback: no IntersectionObserver support, just show everything
+  document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('revealed'));
+}
+
+// Make refresh behave like a fresh open (reset scroll, don't restore old position)
+if('scrollRestoration' in history){
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+// Everyday card reveals on page open, not on scroll
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      document.querySelectorAll('.reveal-on-open').forEach(el => el.classList.add('revealed'));
+    }, 250);
+  });
+});
 
 function onScroll() {
   const heroCardBtm = heroCardEl.getBoundingClientRect().bottom;
