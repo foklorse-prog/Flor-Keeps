@@ -1511,7 +1511,6 @@
     <div class="accordion-cats" id="accordion-bottom-cats">
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coaster')"><span>Coaster</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>decor</span><span class="accordion-cat-arrow">›</span></a>
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('pen holder')"><span>Pen Holder</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop" class="accordion-cat" onclick="filterAndScroll('stationery')"><span>Stationery</span><span class="accordion-cat-arrow">›</span></a>
     </div>
 
@@ -1594,7 +1593,6 @@
       <button class="fpill on" data-filter="all">All</button>
       <button class="fpill" data-filter="coaster">coaster</button>
       <button class="fpill" data-filter="decor">decor</button>
-      <button class="fpill" data-filter="pen holder">Pen Holder</button>
       <button class="fpill" data-filter="stationery">Stationery</button>
     </div>
   </div>
@@ -1931,10 +1929,10 @@
 <script>
 const products = [
   {id:1,name:"Bloom Flower Coaster", category:"coaster", price:195, old: null,  badge: null, blabel:null,imgs:["Flower_coaster.jpg", "Flower_coaster2.jpg", "Flower_coaster3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:2,name:"Botanical Dream Coaster", category:"coaster", price:230, old:null,  badge:null, blabel:null,imgs:[{src:"Big_coaster.jpg", label:"Rose On Brown"}, {src:"Big_coaster2.jpg", label:"Rose On Brown"}, , {src:"Big_coaster3.jpg", label:"Purple"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:2,name:"Botanical Dream Coaster", category:"coaster", price:230, old:null,  badge:null, blabel:null,imgs:[{src:"Big_coaster.jpg", label:"Rose On Brown"}, {src:"Big_coaster2.jpg", label:"Rose On Brown"}, {src:"Big_coaster3.jpg", label:"Purple"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:3,name:"Botanical Soap Dish", category:"decor", price:285, old:null,  badge:null, blabel:null,imgs:["Soap_holder.jpg", "Soap_holder2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:4,name:"Charm Keychain", category:"stationery", price:130, old: null,  badge: null, blabel:null,imgs:[{src:"keychain2.jpg", label:"Red Stars"}, {src:"Letter_keychain.jpg", label:"Peach Zodiac"}, {src:"Yellow_letter_keychain.jpg", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:5,name:"Classic Pen Holder", category:"pen holder", price:325, old:null,  badge:null, blabel:null,imgs:[{src:"Blue_flower_pen_holder.jpg", label:"Blue"}, {src:"Transparent_flower_pen_holder.jpg", label:"Transparent"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:5,name:"Classic Pen Holder", category:"stationery", price:325, old:null,  badge:null, blabel:null,imgs:[{src:"Blue_flower_pen_holder.jpg", label:"Blue"}, {src:"Transparent_flower_pen_holder.jpg", label:"Transparent"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:6,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null,imgs:["Colorful_accent_jar.jpg", "accent_jar2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:7,name:"Dreamy Pen", category:"stationery", price:145, old:null,  badge:null, blabel:null,imgs:[{src:"Pen.jpg", label:"Red Stars"}, {src:"pen2.jpg", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:8,name:"Eternal Floral Vase", category:"decor", price:3500, old:null,  badge:"pb-prem", blabel:"Premium",imgs:["Eternal_floral_vase.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
@@ -1944,7 +1942,7 @@ const products = [
   {id:12,name:"Galactic Liquid Dispenser", category:"decor", price:870, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:["Galactic_Liquid_Dispenser_Photo1.jpg", "Galactic_Liquid_Dispenser_Photo2.jpg", "Galactic_Liquid_Dispenser_Photo3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:13,name:"Galaxy Cat", category:"decor", price:235, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:[{src:"Galaxy_cat_candle_holder.jpg", label:"Purple Galaxy Cat"}, {src:"cat_candle_holder2.jpg", label:"Yellow Flower"}, {src:"cat_candle_holder3.jpg", label:"Green Galaxy Cat"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:14,name:"Glow Tealight Holder", category:"decor", price:255, old:null,  badge:null, blabel:null,imgs:["Cylinder_tealight_holder.jpg", "Cylinder_tealight_holder2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:15,name:"Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:[{src:"Classic_hexagon_pen_holder.jpg", label:"White"}, {src:"Pink_hexagon_pen_holder.jpg", label:"Pink"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:15,name:"Hexagon Pen Holder", category:"stationery", price:280, old:null,  badge:null, blabel:null,imgs:[{src:"Classic_hexagon_pen_holder.jpg", label:"White"}, {src:"Pink_hexagon_pen_holder.jpg", label:"Pink"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:16,name:"Imperial Rose Cube", category:"decor", price:1250, old: null,  badge: "pb-prem", blabel:"Premium",imgs:["Rose_cube.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:17,name:"Keepsake Bookmark", category:"stationery", price:135, old:null,  badge:null, blabel:null,imgs:[{src:"Bookmark.jpg", label:"Red Stars"}, {src:"Bookmark2.jpg", label:"Light Green"}, {src:"Bookmark3.jpg", label:"Pink Flower"}, {src:"Bookmark4.jpg", label:"Green Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:18,name:"Lotus Flower", category:"decor", price:195, old:null,  badge:null, blabel:null,imgs:["Lotus_container.jpg", "lotus_flower2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
