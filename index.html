@@ -134,7 +134,7 @@
       opacity: 0.65; transition: opacity 0.18s;
     }
     .nav-links a:hover { opacity: 1; }
-    /* Right side — cart + hamburger, always together at the right edge */
+    /* Right side — cart + hamburger */
     .nav-right { display: flex; align-items: center; gap: 0.5rem; margin-left: auto; }
     .nav-cart {
       display: flex; align-items: center; gap: 0.45rem;
@@ -156,50 +156,9 @@
       height: 38px; justify-content: center;
     }
     .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); border-radius: 1px; }
-    /* ═══════════════════════════════
-       MOBILE NAV DRAWER
-       Smaller type, visible, clean
-    ═══════════════════════════════ */
-    .mobile-nav {
-      position: fixed; inset: 0; z-index: 590;
-      background: var(--navy);
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 2rem 2.5rem;
-      transform: translateX(100%);
-      transition: transform 0.38s cubic-bezier(0.23,1,0.32,1);
-    }
-    .mobile-nav.open { transform: translateX(0); }
-    .mobile-nav-close {
-      position: absolute; top: 1.1rem; right: 1.4rem;
-      background: none; border: none; cursor: pointer;
-      font-size: clamp(1rem, 5vw, 3rem); color: rgba(255,255,255,0.55); line-height: 1;
-    }
-    .mobile-nav-logo { display: none; }
-    .mobile-nav-tag  { display: none; }
-    .mobile-nav-links { display: flex; flex-direction: column; gap: 0; }
-    .mobile-nav-links a {
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(1rem, 5vw, 3rem); font-weight: 400;
-      color: rgba(255,255,255,0.85); text-decoration: none;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      transition: color 0.18s;
-    }
-    .mobile-nav-links a:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
-    .mobile-nav-links a:hover { color: var(--pink); }
-    .mobile-nav-cart {
-      margin-top: 2rem;
-      width: 100%; padding: 0.85rem; border-radius: 2rem;
-      background: var(--pink); color: #fff; border: none;
-      font-family: 'Poppins', sans-serif; font-size: 0.92rem; font-weight: 500;
-      cursor: pointer; letter-spacing: 0.04em; transition: background 0.2s;
-    }
-    .mobile-nav-cart:hover { background: var(--pink-dk); }
-    .mobile-nav-footer {
-      margin-top: 2rem;
-      font-size: 0.62rem; color: rgba(255,255,255,0.25);
-      letter-spacing: 0.1em; text-transform: uppercase;
-    }
+
+    .site-menu { display: none; }
+    
 
     /* ── HERO: Rounded card ── */
     #hero {
@@ -783,7 +742,7 @@
       background: var(--navy);
       border-radius: 16px;
       overflow: hidden;
-      padding: 3rem 1.5rem;
+      padding: 3rem 2rem;
       display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
     }
     .about-img { border-radius: 18px; overflow: hidden; aspect-ratio: 0.88; box-shadow: 0 8px 48px rgba(0,0,0,0.35); }
@@ -1307,8 +1266,6 @@
       border-radius: 16px;
       padding: 3rem 2rem;
       overflow: hidden;
-      max-width: 560px;
-      margin: 0 auto;
     }
     .feedback-field { margin-bottom: 1rem; }
     .feedback-field label {
@@ -1408,6 +1365,185 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .cart-label { display: none; }
+      .site-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 950;
+        display: flex;
+        flex-direction: column;
+        background: var(--sky);
+        color: var(--navy);
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.985);
+        transition: opacity 0.24s ease, transform 0.24s cubic-bezier(0.23,1,0.32,1);
+      }
+      .site-menu.open {
+        opacity: 1;
+        pointer-events: all;
+        transform: scale(1);
+      }
+      .site-menu-top {
+        height: 62px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.75rem;
+        border-bottom: 1px solid rgba(10,16,20,0.1);
+      }
+      .site-menu-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: var(--navy);
+      }
+      .site-menu-brand img {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+      }
+      .site-menu-brand span {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.55rem;
+        line-height: 1;
+      }
+      .site-menu-close {
+        width: 38px;
+        height: 38px;
+        border: none;
+        border-radius: 50%;
+        background: var(--navy);
+        color: #fff;
+        font-size: 1.15rem;
+        line-height: 1;
+        cursor: pointer;
+      }
+      .site-menu-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.2rem 0.75rem 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .site-menu-hero-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 108px;
+        border-radius: 16px;
+        background: var(--navy);
+        padding: 1.1rem 1rem;
+        display: flex;
+        align-items: flex-end;
+      }
+      .site-menu-hero-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: url('Hero1.jpg') center center / cover no-repeat;
+        opacity: 0.82;
+      }
+      .site-menu-hero-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,51,102,0.72), rgba(0,51,102,0.18));
+      }
+      .site-menu-hero-copy {
+        position: relative;
+        z-index: 1;
+        color: #fff;
+      }
+      .site-menu-hero-copy h2 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2.2rem;
+        line-height: 0.95;
+        font-weight: 400;
+        margin: 0 0 0.25rem;
+      }
+      .site-menu-hero-copy p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.72rem;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0;
+      }
+      .site-menu-links {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid rgba(10,16,20,0.12);
+      }
+      .site-menu-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 64px;
+        gap: 1rem;
+        padding: 0.95rem 0.2rem;
+        border-bottom: 1px solid rgba(10,16,20,0.12);
+        color: var(--navy);
+        text-decoration: none;
+        font-family: 'Poppins', sans-serif;
+        text-align: left;
+      }
+      .site-menu-link strong {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.25;
+      }
+      .site-menu-link svg {
+        width: 18px;
+        height: 18px;
+        color: var(--pink);
+        flex-shrink: 0;
+      }
+      .site-menu-shop {
+        background: var(--white);
+        border: 1px solid rgba(10,16,20,0.08);
+        border-radius: 16px;
+        padding: 1rem;
+      }
+      .site-menu-shop-title {
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(10,16,20,0.5);
+        font-weight: 600;
+        margin-bottom: 0.7rem;
+      }
+      .site-menu-cats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+      }
+      .site-menu-cat {
+        border: 1px solid rgba(10,16,20,0.12);
+        border-radius: 2rem;
+        background: var(--off);
+        color: var(--navy);
+        padding: 0.45rem 0.75rem;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.68rem;
+        cursor: pointer;
+      }
+      .site-menu-foot {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding-top: 0.4rem;
+      }
+      .site-menu-foot a {
+        color: rgba(10,16,20,0.55);
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
       .hero-l { padding: 1.6rem; }
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
       #shop, #custom-vase, #about { padding-left: 0.75rem; padding-right: 0.75rem; }
@@ -1453,8 +1589,9 @@
 
   <ul class="nav-links">
     <li><a href="#shop">Shop</a></li>
-    <li><a href="#custom-vase">Custom Vase</a></li>
-    <li><a href="#about">Story</a></li>
+    <li><a href="#custom-vase">Tell Us Your Vision</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#feedback">Feedback</a></li>
   </ul>
 
   <div class="nav-right">
@@ -1462,21 +1599,64 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span class="cart-label">Cart</span> <span id="cart-count">0</span>
     </button>
-    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <button class="hamburger" type="button" aria-label="Menu" aria-controls="site-menu" aria-expanded="false" onclick="openSiteMenu()">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobile-nav">
-  <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
-  <nav class="mobile-nav-links">
-    <a href="#shop" onclick="toggleMobileNav()">Shop</a>
-    <a href="#custom-vase" onclick="toggleMobileNav()">Custom Vase</a>
-    <a href="#about" onclick="toggleMobileNav()">Our Story</a>
-  </nav>
-  <div class="mobile-nav-footer">Handmade in Cebu, Philippines</div>
+<div class="site-menu" id="site-menu" aria-hidden="true">
+  <div class="site-menu-top">
+    <a href="#" class="site-menu-brand" onclick="closeSiteMenu()">
+      <img src="SUBMARK_LOGO.png" alt="Flor Keeps">
+      <span>Flor Keeps</span>
+    </a>
+    <button class="site-menu-close" type="button" aria-label="Close menu" onclick="closeSiteMenu()">×</button>
+  </div>
+
+  <div class="site-menu-body">
+    <div class="site-menu-hero-card">
+      <div class="site-menu-hero-copy">
+        <h2>Flor Keeps</h2>
+        <p>Flowers & Resin Crafts<br>To Have Forever</p>
+      </div>
+    </div>
+
+    <div class="site-menu-links">
+      <a class="site-menu-link" href="#shop" onclick="closeSiteMenu()">
+        <strong>Shop handmade pieces</strong>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a class="site-menu-link" href="#custom-vase" onclick="closeSiteMenu()">
+        <strong>Tell us your vision</strong>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a class="site-menu-link" href="#about" onclick="closeSiteMenu()">
+        <strong>Our story</strong>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a class="site-menu-link" href="#feedback" onclick="closeSiteMenu()">
+        <strong>Share your thoughts</strong>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="site-menu-shop">
+      <div class="site-menu-shop-title">Browse by category</div>
+      <div class="site-menu-cats">
+        <button class="site-menu-cat" type="button" onclick="closeSiteMenu(); filterAndScroll('coaster'); document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth', block: 'start' })">Coaster</button>
+        <button class="site-menu-cat" type="button" onclick="closeSiteMenu(); filterAndScroll('decor'); document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth', block: 'start' })">Decor</button>
+        <button class="site-menu-cat" type="button" onclick="closeSiteMenu(); filterAndScroll('pen holder'); document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth', block: 'start' })">Pen Holder</button>
+        <button class="site-menu-cat" type="button" onclick="closeSiteMenu(); filterAndScroll('stationery'); document.getElementById('shop')?.scrollIntoView({ behavior: 'smooth', block: 'start' })">Stationery</button>
+      </div>
+    </div>
+
+    <div class="site-menu-foot">
+      <a href="https://www.instagram.com/florkeepsph" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.facebook.com/people/Flor-Keeps-Ph/61575435265765/" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a href="https://www.tiktok.com/@florkeepsph" target="_blank" rel="noopener noreferrer">TikTok</a>
+    </div>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -1687,6 +1867,7 @@
         <img src="SUBMARK_LOGO.png" class="footer-logo-icon" alt="Flor Keeps">
         <div class="footer-logo-words">
           <span class="footer-logo-name">Flor Keeps</span>
+          <span class="footer-logo-tagline">Flowers &amp; Resin Crafts<br>To Have Forever</span>
           <span class="footer-logo-tag">by Shiela</span>
         </div>
       </a>
@@ -1928,32 +2109,34 @@
 
 <script>
 const products = [
-  {id:1,name:"Bloom Flower Coaster", category:"coaster", price:195, old: null,  badge: null, blabel:null,imgs:["Flower_coaster.jpg", "Flower_coaster2.jpg", "Flower_coaster3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:2,name:"Botanical Dream Coaster", category:"coaster", price:230, old:null,  badge:null, blabel:null,imgs:[{src:"Big_coaster.jpg", label:"Rose On Brown"}, {src:"Big_coaster2.jpg", label:"Rose On Brown"}, {src:"Big_coaster3.jpg", label:"Purple"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:3,name:"Botanical Soap Dish", category:"decor", price:285, old:null,  badge:null, blabel:null,imgs:["Soap_holder.jpg", "Soap_holder2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:4,name:"Charm Keychain", category:"stationery", price:130, old: null,  badge: null, blabel:null,imgs:[{src:"keychain2.jpg", label:"Red Stars"}, {src:"Letter_keychain.jpg", label:"Peach Zodiac"}, {src:"Yellow_letter_keychain.jpg", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:5,name:"Classic Pen Holder", category:"stationery", price:325, old:null,  badge:null, blabel:null,imgs:[{src:"Blue_flower_pen_holder.jpg", label:"Blue"}, {src:"Transparent_flower_pen_holder.jpg", label:"Transparent"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:6,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null,imgs:["Colorful_accent_jar.jpg", "accent_jar2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:7,name:"Dreamy Pen", category:"stationery", price:145, old:null,  badge:null, blabel:null,imgs:[{src:"Pen.jpg", label:"Red Stars"}, {src:"pen2.jpg", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:8,name:"Eternal Floral Vase", category:"decor", price:3500, old:null,  badge:"pb-prem", blabel:"Premium",imgs:["Eternal_floral_vase.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:9,name:"Faux-Stone Coaster", category:"coaster", price:165, old:null,  badge:null, blabel:null,imgs:["5-Faux_stone_coaster_photo1.jpg", "5-Faux_stone_coaster_photo3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:10,name:"Flora Beam Lamp", category:"decor", price:730, old:null,  badge:"pb-new", blabel:"New",imgs:["Customizable_lamp.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:11,name:"Flora Cube Paperweight", category:"decor", price:180, old:null,  badge:null, blabel:null,imgs:["Small_cube_paperweight.jpg", "Small_cube_paperweight2.jpg", "Small_cube_paperweight3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:12,name:"Galactic Liquid Dispenser", category:"decor", price:870, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:["Galactic_Liquid_Dispenser_Photo1.jpg", "Galactic_Liquid_Dispenser_Photo2.jpg", "Galactic_Liquid_Dispenser_Photo3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:13,name:"Galaxy Cat", category:"decor", price:235, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:[{src:"Galaxy_cat_candle_holder.jpg", label:"Purple Galaxy Cat"}, {src:"cat_candle_holder2.jpg", label:"Yellow Flower"}, {src:"cat_candle_holder3.jpg", label:"Green Galaxy Cat"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:14,name:"Glow Tealight Holder", category:"decor", price:255, old:null,  badge:null, blabel:null,imgs:["Cylinder_tealight_holder.jpg", "Cylinder_tealight_holder2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:15,name:"Hexagon Pen Holder", category:"stationery", price:280, old:null,  badge:null, blabel:null,imgs:[{src:"Classic_hexagon_pen_holder.jpg", label:"White"}, {src:"Pink_hexagon_pen_holder.jpg", label:"Pink"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:16,name:"Imperial Rose Cube", category:"decor", price:1250, old: null,  badge: "pb-prem", blabel:"Premium",imgs:["Rose_cube.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:17,name:"Keepsake Bookmark", category:"stationery", price:135, old:null,  badge:null, blabel:null,imgs:[{src:"Bookmark.jpg", label:"Red Stars"}, {src:"Bookmark2.jpg", label:"Light Green"}, {src:"Bookmark3.jpg", label:"Pink Flower"}, {src:"Bookmark4.jpg", label:"Green Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:18,name:"Lotus Flower", category:"decor", price:195, old:null,  badge:null, blabel:null,imgs:["Lotus_container.jpg", "lotus_flower2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:20,name:"Oval Trinket Dish", category:"decor", price:335, old:null,  badge:null, blabel:null,imgs:["Oval_trinket_holder.jpg", "Oval_trinket_holder2.jpg", "Oval_trinket_holder3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:21,name:"Petal Treasure Jar", category:"decor", price:255, old:null,  badge:null, blabel:null,imgs:["Petal_treasure_jar.jpg", "Petal_treasure_jar2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:22,name:"Rose Cylinder Paperweight", category:"decor", price:185, old:null,  badge:null, blabel:null,imgs:["Rose_Cylinder_Paperweight_Photo2.jpg", "Rose_Cylinder_Paperweight_Photo1.jpg", "Rose_Cylinder_Paperweight_Photo3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:23,name:"Round Coaster", category:"coaster", price:170, old: null,  badge: null, blabel:null,imgs:[{src:"Pressed_flowers_coaster.jpg", label:"Pressed Flower"}, {src:"brown_coffee_coaster2.jpg", label:"Brown Coffee"}, {src:"Ocean_blue_coaster.jpg", label:"Ocean Blue"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:24,name:"Round Coaster Set", category:"coaster", price:700, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Round_coaster_set.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:25,name:"Sparkle Trio Set", category:"stationery", price:340, old:null,  badge:null, blabel:null,imgs:[{src:"Stationery_set.jpg", label:"Yellow Flower"}, {src:"Stationery_set2.jpg", label:"Red Stars"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:27,name:"Tulip Jar", category:"decor", price:375, old:null,  badge:null, blabel:null,imgs:["Tulip_jar.jpg", "Tulip_jar2.jpg", "Tulip_jar3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:28,name:"Tulip Vanity Set", category:"decor", price:870, old:null,  badge:null, blabel:null,imgs:["Tulip_vanity_set.jpg", "Tulip_vanity_set2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:2,name:"Bloom Flower Coaster", category:"coaster", price:195, old: null,  badge: null, blabel:null,imgs:["Flower_coaster.jpg", "Flower_coaster2.jpg", "Flower_coaster3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:3,name:"Coffee Round Coaster", category:"coaster", price:170, old: null,  badge: null, blabel:null,imgs:["Coffee_beans.jpg", "brown_coffee_coaster2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:4,name:"Pressed Flower Round Coaster", category:"coaster",price:170, old: null,  badge: null, blabel:null,imgs:["Pressed_flowers_coaster.jpg", "pink_flower_coaster2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:5,name:"Ocean Blue Coaster", category:"coaster", price:170, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Ocean_blue_coaster.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:6,name:"Coaster Set", category:"coaster", price:700, old:null,  badge:"pb-sale", blabel:"Sale",imgs:["Round_coaster_set.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:27,name:"Big Coaster", category:"coaster", price:230, old:null,  badge:null, blabel:null,imgs:[{src:"Big_coaster.jpg", label:"Rose On Brown"}, {src:"Big_coaster2.jpg", label:"Rose On Brown"}, , {src:"Big_coaster3.jpg", label:"Purple"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+
+  {id:1,name:"Cat Tealight Holder", category:"decor", price:235, old: null,  badge:"pb-best",blabel:"Bestseller",imgs:[{src:"Galaxy_cat_candle_holder.jpg", label:"Purple Galaxy Cat"}, {src:"cat_candle_holder2.jpg", label:"Yellow Flower"}, {src:"cat_candle_holder3.jpg", label:"Green Galaxy Cat"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:7,name:"Rose Cube", category:"decor", price:850, old: null,  badge: "pb-prem", blabel:"Premium",imgs:["Rose_cube.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:9,name:"Lamp", category:"decor", price:730, old:null,  badge:"pb-new", blabel:"New",imgs:["Customizable_lamp.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:15,name:"Eternal Floral Vase", category:"decor", price:2000, old:null,  badge:"pb-prem", blabel:"Premium",imgs:["Eternal_floral_vase.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:16,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null,imgs:["Colorful_accent_jar.jpg", "accent_jar2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:17,name:"Lotus Flower", category:"decor", price:195, old:null,  badge:null, blabel:null,imgs:["Lotus_container.jpg", "lotus_flower2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:20,name:"Soap Holder", category:"decor", price:285, old:null,  badge:null, blabel:null,imgs:["Soap_holder.jpg", "Soap_holder2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:21,name:"Oval Trinket Holder", category:"decor", price:335, old:null,  badge:null, blabel:null,imgs:["Oval_trinket_holder.jpg", "Oval_trinket_holder2.jpg", "Oval_trinket_holder3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:22,name:"Tulip Jar", category:"decor", price:375, old:null,  badge:null, blabel:null,imgs:["Tulip_jar.jpg", "Tulip_jar2.jpg", "Tulip_jar3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},    
+  {id:23,name:"Petal Treasure Jar", category:"decor", price:255, old:null,  badge:null, blabel:null,imgs:["Petal_treasure_jar.jpg", "Petal_treasure_jar2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:24,name:"Cylinder Tealight Holder", category:"decor", price:255, old:null,  badge:null, blabel:null,imgs:["Cylinder_tealight_holder.jpg", "Cylinder_tealight_holder2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:25,name:"Tulip Vanity Set", category:"decor", price:870, old:null,  badge:null, blabel:null,imgs:["Tulip_vanity_set.jpg", "Tulip_vanity_set2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:26,name:"Cube Paperweight (Small)", category:"decor", price:180, old:null,  badge:null, blabel:null,imgs:["Small_cube_paperweight.jpg", "Small_cube_paperweight2.jpg", "Small_cube_paperweight3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+
+  {id:10,name:"Classic Pen Holder", category:"pen holder", price:325, old:null,  badge:null, blabel:null,imgs:[{src:"Blue_flower_pen_holder.jpg", label:"Blue"}, {src:"Transparent_flower_pen_holder.jpg", label:"Transparent"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:11,name:"Hexagon Pen Holder", category:"pen holder", price:280, old:null,  badge:null, blabel:null,imgs:[{src:"Classic_hexagon_pen_holder.jpg", label:"White"}, {src:"Pink_hexagon_pen_holder.jpg", label:"Pink"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+
+  {id:8,name:"Letter Keychain", category:"stationery", price:130, old: null,  badge: null, blabel:null,imgs:[{src:"keychain2.jpg", label:"Red Stars"}, {src:"Letter_keychain.jpg", label:"Peach Zodiac"}, {src:"Yellow_letter_keychain.jpg", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:18,name:"Bookmark", category:"stationery", price:135, old:null,  badge:null, blabel:null,imgs:[{src:"Bookmark.jpg", label:"Red Stars"}, {src:"Bookmark2.jpg", label:"Light Green"}, {src:"Bookmark3.jpg", label:"Pink Flower"}, {src:"Bookmark4.jpg", label:"Green Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:19,name:"Pen", category:"stationery", price:145, old:null,  badge:null, blabel:null,imgs:[{src:"Pen.jpg", label:"Red Stars"}, {src:"pen2.jpg", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:14,name:"Stationery Set", category:"stationery", price:340, old:null,  badge:null, blabel:null,imgs:[{src:"Stationery_set.jpg", label:"Yellow Flower"}, {src:"Stationery_set2.jpg", label:"Red Stars"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
 
 ];
 
@@ -3060,7 +3243,31 @@ document.querySelectorAll('.fpill').forEach(btn=>btn.addEventListener('click',()
 
 let toastT;
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3000); }
-function toggleMobileNav(){ document.getElementById('mobile-nav').classList.toggle('open'); }
+const siteMenuQuery = window.matchMedia('(max-width: 860px)');
+function openSiteMenu(){
+  if(!siteMenuQuery.matches) return;
+  const menu = document.getElementById('site-menu');
+  const btn = document.querySelector('.hamburger');
+  menu.classList.add('open');
+  menu.setAttribute('aria-hidden', 'false');
+  if(btn) btn.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+function closeSiteMenu(){
+  const menu = document.getElementById('site-menu');
+  const btn = document.querySelector('.hamburger');
+  if(!menu) return;
+  menu.classList.remove('open');
+  menu.setAttribute('aria-hidden', 'true');
+  if(btn) btn.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeSiteMenu();
+});
+siteMenuQuery.addEventListener('change', e => {
+  if(!e.matches) closeSiteMenu();
+});
 function handleSubscribe(e){ e.preventDefault(); toast('Thank you! 🌸'); e.target.reset(); }
 
 let deferredPrompt;
