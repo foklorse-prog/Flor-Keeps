@@ -770,22 +770,11 @@
     .vase-text .sec-label { margin-bottom: 0.35rem; }
     .vase-text h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 5vw, 3rem); font-weight: 400; color: var(--navy); line-height: 1.1; margin-bottom: 1rem; }
     .vase-text p { font-size: 0.92rem; color: var(--sub); line-height: 1.85; margin-bottom: 1.8rem; }
-    .vase-hint {
-      font-size: 0.75rem; color: rgba(10,16,20,0.55);
-      background: var(--white); border: 1px solid rgba(219,118,172,0.2);
-      border-radius: 10px; padding: 0.75rem 0.9rem;
-      margin-bottom: 1.4rem; line-height: 1.6;
-    }
-    .vase-contact-options { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-    .vase-contact-btn {
-      display: flex; align-items: center; gap: 0.5rem;
-      background: var(--navy); color: var(--white);
-      border-radius: 2rem; padding: 0.65rem 1.1rem;
-      font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 500;
-      text-decoration: none; transition: background 0.2s;
-    }
-    .vase-contact-btn:hover { background: var(--pink); }
-    .vase-contact-icon { font-size: 0.92rem; }
+    
+    
+    
+    
+    
 
     /* ═══════════════════════════════
        ABOUT — deep navy, premium
@@ -1377,6 +1366,94 @@
       .reveal-on-scroll, .reveal-on-open { opacity: 1; transform: none; transition: none; }
     }
 
+.vase-start-btn {
+      background: var(--navy); color: var(--white);
+      border: none; border-radius: 2rem; padding: 0.85rem 1.6rem;
+      font-family: 'Poppins', sans-serif; font-size: 0.92rem; font-weight: 500;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .vase-start-btn:hover { background: var(--pink); }
+
+/* ═══ PREMIUM OVERLAY (Start Your Order) ═══ */
+    .prem-ov {
+      position: fixed; inset: 0;
+      background: rgba(10,16,20,0.55);
+      z-index: 900; opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+    }
+    .prem-ov.open { opacity: 1; pointer-events: all; }
+    .prem-modal {
+      position: fixed; inset: 0;
+      z-index: 901;
+      background: var(--off);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s;
+      overflow: hidden;
+    }
+    .prem-modal.open { opacity: 1; pointer-events: all; }
+    .prem-close {
+      position: absolute; top: 1.1rem; right: 1.1rem; z-index: 3;
+      background: rgba(255,255,255,0.85); border: none; cursor: pointer;
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; color: var(--navy);
+      box-shadow: 0 2px 8px rgba(10,16,20,0.12);
+    }
+    .prem-track {
+      display: flex;
+      height: 100%;
+      will-change: transform;
+      transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .prem-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .prem-slide-img {
+      width: 100%;
+      height: 55vh;
+      background: var(--sky);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .prem-slide-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .prem-slide-info { padding: 1.4rem 1.6rem 2rem; }
+    .prem-slide-label {
+      font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--pink); font-weight: 500; margin-bottom: 0.4rem;
+    }
+    .prem-slide-name {
+      font-family: 'Poppins', sans-serif; font-size: 1.15rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 0.35rem;
+    }
+    .prem-slide-price {
+      font-family: 'Poppins', sans-serif; font-size: 0.92rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 0.85rem;
+    }
+    .prem-slide-desc {
+      font-size: 0.85rem; color: rgba(10,16,20,0.6); line-height: 1.75;
+      margin-bottom: 1.4rem;
+    }
+    .prem-add-btn {
+      background: var(--pink); color: #fff; border: none;
+      border-radius: 2rem; padding: 0.85rem 1.6rem;
+      font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; width: 100%;
+    }
+    .prem-dots {
+      position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 3;
+    }
+    .prem-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(10,16,20,0.2);
+      transition: background 0.18s;
+    }
+    .prem-dot.active { background: var(--pink); }
+
     /* ═══ TOAST ═══ */
     .toast { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(80px); background:var(--navy); color:#fff; padding:0.68rem 1.55rem; border-radius:2rem; font-size: 0.75rem; z-index:999; transition:transform 0.34s cubic-bezier(0.23,1,0.32,1); white-space:nowrap; box-shadow:0 6px 24px rgba(10,16,20,0.22); }
     .toast.show { transform:translateX(-50%) translateY(0); }
@@ -1494,8 +1571,7 @@
       <a href="#shop" onclick="filterAndScroll('pen holder'); toggleMobileNav();">Pen Holder</a>
       <a href="#shop" onclick="filterAndScroll('stationery'); toggleMobileNav();">Stationery</a>
     </div>
-    <a href="#custom-vase" onclick="toggleMobileNav()">Tell Us Your Vision</a>
-    <a href="#everyday-banner" onclick="toggleMobileNav()">What's In A Name</a>
+    <a href="#custom-vase" onclick="toggleMobileNav()">Custom Vase</a>
     <a href="#about" onclick="toggleMobileNav()">Our Story</a>
   </div>
   <div class="mobile-nav-footer">Handmade in Cebu, Philippines</div>
@@ -1635,18 +1711,7 @@
       <div class="sec-label">Have Something to Preserve?</div>
       <h2>Tell us your vision</h2>
       <p>Wedding flowers, a bouquet, a memory in bloom — whatever you're hoping to keep forever, tell Shiela your idea and she'll bring it to life.</p>
-      <p class="vase-hint">💬 Tell us the occasion, flower type, and size you have in mind — Shiela will take it from there.</p>
-      <div class="vase-contact-options">
-        <a href="#" class="vase-contact-btn" target="_blank" rel="noopener">
-          <span class="vase-contact-icon">💬</span> Messenger
-        </a>
-        <a href="#" class="vase-contact-btn" target="_blank" rel="noopener">
-          <span class="vase-contact-icon">📞</span> Viber
-        </a>
-        <a href="#" class="vase-contact-btn" target="_blank" rel="noopener">
-          <span class="vase-contact-icon">📷</span> Instagram DM
-        </a>
-      </div>
+      <button class="vase-start-btn" onclick="openPremiumOverlay()">Start Your Order</button>
     </div>
   </div>
   </div>
@@ -1743,6 +1808,14 @@
       <div id="prod-desc" style="font-size:0.8rem; color:rgba(10,16,20,0.55); line-height:1.7; margin-top:0.85rem;"></div>
     </div>
   </div>
+</div>
+
+<!-- PREMIUM OVERLAY -->
+<div class="prem-ov" id="prem-overlay" onclick="closePremiumOverlay()"></div>
+<div class="prem-modal" id="prem-modal">
+  <button class="prem-close" onclick="closePremiumOverlay()">✕</button>
+  <div class="prem-track" id="prem-track"></div>
+  <div class="prem-dots" id="prem-dots"></div>
 </div>
 
 <!-- BLOG POST OVERLAY -->
@@ -2275,6 +2348,64 @@ function closeBlogPost(){
   document.getElementById('blog-modal').classList.remove('open');
   document.body.style.overflow = '';
   clearInterval(_blogSliderTimer);
+}
+
+// ── PREMIUM OVERLAY (Start Your Order) ──
+let _premIndex = 0;
+let _premProducts = [];
+let _premTouchStartX = 0;
+
+function openPremiumOverlay(){
+  _premProducts = products.filter(p => p.badge === 'pb-prem');
+  if(_premProducts.length === 0){ toast('No premium pieces available right now.'); return; }
+  _premIndex = 0;
+
+  const track = document.getElementById('prem-track');
+  const dots = document.getElementById('prem-dots');
+
+  track.innerHTML = _premProducts.map(p => {
+    const firstImg = p.imgs[0];
+    const src = typeof firstImg === 'string' ? firstImg : firstImg.src;
+    return `
+      <div class="prem-slide">
+        <div class="prem-slide-img"><img src="${src}" alt="${p.name}"></div>
+        <div class="prem-slide-info">
+          <div class="prem-slide-label">${p.blabel || 'Premium'}</div>
+          <div class="prem-slide-name">${p.name}</div>
+          <div class="prem-slide-price">₱${p.price.toLocaleString()}</div>
+          <div class="prem-slide-desc">${p.description || ''}</div>
+          <button class="prem-add-btn" onclick="closePremiumOverlay(); addToCart(${p.id});">Add to Cart</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  dots.innerHTML = _premProducts.map((_,i) => `<div class="prem-dot${i===0?' active':''}"></div>`).join('');
+  track.style.transform = 'translateX(0)';
+
+  const modal = document.getElementById('prem-modal');
+  modal.addEventListener('touchstart', e => { _premTouchStartX = e.touches[0].clientX; }, { passive: true });
+  modal.addEventListener('touchend', e => {
+    const diff = _premTouchStartX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 50) premNav(diff > 0 ? 1 : -1);
+  }, { passive: true });
+
+  document.getElementById('prem-overlay').classList.add('open');
+  document.getElementById('prem-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function premNav(dir){
+  if(_premProducts.length === 0) return;
+  _premIndex = Math.max(0, Math.min(_premProducts.length - 1, _premIndex + dir));
+  document.getElementById('prem-track').style.transform = `translateX(-${_premIndex * 100}%)`;
+  document.querySelectorAll('.prem-dot').forEach((d,i) => d.classList.toggle('active', i === _premIndex));
+}
+
+function closePremiumOverlay(){
+  document.getElementById('prem-overlay').classList.remove('open');
+  document.getElementById('prem-modal').classList.remove('open');
+  document.body.style.overflow = '';
 }
 
 // ── PRODUCT OVERLAY ──
