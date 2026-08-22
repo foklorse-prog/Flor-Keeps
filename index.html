@@ -783,22 +783,55 @@
       background: var(--sky);
       padding: 0.75rem;
     }
+    
+    /* MOBILE FIRST: Stack items in a single column by default */
     .about-inner {
       background: var(--navy);
       border-radius: 16px;
       overflow: hidden;
       padding: 3rem 1.5rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem; /* Tighter gap for mobile screens */
     }
-    .about-img { border-radius: 18px; overflow: hidden; aspect-ratio: 0.88; box-shadow: 0 8px 48px rgba(0,0,0,0.35); }
+    
+    /* MOBILE FIRST: Forces a clean, perfect square image on phones */
+    .about-img { 
+      border-radius: 18px; 
+      overflow: hidden; 
+      aspect-ratio: 1 / 1; 
+      box-shadow: 0 8px 48px rgba(0,0,0,0.35); 
+      width: 100%;
+    }
     .about-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    
     .about-text .sec-label { color: var(--sky); margin-bottom: 0.35rem; }
     .about-text h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 5vw, 3rem); font-weight: 400; color: #fff; line-height: 1.15; margin-bottom: 1.1rem; }
     .about-text p { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.9; margin-bottom: 0.9rem; }
+    
+    /* Hides the broken image placeholder entirely across all layouts */
+    .about-logotype {
+      display: none !important;
+    }
+
     .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.7rem; margin-top: 2.2rem; }
     .stat { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.10); border-radius: 10px; padding: 0.9rem; text-align: center; }
-    
     .stat-l { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 0.25rem; }
+
+    /* DESKTOP RESPONSIVENESS: Swaps to 2 columns on larger screens (768px wide or more) */
+    @media (min-width: 768px) {
+      .about-inner {
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 5rem; 
+        align-items: center;
+      }
+      /* Restores your original, beautiful vertical rectangle aspect ratio on desktop */
+      .about-img { 
+        aspect-ratio: 0.88; 
+      }
+    }
+
 
     /* ═══════════════════════════════
        FOOTER — navy
@@ -1720,18 +1753,29 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-inner reveal-on-scroll">
-  <div class="about-img">
-    <img src="IMG_2631.JPG" alt="Craft artist" loading="lazy">
-  </div>
-  <div class="about-text">
-    <div class="sec-label">The Story of Flor Keeps:</div>
-    <h2>Capturing Memories in Blooms</h2>
-    <img src="IMG_2631.JPG" alt="Flor Keeps – Flower Preservation & Resin Crafts" class="about-logotype">
-    <p>Flor Keeps was born out of a deep love for flowers and a desire to make their fleeting beauty—and the precious milestones they represent—last a lifetime.</p>
-    <span class="about-readmore" onclick="openBlogPost('story')">Read more &rarr;</span>
+    
+    <!-- This is your main picture container -->
+    <div class="about-img">
+      <img src="IMG_2631.JPG" alt="Flor Keeps artist with flower bouquet" class="about-main-img" loading="lazy">
     </div>
+    
+    <div class="about-text">
+      <div class="sec-label">The Story of Flor Keeps:</div>
+      <h2>Capturing Memories in Blooms</h2>
+      
+      <!-- This was the broken grey box. We will control its visibility with CSS -->
+      <div class="about-logotype-container">
+        <!-- Replace this with your actual logo asset later if you want one here -->
+      </div>
+      
+      <p>Flor Keeps was born out of a deep love for flowers and a desire to make their fleeting beauty—and the precious milestones they represent—last a lifetime.</p>
+      
+      <span class="about-readmore" onclick="openBlogPost('story')">Read more &rarr;</span>
+    </div>
+    
   </div>
 </section>
+
 
 <section id="feedback">
   <div class="feedback-inner reveal-on-scroll">
