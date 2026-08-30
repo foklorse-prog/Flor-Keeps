@@ -792,6 +792,7 @@
     }
     .about-img { border-radius: 18px; overflow: hidden; aspect-ratio: 0.88; box-shadow: 0 8px 48px rgba(0,0,0,0.35); }
     .about-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    .mobile-section-img { display: none; }
     .about-text .sec-label { color: var(--sky); margin-bottom: 0.35rem; }
     .about-text h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 5vw, 3rem); font-weight: 400; color: #fff; line-height: 1.15; margin-bottom: 1.1rem; }
     .about-text p { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.9; margin-bottom: 0.9rem; }
@@ -1505,6 +1506,21 @@
       #shop, #custom-vase, #about { padding-left: 0.75rem; padding-right: 0.75rem; }
       .vase-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .vase-img { display: none; }
+      .mobile-section-img {
+        display: block;
+        aspect-ratio: 1.08;
+        margin: 0 0 1.4rem;
+        border-radius: 18px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 8px 32px rgba(10,16,20,0.14);
+      }
+      .mobile-section-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
       .about-inner { grid-template-columns: 1fr; gap: 2rem; }
       .about-img { display: none; }
       .rgrid { grid-template-columns: 1fr; }
@@ -1710,6 +1726,11 @@
     <div class="vase-text">
       <div class="sec-label">Have Something to Preserve?</div>
       <h2>Tell us your vision</h2>
+      <div class="mobile-section-img">
+        <img src="photo3.jpg" alt="Custom resin vase">
+        <div class="vase-img-over"></div>
+        <div class="vase-soon">✦ Every Story, Preserved</div>
+      </div>
       <p>Wedding flowers, a bouquet, a memory in bloom — whatever you're hoping to keep forever, tell Shiela your idea and she'll bring it to life.</p>
       <button class="vase-start-btn" onclick="openPremiumOverlay()">Start Your Order</button>
     </div>
@@ -1725,7 +1746,10 @@
   </div>
   <div class="about-text">
     <div class="sec-label">The Story of Flor Keeps:</div>
-    <h2>Capturing Memories in Blooms</h2>s
+    <h2>Capturing Memories in Blooms</h2>
+    <div class="mobile-section-img">
+      <img src="IMG_2631.JPG" alt="Craft artist" loading="lazy">
+    </div>
     <p>Flor Keeps was born out of a deep love for flowers and a desire to make their fleeting beauty—and the precious milestones they represent—last a lifetime.</p>
     <span class="about-readmore" onclick="openBlogPost('story')">Read more &rarr;</span>
     </div>
