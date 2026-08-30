@@ -1600,13 +1600,11 @@
         justify-content: center;
         box-shadow: 0 8px 28px rgba(10,16,20,0.1);
       }
-      .desktop-qr-placeholder {
-        font-family: 'Poppins', sans-serif;
-        font-size: 0.68rem;
-        line-height: 1.5;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: rgba(10,16,20,0.38);
+      .desktop-qr-img {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        display: block;
       }
       .desktop-qr-caption {
         font-family: 'Poppins', sans-serif;
@@ -1626,7 +1624,7 @@
     <h1>Flor Keeps is mobile-only for now</h1>
     <p>This website is currently designed for mobile viewing while the desktop version is still being prepared. Please open it on your phone for the best experience.</p>
     <div class="desktop-qr-wrap">
-      <div class="desktop-qr-placeholder">QR code<br>goes here</div>
+      <img class="desktop-qr-img" src="FlorKeepsQR.png" alt="QR code for Flor Keeps">
     </div>
     <div class="desktop-qr-caption">Scan this with your phone to open Flor Keeps.</div>
   </div>
