@@ -1546,9 +1546,91 @@
       .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.6rem; }
       .footer-top { grid-template-columns: 1fr; }
     }
+
+    .desktop-only-notice {
+      display: none;
+    }
+
+    @media (min-width: 861px) {
+      body > :not(.desktop-only-notice) {
+        display: none !important;
+      }
+      .desktop-only-notice {
+        min-height: 100vh;
+        z-index: 5000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background: var(--sky);
+        color: var(--navy);
+      }
+      .desktop-only-notice-card {
+        width: min(520px, 100%);
+        text-align: center;
+      }
+      .desktop-only-notice-logo {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        margin-bottom: 1.2rem;
+      }
+      .desktop-only-notice-card h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.45rem;
+        line-height: 1.25;
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+      }
+      .desktop-only-notice-card p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.92rem;
+        line-height: 1.75;
+        color: rgba(10,16,20,0.68);
+      }
+      .desktop-qr-wrap {
+        width: 180px;
+        height: 180px;
+        margin: 1.4rem auto 0.75rem;
+        border-radius: 16px;
+        background: var(--white);
+        border: 1px solid rgba(10,16,20,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 28px rgba(10,16,20,0.1);
+      }
+      .desktop-qr-placeholder {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.68rem;
+        line-height: 1.5;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(10,16,20,0.38);
+      }
+      .desktop-qr-caption {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.78rem;
+        line-height: 1.5;
+        color: var(--navy);
+        font-weight: 500;
+      }
+    }
   </style>
 </head>
 <body>
+
+<div class="desktop-only-notice" aria-label="Mobile-only notice">
+  <div class="desktop-only-notice-card">
+    <img class="desktop-only-notice-logo" src="SUBMARK_LOGO.png" alt="Flor Keeps">
+    <h1>Flor Keeps is mobile-only for now</h1>
+    <p>This website is currently designed for mobile viewing while the desktop version is still being prepared. Please open it on your phone for the best experience.</p>
+    <div class="desktop-qr-wrap">
+      <div class="desktop-qr-placeholder">QR code<br>goes here</div>
+    </div>
+    <div class="desktop-qr-caption">Scan this with your phone to open Flor Keeps.</div>
+  </div>
+</div>
 
 <!-- NAV: logo · links · cart -->
 <nav>
