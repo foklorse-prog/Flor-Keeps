@@ -1952,7 +1952,7 @@
       <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:1rem;">
         <div style="text-align:center;">
           <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; margin-bottom:0.3rem;">
-            <img src="GCash_QR.png" alt="GCash QR" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <img src="GCash_QR.JPG" alt="GCash QR" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); text-align:center;">GCash QR<br>coming soon</div>
           </div>
           <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">GCash</span>
@@ -2746,7 +2746,7 @@ function buildOrderSummary(location){
   const isCebu = location === 'cebu';
   const noSelection = !location;
   const productTotal = cart.reduce((a,i) => a + i.price * i.qty, 0);
-  const shippingLabel = noSelection ? '—' : isCebu ? 'Shouldered by receiver' : '₱80';
+  const shippingLabel = noSelection ? '—' : isCebu ? 'Shouldered by receiver' : '₱155';
   const grandTotal = isCebu ? productTotal : productTotal + 80;
   const totalLabel = noSelection
     ? `₱${productTotal.toLocaleString()} + shipping`
@@ -2863,7 +2863,7 @@ async function submitOrder(){
   }
 
   const fullName = `${fname} ${lname}`;
-  const shippingFee = isCebuCity ? 'Shouldered by receiver (Maxim, Grab, or Move It)' : '₱80';
+  const shippingFee = isCebuCity ? 'Shouldered by receiver (Maxim, Grab, or Move It)' : '₱155';
   const fullAddress = `${street}, Brgy. ${barangay}, ${city}, ${province} ${zip}`;
   const btn = document.getElementById('chk-submit-btn');
   btn.textContent = proofFile ? 'Uploading proof...' : 'Sending...'; btn.disabled = true;
@@ -2885,7 +2885,7 @@ async function submitOrder(){
     'Shipping Fee': shippingFee,
     'Order Type': hasCustom ? 'Custom (Quote needed)' : 'Standard',
     'Order Details': orderDetails,
-    'Order Total': `₱${grandTotal.toLocaleString()}${isCebuCity ? ' (delivery by receiver)' : ' incl. ₱80 shipping'}`
+    'Order Total': `₱${grandTotal.toLocaleString()}${isCebuCity ? ' (delivery by receiver)' : ' incl. ₱155 shipping'}`
   };
 
   if(proofFile){
@@ -2986,7 +2986,7 @@ function showPaymentView(order){
       </div>
       <div style="text-align:center;">
         <div style="width:110px; height:110px; background:rgba(10,16,20,0.06); border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; margin-bottom:0.3rem;">
-          <img src="Maya_QR.png" alt="Maya QR" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <img src="Maya_QR.JPG" alt="Maya QR" style="width:100%; height:100%; object-fit:cover; display:block;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
           <div style="display:none; width:100%; height:100%; align-items:center; justify-content:center; font-size:0.65rem; color:rgba(10,16,20,0.35); text-align:center;">Maya QR<br>coming soon</div>
         </div>
         <span style="font-size:0.65rem; color:rgba(10,16,20,0.4);">Maya</span>
