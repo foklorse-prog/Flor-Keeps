@@ -80,7 +80,7 @@
       box-shadow: 0 2px 16px rgba(10,16,20,0.10);
     }
     /* ── LOGO IMAGES ── */
-    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; height: 38px; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; height: 38px; padding-left: 0.15rem; }
     .logo-icon {
       width: 38px; height: 38px;
       flex-shrink: 0; object-fit: contain;
@@ -113,7 +113,7 @@
     .logo-words { display: flex; flex-direction: column; justify-content: center; }
     .logo-name {
       font-family: 'Great Vibes', cursive;
-      font-size: 1.55rem; font-weight: 400; letter-spacing: 0.02em;
+      font-size: 1.68rem; font-weight: 400; letter-spacing: 0.02em;
       color: var(--navy); line-height: 1;
       /* hidden when hero is visible — JS adds .scrolled to nav */
       opacity: 0; pointer-events: none;
@@ -154,44 +154,49 @@
       display: none; background: none; border: none; cursor: pointer;
       flex-direction: column; gap: 5px; padding: 4px; flex-shrink: 0;
       height: 38px; justify-content: center;
+      position: relative;
+      z-index: 900;
     }
-    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--navy); border-radius: 1px; }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px; background: var(--navy); border-radius: 1px;
+      transition: transform 0.24s ease, opacity 0.18s ease;
+      transform-origin: center;
+    }
     /* ═══════════════════════════════
        MOBILE NAV DRAWER
        Smaller type, visible, clean
     ═══════════════════════════════ */
     .mobile-nav {
-      position: fixed; inset: 0; z-index: 590;
+      position: fixed; inset: 0; z-index: 700;
       background: var(--navy);
       display: flex; flex-direction: column; justify-content: flex-start;
       overflow-y: auto;
-      padding: 5rem 1.6rem 2rem;
-      transform: translateX(100%);
-      transition: transform 0.38s cubic-bezier(0.23,1,0.32,1);
+      padding: 5.2rem 1.4rem 1.7rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.24s ease;
     }
-    .mobile-nav.open { transform: translateX(0); }
-    .mobile-nav-close {
-      position: absolute; top: 1.1rem; right: 1.4rem;
-      background: none; border: none; cursor: pointer;
-      font-size: 1.5rem; color: rgba(255,255,255,0.55); line-height: 1;
-    }
+    .mobile-nav.open { opacity: 1; pointer-events: all; }
+    .mobile-nav-close { display: none; }
     .mobile-nav-logo { display: none; }
     .mobile-nav-tag  { display: none; }
-    .mobile-nav-links { display: flex; flex-direction: column; gap: 0; }
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
     .mobile-nav-links > a {
       font-family: 'Poppins', sans-serif;
-      font-size: 1.15rem; font-weight: 400;
+      font-size: 1.22rem; font-weight: 500;
       color: rgba(255,255,255,0.85); text-decoration: none;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0.46rem 0;
+      line-height: 1.25;
       transition: color 0.18s;
     }
-    .mobile-nav-links > a:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
     .mobile-nav-links > a:hover { color: var(--pink); }
     .mobile-nav-subcats {
       display: flex; flex-direction: column;
       padding-left: 1.1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .mobile-nav-subcats a {
       font-family: 'Poppins', sans-serif;
@@ -201,7 +206,28 @@
       transition: color 0.18s;
     }
     .mobile-nav-subcats a:hover { color: var(--pink); }
-    body.mobile-nav-open .logo-name { opacity: 0 !important; }
+    body.mobile-nav-open nav { z-index: 850; box-shadow: none; }
+    body.mobile-nav-open .logo-name { opacity: 1 !important; pointer-events: auto; }
+    body.mobile-nav-open .hamburger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    body.mobile-nav-open .hamburger span:nth-child(2) { opacity: 0; }
+    body.mobile-nav-open .hamburger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-nav-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem 1rem;
+      margin-top: auto;
+      padding-top: 2.2rem;
+    }
+    .mobile-nav-social a {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+      text-decoration: none;
+    }
+    .mobile-nav-social a:hover { color: var(--pink); }
     .mobile-nav-cart {
       margin-top: 2rem;
       width: 100%; padding: 0.85rem; border-radius: 2rem;
@@ -211,9 +237,22 @@
     }
     .mobile-nav-cart:hover { background: var(--pink-dk); }
     .mobile-nav-footer {
-      margin-top: 2rem;
-      font-size: 0.62rem; color: rgba(255,255,255,0.25);
+      margin-top: 1rem;
+      font-size: 0.62rem; color: rgba(255,255,255,0.32);
       letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .mobile-page-fade {
+      position: fixed;
+      inset: 0;
+      z-index: 1200;
+      background: var(--navy);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.24s ease;
+    }
+    .mobile-page-fade.show {
+      opacity: 1;
+      pointer-events: all;
     }
 
     /* ── HERO: Rounded card ── */
@@ -584,7 +623,7 @@
     }
     .everyday-text h2 {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(2.6rem, 8vw, 5.5rem);
+      font-size: clamp(1rem, 5vw, 3rem);
       font-weight: 400; color: #fff;
       line-height: 0.96; text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -601,6 +640,14 @@
       background: url('photo3.jpg') center center / cover no-repeat;
       z-index: 0;
       will-change: transform;
+    }
+    #custom-banner .everyday-text {
+      justify-content: flex-end;
+      gap: 0;
+      padding: 1.6rem;
+    }
+    #custom-banner .everyday-text h2 {
+      margin-top: 0.35rem;
     }
     /* Body text and CTA link inside photo banners */
     .banner-body {
@@ -635,6 +682,7 @@
       padding: 0.55rem 0;
       border-top: 3px solid transparent;
       border-image: linear-gradient(90deg, var(--sky-dk), var(--pink), var(--butter)) 1;
+      scroll-margin-top: 62px;
     }
     .shop-marquee-track {
       display: flex;
@@ -685,7 +733,7 @@
     .fpill:hover { border-color: var(--pink); color: var(--pink); }
     .fpill.on { background: var(--pink); color: #fff; border-color: var(--pink); }
 
-    .pgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
+    .pgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.4rem; }
     .pcard {
       background: var(--white); border-radius: 14px; overflow: hidden;
       box-shadow: 0 1px 3px rgba(10,16,20,0.05), 0 6px 18px rgba(10,16,20,0.07);
@@ -735,7 +783,8 @@
       width: 32px; height: 32px; border-radius: 50%; border: none;
       background: var(--pink); color: #fff;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.92rem; cursor: pointer; transition: all 0.2s;
+      font-size: 0.92rem;
+      cursor: pointer; transition: all 0.2s;
       box-shadow: 0 2px 8px rgba(219,118,172,0.28);
     }
     .padd:hover { background: var(--pink-dk); transform: scale(1.1); }
@@ -751,6 +800,8 @@
       background: var(--pink-lt);
       border-radius: 16px;
       padding: 3rem 2rem;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
       overflow: hidden;
     }
     .vase-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
@@ -760,13 +811,6 @@
     }
     .vase-img img { width:100%; height:100%; object-fit:cover; display:block; }
     .vase-img-over { position: absolute; inset: 0; background: linear-gradient(160deg, transparent 55%, rgba(219,118,172,0.12) 100%); }
-    .vase-soon {
-      position: absolute; bottom: 1.3rem; left: 1.3rem;
-      background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
-      border-radius: 2rem; padding: 0.4rem 0.9rem;
-      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--navy); font-weight: 600;
-    }
     .vase-text .sec-label { margin-bottom: 0.35rem; }
     .vase-text h2 { font-family: 'Poppins', sans-serif; font-size: clamp(1rem, 5vw, 3rem); font-weight: 400; color: var(--navy); line-height: 1.1; margin-bottom: 1rem; }
     .vase-text p { font-size: 0.92rem; color: var(--sub); line-height: 1.85; margin-bottom: 1.8rem; }
@@ -788,6 +832,8 @@
       border-radius: 16px;
       overflow: hidden;
       padding: 3rem 1.5rem;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
       display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
     }
     .about-img { border-radius: 18px; overflow: hidden; aspect-ratio: 0.88; box-shadow: 0 8px 48px rgba(0,0,0,0.35); }
@@ -1163,6 +1209,23 @@
       font-size: 0.92rem; font-weight: 500;
       color: var(--navy); margin-bottom: 1.2rem;
     }
+    #prod-add-btn {
+      background: var(--pink);
+      color: var(--white);
+      border: none;
+      border-radius: 2rem;
+      padding: 0.85rem 1.6rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.18s, transform 0.18s;
+    }
+    #prod-add-btn:hover {
+      background: var(--pink-dk);
+      transform: translateY(-1px);
+    }
     .prod-close {
       position: absolute; top: 0.75rem; right: 0.75rem;
       background: rgba(255,255,255,0.85); border: none; cursor: pointer;
@@ -1311,6 +1374,8 @@
       background: var(--white);
       border-radius: 16px;
       padding: 3rem 2rem;
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
       overflow: hidden;
       max-width: 560px;
       margin: 0 auto;
@@ -1368,12 +1433,20 @@
     }
 
 .vase-start-btn {
-      background: var(--navy); color: var(--white);
-      border: none; border-radius: 2rem; padding: 0.85rem 1.6rem;
-      font-family: 'Poppins', sans-serif; font-size: 0.92rem; font-weight: 500;
-      cursor: pointer; transition: background 0.2s;
+      appearance: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--navy);
+      cursor: pointer;
+      margin-top: 0.25rem;
+      transition: color 0.18s;
     }
-    .vase-start-btn:hover { background: var(--pink); }
+    .vase-start-btn:hover { color: var(--pink); }
 
 /* ═══ PREMIUM OVERLAY (Start Your Order) ═══ */
     .prem-ov {
@@ -1502,7 +1575,7 @@
       .hamburger { display: flex; }
       .cart-label { display: none; }
       .hero-l { padding: 1.6rem; }
-      .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
+      .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.95rem; }
       #shop, #custom-vase, #about { padding-left: 0.75rem; padding-right: 0.75rem; }
       .vase-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .vase-img { display: none; }
@@ -1543,7 +1616,7 @@
     }
 
     @media (max-width: 520px) {
-      .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.6rem; }
+      .pgrid { grid-template-columns: repeat(2,1fr); gap: 0.75rem; }
       .footer-top { grid-template-columns: 1fr; }
     }
 
@@ -1625,6 +1698,7 @@
     <div class="desktop-qr-caption">Scan this with your phone to open Flor Keeps.</div>
   </div>
 </div>
+<div class="mobile-page-fade" id="mobile-page-fade"></div>
 
 <!-- NAV: logo · links · cart -->
 <nav>
@@ -1636,8 +1710,9 @@
   </a>
 
   <ul class="nav-links">
-    <li><a href="#shop">Shop</a></li>
-    <li><a href="#custom-vase">Custom Vase</a></li>
+    <li><a href="#shop-start">Shop</a></li>
+    <li><a href="#custom-vase">Premium Products</a></li>
+    <li><a href="#everyday-banner">What's In a Name?</a></li>
     <li><a href="#about">Story</a></li>
   </ul>
 
@@ -1646,7 +1721,7 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span class="cart-label">Cart</span> <span id="cart-count">0</span>
     </button>
-    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1656,15 +1731,21 @@
 <div class="mobile-nav" id="mobile-nav">
   <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
   <div class="mobile-nav-links">
-    <a href="#shop" onclick="toggleMobileNav()">Shop</a>
+    <a href="#shop-start" onclick="mobileNavFadeTo(event, '#shop-start')">Shop</a>
     <div class="mobile-nav-subcats">
-      <a href="#shop" onclick="filterAndScroll('coaster'); toggleMobileNav();">Coaster</a>
-      <a href="#shop" onclick="filterAndScroll('decor'); toggleMobileNav();">Decor</a>
-      <a href="#shop" onclick="filterAndScroll('pen holder'); toggleMobileNav();">Pen Holder</a>
-      <a href="#shop" onclick="filterAndScroll('stationery'); toggleMobileNav();">Stationery</a>
+      <a href="#shop-start" onclick="mobileNavFadeTo(event, '#shop-start', 'coaster')">Coaster</a>
+      <a href="#shop-start" onclick="mobileNavFadeTo(event, '#shop-start', 'decor')">Decor</a>
+      <a href="#shop-start" onclick="mobileNavFadeTo(event, '#shop-start', 'pen holder')">Pen Holder</a>
+      <a href="#shop-start" onclick="mobileNavFadeTo(event, '#shop-start', 'stationery')">Stationery</a>
     </div>
-    <a href="#custom-vase" onclick="toggleMobileNav()">Custom Vase</a>
-    <a href="#about" onclick="toggleMobileNav()">Our Story</a>
+    <a href="#custom-vase" onclick="mobileNavFadeTo(event, '#custom-vase')">Premium Products</a>
+    <a href="#everyday-banner" onclick="mobileNavFadeTo(event, '#everyday-banner')">What's In a Name?</a>
+    <a href="#about" onclick="mobileNavFadeTo(event, '#about')">Our Story</a>
+  </div>
+  <div class="mobile-nav-social">
+    <a href="https://www.instagram.com/florkeepsph" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://www.facebook.com/people/Flor-Keeps-Ph/61575435265765/" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a href="https://www.tiktok.com/@florkeepsph" target="_blank" rel="noopener noreferrer">TikTok</a>
   </div>
   <div class="mobile-nav-footer">Handmade in Cebu, Philippines</div>
 </div>
@@ -1685,7 +1766,7 @@
 
   <!-- ✅ TOP: CTA -->
   <div class="accordion" id="accordion-top">
-    <a href="#shop" class="accordion-header">
+    <a href="#shop-start" class="accordion-header">
       <span class="accordion-header-text">Shop Collection</span>
       <div class="accordion-arrow">
         <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5" stroke-linecap="round">
@@ -1698,10 +1779,10 @@
   <!-- ✅ BOTTOM: FULL ACCORDION -->
   <div class="accordion" id="accordion-bottom">
     <div class="accordion-cats" id="accordion-bottom-cats">
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('coaster')"><span>Coaster</span><span class="accordion-cat-arrow">›</span></a>
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('decor')"><span>decor</span><span class="accordion-cat-arrow">›</span></a>
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('pen holder')"><span>Pen Holder</span><span class="accordion-cat-arrow">›</span></a>
-      <a href="#shop" class="accordion-cat" onclick="filterAndScroll('stationery')"><span>Stationery</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop-start" class="accordion-cat" onclick="filterAndScroll('coaster')"><span>Coaster</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop-start" class="accordion-cat" onclick="filterAndScroll('decor')"><span>decor</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop-start" class="accordion-cat" onclick="filterAndScroll('pen holder')"><span>Pen Holder</span><span class="accordion-cat-arrow">›</span></a>
+      <a href="#shop-start" class="accordion-cat" onclick="filterAndScroll('stationery')"><span>Stationery</span><span class="accordion-cat-arrow">›</span></a>
     </div>
 
     <div class="accordion-footer">
@@ -1752,7 +1833,7 @@
 <div class="strip"><div class="strip-track" id="strip-track"></div></div>
 
 <!-- SHOP -->
-<div class="shop-marquee">
+<div class="shop-marquee" id="shop-start">
   <div class="shop-marquee-track">
     <span>100% Handmade</span>
     <svg class="marquee-sep" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><circle cx="12" cy="18" r="3.2"/><circle cx="6" cy="12" r="3.2"/><circle cx="18" cy="12" r="3.2"/><circle cx="12" cy="12" r="2.4" fill="#fff"/></svg>
@@ -1794,10 +1875,9 @@
 <section id="custom-vase">
   <div class="vase-inner reveal-on-scroll">
   <div class="vase-wrap">
-    <div class="vase-img">
+      <div class="vase-img">
       <img src="photo3.jpg" alt="Custom resin vase">
       <div class="vase-img-over"></div>
-      <div class="vase-soon">✦ Every Story, Preserved</div>
     </div>
     <div class="vase-text">
       <div class="sec-label">Have Something to Preserve?</div>
@@ -1805,10 +1885,9 @@
       <div class="mobile-section-img">
         <img src="photo3.jpg" alt="Custom resin vase">
         <div class="vase-img-over"></div>
-        <div class="vase-soon">✦ Every Story, Preserved</div>
       </div>
       <p>Wedding flowers, a bouquet, a memory in bloom — whatever you're hoping to keep forever, tell Shiela your idea and she'll bring it to life.</p>
-      <button class="vase-start-btn" onclick="openPremiumOverlay()">Start Your Order</button>
+      <button class="vase-start-btn" onclick="openPremiumOverlay()">Start Your Order &rarr;</button>
     </div>
   </div>
   </div>
@@ -1878,7 +1957,7 @@
       </a>
       <p>Flower preservation &amp; resin crafts from the heart of Cebu, Philippines. Every piece made with love and intention.</p>
     </div>
-    <div class="footer-col"><h5>Shop</h5><ul><li><a href="#shop">All Products</a></li><li><a href="#custom-vase">Custom Vase</a></li><li><a href="#shop">Coaster</a></li><li><a href="#shop">Floral Art</a></li></ul></div>
+    <div class="footer-col"><h5>Explore</h5><ul><li><a href="#shop-start">Shop</a></li><li><a href="#custom-vase">Premium Products</a></li><li><a href="#everyday-banner">What's In a Name?</a></li></ul></div>
     <div class="footer-col"><h5>Connect</h5><ul><li><a href="https://www.instagram.com/florkeepsph" target="_blank" rel="noopener noreferrer">Instagram</a></li><li><a href="https://www.facebook.com/people/Flor-Keeps-Ph/61575435265765/" target="_blank" rel="noopener noreferrer">Facebook</a></li><li><a href="https://www.tiktok.com/@florkeepsph" target="_blank" rel="noopener noreferrer">TikTok</a></li></ul></div>
   </div>
   <div class="footer-bottom">
@@ -1899,12 +1978,10 @@
       <div class="prod-carousel-dots" id="prod-dots"></div>
     </div>
     <div class="prod-info">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
-        <div class="pname" id="prod-name"></div>
-        <button id="prod-add-btn" style="background:var(--pink); color:var(--white); border:none; border-radius:40px; padding:0.45rem 1rem; font-family:'Poppins',sans-serif; font-size:0.72rem; font-weight:500; cursor:pointer; white-space:nowrap; flex-shrink:0;">Add to Cart</button>
-      </div>
+      <div class="pname" id="prod-name"></div>
       <div class="pprice" id="prod-price"></div>
       <div id="prod-desc" style="font-size:0.8rem; color:rgba(10,16,20,0.55); line-height:1.7; margin-top:0.85rem;"></div>
+      <button id="prod-add-btn">Add to Cart</button>
     </div>
   </div>
 </div>
@@ -3314,7 +3391,54 @@ let toastT;
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3000); }
 function toggleMobileNav(){
   const isOpen = document.getElementById('mobile-nav').classList.toggle('open');
+  const btn = document.querySelector('.hamburger');
   document.body.classList.toggle('mobile-nav-open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+  if(btn){
+    btn.setAttribute('aria-expanded', String(isOpen));
+    btn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Menu');
+  }
+}
+function mobileNavFadeTo(event, target, filter){
+  event.preventDefault();
+  event.stopPropagation();
+  const fade = document.getElementById('mobile-page-fade');
+  const nav = document.getElementById('mobile-nav');
+  const section = document.querySelector(target);
+
+  if(filter) filterAndScroll(filter, false);
+  if(nav) nav.classList.remove('open');
+  document.body.classList.remove('mobile-nav-open');
+  document.body.style.overflow = '';
+  const btn = document.querySelector('.hamburger');
+  if(btn){
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Menu');
+  }
+  if(fade) fade.classList.add('show');
+
+  setTimeout(() => {
+    if(section){
+      const htmlEl = document.documentElement;
+      const bodyEl = document.body;
+      const previousHtmlScrollBehavior = htmlEl.style.scrollBehavior;
+      const previousBodyScrollBehavior = bodyEl.style.scrollBehavior;
+      htmlEl.style.scrollBehavior = 'auto';
+      bodyEl.style.scrollBehavior = 'auto';
+      const navOffset = document.querySelector('nav')?.offsetHeight || 0;
+      const y = section.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({ top: Math.max(0, y), left: 0, behavior: 'auto' });
+      requestAnimationFrame(() => {
+        htmlEl.style.scrollBehavior = previousHtmlScrollBehavior;
+        bodyEl.style.scrollBehavior = previousBodyScrollBehavior;
+      });
+    }
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if(fade) fade.classList.remove('show');
+      });
+    });
+  }, 240);
 }
 function handleSubscribe(e){ e.preventDefault(); toast('Thank you! 🌸'); e.target.reset(); }
 
@@ -3438,12 +3562,15 @@ function toggleAccordion(id) {
   }
 }
 
-// Clicking a category row filters the products and goes to #shop
-function filterAndScroll(filter) {
+// Clicking a category row filters the products and goes to the shop marquee.
+function filterAndScroll(filter, shouldScroll = true) {
   document.querySelectorAll('.fpill').forEach(b => b.classList.remove('on'));
   const pill = document.querySelector(`.fpill[data-filter="${filter}"]`);
   if (pill) pill.classList.add('on');
   renderProducts(filter);
+  if (shouldScroll) {
+    document.getElementById('shop-start')?.scrollIntoView({ block: 'start' });
+  }
 }
 
 // ── SCROLL REVEAL (bento box build-in effect) ──
