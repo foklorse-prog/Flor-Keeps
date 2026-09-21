@@ -3649,17 +3649,34 @@ updateMobileParallax();
   const bottomCTA = document.getElementById('accordion-bottom');
 
   let expanded = false;
+  const topAccordionClosedHeight = 68;
+  function getTopAccordionOpenHeight() {
+    return Math.round((window.innerHeight || document.documentElement.clientHeight) * 0.52);
+  }
+  function openTopAccordion() {
+    if (!topCTA) return;
+    topCTA.style.height = `${topCTA.getBoundingClientRect().height || topAccordionClosedHeight}px`;
+    topCTA.offsetHeight;
+    topCTA.style.height = `${getTopAccordionOpenHeight()}px`;
+    topCTA.classList.add('expanded');
+  }
+  function closeTopAccordion() {
+    if (!topCTA) return;
+    topCTA.style.height = `${topAccordionClosedHeight}px`;
+    topCTA.classList.remove('expanded');
+  }
+  if (topCTA) topCTA.style.height = `${topAccordionClosedHeight}px`;
 
   function handleScroll() {
     // TOP CARD: expand once user scrolls
     if (window.scrollY > 0 && !expanded) {
-      topCTA.classList.add('expanded');
+      openTopAccordion();
       expanded = true;
     }
 
     // TOP CARD: collapse when back at top
     if (window.scrollY === 0 && expanded) {
-      topCTA.classList.remove('expanded');
+      closeTopAccordion();
       expanded = false;
     }
 
@@ -3673,6 +3690,11 @@ updateMobileParallax();
   }
 
   window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    if (expanded && topCTA) {
+      topCTA.style.height = `${getTopAccordionOpenHeight()}px`;
+    }
+  }, { passive: true });
 
   document.addEventListener('DOMContentLoaded', () => {
     const bottom = document.getElementById('accordion-bottom');
