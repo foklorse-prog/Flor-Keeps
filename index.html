@@ -365,11 +365,11 @@
     margin-top: -10px;
     position: static;
     height: auto;
-    overflow: visible;
+    overflow: hidden;
     }
 
     #accordion-bottom[data-open="true"] {
-    max-height: none;
+    max-height: 300px;
     }
 
     #accordion-bottom .accordion-header {
@@ -482,7 +482,20 @@
     }
 
     #accordion-bottom .accordion-cats {
-      display: none;
+      display: block;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transform: translateY(-6px);
+      transition: max-height 1.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease, transform 0.45s ease;
+      pointer-events: none;
+    }
+    #accordion-bottom.expanded .accordion-cats,
+    #accordion-bottom[data-open="true"] .accordion-cats {
+      max-height: 260px;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
     #accordion-bottom {
     --state: false;
@@ -567,14 +580,6 @@
     width: 14px;
     height: 14px;
     }
-#accordion-bottom .accordion-cats {
-  display: none;
-}
-
-#accordion-bottom.expanded .accordion-cats {
-  display: block;
-}
-
     /* ═══════════════════════════════
        EVERYDAY BANNER + PHOTO3 BANNER
     ═══════════════════════════════ */
@@ -745,6 +750,7 @@
       transform: translateY(-6px);
       box-shadow: 0 2px 6px rgba(10,16,20,0.06), 0 16px 40px rgba(10,16,20,0.12);
     }
+    .pcard.is-hidden { display: none; }
     .pcard-img { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--off); }
     .pcard-img img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.5s ease; }
     .pcard:hover .pcard-img img { transform: scale(1.06); }
@@ -2205,7 +2211,7 @@ const products = [
   {id:4,name:"Charm Keychain", category:"stationery", price:130, old: null,  badge: null, blabel:null,imgs:[{src:"keychain2.jpg", label:"Red Stars"}, {src:"Letter_keychain.jpg", label:"Peach Zodiac"}, {src:"Yellow_letter_keychain.jpg", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:5,name:"Classic Pen Holder", category:"stationery", price:325, old:null,  badge:null, blabel:null,imgs:[{src:"Blue_flower_pen_holder.jpg", label:"Blue"}, {src:"Transparent_flower_pen_holder.jpg", label:"Transparent"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:6,name:"Colorful Accent Jar", category:"decor", price:400, old:null,  badge:null, blabel:null,imgs:["Colorful_accent_jar.jpg", "accent_jar2.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
-  {id:7,name:"Dreamy Pen", category:"stationery", price:145, old:null,  badge:null, blabel:null,imgs:[{src:"Pen.jpg", label:"Red Stars"}, {src:"pen2.jpg", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
+  {id:7,name:"Dreamy Pen", category:"stationery", price:150, old:null,  badge:null, blabel:null,imgs:[{src:"Pen.jpg", label:"Red Stars"}, {src:"pen2.jpg", label:"Yellow Flower"}], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:8,name:"Eternal Floral Vase", category:"decor", price:3500, old:null,  badge:"pb-prem", blabel:"Premium",imgs:["Eternal_floral_vase.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:9,name:"Faux-Stone Coaster", category:"coaster", price:165, old:null,  badge:null, blabel:null,imgs:["5-Faux_stone_coaster_photo1.jpg", "5-Faux_stone_coaster_photo3.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
   {id:10,name:"Flora Beam Lamp", category:"decor", price:730, old:null,  badge:"pb-new", blabel:"New",imgs:["Customizable_lamp.jpg"], description:"Each piece is handcrafted with care using preserved florals and premium resin. No two pieces are ever alike."},
@@ -3365,9 +3371,11 @@ async function submitPaymentProof(){
 
 function renderProducts(filter='all'){
   const grid=document.getElementById('products-grid');
-  const list=filter==='all'?products:products.filter(p=>p.category===filter);
-  grid.innerHTML=list.map(p=>`
-    <div class="pcard">
+  if(!grid) return;
+
+  if(!grid.dataset.rendered){
+    grid.innerHTML=products.map(p=>`
+    <div class="pcard" data-category="${p.category}">
       <div class="pcard-img" onclick="openProductOverlay(${p.id})" style="cursor:pointer;">
         <img src="${typeof p.imgs[0] === 'string' ? p.imgs[0] : p.imgs[0].src}" alt="${p.name}" loading="lazy">
         ${p.badge?`<span class="pbadge ${p.badge}">${p.blabel}</span>`:''}
@@ -3381,6 +3389,13 @@ function renderProducts(filter='all'){
         </div>
       </div>
     </div>`).join('');
+    grid.dataset.rendered = 'true';
+  }
+
+  grid.querySelectorAll('.pcard').forEach(card => {
+    const show = filter === 'all' || card.dataset.category === filter;
+    card.classList.toggle('is-hidden', !show);
+  });
 }
 document.querySelectorAll('.fpill').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.fpill').forEach(b=>b.classList.remove('on'));
