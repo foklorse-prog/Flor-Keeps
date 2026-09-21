@@ -357,6 +357,13 @@
     /* TOP CARD ONLY */
     #accordion-top {
     border-radius: 16px 16px 0 0;
+    height: 68px;
+    max-height: none;
+    transition: height 2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #accordion-top.expanded {
+    height: 52vh;
     }
 
     /* BOTTOM CARD ONLY */
