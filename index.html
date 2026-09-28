@@ -1742,7 +1742,6 @@
     <div class="mobile-nav-subcats">
       <a href="#shop-start" onclick="mobileNavFadeTo(event, '#shop-start', 'coaster')">Coaster</a>
       <a href="#shop-start" onclick="mobileNavFadeTo(event, '#shop-start', 'decor')">Decor</a>
-      <a href="#shop-start" onclick="mobileNavFadeTo(event, '#shop-start', 'pen holder')">Pen Holder</a>
       <a href="#shop-start" onclick="mobileNavFadeTo(event, '#shop-start', 'stationery')">Stationery</a>
     </div>
     <a href="#custom-vase" onclick="mobileNavFadeTo(event, '#custom-vase')">Premium Products</a>
@@ -1788,7 +1787,6 @@
     <div class="accordion-cats" id="accordion-bottom-cats">
       <a href="#shop-start" class="accordion-cat" onclick="filterAndScroll('coaster')"><span>Coaster</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop-start" class="accordion-cat" onclick="filterAndScroll('decor')"><span>decor</span><span class="accordion-cat-arrow">›</span></a>
-      <a href="#shop-start" class="accordion-cat" onclick="filterAndScroll('pen holder')"><span>Pen Holder</span><span class="accordion-cat-arrow">›</span></a>
       <a href="#shop-start" class="accordion-cat" onclick="filterAndScroll('stationery')"><span>Stationery</span><span class="accordion-cat-arrow">›</span></a>
     </div>
 
@@ -1871,7 +1869,6 @@
       <button class="fpill on" data-filter="all">All</button>
       <button class="fpill" data-filter="coaster">coaster</button>
       <button class="fpill" data-filter="decor">decor</button>
-      <button class="fpill" data-filter="pen holder">Pen Holder</button>
       <button class="fpill" data-filter="stationery">Stationery</button>
     </div>
   </div>
@@ -3541,11 +3538,11 @@ function updateMobileParallax() {
 // via CSS so we just pause the JS interval.
 const tickerEl = document.getElementById('accordion-ticker');
 const accordion = document.getElementById('accordion-bottom');
-const tickerCats = ['Candle Holder', 'Coaster', 'Decor', 'Keychain', 'Lamp', 'Pen Holder', 'Stationery', 'Vase'];
+const tickerCats = ['Candle Holder', 'Coaster', 'Decor', 'Keychain', 'Lamp', 'Stationery', 'Vase'];
 let tickerIndex = 0;
 let tickerInterval = null;
 let tickerFadeTimeout = null;
-const tickerFilters = ['Candle Holder', 'Coaster', 'Decor', 'Keychain', 'Lamp', 'Pen Holder', 'Stationery', 'Vase'];
+const tickerFilters = ['Candle Holder', 'Coaster', 'Decor', 'Keychain', 'Lamp', 'Stationery', 'Vase'];
 
 function startTicker() {
   if (tickerInterval) return; // already running
