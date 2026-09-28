@@ -2166,8 +2166,7 @@
   </div>
 
   <div class="chk-success" id="chk-success-view">
-    <div class="chk-success-icon">🌺</div>
-    <div style="font-family:'Great Vibes',cursive; font-size:2rem; color:var(--pink); line-height:1; margin-bottom:0.3rem;">Thank you</div>
+    <div style="font-family:'Great Vibes',cursive; font-size:2rem; color:var(--pink); line-height:1; margin-bottom:0.3rem;">Thank you!</div>
     <h4 id="chk-success-title">Order received!</h4>
     <p id="chk-success-msg">Shiela will reach out to you shortly to confirm your order and arrange payment.</p>
     <button class="btn btn-sky" style="width:100%;justify-content:center;" onclick="closeCheckoutAfterSuccess()">Done</button>
@@ -3020,10 +3019,10 @@ async function submitOrder(){
   const locationSelected = (cebuYes && cebuYes.checked) || (cebuNo && cebuNo.checked);
 
   if(!fname || !lname || !contact || !messenger || !street || !barangay || !city || !province || !zip){
-    toast('Please fill in all required fields 🌸'); return;
+    toast('Please fill in all required fields.'); return;
   }
   if(!locationSelected){
-    toast("Please let us know if you're in Cebu City 🌸"); return;
+    toast("Please let us know if you're in Cebu City. 🌸"); return;
   }
 
   const hasCustom = cart.some(i => i.note && i.note.trim() !== '');
@@ -3101,10 +3100,10 @@ async function submitOrder(){
       successView.style.display = 'block';
       if(hasCustom){
         document.getElementById('chk-success-title').textContent = 'Order received! 🌸';
-        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Shiela will reach out via Messenger or Viber with your quote and payment details.`;
+        document.getElementById('chk-success-msg').textContent = `Thank you!, ${fullName}! Shiela will reach out via Messenger or Viber with your quote and payment details.`;
       } else {
         document.getElementById('chk-success-title').textContent = 'Order placed! 🎉';
-        document.getElementById('chk-success-msg').textContent = `Thank you, ${fullName}! Your order is confirmed. Shiela will begin working on your piece right away.`;
+        document.getElementById('chk-success-msg').textContent = `Thank you!, ${fullName}! Your order is confirmed. Shiela will begin working on your piece right away.`;
       }
     } else {
       console.error('Formspree order failed:', data);
@@ -3121,8 +3120,7 @@ function showSuccessViewV2(title, message){
   const successView = document.getElementById('chk-success-view');
   successView.style.display = 'block';
   successView.innerHTML = `
-    <div class="chk-success-icon">🌺</div>
-    <div style="font-family:'Great Vibes',cursive; font-size:2rem; color:var(--pink); line-height:1; margin-bottom:0.3rem;">Thank you</div>
+    <div style="font-family:'Great Vibes',cursive; font-size:2rem; color:var(--pink); line-height:1; margin-bottom:0.3rem;">Thank you!</div>
     <h4 id="chk-success-title">${escapeHtml(title)}</h4>
     <p id="chk-success-msg">${escapeHtml(message)}</p>
     <button class="btn btn-sky" style="width:100%;justify-content:center;" onclick="closeCheckoutAfterSuccess()">Done</button>
@@ -3358,7 +3356,7 @@ async function submitPaymentProof(){
     const successMsg = isHalfPayment
       ? `Thank you, ${order.name}! Shiela will verify your down payment. The remaining balance of PHP ${(order.remainingBalance || 0).toLocaleString()} is due before delivery.`
       : `Thank you, ${order.name}! Shiela will verify your payment and begin preparing your order.`;
-    showSuccessViewV2('Payment proof received! 🌺', successMsg);
+    showSuccessViewV2('Payment proof received.', successMsg);
   } catch(e){
     console.error('Payment proof submission failed:', e);
     toast(e.message || 'Payment proof could not be sent. Please try again.');
