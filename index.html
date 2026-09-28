@@ -2733,7 +2733,7 @@ function confirmAddToCart(){
     if(ex){ ex.qty++; ex.note = note || ex.note; }
     else cart.push({...p, qty:1, note, variant: _pendingVariant, variantSrc: _pendingVariantSrc});
     saveCart(); updateCartUI();
-    toast(`"${p.name}" added 🛍`);
+    toast(`"${p.name}" added.`);
   }
   _pendingVariant = null;
   _pendingVariantSrc = null;
