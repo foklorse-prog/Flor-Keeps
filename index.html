@@ -2153,7 +2153,7 @@
           <span id="chk-proof-text" style="font-family:'Poppins',sans-serif; font-size:0.82rem; color:rgba(10,16,20,0.35);">Tap to upload screenshot</span>
         </label>
         <input type="file" id="chk-proof" accept="image/*" style="display:none;" onchange="if(this.files[0]){ const n = this.files[0].name; const ext = n.lastIndexOf('.') !== -1 ? n.slice(n.lastIndexOf('.')) : ''; const base = n.slice(0, n.lastIndexOf('.') !== -1 ? n.lastIndexOf('.') : n.length); const display = base.length > 20 ? base.slice(0,20) + '...' + ext : n; document.getElementById('chk-proof-text').textContent = display; document.getElementById('chk-proof-text').style.color = 'var(--navy)'; } else { document.getElementById('chk-proof-text').textContent = 'Tap to upload screenshot'; document.getElementById('chk-proof-text').style.color = 'rgba(10,16,20,0.35)'; }">
-        <p style="font-size:0.68rem; color:rgba(10,16,20,0.4); margin-top:0.3rem;">Screenshot must not exceed 10MB</p>
+        <p style="font-size:0.68rem; color:rgba(10,16,20,0.4); margin-top:0.3rem;">Screenshot must not exceed 10MB.</p>
       </div>
     </div>
 
@@ -3139,7 +3139,7 @@ function showPaymentView(order){
   const successView = document.getElementById('chk-success-view');
   successView.style.display = 'block';
   successView.innerHTML = `
-    <h4 id="chk-success-title">Complete payment</h4>
+    <h4 id="chk-success-title">Complete payment.</h4>
     <p id="chk-success-msg">Order ${escapeHtml(order.orderId)} was received. Please complete payment and upload your proof.</p>
     <div class="chk-order-summary">
       <div class="chk-sum-label">Payment Summary</div>
@@ -3177,7 +3177,7 @@ function showPaymentView(order){
         <span id="pay-proof-text" style="font-family:'Poppins',sans-serif; font-size:0.82rem; color:rgba(10,16,20,0.35);">${escapeHtml(order.proofFilename || 'Tap to upload screenshot')}</span>
       </label>
       <input type="file" id="pay-proof" accept="image/*" style="display:none;" onchange="updateProofFilename(this)">
-      <p style="font-size:0.68rem; color:rgba(10,16,20,0.4); margin-top:0.3rem;">Screenshot must not exceed 10MB</p>
+      <p style="font-size:0.68rem; color:rgba(10,16,20,0.4); margin-top:0.3rem;">Screenshot must not exceed 10MB.</p>
     </div>
     <button class="btn btn-pink" id="chk-proof-submit-btn" style="width:100%;justify-content:center;" onclick="submitPaymentProof()">Submit Payment Proof</button>
   `;
@@ -3257,7 +3257,7 @@ async function submitOrderV2(){
     if(hasCustom){
       cart = []; saveCart(); updateCartUI();
       const prefText = isHalfPayment ? '50% down payment' : 'full payment';
-      showSuccessViewV2('Quote request received', `Thank you, ${fullName}. Shiela will reach out via Messenger or Viber with your final quote — you've noted a preference for ${prefText}. Order ID: ${orderId}`);
+      showSuccessViewV2('Quote request received.', `Thank you, ${fullName}. Shiela will reach out via Messenger or Viber with your final quote — you've noted a preference for ${prefText}. Order ID: ${orderId}`);
       return;
     }
 
